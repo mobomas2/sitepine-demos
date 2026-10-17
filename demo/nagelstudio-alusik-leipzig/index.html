@@ -1,305 +1,186 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Nagelstudio Leipzig (Alusik) — Nails in Leipzig</title>
-<meta name="description" content="Nagelstudio Leipzig (Alusik) — vertrouwde Nails in Leipzig. Bel +49 1514 6374575.">
+<title>Nageldesign Leipzig — Alla | Nageldesign im Leipziger Zentrum</title>
+<meta name="description" content="Alla macht Nageldesign im Herzen von Leipzig — sauber, kreativ und gemacht für deinen Alltag. Kein Warten in der Telefonschleife: Dein Termin ist eine WhatsApp-Nachricht entfernt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-  /* ============ Demo design system v3 — dark cinematic / per-business accent ============ */
-  @property --angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
-  * { margin: 0; padding: 0; box-sizing: border-box; min-width: 0; }
-  :root {
-    --accent: #b03060; --dark: #4f152b; --light: #f7eaef;
-    --bg: #07090c; --bg-2: #0b0f14; --surface: rgba(255,255,255,.05); --line: rgba(255,255,255,.1);
-    --ink: #f2f6f9; --muted: #a7b6c2; --faint: #72879a;
-    --acc-soft: color-mix(in oklab, var(--accent) 16%, transparent);
-    --acc-line: color-mix(in oklab, var(--accent) 45%, transparent);
-  }
-  html { scroll-behavior: smooth; overflow-x: clip; }
-  body { font-family: ui-sans-system, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg); color: var(--ink); line-height: 1.65; overflow-x: clip; -webkit-font-smoothing: antialiased; }
-  ::selection { background: var(--accent); color: #fff; }
-  a { color: inherit; }
-  img, video { max-width: 100%; display: block; }
-  :focus-visible { outline: 2.5px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-  section { scroll-margin-top: 70px; }
-
-  .demobar { position: relative; z-index: 50; background: #04060a; color: #fff; font-size: 13.5px; padding: 10px 16px;
-    display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; justify-content: center; text-align: center; border-bottom: 1px solid var(--line); }
-  .demobar strong { font-weight: 800; }
-  .demobar a { color: var(--accent); font-weight: 800; filter: brightness(1.5); }
-
-  .progress { position: fixed; inset: 0 auto auto 0; height: 3px; width: 100%; z-index: 200; transform-origin: 0 50%; transform: scaleX(0);
-    background: linear-gradient(90deg, var(--accent), color-mix(in oklab, var(--accent) 55%, #fff)); }
-  @supports (animation-timeline: scroll()) {
-    .progress { animation: grow linear both; animation-timeline: scroll(root); }
-    @keyframes grow { to { transform: scaleX(1); } }
-  }
-
-  /* ---------- hero ---------- */
-  .hero { position: relative; min-height: 94svh; display: flex; align-items: flex-end; color: #fff; overflow: clip; isolation: isolate; }
-  .hero-media { position: absolute; inset: -12% 0; z-index: -2; will-change: transform; }
-  .hero-media video, .hero-media img { width: 100%; height: 100%; object-fit: cover; }
-  .hero-media video { animation: slowzoom 24s ease-in-out infinite alternate; }
-  @keyframes slowzoom { from { transform: scale(1); } to { transform: scale(1.08); } }
-  .hero::after { content: ""; position: absolute; inset: 0; z-index: -1;
-    background: linear-gradient(180deg, rgba(4,7,11,.45) 0%, rgba(4,7,11,.14) 40%, rgba(4,7,11,.88) 100%); }
-  .hero-in { width: 100%; max-width: 1140px; margin: 0 auto; padding: 130px 22px 66px; }
-  .kicker { display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 2.2px; font-size: 12px; font-weight: 800;
-    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(10px); padding: 9px 15px; border-radius: 999px; }
-  .hero h1 { font-size: clamp(40px, 7.4vw, 78px); line-height: 1.01; font-weight: 900; letter-spacing: -2px; margin: 22px 0 14px; max-width: 820px; text-wrap: balance;
-    background: linear-gradient(96deg, #fff 30%, color-mix(in oklab, var(--accent) 65%, #fff) 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .hero .tagline { font-size: clamp(16px, 2.6vw, 21px); max-width: 620px; color: rgba(255,255,255,.92); margin-bottom: 32px; text-wrap: balance; }
-  .cta-row { display: flex; flex-wrap: wrap; gap: 13px; }
-  .btn { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font-weight: 800; font-size: 16.5px; padding: 16px 30px; border-radius: 999px;
-    background: var(--accent); color: #fff; box-shadow: 0 18px 38px -14px color-mix(in oklab, var(--accent) 75%, transparent);
-    transition: transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s; }
-  .btn:hover { transform: translateY(-2px); }
-  .btn.ghost { background: rgba(255,255,255,.1); border: 1.5px solid rgba(255,255,255,.6); backdrop-filter: blur(8px); box-shadow: none; }
-  .scrollhint { margin-top: 42px; font-size: 11.5px; letter-spacing: 2.6px; text-transform: uppercase; opacity: .7; }
-
-  .trustbar { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-content: center; padding: 17px; background: #04060a;
-    border-block: 1px solid var(--line); color: var(--muted); font-size: 14px; font-weight: 600; }
-  .trustbar b { color: #fff; }
-
-  main { max-width: 1140px; margin: 0 auto; padding: 84px 22px 12px; container-type: inline-size; }
-  .eyebrow { color: var(--accent); filter: brightness(1.45); font-weight: 900; letter-spacing: 2.2px; text-transform: uppercase; font-size: 12px; margin-bottom: 12px; }
-  h2 { font-size: clamp(29px, 4.8vw, 44px); font-weight: 900; letter-spacing: -1.1px; line-height: 1.1; margin-bottom: 12px; text-wrap: balance; }
-  .sub { color: var(--muted); font-size: 17px; max-width: 640px; margin-bottom: 36px; }
-
-  .cards { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; margin-bottom: 88px; }
-  @container (max-width: 820px) { .cards { grid-template-columns: minmax(0,1fr); } }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 32px 27px;
-    transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s, background .35s; }
-  .card:hover { transform: translateY(-6px); border-color: var(--acc-line); background: rgba(255,255,255,.07); }
-  .card .dot { width: 48px; height: 48px; border-radius: 15px; background: var(--acc-soft); color: var(--accent); filter: saturate(1.2);
-    font-weight: 900; font-size: 17px; display: flex; align-items: center; justify-content: center; margin-bottom: 17px; }
-  .card .dot { color: color-mix(in oklab, var(--accent) 70%, #fff); }
-  .card h3 { font-size: 19.5px; margin-bottom: 7px; letter-spacing: -0.3px; }
-  .card p { font-size: 15px; color: var(--muted); }
-
-  .band { position: relative; height: 58svh; min-height: 340px; overflow: clip; border-radius: 28px; margin-bottom: 88px; isolation: isolate; border: 1px solid var(--line); }
-  .band .plx { position: absolute; inset: -14% 0; will-change: transform; }
-  .band .plx img { width: 100%; height: 100%; object-fit: cover; }
-  .band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4,7,11,.78) 0%, rgba(4,7,11,.12) 64%); }
-  .band-in { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 36px; color: #fff; max-width: 570px; }
-  .band-in h3 { font-size: clamp(25px, 4vw, 38px); letter-spacing: -0.8px; line-height: 1.13; margin-bottom: 11px; }
-  .band-in p { color: rgba(255,255,255,.9); font-size: 16px; }
-
-  .gallery { display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 16px; margin-bottom: 88px; }
-  @container (max-width: 820px) { .gallery { grid-template-columns: 1fr 1fr; } }
-  .gallery figure { border-radius: 24px; overflow: clip; position: relative; border: 1px solid var(--line); aspect-ratio: 4/3; }
-  .gallery figure:first-child { aspect-ratio: auto; }
-  .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s cubic-bezier(.2,.7,.2,1); }
-  .gallery figure:hover img { transform: scale(1.06); }
-
-  .why { position: relative; overflow: clip; background: linear-gradient(150deg, var(--dark), var(--accent)); color: #fff; border-radius: 28px; padding: 48px 40px; margin-bottom: 88px; }
-  .why::before { content: ""; position: absolute; inset: 0; background: radial-gradient(700px 300px at 85% 0%, rgba(255,255,255,.22), transparent 60%); }
-  .why > * { position: relative; }
-  .why h2 { color: #fff; }
-  .why ul { list-style: none; margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px 32px; }
-  @container (max-width: 820px) { .why ul { grid-template-columns: 1fr; } .why { padding: 36px 25px; } }
-  .why li { padding-left: 34px; position: relative; font-size: 16px; color: rgba(255,255,255,.95); }
-  .why li::before { content: "✓"; position: absolute; left: 0; top: 1px; width: 23px; height: 23px; border-radius: 50%;
-    background: rgba(255,255,255,.22); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; }
-
-  .contact { display: grid; grid-template-columns: 1.15fr 1fr; gap: 18px; margin-bottom: 88px; }
-  @container (max-width: 820px) { .contact { grid-template-columns: minmax(0,1fr); } }
-  .panel { border: 1px solid var(--line); border-radius: 26px; padding: 34px 29px; background: var(--bg-2); }
-  .panel h3 { font-size: 21.5px; margin-bottom: 10px; letter-spacing: -0.4px; }
-  .row { display: flex; justify-content: space-between; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px; }
-  .row:first-of-type { border-top: none; }
-  .row .lbl { color: var(--muted); font-weight: 600; flex-shrink: 0; }
-  .row .val { font-weight: 700; text-align: right; overflow-wrap: anywhere; }
-  .big-phone { font-size: clamp(24px, 4.6vw, 34px); font-weight: 900; color: color-mix(in oklab, var(--accent) 72%, #fff);
-    text-decoration: none; display: inline-block; margin: 10px 0 16px; letter-spacing: -0.6px; overflow-wrap: anywhere; }
-
-  .callfab { position: fixed; right: 18px; bottom: 18px; z-index: 60; display: none; align-items: center; gap: 9px; background: var(--accent);
-    color: #fff; font-weight: 800; text-decoration: none; padding: 15px 22px; border-radius: 999px; box-shadow: 0 20px 38px -14px rgba(0,0,0,.6); }
-  @media (max-width: 820px) { .callfab { display: inline-flex; } }
-
-  footer { background: #04060a; border-top: 1px solid var(--line); color: var(--muted); padding: 44px 22px; text-align: center; font-size: 14px; }
-  footer .brandline { font-weight: 800; color: #fff; margin-bottom: 6px; font-size: 16.5px; }
-  footer a { color: color-mix(in oklab, var(--accent) 72%, #fff); font-weight: 700; }
-  .fine { font-size: 12.5px; color: var(--faint); margin-top: 10px; }
-
-  .rv { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
-  .rv.in { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) {
-    .rv { opacity: 1; transform: none; transition: none; }
-    .hero-media video { animation: none; }
-    html { scroll-behavior: auto; }
-  }
-
-  /* ===== LIGHT THEME (owner choice 2026-10-15) ===== */
-  :root { --bg: #f6f8f7; --bg-2: #ffffff; --surface: #ffffff; --line: rgba(11,18,32,.1);
-          --ink: #0b1220; --muted: #54646e; --faint: #8ca0ae; }
-  body { background: var(--bg); color: var(--ink); }
-  .trustbar { background: #fff; color: var(--muted); }
-  .trustbar b { color: var(--ink); }
-  .eyebrow { color: color-mix(in oklab, var(--accent) 80%, #000); filter: none; }
-  .card { box-shadow: 0 22px 40px -30px rgba(11,21,32,.3); }
-  .card .dot { color: color-mix(in oklab, var(--accent) 82%, #000); }
-  .panel { box-shadow: 0 22px 40px -30px rgba(11,21,32,.3); }
-  .big-phone { color: color-mix(in oklab, var(--accent) 82%, #000); }
-  footer a { color: color-mix(in oklab, var(--accent) 70%, #fff); }
-</style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "NailSalon",
-  "name": "Nagelstudio Leipzig (Alusik)",
-  "description": "Nagelstudio Leipzig (Alusik) — Nails in Leipzig.",
-  "telephone": "+49 1514 6374575",
-  "email": "info@example.com",
-  "image": "https://sitepine.mobomas.workers.dev/assets/img/nails-hero.jpg",
-  "address": { "@type": "PostalAddress", "streetAddress": "Niederkirchnerstraße 2, 04107", "addressLocality": "Leipzig" },
-  "areaServed": "Leipzig",
-  "openingHours": "Mo-Fr Nach Vereinbarung; Sa Nach Vereinbarung"
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--acc:#b04a63;--acc2:#f0b9c6;--ink:#33272b;--bg:#fdf7f5;--card:#ffffff;--mut:#7a7276}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+h1,h2,h3,.disp{font-family:'Fraunces',serif;font-weight:600;letter-spacing:.2px}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--ink) 55%,transparent);border-bottom:1px solid rgba(255,255,255,.12)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Fraunces',serif;font-size:26px;color:#fff}
+.logo b{color:var(--acc2);font-weight:600}
+.top-actions{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:999px;font-weight:700;font-size:15px;transition:.25s;border:1px solid transparent;cursor:pointer}
+.btn-acc{background:var(--acc);color:#fff;box-shadow:0 10px 24px -10px var(--acc)}
+.btn-acc:hover{transform:translateY(-2px)}
+.btn-ghost{border-color:rgba(255,255,255,.35);color:#fff;background:rgba(255,255,255,.06)}
+.btn-sm{padding:8px 16px;font-size:14px}
+.vhero{position:relative;min-height:100svh;display:flex;align-items:center;padding:118px 0 84px;overflow:hidden;background:var(--ink)}
+.hv-ambient{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(34px) brightness(.48) saturate(1.3);transform:scale(1.25);opacity:.9}
+.hv-shade{position:absolute;inset:0;background:radial-gradient(60% 50% at 78% 32%,color-mix(in srgb,var(--acc) 34%,transparent),transparent 70%),linear-gradient(180deg,color-mix(in srgb,var(--ink) 62%,transparent),color-mix(in srgb,var(--ink) 88%,#000 6%))}
+.vhero-grid{position:relative;display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;width:100%}
+.kicker{display:inline-block;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-weight:800;font-size:13px;margin-bottom:20px;backdrop-filter:blur(6px)}
+.vhero h1{font-size:clamp(40px,6vw,66px);line-height:1.14;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.35)}
+.vhero h1 .hl{color:var(--acc2)}
+.vhero p.lead{font-size:18.5px;line-height:1.85;color:rgba(255,255,255,.88);margin:22px 0 30px;max-width:34em}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.trustrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.trustchip{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.92);border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:700;backdrop-filter:blur(6px)}
+.vstage{position:relative;justify-self:center}
+.vframe{position:relative;border-radius:32px;padding:10px;background:linear-gradient(165deg,rgba(255,255,255,.28),rgba(255,255,255,.05) 55%);box-shadow:0 50px 100px -30px rgba(0,0,0,.65);animation:floaty 7s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.vframe img{height:min(74vh,680px);width:auto;max-width:86vw;border-radius:24px;object-fit:cover;background:#000}
+.vchip{position:absolute;top:24px;left:24px;background:rgba(12,8,10,.55);color:#fff;border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);padding:7px 14px;border-radius:999px;font-size:12.5px;font-weight:800}
+.chip-float{position:absolute;background:#fff;border-radius:16px;box-shadow:0 18px 40px -18px rgba(0,0,0,.4);padding:12px 18px;font-weight:800;font-size:14px;display:flex;gap:8px;align-items:center;color:var(--ink);z-index:3}
+.chip-float.c1{top:34px;left:-16px}
+.chip-float.c2{bottom:38px;right:-16px;color:var(--acc)}
+.scrolldown{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.75);font-size:13px;font-weight:700;text-align:center;animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+.marquee{background:var(--ink);color:#fff;overflow:hidden;padding:14px 0;transform:rotate(-1.2deg) scale(1.02)}
+.marquee .track{display:flex;gap:38px;white-space:nowrap;font-family:'Fraunces',serif;font-size:20px;animation:mq 26s linear infinite;width:max-content}
+@keyframes mq{to{transform:translateX(-50%)}}
+.stats{padding:56px 0 8px}
+.stats .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{background:var(--card);border:1px solid color-mix(in srgb,var(--ink) 7%,transparent);border-radius:20px;padding:22px;text-align:center}
+.stat .num{font-family:'Fraunces',serif;font-size:34px;color:var(--acc)}
+.stat .lbl{font-size:14px;color:var(--mut);margin-top:4px;line-height:1.6}
+section{padding:64px 0}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 38px}
+.sec-head h2{font-size:clamp(30px,4.2vw,44px)}
+.sec-head p{color:var(--mut);line-height:1.8;margin-top:10px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:var(--card);border:1px solid color-mix(in srgb,var(--ink) 7%,transparent);border-radius:22px;padding:26px 22px;transition:.3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 44px -24px color-mix(in srgb,var(--ink) 35%,transparent)}
+.card .ic{width:52px;height:52px;border-radius:16px;background:color-mix(in srgb,var(--acc) 13%,#fff);display:grid;place-items:center;font-size:25px;margin-bottom:14px}
+.card h3{font-size:20px;margin-bottom:8px}
+.card p{font-size:14.5px;line-height:1.75;color:var(--mut)}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.gitem{border-radius:24px;overflow:hidden;position:relative}
+.gitem img{width:100%;height:460px;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.gitem:hover img{transform:scale(1.06)}
+.gitem figcaption{position:absolute;bottom:0;left:0;right:0;padding:40px 20px 16px;background:linear-gradient(transparent,rgba(20,8,14,.72));color:#fff;font-weight:700;font-size:15px}
+.gcta{grid-column:1/-1;border-radius:24px;background:linear-gradient(135deg,var(--acc),color-mix(in srgb,var(--acc) 55%,#000 12%));color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:34px;gap:12px}
+.gcta h3{font-size:30px}
+.gcta p{line-height:1.85;font-size:15px;opacity:.92}
+.gcta .btn{background:#fff;color:var(--acc)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.step{background:var(--card);border:1px solid color-mix(in srgb,var(--ink) 7%,transparent);border-radius:22px;padding:28px 24px;position:relative}
+.step .n{font-family:'Fraunces',serif;font-size:52px;color:color-mix(in srgb,var(--acc) 22%,#fff);position:absolute;top:10px;right:18px}
+.step h3{font-size:20px;margin-bottom:8px}
+.step p{font-size:14.5px;line-height:1.75;color:var(--mut)}
+.contact{background:var(--ink);color:#fff;border-radius:32px;padding:44px;display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center}
+.contact h2{font-size:clamp(28px,3.8vw,40px);line-height:1.25}
+.contact p{line-height:1.85;opacity:.85;margin-top:12px}
+.crows{display:flex;flex-direction:column;gap:12px}
+.crow{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:15px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.crow span:first-child{opacity:.75;font-weight:500;font-size:13.5px}
+footer{padding:34px 0 110px;text-align:center;color:var(--mut);font-size:13.5px;line-height:1.9}
+.mobilebar{position:fixed;bottom:0;left:0;right:0;z-index:60;display:none;background:#fff;border-top:1px solid #eee;padding:10px 12px;gap:10px}
+.mobilebar a{flex:1;text-align:center;padding:12px;border-radius:14px;font-weight:800;font-size:14px;background:color-mix(in srgb,var(--acc) 12%,#fff);color:var(--acc)}
+.mobilebar a.main{background:var(--acc);color:#fff}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.on{opacity:1;transform:none}
+@media(max-width:900px){
+.vhero{padding:104px 0 70px}
+.vhero-grid{grid-template-columns:1fr;gap:36px}
+.vframe img{height:min(58vh,540px)}
+.chip-float.c1{left:2px}.chip-float.c2{right:2px}
+.stats .grid{grid-template-columns:repeat(2,1fr)}
+.cards{grid-template-columns:repeat(2,1fr)}
+.gallery{grid-template-columns:1fr}
+.gitem img{height:400px}
+.steps{grid-template-columns:1fr}
+.contact{grid-template-columns:1fr;padding:30px 22px}
+.mobilebar{display:flex}
+.top-actions .btn-ghost{display:none}
 }
-</script>
+@media(prefers-reduced-motion:reduce){.vframe,.scrolldown,.marquee .track{animation:none}}
+</style>
 </head>
 <body>
-<div class="progress" aria-hidden="true"></div>
+<header class="topbar"><div class="wrap">
+<div class="logo">Alusik <b>Nails</b></div>
+<div class="top-actions">
+<a class="btn btn-ghost btn-sm" href="https://www.instagram.com/alusik1000" target="_blank" rel="noopener">Instagram</a>
+<a class="btn btn-acc btn-sm" href="https://wa.me/4915146374575">Termin per WhatsApp</a>
+</div></div></header>
 
-<div class="demobar">
-  🔍 <strong>Vorschau ansehen</strong> — built for <strong>Nagelstudio Leipzig (Alusik)</strong> before you pay a cent.
-  <a href="https://sitepine.mobomas.workers.dev">Zu Ihrer Website machen →</a>
+<section class="vhero">
+<img class="hv-ambient" src="img/hero.webp" alt="" aria-hidden="true">
+<div class="hv-shade"></div>
+<div class="wrap vhero-grid">
+<div>
+<span class="kicker">💅 Nageldesign · Leipzig Zentrum</span>
+<h1>Perfekte Nägel, die <span class="hl">bis zu 4 Wochen</span> halten</h1>
+<p class="lead">Alla macht Nageldesign im Herzen von Leipzig — sauber, kreativ und gemacht für deinen Alltag. Kein Warten in der Telefonschleife: Dein Termin ist eine WhatsApp-Nachricht entfernt.</p>
+<div class="hero-cta">
+<a class="btn btn-acc" href="https://wa.me/4915146374575">Termin per WhatsApp</a>
+<a class="btn btn-ghost" href="#gallery">Arbeiten ansehen</a>
 </div>
+<div class="trustrow"><span class="trustchip">5,0★ bei Google (40 Bewertungen)</span><span class="trustchip">Termin per WhatsApp</span><span class="trustchip">Deutsch &amp; Russisch</span></div>
+</div>
+<div class="vstage">
+<div class="vframe">
+<img src="img/hero.webp" alt="Nageldesign von Alla — dunkel &amp; elegant">
+<span class="vchip">💅 Echte Arbeit von Alla</span>
+</div>
+<div class="chip-float c1">✨ Hält bis zu 4 Wochen</div>
+<div class="chip-float c2">📍 Zentrum, 04107 Leipzig</div>
+</div>
+</div>
+<a class="scrolldown" href="#services">Leistungen & Arbeiten<br>⌄</a>
+</section>
 
-<header class="hero">
-  <div class="hero-media" data-plx="0.32">
-    <video autoplay muted loop playsinline preload="metadata" poster="https://sitepine.mobomas.workers.dev/assets/img/nails-hero.jpg">
-      <source src="https://sitepine.mobomas.workers.dev/assets/video/nails.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="hero-in">
-    <span class="kicker">Nagelstudio · Leipzig</span>
-    <h1>Nagelstudio Leipzig (Alusik)</h1>
-    <p class="tagline">Perfekte Nägel bis zu 4 Wochen — mit vollen 5,0 ★ von deinen Kundinnen bewertet. Frag deinen Termin direkt an, ganz ohne Instagram-Umweg.</p>
-    <div class="cta-row">
-      <a class="btn" href="tel:+4915146374575">📞 Bel +49 1514 6374575</a>
-      <a class="btn ghost" href="https://wa.me/4915146374575" target="_blank" rel="noopener">💬 WhatsApp-Termin</a>
-    </div>
-    <div class="scrollhint">Scroll ↓</div>
-  </div>
-</header>
+<div class="marquee"><div class="track"><span>Gelnägel ✦ Maniküre ✦ Nageldesign ✦ Bis zu 4 Wochen ✦ Leipzig Zentrum ✦ WhatsApp-Termine ✦ Gelnägel ✦ Maniküre ✦ Nageldesign ✦ Bis zu 4 Wochen ✦ Leipzig Zentrum ✦ WhatsApp-Termine ✦ Gelnägel ✦ Maniküre ✦ Nageldesign ✦ Bis zu 4 Wochen ✦ Leipzig Zentrum ✦ WhatsApp-Termine</span><span>Gelnägel ✦ Maniküre ✦ Nageldesign ✦ Bis zu 4 Wochen ✦ Leipzig Zentrum ✦ WhatsApp-Termine ✦ Gelnägel ✦ Maniküre ✦ Nageldesign ✦ Bis zu 4 Wochen ✦ Leipzig Zentrum ✦ WhatsApp-Termine ✦ Gelnägel ✦ Maniküre ✦ Nageldesign ✦ Bis zu 4 Wochen ✦ Leipzig Zentrum ✦ WhatsApp-Termine</span></div></div>
 
-<div class="trustbar"><span>★ <b>5,0</b> · 40 Google-Bewertungen</span><span>✔ <b>WhatsApp</b>-Anfrage in 1 Minute</span><span>✔ <b>Leipzig</b> · Niederkirchnerstr. 2</span></div>
+<div class="stats"><div class="wrap"><div class="grid"><div class="stat reveal"><div class="num">5,0★</div><div class="lbl">40 Google-Bewertungen</div></div><div class="stat reveal"><div class="num">4 Wochen</div><div class="lbl">perfekte Nägel — das Versprechen</div></div><div class="stat reveal"><div class="num">1 Nachricht</div><div class="lbl">zum Termin per WhatsApp</div></div><div class="stat reveal"><div class="num">Zentrum</div><div class="lbl">04107 Leipzig</div></div></div></div></div>
 
-<main>
-  <section id="diensten">
-    <div class="eyebrow rv">Leistungen</div>
-    <h2 class="rv">Was wir tun</h2>
-    <p class="sub rv">Sorgfältige Nagelarbeit, die bis zu 4 Wochen hält — persönlich und mit Liebe zum Detail.</p>
-    <div class="cards">
-      <div class="card">
-        <div class="dot">01</div>
-        <h3>Nagelmodellage</h3>
-        <p>Natürlich oder auffällig — Modellagen, die bis zu 4 Wochen perfekt bleiben.</p>
-      </div>
-      <div class="card">
-        <div class="dot">02</div>
-        <h3>Auffüllen & Pflege</h3>
-        <p>Damit deine Nägel dauerhaft schön bleiben: regelmäßiges Auffüllen und schonende Pflege.</p>
-      </div>
-      <div class="card">
-        <div class="dot">03</div>
-        <h3>Designs nach Wunsch</h3>
-        <p>Von French bis Nail Art — wir setzen deine Ideen sauber um.</p>
-      </div>
-    </div>
-  </section>
+<section id="services"><div class="wrap">
+<div class="sec-head reveal"><h2>Für Hände, die gesehen werden</h2><p>Von natürlich bis mutig — immer sauber und haltbar:</p></div>
+<div class="cards"><div class="card reveal"><div class="ic">💅</div><h3>Gelnägel &amp; Modellage</h3><p>Stabile, schöne Nägel in deiner Wunschform — gemacht für bis zu 4 Wochen Alltag.</p></div><div class="card reveal"><div class="ic">💎</div><h3>Maniküre</h3><p>Gepflegte Hände und Nagelhaut — die Basis für jedes Design.</p></div><div class="card reveal"><div class="ic">🎨</div><h3>Design &amp; Nailart</h3><p>French, Ombre oder dein Wunschmotiv — bring gern ein Foto als Idee mit.</p></div><div class="card reveal"><div class="ic">🔧</div><h3>Auffüllen &amp; Pflege</h3><p>Damit deine Nägel Woche für Woche perfekt bleiben.</p></div></div>
+</div></section>
 
-  <section class="band rv" aria-label="Nagelstudio Leipzig (Alusik) aan het werk">
-    <div class="plx" data-plx="0.22"><img src="https://sitepine.mobomas.workers.dev/assets/img/nails-2.webp" alt="Nagelstudio Leipzig (Alusik) — Nails in Leipzig" loading="lazy"></div>
-    <div class="band-in">
-      <h3>5,0 Sterne — perfekter geht nicht</h3>
-      <p>Deine Kundinnen lieben deine Arbeit. Jetzt wirst du auch auf Google gefunden, nicht nur auf Instagram.</p>
-    </div>
-  </section>
+<section id="gallery" style="padding-top:10px"><div class="wrap">
+<div class="sec-head reveal"><h2>Arbeiten von Alla</h2><p>Keine Filter-Märchen — echte Ergebnisse aus dem Studio:</p></div>
+<div class="gallery"><figure class="gitem reveal"><img loading="lazy" src="img/w1.webp" alt="Ombre in Eisblau"><figcaption>Ombre in Eisblau</figcaption></figure><figure class="gitem reveal"><img loading="lazy" src="img/w2.webp" alt="French — der zeitlose Klassiker"><figcaption>French — der zeitlose Klassiker</figcaption></figure><figure class="gitem reveal"><img loading="lazy" src="img/w3.webp" alt="Gute-Laune-Design"><figcaption>Gute-Laune-Design</figcaption></figure><figure class="gitem reveal"><img loading="lazy" src="img/w4.webp" alt="Dark &amp; elegant"><figcaption>Dark &amp; elegant</figcaption></figure>
+<div class="gcta reveal"><h3>Dein Wunschdesign wartet</h3><p>Schick Alla einfach dein Wunschmotiv per WhatsApp — du bekommst schnell eine Antwort und deinen Termin.</p><a class="btn" href="https://wa.me/4915146374575">Termin per WhatsApp</a></div>
+</div></div></section>
 
-  <section>
-    <div class="eyebrow rv">Impressionen</div>
-    <h2 class="rv">So sieht das aus</h2>
-    <p class="sub rv">Sorgfältige Nagelarbeit, die bis zu 4 Wochen hält — persönlich und mit Liebe zum Detail.</p>
-    <div class="gallery">
-      <figure class="rv"><img src="https://sitepine.mobomas.workers.dev/assets/img/nails-hero.webp" alt="Nagelstudio Leipzig (Alusik) — impressie 1" loading="lazy"></figure>
-      <figure class="rv"><img src="https://sitepine.mobomas.workers.dev/assets/img/nails-2.webp" alt="Nagelstudio Leipzig (Alusik) — impressie 2" loading="lazy"></figure>
-      <figure class="rv"><img src="https://sitepine.mobomas.workers.dev/assets/img/nails-3.webp" alt="Nagelstudio Leipzig (Alusik) — impressie 3" loading="lazy"></figure>
-    </div>
-  </section>
+<section style="padding-top:10px"><div class="wrap">
+<div class="sec-head reveal"><h2>So einfach geht&#x27;s</h2></div>
+<div class="steps"><div class="step reveal"><div class="n">1</div><h3>Wunsch schicken</h3><p>Foto oder Idee per WhatsApp an Alla schicken.</p></div><div class="step reveal"><div class="n">2</div><h3>Termin fix machen</h3><p>Wir antworten schnell und finden deine Zeit im Zentrum.</p></div><div class="step reveal"><div class="n">3</div><h3>4 Wochen genießen</h3><p>Perfekte Nägel, die deinen Alltag mitmachen.</p></div></div>
+</div></section>
 
-  <section class="why rv">
-    <div class="eyebrow" style="color:#bff5dc">Warum wir</div>
-    <h2>Waarom mensen kiezen voor Nagelstudio Leipzig (Alusik)</h2>
-    <ul>
-      <li>Volle 5,0 Sterne auf Google</li>
-      <li>Direkte WhatsApp-Anfrage statt DM-Pingpong</li>
-      <li>Persönliches Studio statt Kette</li>
-      <li>Ergebnisse, die bis zu 4 Wochen halten</li>
-    </ul>
-  </section>
+<section style="padding-top:6px"><div class="wrap">
+<div class="contact reveal"><div>
+<h2>Termin &amp; Kontakt</h2><p>Mitten im Zentrum von Leipzig (04107) — am schnellsten erreichst du Alla per WhatsApp. Wir sprechen Deutsch und Russisch.</p>
+</div><div class="crows"><a class="crow" href="https://wa.me/4915146374575"><span>WhatsApp</span><span>+49 1514 6374575</span></a><a class="crow" href="https://www.instagram.com/alusik1000"><span>Instagram</span><span>@alusik1000</span></a><a class="crow" href="#gallery"><span>Standort</span><span>Zentrum, 04107 Leipzig</span></a></div></div>
+</div></section>
 
-  <section class="contact">
-    <div class="panel rv">
-      <h3>Kontakt aufnehmen</h3>
-      <p class="sub" style="margin-bottom:4px">Am schnellsten? Anrufen oder Nachricht senden — wir antworten schnell.</p>
-      <a class="big-phone" href="tel:+4915146374575">+49 1514 6374575</a>
-      <div class="row"><span class="lbl">Adresse</span><span class="val">Niederkirchnerstraße 2, 04107, Leipzig</span></div>
-      <div class="row"><span class="lbl">Telefon</span><span class="val">+49 1514 6374575</span></div>
-    </div>
-    <div class="panel rv">
-      <h3>Öffnungszeiten</h3>
-      <div class="row"><span class="lbl">Montag – Freitag</span><span class="val">Nach Vereinbarung</span></div>
-      <div class="row"><span class="lbl">Samstag</span><span class="val">Nach Vereinbarung</span></div>
-      <div class="row"><span class="lbl">Sonntag</span><span class="val">Nach Vereinbarung</span></div>
-    </div>
-  </section>
-</main>
+<footer><div class="wrap">
+Nageldesign Leipzig — Alla — Nageldesign im Leipziger Zentrum<br>
+Dies ist ein Website-Entwurf. Die finale Version erscheint auf der eigenen Domain.
+</div></footer>
 
-<a class="callfab" href="tel:+4915146374575">📞 Jetzt anrufen</a>
-
-<footer>
-  <div class="brandline">Nagelstudio Leipzig (Alusik) — Nails, Leipzig</div>
-  <div>Diese Vorschau wurde erstellt von <a href="https://sitepine.mobomas.workers.dev">SitePine</a> · Ihre Website ist bereits gebaut — <a href="https://sitepine.mobomas.workers.dev">claim it</a>.</div>
-  <div class="fine">Demo preview — not live, not indexed. 2026 · Preview ref: nagelstudio-alusik-leipzig</div>
-</footer>
-
+<nav class="mobilebar">
+<a class="main" href="https://wa.me/4915146374575">Termin per WhatsApp</a>
+<a href="https://www.instagram.com/alusik1000" target="_blank" rel="noopener">Instagram</a>
+</nav>
 <script>
-(function(){
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  // reveal on scroll
-  var els = document.querySelectorAll(".rv");
-  if ("IntersectionObserver" in window && !reduce) {
-    var io = new IntersectionObserver(function(es){
-      es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    els.forEach(function(el){ io.observe(el); });
-  } else { els.forEach(function(el){ el.classList.add("in"); }); }
-  // parallax (rAF-throttled)
-  if (reduce) return;
-  var layers = Array.prototype.slice.call(document.querySelectorAll("[data-plx]"));
-  if (!layers.length) return;
-  var ticking = false;
-  function update(){
-    ticking = false;
-    var vh = window.innerHeight;
-    layers.forEach(function(el){
-      var r = el.parentElement.getBoundingClientRect();
-      if (r.bottom < -100 || r.top > vh + 100) return;
-      var speed = parseFloat(el.getAttribute("data-plx")) || 0.25;
-      var prog = (r.top + r.height/2 - vh/2) * -speed;
-      el.style.transform = "translate3d(0," + prog.toFixed(1) + "px,0)";
-    });
-  }
-  window.addEventListener("scroll", function(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, { passive: true });
-  window.addEventListener("resize", update);
-  update();
-})();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
-
-</body>
-</html>
+</body></html>
