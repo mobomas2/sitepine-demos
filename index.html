@@ -1,1 +1,508 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>SitePine Demos</title></head><body><h1>SitePine demo mirror</h1><p>Demo previews by SitePine.</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SitePine — Websites for Local Businesses | Salons, Barbers, Tattoo, Cafés</title>
+<meta name="description" content="SitePine builds fast, beautiful websites for local businesses — salons, barbers, tattoo studios, cafés and clinics. Fixed price €179, pay 50% to start. Your own photos, your prices, one-tap WhatsApp booking.">
+<meta property="og:title" content="SitePine — Websites for Local Businesses">
+<meta property="og:description" content="Fixed price €179 · 50% to start · EN/DE/NL/FA · WhatsApp: +98 915 702 9060 · Instagram: @sitepine.web">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"SitePine","description":"Websites for local businesses: salons, barbers, tattoo studios, cafés and clinics.","priceRange":"€179","telephone":"+989157029060","sameAs":["https://www.instagram.com/sitepine.web"],"address":{"@type":"PostalAddress","addressLocality":"Amsterdam","addressCountry":"NL"},"contactPoint":{"@type":"ContactPoint","contactType":"sales","telephone":"+989157029060","availableLanguage":["English","German","Dutch","Persian"]}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --pine:#0b3d2c; --pine2:#06231a; --mint:#5eeaa0; --mint-d:#17a563;
+  --amber:#ffb454; --cream:#f7f4ec; --paper:#fffdf8; --ink:#12211b; --mut:#5b6b62;
+  --line:#e7e0cd; --wa:#22c064; --r:22px;
+  --sh:0 24px 48px -24px rgba(6,35,26,.28);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--cream);color:var(--ink);line-height:1.65;overflow-x:hidden}
+h1,h2,h3,.logo{font-family:'Sora',sans-serif;line-height:1.15;letter-spacing:-.015em}
+img,svg{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+::selection{background:var(--mint);color:var(--pine2)}
+
+/* ── progress + nav ─────────────────────────── */
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--mint),var(--amber));width:0;z-index:99}
+header{position:fixed;inset:0 0 auto 0;z-index:90;transition:.3s}
+header.scrolled{background:rgba(247,244,236,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);box-shadow:0 8px 30px -18px rgba(6,35,26,.25)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{font-size:1.45rem;font-weight:800;color:#fff;display:flex;align-items:center;gap:9px;transition:.3s}
+header.scrolled .logo{color:var(--pine)}
+.logo .mark{width:34px;height:34px;flex:none}
+nav.main{display:none;gap:28px;font-weight:600;font-size:.95rem;color:#e9f5ee}
+header.scrolled nav.main{color:var(--ink)}
+nav.main a{opacity:.85;position:relative;padding:4px 0}
+nav.main a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--amber);transition:.3s}
+nav.main a:hover{opacity:1} nav.main a:hover::after{width:100%}
+@media(min-width:900px){nav.main{display:flex}}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;padding:13px 22px;border-radius:999px;font-size:.96rem;transition:.25s;border:0;cursor:pointer}
+.btn:active{transform:scale(.97)}
+.btn.wa{background:var(--wa);color:#fff;box-shadow:0 14px 26px -12px var(--wa)}
+.btn.wa:hover{transform:translateY(-2px);box-shadow:0 20px 32px -12px var(--wa)}
+.btn.dark{background:var(--pine);color:#fff;box-shadow:0 14px 26px -14px var(--pine)}
+.btn.dark:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.45)}
+.btn.ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.btn.sm{padding:10px 18px;font-size:.9rem}
+header .btn.wa{box-shadow:none}
+
+/* ── hero ───────────────────────────────────── */
+.hero{position:relative;background:radial-gradient(1100px 600px at 85% -10%,#14604a 0%,transparent 60%),radial-gradient(800px 500px at -10% 110%,#0e4d36 0%,transparent 55%),linear-gradient(160deg,var(--pine) 0%,var(--pine2) 78%);color:#eef7f1;padding:148px 0 84px;overflow:hidden}
+#net{position:absolute;inset:0;opacity:.5;pointer-events:none}
+.hero .grid{position:relative;display:grid;gap:48px;align-items:center;z-index:2}
+@media(min-width:960px){.hero .grid{grid-template-columns:1.05fr .95fr}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);color:#d9f5e5;padding:7px 15px;border-radius:999px;font-weight:700;font-size:.83rem;letter-spacing:.02em}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--mint);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(94,234,160,.18)}}
+.hero h1{font-size:clamp(2.5rem,5.6vw,4.1rem);font-weight:800;margin:22px 0 18px;color:#fff}
+.hero h1 .hl{color:var(--mint);font-style:italic}
+.hero h1 .am{color:var(--amber)}
+.hero p.lead{color:#c4ddd0;font-size:1.13rem;max-width:34rem}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 22px}
+.chips{display:flex;gap:9px;flex-wrap:wrap}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:7px 14px;font-size:.85rem;font-weight:600;color:#e6f4ec}
+.chip b{color:var(--amber)}
+/* browser mock */
+.stage{position:relative;perspective:1200px}
+.mock{background:#fff;border-radius:18px;box-shadow:0 44px 80px -32px rgba(0,0,0,.55);overflow:hidden;transform-style:preserve-3d;transition:transform .35s ease}
+.mock .bar{display:flex;align-items:center;gap:7px;background:#f1ede1;padding:11px 14px;border-bottom:1px solid #e7e0cd}
+.dot{width:11px;height:11px;border-radius:50%}
+.url{flex:1;background:#fff;border:1px solid #e7e0cd;border-radius:8px;font-size:.74rem;color:#7a7563;padding:4px 10px;font-weight:600}
+.mock .body{padding:0}
+.mhero{position:relative;height:190px;background:linear-gradient(120deg,#f3c6d3,#9c4a63 55%,#5f2739);overflow:hidden}
+.mhero::after{content:"";position:absolute;inset:0;background:radial-gradient(300px 150px at 80% 20%,rgba(255,255,255,.35),transparent 60%)}
+.mhero .t{position:absolute;left:18px;bottom:16px;color:#fff;z-index:2}
+.mhero .t b{font-family:'Sora';font-size:1.25rem;display:block;text-shadow:0 2px 14px rgba(0,0,0,.35)}
+.mhero .t span{font-size:.78rem;opacity:.92}
+.mrow{display:flex;gap:10px;padding:14px}
+.mcard{flex:1;border:1px solid #eee5d2;border-radius:12px;padding:10px}
+.mcard i{display:block;height:44px;border-radius:8px;margin-bottom:8px;background:linear-gradient(135deg,#ffe3ec,#f3c6d3)}
+.mcard:nth-child(2) i{background:linear-gradient(135deg,#e7f7ee,#bfe9d2)}
+.mcard:nth-child(3) i{background:linear-gradient(135deg,#fff1d6,#ffd9a0)}
+.mcard b{display:block;height:8px;border-radius:4px;background:#e9e2cf;margin-bottom:6px}
+.mcard span{display:block;height:8px;width:65%;border-radius:4px;background:#f0eadb}
+.mbook{margin:0 14px 16px;background:var(--wa);color:#fff;text-align:center;font-weight:800;border-radius:12px;padding:11px;font-size:.9rem}
+.float{position:absolute;background:#fff;color:var(--ink);border-radius:16px;box-shadow:var(--sh);padding:11px 15px;font-weight:700;font-size:.84rem;display:flex;gap:9px;align-items:center;z-index:3}
+.float.a{top:26px;left:-14px;animation:bob 5s ease-in-out infinite}
+.float.b{bottom:34px;right:-10px;animation:bob 6s .8s ease-in-out infinite}
+.float .st{color:#f5a623;letter-spacing:1px}
+@keyframes bob{50%{transform:translateY(-9px)}}
+@media(max-width:560px){.float.a{left:2px}.float.b{right:2px}}
+
+/* counters */
+.stats{position:relative;z-index:2;margin-top:54px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:820px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:18px;padding:20px;backdrop-filter:blur(6px)}
+.stat b{font-family:'Sora';font-size:2rem;color:#fff;display:block}
+.stat b em{font-style:normal;color:var(--mint)}
+.stat span{color:#bcd8c8;font-size:.88rem;font-weight:600}
+
+/* marquee */
+.mq{background:var(--pine2);color:#cfe9da;overflow:hidden;padding:15px 0;border-block:1px solid rgba(255,255,255,.07)}
+.mq .in{display:flex;gap:42px;white-space:nowrap;width:max-content;animation:mq 30s linear infinite;font-family:'Sora';font-weight:700}
+.mq i{color:var(--amber);font-style:normal}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* sections */
+section{padding:88px 0 10px}
+.kick{color:var(--mint-d);font-weight:800;letter-spacing:.15em;text-transform:uppercase;font-size:.78rem}
+h2{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:800;margin:12px 0 14px;color:var(--pine2)}
+.sub{color:var(--mut);max-width:42rem;font-size:1.05rem}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.rv.on{opacity:1;transform:none}
+
+/* compare slider */
+.compare{margin-top:38px;background:var(--paper);border:1px solid var(--line);border-radius:26px;box-shadow:var(--sh);overflow:hidden}
+.cmp-head{display:flex;justify-content:space-between;gap:10px;padding:18px 22px;font-weight:800;font-family:'Sora';flex-wrap:wrap}
+.cmp-head .bad{color:#b3543f}.cmp-head .good{color:var(--mint-d)}
+.cmp{position:relative;height:340px;overflow:hidden;user-select:none;touch-action:none}
+.pane{position:absolute;inset:0;padding:24px}
+.pane.old{background:linear-gradient(150deg,#efe9dc,#e3dac6)}
+.pane.new{background:linear-gradient(150deg,#0e4d36,#0b3d2c);color:#eaf7ef;clip-path:inset(0 0 0 var(--split,55%))}
+.pane h3{font-size:1.25rem;margin-bottom:10px}
+.pane ul{list-style:none}
+.pane li{padding:7px 0 7px 28px;position:relative;font-size:.97rem}
+.pane.old li::before{content:"✕";position:absolute;left:2px;color:#b3543f;font-weight:800}
+.pane.new li::before{content:"✓";position:absolute;left:2px;color:var(--mint);font-weight:800}
+.handle{position:absolute;top:0;bottom:0;left:var(--split,55%);width:0;z-index:5}
+.handle::before{content:"";position:absolute;top:0;bottom:0;left:-1.5px;width:3px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.12)}
+.knob{position:absolute;top:50%;left:0;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:#fff;box-shadow:0 10px 24px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--pine);font-size:.8rem}
+.cmp input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:6}
+.cmp-foot{padding:14px 22px;color:var(--mut);font-size:.9rem;border-top:1px solid var(--line)}
+
+/* services */
+.cards{display:grid;gap:16px;margin-top:36px}
+@media(min-width:700px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1020px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px;transition:.3s;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--mint),var(--amber));transform:scaleX(0);transform-origin:left;transition:.35s}
+.card:hover{transform:translateY(-5px);box-shadow:var(--sh);border-color:#d9cfb2}
+.card:hover::before{transform:scaleX(1)}
+.card .ic{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:#e9f7ee;border:1px solid #d3ecd9}
+.card h3{font-size:1.12rem;margin:14px 0 7px;color:var(--pine2)}
+.card p{color:var(--mut);font-size:.95rem}
+
+/* concepts */
+.concepts{display:grid;gap:16px;margin-top:36px}
+@media(min-width:700px){.concepts{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1020px){.concepts{grid-template-columns:repeat(4,1fr)}}
+.concept{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#fff;transition:.3s}
+.concept:hover{transform:translateY(-5px) rotate(-.4deg);box-shadow:var(--sh)}
+.concept .vis{height:190px;position:relative;padding:16px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end}
+.concept .vis b{font-family:'Sora';font-size:1.08rem;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+.concept .vis span{font-size:.8rem;opacity:.92}
+.v-salon{background:linear-gradient(140deg,#f0b8c8,#9c4a63)}
+.v-tattoo{background:linear-gradient(140deg,#3c3c44,#101014)}
+.v-cafe{background:linear-gradient(140deg,#7cc7d9,#0e6b7a)}
+.v-barber{background:linear-gradient(140deg,#d9b98a,#7a5c3e)}
+.concept .vis::before{content:"";position:absolute;inset:14px auto auto 14px;width:56%;height:9px;border-radius:5px;background:rgba(255,255,255,.5)}
+.concept .vis::after{content:"";position:absolute;inset:30px auto auto 14px;width:38%;height:9px;border-radius:5px;background:rgba(255,255,255,.32)}
+.concept .meta{padding:15px 17px;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.concept .meta span{color:var(--mint-d);font-size:.85rem}
+
+/* process */
+.steps{display:grid;gap:16px;margin-top:36px;counter-reset:st}
+@media(min-width:820px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px;position:relative}
+.step::before{counter-increment:st;content:"0" counter(st);font-family:'Sora';font-weight:800;font-size:2rem;color:#e2d9bf;display:block}
+.step h3{margin:8px 0 6px;font-size:1.05rem;color:var(--pine2)}
+.step p{color:var(--mut);font-size:.93rem}
+
+/* pricing */
+.price-grid{display:grid;gap:18px;margin-top:36px;align-items:stretch}
+@media(min-width:900px){.price-grid{grid-template-columns:1.15fr .85fr}}
+.price{background:linear-gradient(160deg,var(--pine),var(--pine2));color:#eaf7ef;border-radius:26px;padding:34px;position:relative;overflow:hidden;box-shadow:var(--sh)}
+.price::after{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(94,234,160,.25),transparent 65%);top:-120px;right:-100px}
+.price .tag{display:inline-block;background:var(--amber);color:#3a2403;font-weight:800;font-size:.78rem;padding:5px 12px;border-radius:999px;letter-spacing:.06em}
+.price .amount{font-family:'Sora';font-size:3.6rem;font-weight:800;color:#fff;margin:14px 0 2px}
+.price .amount small{font-size:1.05rem;color:#bcd8c8;font-family:'Inter';font-weight:600}
+.price ul{list-style:none;margin:18px 0 24px;position:relative;z-index:2}
+.price li{padding:7px 0 7px 28px;position:relative}
+.price li::before{content:"✓";position:absolute;left:2px;color:var(--mint);font-weight:800}
+.price .split{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:2}
+.split .half{flex:1;min-width:140px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:13px 15px;font-size:.9rem}
+.split .half b{display:block;color:#fff;font-size:1.05rem}
+.gift{background:var(--paper);border:2px dashed #d9b26a;border-radius:26px;padding:30px;display:flex;flex-direction:column;gap:12px}
+.gift h3{color:var(--pine2);font-size:1.35rem}
+.gift p{color:var(--mut);font-size:.97rem}
+.gift .deadline{align-self:flex-start;background:#fdf0da;color:#8a5b12;font-weight:800;font-size:.82rem;padding:6px 13px;border-radius:999px}
+.note{color:var(--mut);font-size:.88rem;margin-top:14px}
+
+/* faq */
+.faq{margin-top:34px;display:grid;gap:12px;max-width:820px}
+details{background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.3s}
+details[open]{border-color:#d9cfb2;box-shadow:var(--sh)}
+summary{cursor:pointer;list-style:none;padding:19px 22px;font-weight:700;font-family:'Sora';display:flex;justify-content:space-between;gap:14px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary .x{flex:none;width:30px;height:30px;border-radius:50%;background:#e9f7ee;display:flex;align-items:center;justify-content:center;transition:.3s;font-size:1.05rem}
+details[open ] summary .x{transform:rotate(45deg);background:var(--mint)}
+details .a{padding:0 22px 20px;color:var(--mut);font-size:.97rem}
+
+/* cta + footer */
+.final{margin-top:88px;background:linear-gradient(150deg,var(--pine),var(--pine2));color:#eaf7ef;border-radius:32px;padding:52px 34px;text-align:center;position:relative;overflow:hidden}
+.final::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,180,84,.22),transparent 65%);bottom:-260px;left:-140px}
+.final h2{color:#fff;font-size:clamp(1.9rem,4vw,2.8rem)}
+.final p{color:#c4ddd0;max-width:36rem;margin:12px auto 26px}
+.final .cta{justify-content:center;position:relative;z-index:2}
+footer{padding:56px 0 120px;color:var(--mut);font-size:.92rem}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+footer a{font-weight:700;color:var(--pine)}
+.mbar{position:fixed;inset:auto 0 0 0;z-index:95;display:flex;gap:10px;padding:12px 14px calc(12px + env(safe-area-inset-bottom));background:rgba(247,244,236,.92);backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+.mbar a{flex:1;text-align:center;padding:13px;border-radius:999px;font-weight:800}
+.mbar .w{background:var(--wa);color:#fff}
+.mbar .i{background:var(--paper);border:1.5px solid var(--line);color:var(--pine2)}
+@media(min-width:900px){.mbar{display:none}footer{padding-bottom:56px}}
+#top{position:fixed;right:18px;bottom:96px;z-index:94;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--paper);box-shadow:var(--sh);font-size:1.1rem;cursor:pointer;opacity:0;pointer-events:none;transition:.3s}
+#top.show{opacity:1;pointer-events:auto}
+@media(min-width:900px){#top{bottom:24px}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top-page" aria-label="SitePine home">
+      <svg class="mark" viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect width="48" height="48" rx="13" fill="#0b3d2c"/><path d="M24 8 L35 22 H29 L38 33 H10 L19 22 H13 Z" fill="#5eeaa0"/><rect x="22.4" y="33" width="3.2" height="7" rx="1.6" fill="#ffb454"/></svg>
+      SitePine
+    </a>
+    <nav class="main">
+      <a href="#compare">Why a website</a><a href="#services">Services</a><a href="#work">Concepts</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn wa sm" href="https://wa.me/989157029060?text=Hi%20SitePine%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20business." target="_blank" rel="noopener">💬 WhatsApp us</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero" id="top-page">
+  <canvas id="net"></canvas>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <span class="eyebrow"><i></i> Web design studio for local businesses</span>
+        <h1>Websites that turn <span class="hl">local searches</span> into <span class="am">bookings.</span></h1>
+        <p class="lead">SitePine builds fast, beautiful websites for salons, barbers, tattoo studios, cafés and clinics — with <b style="color:#fff">your own photos</b>, your prices, your opening hours, and a WhatsApp button your customers actually tap.</p>
+        <div class="cta">
+          <a class="btn wa" href="https://wa.me/989157029060?text=Hi%20SitePine%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20business." target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
+          <a class="btn ghost" href="#pricing">See the €179 offer</a>
+        </div>
+        <div class="chips">
+          <span class="chip">Fixed price <b>€179</b></span>
+          <span class="chip">Pay <b>50%</b> to start</span>
+          <span class="chip">EN · DE · NL · FA</span>
+          <span class="chip">Your photos — zero stock</span>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="mock" id="mock">
+          <div class="bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="url">🔒 yoursalon.com</span></div>
+          <div class="body">
+            <div class="mhero"><div class="t"><b>Your Salon</b><span>★★★★★ rated · Book in one tap</span></div></div>
+            <div class="mrow"><div class="mcard"><i></i><b></b><span></span></div><div class="mcard"><i></i><b></b><span></span></div><div class="mcard"><i></i><b></b><span></span></div></div>
+            <div class="mbook">💬 Book on WhatsApp</div>
+          </div>
+        </div>
+        <div class="float a"><span class="st">★★★★★</span> Google reviews, on your site</div>
+        <div class="float b">📍 Found on Google Maps</div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>€<em class="count" data-to="179">0</em></b><span>fixed price — no surprises</span></div>
+      <div class="stat"><b><em class="count" data-to="50">0</em>%</b><span>to start · rest at launch</span></div>
+      <div class="stat"><b><em class="count" data-to="4">0</em></b><span>languages: EN · DE · NL · FA</span></div>
+      <div class="stat"><b><em class="count" data-to="100">0</em>%</b><span>mobile-first — where clients browse</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="mq" aria-hidden="true"><div class="in" id="mqin"></div></div>
+
+<!-- COMPARE -->
+<section id="compare"><div class="wrap">
+  <span class="kick">The problem</span>
+  <h2>Instagram shows your work.<br>It doesn't close the booking.</h2>
+  <p class="sub">Drag the handle and compare what a new customer finds today — versus with your own website working for you around the clock.</p>
+  <div class="compare rv">
+    <div class="cmp-head"><span class="bad">✕ Instagram only</span><span class="good">✓ With a SitePine website</span></div>
+    <div class="cmp" id="cmp">
+      <div class="pane old">
+        <h3>Instagram only</h3>
+        <ul>
+          <li>Customers must scroll a feed to find prices &amp; hours</li>
+          <li>Invisible to people searching Google in your city</li>
+          <li>Bookings get lost in DM chaos</li>
+          <li>Your best work disappears under new posts</li>
+          <li>If the app is down, your business is down</li>
+        </ul>
+      </div>
+      <div class="pane new" id="paneNew">
+        <h3>Your own website</h3>
+        <ul>
+          <li>Services, prices &amp; hours on one clear page</li>
+          <li>Shows up when locals search Google &amp; Maps</li>
+          <li>One-tap WhatsApp booking — no DM ping-pong</li>
+          <li>A curated gallery of your best work, always on top</li>
+          <li>Your address on the internet — open 24/7</li>
+        </ul>
+      </div>
+      <div class="handle" id="handle"><div class="knob">◂ ▸</div></div>
+      <input type="range" id="cmpRange" min="4" max="96" value="55" aria-label="Compare Instagram only versus website">
+    </div>
+    <div class="cmp-foot">Same business. Same work. One of them makes it effortless to book you.</div>
+  </div>
+</div></section>
+
+<!-- SERVICES -->
+<section id="services"><div class="wrap">
+  <span class="kick">What you get</span>
+  <h2>Everything a local business actually needs.</h2>
+  <p class="sub">No bloated packages, no tech jargon. One complete website, designed around how your customers really behave: search → look → tap → book.</p>
+  <div class="cards">
+    <div class="card rv"><div class="ic">🎨</div><h3>Designed around your business</h3><p>Colors, mood and layout built from your brand and your space — not a generic template with your name pasted in.</p></div>
+    <div class="card rv"><div class="ic">📸</div><h3>Your own work, front &amp; center</h3><p>A curated gallery of your real results. No cheesy stock photos — customers book what they can actually see.</p></div>
+    <div class="card rv"><div class="ic">💬</div><h3>One-tap WhatsApp booking</h3><p>A booking button that's always within thumb-reach, with your number pre-filled. Fewer lost DMs, more confirmed appointments.</p></div>
+    <div class="card rv"><div class="ic">📍</div><h3>Built to be found locally</h3><p>Your address, hours and services structured for Google and Maps, with your reviews where visitors can see them.</p></div>
+    <div class="card rv"><div class="ic">📱</div><h3>Mobile-first &amp; fast</h3><p>Most of your customers find you on a phone. Your site loads fast and looks sharp on every screen.</p></div>
+    <div class="card rv"><div class="ic">🛠️</div><h3>Launched &amp; looked after</h3><p>We set everything up, launch it with you, and stay reachable when you want changes. You run your business; we run the website.</p></div>
+  </div>
+</div></section>
+
+<!-- CONCEPTS -->
+<section id="work"><div class="wrap">
+  <span class="kick">Concept previews</span>
+  <h2>Made for businesses like yours.</h2>
+  <p class="sub">Every SitePine website starts from your own photos and personality. These concepts show the directions we design in:</p>
+  <div class="concepts">
+    <div class="concept rv"><div class="vis v-salon"><b>Beauty &amp; Nail Salons</b><span>Soft, clean, gallery-led</span></div><div class="meta">Salon concept <span>Explore →</span></div></div>
+    <div class="concept rv"><div class="vis v-tattoo"><b>Tattoo Studios</b><span>Dark, bold, artist-first</span></div><div class="meta">Tattoo concept <span>Explore →</span></div></div>
+    <div class="concept rv"><div class="vis v-cafe"><b>Cafés &amp; Lunch Bars</b><span>Warm, sunny, menu-led</span></div><div class="meta">Café concept <span>Explore →</span></div></div>
+    <div class="concept rv"><div class="vis v-barber"><b>Barbers &amp; Friseurs</b><span>Sharp, premium, team-led</span></div><div class="meta">Barber concept <span>Explore →</span></div></div>
+  </div>
+  <p class="note">Want to see what yours would look like? Message us on WhatsApp — we'll talk through your business first, then show you.</p>
+</div></section>
+
+<!-- PROCESS -->
+<section id="process"><div class="wrap">
+  <span class="kick">How it works</span>
+  <h2>Four steps. Zero headaches.</h2>
+  <div class="steps">
+    <div class="step rv"><h3>We talk</h3><p>A short chat about your business, your customers and what you want more of. WhatsApp or Instagram — your choice.</p></div>
+    <div class="step rv"><h3>We build your preview</h3><p>You get a live preview of your real website — your photos, your prices, your style — before anything is final.</p></div>
+    <div class="step rv"><h3>You approve, we refine</h3><p>Colors, photos, texts — we adjust until it feels like you. Only then do we talk about launch.</p></div>
+    <div class="step rv"><h3>Launch on your domain</h3><p>Your website goes live on your own domain, connected to Google and your WhatsApp. The second half is due only now.</p></div>
+  </div>
+</div></section>
+
+<!-- PRICING -->
+<section id="pricing"><div class="wrap">
+  <span class="kick">Pricing</span>
+  <h2>One price. Everything included.</h2>
+  <p class="sub">No hourly billing, no surprise invoices, no "contact us for a quote".</p>
+  <div class="price-grid">
+    <div class="price rv">
+      <span class="tag">MOST POPULAR</span>
+      <div class="amount">€179 <small>one-time</small></div>
+      <p>Your complete business website, launched on your own domain.</p>
+      <ul>
+        <li>Custom design built from your brand &amp; photos</li>
+        <li>Gallery of your own work</li>
+        <li>Services, prices &amp; opening hours</li>
+        <li>One-tap WhatsApp booking button</li>
+        <li>Google &amp; Maps-ready structure</li>
+        <li>Mobile-first, fast loading</li>
+      </ul>
+      <div class="split">
+        <div class="half"><b>50% to start</b>we begin building right away</div>
+        <div class="half"><b>50% at launch</b>only when your site goes live</div>
+      </div>
+      <div class="cta" style="margin-bottom:0"><a class="btn wa" href="https://wa.me/989157029060?text=Hi%20SitePine%2C%20I%27d%20like%20the%20%E2%82%AC179%20website%20for%20my%20business." target="_blank" rel="noopener">💬 Start with WhatsApp</a></div>
+    </div>
+    <div class="gift rv">
+      <span class="deadline">🎁 GIVEAWAY · entries close 27 Oct</span>
+      <h3>Or win your website — free.</h3>
+      <p>We're giving away <b>2 complete websites</b> to local businesses. Follow us on Instagram, and DM us the word <b>"DEMO"</b> to enter.</p>
+      <p>📸 Instagram: <a href="https://www.instagram.com/sitepine.web" target="_blank" rel="noopener" style="color:var(--mint-d);font-weight:800">@sitepine.web</a></p>
+      <a class="btn dark" href="https://www.instagram.com/sitepine.web" target="_blank" rel="noopener">Enter on Instagram</a>
+      <p class="note">Full rules on our rules page. No purchase needed — if you win, only your own domain name is on you.</p>
+    </div>
+  </div>
+  <p class="note">Good to know: your domain name (e.g. yoursalon.com, roughly €10–15/year at any registrar) is registered in your name and stays 100% yours. The €179 covers design, build and launch.</p>
+</div></section>
+
+<!-- FAQ -->
+<section id="faq"><div class="wrap">
+  <span class="kick">FAQ</span>
+  <h2>Questions, answered straight.</h2>
+  <div class="faq">
+    <details class="rv"><summary>What exactly do I get for €179?<span class="x">+</span></summary><div class="a">A complete, custom-designed website for your business: your gallery, services and prices, opening hours, contact and a one-tap WhatsApp booking button — launched on your own domain and ready to share everywhere, including your Instagram bio and Google profile.</div></details>
+    <details class="rv"><summary>How does the 50/50 payment work?<span class="x">+</span></summary><div class="a">Simple: 50% when we start building, 50% when your website goes live and you're happy with it. You see a real preview of your site before the second half is ever due.</div></details>
+    <details class="rv"><summary>Do I need my own photos?<span class="x">+</span></summary><div class="a">Your best photos already exist — on your phone and your Instagram. We curate them with you and build the gallery from your real work. That's exactly why your site will look like you, not like a template.</div></details>
+    <details class="rv"><summary>Which languages can my website be in?<span class="x">+</span></summary><div class="a">English, German, Dutch or Persian — we build in the language your customers speak. Mixed-language audiences? Ask us on WhatsApp and we'll advise honestly.</div></details>
+    <details class="rv"><summary>What if I want changes later?<span class="x">+</span></summary><div class="a">Message us. Small updates are quick, and we'll always tell you upfront if something counts as a bigger change. No support tickets, no call centers — you talk to the person who built your site.</div></details>
+    <details class="rv"><summary>I already have Instagram. Why a website?<span class="x">+</span></summary><div class="a">Instagram is where people follow you; Google is where new customers search "salon near me". A website catches that search traffic, shows everything in one place, and keeps working even when social apps change their rules — or go down.</div></details>
+  </div>
+</div></section>
+
+<!-- FINAL CTA -->
+<div class="wrap">
+  <div class="final rv">
+    <h2>Ready to be found?</h2>
+    <p>Tell us about your business in one message. We'll reply with honest advice — and if a website makes sense for you, we'll show you what yours could look like.</p>
+    <div class="cta">
+      <a class="btn wa" href="https://wa.me/989157029060?text=Hi%20SitePine%2C%20tell%20me%20more%20about%20a%20website%20for%20my%20business." target="_blank" rel="noopener">💬 WhatsApp +98 915 702 9060</a>
+      <a class="btn ghost" href="https://www.instagram.com/sitepine.web" target="_blank" rel="noopener">📸 @sitepine.web</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>🌲 <b style="color:var(--pine)">SitePine</b> — Websites for local businesses · Amsterdam</span>
+    <span>WhatsApp <a href="https://wa.me/989157029060" target="_blank" rel="noopener">+98 915 702 9060</a> · Instagram <a href="https://www.instagram.com/sitepine.web" target="_blank" rel="noopener">@sitepine.web</a></span>
+    <span>© 2026 SitePine</span>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="w" href="https://wa.me/989157029060?text=Hi%20SitePine%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20business." target="_blank" rel="noopener">💬 WhatsApp</a>
+  <a class="i" href="https://www.instagram.com/sitepine.web" target="_blank" rel="noopener">📸 Instagram</a>
+</div>
+<button id="top" aria-label="Back to top">↑</button>
+
+<script>
+// marquee content
+const items = ["Hair Salons","Barbershops","Tattoo Studios","Nail Studios","Cafés & Lunch Bars","Beauty Clinics","Lash & Brow Studios","Local Shops"];
+document.getElementById('mqin').innerHTML = (items.concat(items)).map(t=>`<span>${t} <i>✦</i></span>`).join('');
+
+// header + progress + top button
+const hdr = document.getElementById('hdr'), prog = document.getElementById('progress'), topBtn = document.getElementById('top');
+addEventListener('scroll', () => {
+  const y = scrollY, h = document.body.scrollHeight - innerHeight;
+  hdr.classList.toggle('scrolled', y > 40);
+  prog.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+  topBtn.classList.toggle('show', y > 700);
+}, {passive:true});
+topBtn.onclick = () => scrollTo({top:0, behavior:'smooth'});
+
+// reveal on scroll
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), {threshold:.12});
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+// animated counters
+const cio = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return; cio.unobserve(e.target);
+  const to = +e.target.dataset.to, t0 = performance.now(), dur = 1400;
+  (function tick(t){ const p = Math.min((t - t0) / dur, 1); e.target.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(tick); })(t0);
+}), {threshold:.5});
+document.querySelectorAll('.count').forEach(el => cio.observe(el));
+
+// compare slider
+const cmp = document.getElementById('cmp'), range = document.getElementById('cmpRange');
+function setSplit(v){ cmp.style.setProperty('--split', v + '%'); }
+range.addEventListener('input', () => setSplit(range.value));
+setSplit(55);
+
+// hero mock tilt
+const mock = document.getElementById('mock');
+if (matchMedia('(pointer:fine)').matches) {
+  const stage = mock.parentElement;
+  stage.addEventListener('mousemove', e => {
+    const r = stage.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+    mock.style.transform = `rotateY(${x * 9}deg) rotateX(${-y * 9}deg)`;
+  });
+  stage.addEventListener('mouseleave', () => mock.style.transform = '');
+}
+
+// hero particle network
+const cv = document.getElementById('net'), cx = cv.getContext('2d');
+let W, H, pts = [];
+function size(){ W = cv.width = cv.offsetWidth; H = cv.height = cv.offsetHeight;
+  pts = Array.from({length: Math.min(70, W / 16)}, () => ({x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-.5)*.35, vy: (Math.random()-.5)*.35}));
+}
+size(); addEventListener('resize', size);
+(function draw(){
+  cx.clearRect(0, 0, W, H);
+  for (const p of pts) {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1;
+    cx.beginPath(); cx.arc(p.x, p.y, 1.6, 0, 7); cx.fillStyle = 'rgba(94,234,160,.7)'; cx.fill();
+  }
+  for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+    const a = pts[i], b = pts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+    if (d < 130) { cx.beginPath(); cx.moveTo(a.x, a.y); cx.lineTo(b.x, b.y); cx.strokeStyle = `rgba(94,234,160,${(1 - d / 130) * .22})`; cx.stroke(); }
+  }
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
