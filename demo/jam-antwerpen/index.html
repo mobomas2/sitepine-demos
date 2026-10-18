@@ -1,315 +1,147 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Jam. — Restaurant in Antwerpen</title>
-<meta name="description" content="Jam. — vertrouwde Restaurant in Antwerpen. Bel +32 471 49 85 06.">
-<style>
-  /* ============ Demo design system v3 — dark cinematic / per-business accent ============ */
-  @property --angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
-  * { margin: 0; padding: 0; box-sizing: border-box; min-width: 0; }
-  :root {
-    --accent: #d97706; --dark: #613502; --light: #fbf1e6;
-    --bg: #07090c; --bg-2: #0b0f14; --surface: rgba(255,255,255,.05); --line: rgba(255,255,255,.1);
-    --ink: #f2f6f9; --muted: #a7b6c2; --faint: #72879a;
-    --acc-soft: color-mix(in oklab, var(--accent) 16%, transparent);
-    --acc-line: color-mix(in oklab, var(--accent) 45%, transparent);
-  }
-  html { scroll-behavior: smooth; overflow-x: clip; }
-  body { font-family: ui-sans-system, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg); color: var(--ink); line-height: 1.65; overflow-x: clip; -webkit-font-smoothing: antialiased; }
-  ::selection { background: var(--accent); color: #fff; }
-  a { color: inherit; }
-  img, video { max-width: 100%; display: block; }
-  :focus-visible { outline: 2.5px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-  section { scroll-margin-top: 70px; }
-
-  .demobar { position: relative; z-index: 50; background: #04060a; color: #fff; font-size: 13.5px; padding: 10px 16px;
-    display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; justify-content: center; text-align: center; border-bottom: 1px solid var(--line); }
-  .demobar strong { font-weight: 800; }
-  .demobar a { color: var(--accent); font-weight: 800; filter: brightness(1.5); }
-
-  .progress { position: fixed; inset: 0 auto auto 0; height: 3px; width: 100%; z-index: 200; transform-origin: 0 50%; transform: scaleX(0);
-    background: linear-gradient(90deg, var(--accent), color-mix(in oklab, var(--accent) 55%, #fff)); }
-  @supports (animation-timeline: scroll()) {
-    .progress { animation: grow linear both; animation-timeline: scroll(root); }
-    @keyframes grow { to { transform: scaleX(1); } }
-  }
-
-  /* ---------- hero ---------- */
-  .hero { position: relative; min-height: 94svh; display: flex; align-items: flex-end; color: #fff; overflow: clip; isolation: isolate; }
-  .hero-media { position: absolute; inset: -12% 0; z-index: -2; will-change: transform; }
-  .hero-media video, .hero-media img { width: 100%; height: 100%; object-fit: cover; }
-  .hero-media video { animation: slowzoom 24s ease-in-out infinite alternate; }
-  @keyframes slowzoom { from { transform: scale(1); } to { transform: scale(1.08); } }
-  .hero::after { content: ""; position: absolute; inset: 0; z-index: -1;
-    background: linear-gradient(180deg, rgba(4,7,11,.45) 0%, rgba(4,7,11,.14) 40%, rgba(4,7,11,.88) 100%); }
-  .hero-in { width: 100%; max-width: 1140px; margin: 0 auto; padding: 130px 22px 66px; }
-  .kicker { display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 2.2px; font-size: 12px; font-weight: 800;
-    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(10px); padding: 9px 15px; border-radius: 999px; }
-  .hero h1 { font-size: clamp(40px, 7.4vw, 78px); line-height: 1.01; font-weight: 900; letter-spacing: -2px; margin: 22px 0 14px; max-width: 820px; text-wrap: balance;
-    background: linear-gradient(96deg, #fff 30%, color-mix(in oklab, var(--accent) 65%, #fff) 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .hero .tagline { font-size: clamp(16px, 2.6vw, 21px); max-width: 620px; color: rgba(255,255,255,.92); margin-bottom: 32px; text-wrap: balance; }
-  .cta-row { display: flex; flex-wrap: wrap; gap: 13px; }
-  .btn { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font-weight: 800; font-size: 16.5px; padding: 16px 30px; border-radius: 999px;
-    background: var(--accent); color: #fff; box-shadow: 0 18px 38px -14px color-mix(in oklab, var(--accent) 75%, transparent);
-    transition: transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s; }
-  .btn:hover { transform: translateY(-2px); }
-  .btn.ghost { background: rgba(255,255,255,.1); border: 1.5px solid rgba(255,255,255,.6); backdrop-filter: blur(8px); box-shadow: none; }
-  .scrollhint { margin-top: 42px; font-size: 11.5px; letter-spacing: 2.6px; text-transform: uppercase; opacity: .7; }
-
-  .trustbar { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-content: center; padding: 17px; background: #04060a;
-    border-block: 1px solid var(--line); color: var(--muted); font-size: 14px; font-weight: 600; }
-  .trustbar b { color: #fff; }
-
-  main { max-width: 1140px; margin: 0 auto; padding: 84px 22px 12px; container-type: inline-size; }
-  .eyebrow { color: var(--accent); filter: brightness(1.45); font-weight: 900; letter-spacing: 2.2px; text-transform: uppercase; font-size: 12px; margin-bottom: 12px; }
-  h2 { font-size: clamp(29px, 4.8vw, 44px); font-weight: 900; letter-spacing: -1.1px; line-height: 1.1; margin-bottom: 12px; text-wrap: balance; }
-  .sub { color: var(--muted); font-size: 17px; max-width: 640px; margin-bottom: 36px; }
-
-  .cards { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; margin-bottom: 88px; }
-  @container (max-width: 820px) { .cards { grid-template-columns: minmax(0,1fr); } }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 32px 27px;
-    transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s, background .35s; }
-  .card:hover { transform: translateY(-6px); border-color: var(--acc-line); background: rgba(255,255,255,.07); }
-  .card .dot { width: 48px; height: 48px; border-radius: 15px; background: var(--acc-soft); color: var(--accent); filter: saturate(1.2);
-    font-weight: 900; font-size: 17px; display: flex; align-items: center; justify-content: center; margin-bottom: 17px; }
-  .card .dot { color: color-mix(in oklab, var(--accent) 70%, #fff); }
-  .card h3 { font-size: 19.5px; margin-bottom: 7px; letter-spacing: -0.3px; }
-  .card p { font-size: 15px; color: var(--muted); }
-
-  .band { position: relative; height: 58svh; min-height: 340px; overflow: clip; border-radius: 28px; margin-bottom: 88px; isolation: isolate; border: 1px solid var(--line); }
-  .band .plx { position: absolute; inset: -14% 0; will-change: transform; }
-  .band .plx img { width: 100%; height: 100%; object-fit: cover; }
-  .band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4,7,11,.78) 0%, rgba(4,7,11,.12) 64%); }
-  .band-in { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 36px; color: #fff; max-width: 570px; }
-  .band-in h3 { font-size: clamp(25px, 4vw, 38px); letter-spacing: -0.8px; line-height: 1.13; margin-bottom: 11px; }
-  .band-in p { color: rgba(255,255,255,.9); font-size: 16px; }
-
-  .gallery { display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 16px; margin-bottom: 88px; }
-  @container (max-width: 820px) { .gallery { grid-template-columns: 1fr 1fr; } }
-  .gallery figure { border-radius: 24px; overflow: clip; position: relative; border: 1px solid var(--line); aspect-ratio: 4/3; }
-  .gallery figure:first-child { aspect-ratio: auto; }
-  .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s cubic-bezier(.2,.7,.2,1); }
-  .gallery figure:hover img { transform: scale(1.06); }
-
-  .why { position: relative; overflow: clip; background: linear-gradient(150deg, var(--dark), var(--accent)); color: #fff; border-radius: 28px; padding: 48px 40px; margin-bottom: 88px; }
-  .why::before { content: ""; position: absolute; inset: 0; background: radial-gradient(700px 300px at 85% 0%, rgba(255,255,255,.22), transparent 60%); }
-  .why > * { position: relative; }
-  .why h2 { color: #fff; }
-  .why ul { list-style: none; margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px 32px; }
-  @container (max-width: 820px) { .why ul { grid-template-columns: 1fr; } .why { padding: 36px 25px; } }
-  .why li { padding-left: 34px; position: relative; font-size: 16px; color: rgba(255,255,255,.95); }
-  .why li::before { content: "✓"; position: absolute; left: 0; top: 1px; width: 23px; height: 23px; border-radius: 50%;
-    background: rgba(255,255,255,.22); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; }
-
-  .contact { display: grid; grid-template-columns: 1.15fr 1fr; gap: 18px; margin-bottom: 88px; }
-  @container (max-width: 820px) { .contact { grid-template-columns: minmax(0,1fr); } }
-  .panel { border: 1px solid var(--line); border-radius: 26px; padding: 34px 29px; background: var(--bg-2); }
-  .panel h3 { font-size: 21.5px; margin-bottom: 10px; letter-spacing: -0.4px; }
-  .row { display: flex; justify-content: space-between; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px; }
-  .row:first-of-type { border-top: none; }
-  .row .lbl { color: var(--muted); font-weight: 600; flex-shrink: 0; }
-  .row .val { font-weight: 700; text-align: right; overflow-wrap: anywhere; }
-  .big-phone { font-size: clamp(24px, 4.6vw, 34px); font-weight: 900; color: color-mix(in oklab, var(--accent) 72%, #fff);
-    text-decoration: none; display: inline-block; margin: 10px 0 16px; letter-spacing: -0.6px; overflow-wrap: anywhere; }
-
-  .callfab { position: fixed; right: 18px; bottom: 18px; z-index: 60; display: none; align-items: center; gap: 9px; background: var(--accent);
-    color: #fff; font-weight: 800; text-decoration: none; padding: 15px 22px; border-radius: 999px; box-shadow: 0 20px 38px -14px rgba(0,0,0,.6); }
-  @media (max-width: 820px) { .callfab { display: inline-flex; } }
-
-  footer { background: #04060a; border-top: 1px solid var(--line); color: var(--muted); padding: 44px 22px; text-align: center; font-size: 14px; }
-  footer .brandline { font-weight: 800; color: #fff; margin-bottom: 6px; font-size: 16.5px; }
-  footer a { color: color-mix(in oklab, var(--accent) 72%, #fff); font-weight: 700; }
-  .fine { font-size: 12.5px; color: var(--faint); margin-top: 10px; }
-
-  .rv { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
-  .rv.in { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) {
-    .rv { opacity: 1; transform: none; transition: none; }
-    .hero-media video { animation: none; }
-    html { scroll-behavior: auto; }
-  }
-
-  /* ===== LIGHT THEME (owner choice 2026-10-15) ===== */
-  :root { --bg: #f6f8f7; --bg-2: #ffffff; --surface: #ffffff; --line: rgba(11,18,32,.1);
-          --ink: #0b1220; --muted: #54646e; --faint: #8ca0ae; }
-  body { background: var(--bg); color: var(--ink); }
-  .trustbar { background: #fff; color: var(--muted); }
-  .trustbar b { color: var(--ink); }
-  .eyebrow { color: color-mix(in oklab, var(--accent) 80%, #000); filter: none; }
-  .card { box-shadow: 0 22px 40px -30px rgba(11,21,32,.3); }
-  .card .dot { color: color-mix(in oklab, var(--accent) 82%, #000); }
-  .panel { box-shadow: 0 22px 40px -30px rgba(11,21,32,.3); }
-  .big-phone { color: color-mix(in oklab, var(--accent) 82%, #000); }
-  footer a { color: color-mix(in oklab, var(--accent) 70%, #fff); }
+<title>Jam. — Lunch in hartje Antwerpen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>:root{--acc:#0e7c86;--acc2:#ffc95c;--ink:#17323a;--bg:#fdf8ef;--card:#ffffff;--mut:color-mix(in srgb,#17323a 62%,#fff);--line:color-mix(in srgb,#0e7c86 16%,#fff)}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--acc:#7c3aed;--acc2:#a78bfa;--ink:#221a33;--bg:#fbfaff;--card:#fff;--mut:#6d6480;--line:#eee9f8}
+html{scroll-behavior:smooth}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:'Fraunces',serif;line-height:1.14;letter-spacing:-.01em}
+img{display:block;max-width:100%}a{text-decoration:none;color:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+.top{position:fixed;inset:0 0 auto 0;z-index:60;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Fraunces',serif;font-size:1.42rem;font-weight:900}.logo b{color:var(--acc)}
+.nav{display:none;gap:26px;font-weight:600;font-size:.93rem}.nav a{opacity:.75}.nav a:hover{opacity:1;color:var(--acc)}
+@media(min-width:860px){.nav{display:flex}}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#fff;font-weight:700;padding:11px 18px;border-radius:999px;font-size:.93rem;box-shadow:0 10px 22px -10px var(--acc);transition:.25s}
+.btn:hover{transform:translateY(-2px)}.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid color-mix(in srgb,var(--ink) 25%,transparent);box-shadow:none}
+.btn.light{background:#fff;color:var(--ink)}
+.hero{position:relative;padding:118px 0 56px;overflow:hidden}
+.hero .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;pointer-events:none}
+.b1{width:430px;height:430px;background:var(--acc2);top:-140px;right:-110px}.b2{width:340px;height:340px;background:var(--acc);bottom:-170px;left:-120px;opacity:.28}
+.kicker{display:inline-flex;gap:8px;align-items:center;background:var(--card);border:1px solid var(--line);padding:7px 14px;border-radius:999px;font-weight:700;font-size:.84rem;box-shadow:0 6px 18px -12px rgba(30,20,60,.25)}
+.grid{display:grid;gap:38px;align-items:center}
+@media(min-width:920px){.grid{grid-template-columns:1.05fr .95fr}}
+h1{font-size:clamp(2.35rem,5.4vw,3.7rem);font-weight:900;margin:20px 0 16px}
+h1 .hl{color:var(--acc);font-style:italic}
+.lead{color:var(--mut);font-size:1.1rem;max-width:34rem}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 20px}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:.85rem;font-weight:600}
+.stage{position:relative}
+.stage .frame{border-radius:26px;overflow:hidden;box-shadow:0 34px 60px -28px rgba(35,22,70,.45);transform:rotate(1.2deg)}
+.stage .frame img{width:100%;height:min(70vh,640px);object-fit:cover}
+.stage .tag{position:absolute;left:16px;bottom:16px;background:rgba(20,14,35,.72);color:#fff;backdrop-filter:blur(8px);padding:9px 15px;border-radius:999px;font-weight:700;font-size:.86rem}
+.stage .float{position:absolute;top:18px;right:-8px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 14px;font-weight:800;box-shadow:0 18px 34px -18px rgba(30,20,60,.35);font-size:.86rem;transform:rotate(2deg)}
+.trust{margin-top:26px}
+.trust .wrap{display:flex;gap:10px;flex-wrap:wrap}
+.trust .t{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 15px;font-weight:700;font-size:.9rem}
+.mq{overflow:hidden;border-block:1px solid var(--line);background:var(--card);padding:14px 0;margin-top:44px}
+.mq .in{display:flex;gap:38px;white-space:nowrap;font-family:'Fraunces',serif;font-weight:700;font-size:1.06rem;animation:mq 26s linear infinite;width:max-content}
+.mq span i{color:var(--acc);font-style:normal;margin-left:38px}
+@keyframes mq{to{transform:translateX(-50%)}}
+section{padding:72px 0 8px}
+.eyebrow{color:var(--acc);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:.78rem}
+h2{font-size:clamp(1.8rem,3.8vw,2.6rem);font-weight:900;margin:10px 0 12px}
+.sub{color:var(--mut);max-width:40rem}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:34px}
+@media(min-width:760px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.stat b{font-family:'Fraunces',serif;font-size:1.9rem;display:block;color:var(--acc)}
+.stat span{color:var(--mut);font-size:.9rem;font-weight:600}
+.cards{display:grid;gap:16px;margin-top:34px}
+@media(min-width:760px){.cards{grid-template-columns:repeat(2,1fr)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;transition:.3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 22px 38px -24px rgba(35,22,70,.3);border-color:var(--acc2)}
+.card .ic{font-size:1.7rem}.card h3{font-size:1.16rem;margin:10px 0 6px}.card p{color:var(--mut);font-size:.96rem}
+.gal{display:grid;gap:16px;margin-top:34px}
+@media(min-width:760px){.gal{grid-template-columns:repeat(2,1fr)}}
+.g{border-radius:22px;overflow: hidden;position:relative;background:var(--card);border:1px solid var(--line)}
+.g img{width:100%;height:340px;object-fit:cover}
+.g .cap{padding:14px 18px;font-weight:700}
+.g.wide{grid-column:1/-1}.g.wide img{height:300px}
+.gcta{border-radius:22px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;padding:34px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.gcta h3{font-size:1.6rem}.gcta p{opacity:.92}
+.steps{display:grid;gap:16px;margin-top:34px}
+@media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+.step{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px}
+.step b{font-family:'Fraunces',serif;font-size:2rem;color:var(--acc2);display:block}
+.step h3{margin:6px 0}.step p{color:var(--mut);font-size:.95rem}
+.contact{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:32px;margin-top:34px}
+.rows{display:grid;gap:12px;margin-top:20px}
+@media(min-width:760px){.rows{grid-template-columns:repeat(2,1fr)}}
+.row{display:flex;justify-content:space-between;gap:14px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-weight:600}
+.row span{color:var(--mut)}.row a{color:var(--acc);font-weight:800;text-align:right}
+footer{padding:56px 0 110px;color:var(--mut);font-size:.9rem}
+.mbar{position:fixed;inset:auto 0 0 0;z-index:60;display:flex;gap:10px;padding:12px 14px calc(12px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+.mbar a{flex:1;text-align:center;padding:13px;border-radius:999px;font-weight:800;background:var(--acc);color:#fff}
+.mbar a.gh{background:var(--card);color:var(--ink);border:1.5px solid var(--line)}
+@media(min-width:860px){.mbar{display:none}footer{padding-bottom:56px}}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.rv.on{opacity:1;transform:none}
+.pv{will-change:transform}
+.sd{display:inline-flex;margin-top:26px;color:var(--mut);font-weight:700;font-size:.88rem;gap:8px;align-items:center}
+.sd::after{content:"↓";animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(5px)}}
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Restaurant",
-  "name": "Jam.",
-  "description": "Jam. — Restaurant in Antwerpen.",
-  "telephone": "+32 471 49 85 06",
-  "email": "info@example.com",
-  "image": "https://sitepine.mobomas.workers.dev/assets/img/cafe-hero.jpg",
-  "address": { "@type": "PostalAddress", "streetAddress": "Wolstraat 47, 2000", "addressLocality": "Antwerpen" },
-  "areaServed": "Antwerpen",
-  "openingHours": "Mo-Fr 11:00 - 18:00; Sa 11:00 - 18:00"
-}
-</script>
 </head>
 <body>
-<div class="progress" aria-hidden="true"></div>
+<header class="top"><div class="wrap">
+<a class="logo" href="#">jam<b>.</b></a>
+<nav class="nav"><a href="#services">Leistungen</a><a href="#gallery">Arbeiten</a><a href="#contact">Kontakt</a><a href="https://www.instagram.com/jamantwerpen" target="_blank" rel="noopener">Instagram</a></nav>
+<a class="btn" href="tel:+32471498506" target="_blank" rel="noopener">Bel ons</a>
+</div></header>
 
-<div class="demobar">
-  🔍 <strong>Preview site</strong> — built for <strong>Jam.</strong> before you pay a cent.
-  <a href="https://sitepine.pages.dev">Make it yours →</a>
+<div class="hero"><div class="blob b1"></div><div class="blob b2"></div><div class="wrap"><div class="grid">
+<div>
+<span class="kicker">🦜 Lunch · Wolstraat, Antwerpen</span>
+<h1>Het <span class="hl">blauwste hoekje</span> van de Wolstraat</h1>
+<p class="lead">Zonnig terras, lunch met karakter en de speelsste kaart van &#x27;t stad. Jam. is je lunchplek in hartje Antwerpen — donderdag tot maandag, van 11 tot 18 uur.</p>
+<div class="cta"><a class="btn" href="tel:+32471498506" target="_blank" rel="noopener">Bel ons</a><a class="btn ghost" href="#gallery">Bekijk de kaart</a></div>
+<div class="chips"><span class="chip">🦜 DO–MA · 11–18u</span><span class="chip">📍 Wolstraat, Antwerpen</span></div>
+<br><a class="sd" href="#services">Kaart &amp; foto&#x27;s</a>
 </div>
+<div class="stage"><div class="frame pv"><img src="img/hero.webp" alt="Het zonnige blauwe terras van Jam. aan de Wolstraat"></div>
+<div class="float">🦜 DO–MA · 11–18u</div><div class="tag">☀️ Ons terras aan de Wolstraat</div></div>
+</div></div></div>
 
-<header class="hero">
-  <div class="hero-media" data-plx="0.32">
-    <video autoplay muted loop playsinline preload="metadata" poster="https://sitepine.mobomas.workers.dev/assets/img/cafe-hero.jpg">
-      <source src="https://sitepine.mobomas.workers.dev/assets/video/cafe.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="hero-in">
-    <span class="kicker">Restaurant · Antwerpen</span>
-    <h1>Jam.</h1>
-    <p class="tagline">Trusted restaurant in Antwerpen — friendly service, fair prices, quick response.</p>
-    <div class="cta-row">
-      <a class="btn" href="tel:+32471498506">📞 Bel +32 471 49 85 06</a>
-      <a class="btn ghost" href="#diensten">Bekijk diensten</a>
-    </div>
-    <div class="scrollhint">Scroll ↓</div>
-  </div>
-</header>
+<div class="trust"><div class="wrap"><div class="t">Zonnig terras</div><div class="t">DO–MA 11–18u</div><div class="t">Wolstraat, Antwerpen</div></div></div>
+<div class="mq"><div class="in"><span>Lunch<i>✦</i></span><span>Zonnig terras<i>✦</i></span><span>Wolstraat<i>✦</i></span><span>Antwerpen<i>✦</i></span><span>DO–MA 11–18u<i>✦</i></span><span>Lunch<i>✦</i></span><span>Zonnig terras<i>✦</i></span><span>Wolstraat<i>✦</i></span><span>Antwerpen<i>✦</i></span><span>DO–MA 11–18u<i>✦</i></span></div></div>
 
-<div class="trustbar">
-  <span>✔ <b>Snel geladen</b> op elke telefoon</span>
-  <span>✔ <b>Gevonden</b> op Google &amp; kaarten</span>
-  <span>✔ <b>Lokaal</b> in Antwerpen</span>
-</div>
+<section id="numbers"><div class="wrap">
+<span class="eyebrow">Auf einen Blick</span><h2>Jam. in het kort</h2>
+<div class="stats"><div class="stat rv"><b>11–18u</b><span>DO t/m MA geopend</span></div><div class="stat rv"><b>Wolstraat</b><span>hartje Antwerpen</span></div><div class="stat rv"><b>Terras</b><span>het blauwste hoekje</span></div><div class="stat rv"><b>Lunch</b><span>met karakter</span></div></div></div></section>
 
-<main>
-  <section id="diensten">
-    <div class="eyebrow rv">Diensten</div>
-    <h2 class="rv">Wat wij doen</h2>
-    <p class="sub rv">Eerlijke Restaurant-diensten in Antwerpen — in één keer goed gedaan.</p>
-    <div class="cards">
-      <div class="card">
-        <div class="dot">01</div>
-        <h3>Ontbijt &amp; brunch</h3>
-        <p>Call us and we get back to you quickly — most jobs scheduled within days, urgent requests prioritised.</p>
-      </div>
-      <div class="card">
-        <div class="dot">02</div>
-        <h3>Lunch, salades &amp; toast</h3>
-        <p>A clear price before we start. No surprises, no hidden costs, no pressure.</p>
-      </div>
-      <div class="card">
-        <div class="dot">03</div>
-        <h3>Koffie &amp; huisgemaakt gebak</h3>
-        <p>Careful, tidy work with respect for your home or business — and a friendly local team.</p>
-      </div>
-      <div class="card">
-        <div class="dot">04</div>
-        <h3>Zonnig terras</h3>
-        <p>Call us and we get back to you quickly — most jobs scheduled within days, urgent requests prioritised.</p>
-      </div>
-    </div>
-  </section>
+<section id="services"><div class="wrap">
+<span class="eyebrow">Leistungen</span><h2>Van de kaart</h2><p class="sub">Waar onze keuken op Instagram mee uitpakt — nu op één plek:</p>
+<div class="cards"><div class="card rv"><div class="ic">🥪</div><h3>Toast Peanut Pickle</h3><p>Onze signatuur-toast: pindakaas, pickle en crunch.</p></div><div class="card rv"><div class="ic">🌶️</div><h3>Balkan vibes</h3><p>Een bord vol Balkan-ziel, recht uit onze keuken.</p></div><div class="card rv"><div class="ic">🥖</div><h3>Broodje carnitas</h3><p>Broodje carnitas — een vaste waarde op de lunchkaart.</p></div><div class="card rv"><div class="ic">🍅</div><h3>Tomaat · beluga · burrata</h3><p>Zomer op een bord: tomaat, belugalinzen en romige burrata.</p></div></div></div></section>
 
-  <section class="band rv" aria-label="Jam. aan het werk">
-    <div class="plx" data-plx="0.22"><img src="https://sitepine.mobomas.workers.dev/assets/img/cafe-2.webp" alt="Jam. — Restaurant in Antwerpen" loading="lazy"></div>
-    <div class="band-in">
-      <h3>Vakwerk waar Antwerpen op vertrouwt</h3>
-      <p>Persoonlijk, netjes en zonder verrassingen achteraf. Bel ons en we plannen het direct in.</p>
-    </div>
-  </section>
+<section id="gallery"><div class="wrap">
+<span class="eyebrow">Arbeiten</span><h2>Uit onze keuken &amp; het terras</h2><p class="sub">Echt van bij ons — geen stockfoto&#x27;s:</p>
+<div class="gal"><figure class="g rv"><img loading="lazy" src="img/w1.webp" alt="Binnen bij Jam. — met onze koe aan de muur"><figcaption class="cap">Binnen bij Jam. — met onze koe aan de muur</figcaption></figure><figure class="g rv"><img loading="lazy" src="img/w2.webp" alt="Toast Peanut Pickle"><figcaption class="cap">Toast Peanut Pickle</figcaption></figure><figure class="g rv"><img loading="lazy" src="img/w3.webp" alt="Balkan vibes"><figcaption class="cap">Balkan vibes</figcaption></figure><figure class="g rv"><img loading="lazy" src="img/w4.webp" alt="Broodje carnitas"><figcaption class="cap">Broodje carnitas</figcaption></figure><figure class="g rv"><img loading="lazy" src="img/w5.webp" alt="Tomaat, belugalinzen &amp; burrata"><figcaption class="cap">Tomaat, belugalinzen &amp; burrata</figcaption></figure><div class="gcta rv"><h3>Zin in lunch in het zonnetje?</h3><p>Bel ons of loop gewoon binnen — het terras wacht.</p><div><a class="btn light" href="tel:+32471498506" target="_blank" rel="noopener">Bel ons</a></div></div></div></div></section>
 
-  <section>
-    <div class="eyebrow rv">Impressie</div>
-    <h2 class="rv">Zo ziet dat eruit</h2>
-    <p class="sub rv">Echt werk, echte resultaten — dit is het niveau van uw nieuwe website.</p>
-    <div class="gallery">
-      <figure class="rv"><img src="https://sitepine.mobomas.workers.dev/assets/img/cafe-hero.webp" alt="Jam. — impressie 1" loading="lazy"></figure>
-      <figure class="rv"><img src="https://sitepine.mobomas.workers.dev/assets/img/cafe-2.webp" alt="Jam. — impressie 2" loading="lazy"></figure>
-      <figure class="rv"><img src="https://sitepine.mobomas.workers.dev/assets/img/cafe-3.webp" alt="Jam. — impressie 3" loading="lazy"></figure>
-    </div>
-  </section>
+<section id="so"><div class="wrap">
+<span class="eyebrow">So einfach geht's</span><h2>Zo simpel is het</h2>
+<div class="steps"><div class="step rv"><b>01</b><h3>Bekijk de kaart</h3><p>Check hier wat de keuken serveert — de kaart staat niet meer alleen op Instagram.</p></div><div class="step rv"><b>02</b><h3>Bel of loop binnen</h3><p>Reserveren kan telefonisch; spontaan langskomen kan ook.</p></div><div class="step rv"><b>03</b><h3>Geniet op het terras</h3><p>Het blauwste hoekje van de Wolstraat is van jou.</p></div></div></div></section>
 
-  <section class="why rv">
-    <div class="eyebrow" style="color:#bff5dc">Waarom wij</div>
-    <h2>Waarom mensen kiezen voor Jam.</h2>
-    <ul>
-      <li>Snelle reactie op telefoontjes &amp; berichten</li>
-      <li>Duidelijke prijs vóórdat we beginnen</li>
-      <li>Echt lokaal team — geen callcenter</li>
-      <li>Tevreden klanten in Antwerpen en omgeving</li>
-    </ul>
-  </section>
+<section id="contact"><div class="wrap">
+<div class="contact rv"><span class="eyebrow">Kontakt</span><h2>Kom langs</h2><p class="sub">Je vindt ons aan de Wolstraat in hartje Antwerpen. Open donderdag t/m maandag, 11–18u.</p>
+<div class="rows"><div class="row"><span>Telefoon</span><a href="tel:+32471498506" target="_blank" rel="noopener">+32 471 49 85 06</a></div><div class="row"><span>Adres</span><a href="#gallery" target="_blank" rel="noopener">Wolstraat, Antwerpen</a></div><div class="row"><span>Open</span><a href="#gallery" target="_blank" rel="noopener">DO–MA · 11–18u</a></div><div class="row"><span>Instagram</span><a href="https://www.instagram.com/jamantwerpen" target="_blank" rel="noopener">@jamantwerpen</a></div></div>
+<div class="cta"><a class="btn" href="tel:+32471498506" target="_blank" rel="noopener">Bel ons</a><a class="btn ghost" href="https://www.instagram.com/jamantwerpen" target="_blank" rel="noopener">Instagram ansehen</a></div>
+</div></div></section>
 
-  <section class="contact">
-    <div class="panel rv">
-      <h3>Neem contact op</h3>
-      <p class="sub" style="margin-bottom:4px">Het snelst? Bel of stuur een bericht — we reageren snel.</p>
-      <a class="big-phone" href="tel:+32471498506">+32 471 49 85 06</a>
-      <div class="row"><span class="lbl">Adres</span><span class="val">Wolstraat 47, 2000, Antwerpen</span></div>
-      <div class="row"><span class="lbl">Telefoon</span><span class="val">+32 471 49 85 06</span></div>
-      <div class="row"><span class="lbl">E-mail</span><span class="val">info@example.com</span></div>
-    </div>
-    <div class="panel rv">
-      <h3>Openingstijden</h3>
-      <div class="row"><span class="lbl">Maandag – Vrijdag</span><span class="val">11:00 - 18:00</span></div>
-      <div class="row"><span class="lbl">Zaterdag</span><span class="val">11:00 - 18:00</span></div>
-      <div class="row"><span class="lbl">Zondag</span><span class="val">11:00 - 18:00</span></div>
-    </div>
-  </section>
-</main>
+<footer><div class="wrap"> Jam. · Dit is een website-ontwerp. De finale versie verschijnt op de eigen domeinnaam.</div></footer>
 
-<a class="callfab" href="tel:+32471498506">📞 Bel nu</a>
-
-<footer>
-  <div class="brandline">Jam. — Restaurant, Antwerpen</div>
-  <div>This preview was built by <a href="https://sitepine.pages.dev">SitePine</a> · your site is already made — <a href="https://sitepine.pages.dev">claim it</a>.</div>
-  <div class="fine">Demo preview — not live, not indexed. 2026 · Preview ref: jam-antwerpen</div>
-</footer>
-
+<div class="mbar"><a href="tel:+32471498506" target="_blank" rel="noopener">Bel ons</a><a class="gh" href="https://www.instagram.com/jamantwerpen" target="_blank" rel="noopener">Instagram</a></div>
 <script>
-(function(){
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  // reveal on scroll
-  var els = document.querySelectorAll(".rv");
-  if ("IntersectionObserver" in window && !reduce) {
-    var io = new IntersectionObserver(function(es){
-      es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    els.forEach(function(el){ io.observe(el); });
-  } else { els.forEach(function(el){ el.classList.add("in"); }); }
-  // parallax (rAF-throttled)
-  if (reduce) return;
-  var layers = Array.prototype.slice.call(document.querySelectorAll("[data-plx]"));
-  if (!layers.length) return;
-  var ticking = false;
-  function update(){
-    ticking = false;
-    var vh = window.innerHeight;
-    layers.forEach(function(el){
-      var r = el.parentElement.getBoundingClientRect();
-      if (r.bottom < -100 || r.top > vh + 100) return;
-      var speed = parseFloat(el.getAttribute("data-plx")) || 0.25;
-      var prog = (r.top + r.height/2 - vh/2) * -speed;
-      el.style.transform = "translate3d(0," + prog.toFixed(1) + "px,0)";
-    });
-  }
-  window.addEventListener("scroll", function(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, { passive: true });
-  window.addEventListener("resize", update);
-  update();
-})();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const pv=document.querySelector('.pv');
+if(pv&&matchMedia('(pointer:fine)').matches){addEventListener('scroll',()=>{const r=pv.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0){pv.style.transform=`translateY(${r.top*-0.045}px) rotate(1.2deg)`}},{passive:true})}
 </script>
-
-</body>
-</html>
+</body></html>
