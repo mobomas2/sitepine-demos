@@ -37,7 +37,7 @@ h2{font-size:clamp(24px,3.6vw,36px);font-weight:900;text-align:center}h2 span{co
 .card{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:.35s;display:flex;flex-direction:column}
 .card:hover{transform:translateY(-6px);box-shadow:0 24px 44px rgba(90,30,50,.15)}
 .card.hide{display:none}
-.cimg{height:340px;background-size:cover;background-position:center 18%;cursor:zoom-in}
+.cimg{height:340px;cursor:zoom-in;overflow:hidden}.cimg img{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block}
 .cb{padding:16px 18px 20px;display:flex;flex-direction:column;gap:7px;flex:1}
 .tag{align-self:flex-start;background:#F6E3EC;color:var(--acc);font-size:12px;font-weight:700;padding:2px 12px;border-radius:30px}
 .card h3{font-size:19px}.fab{color:var(--soft);font-size:13.5px}
@@ -55,18 +55,18 @@ summary{font-weight:800;cursor:pointer}details p{color:var(--soft);margin-top:10
 .book a{background:#fff;color:#5d1f38;padding:13px 26px;border-radius:50px;font-weight:800}.book a.wa{background:#25D366;color:#06300E}
 .book p{color:#EBCDB2;font-size:14.5px;margin-top:18px}
 footer{text-align:center;color:var(--soft);font-size:13.5px;padding:26px 5vw 110px}
-.rv{opacity:0;transform:translateY(26px);transition:.8s}.rv.vis{opacity:1;transform:none}
+html.js .rv{opacity:0;transform:translateY(26px);transition:.8s}.rv.vis{opacity:1;transform:none}
 .lb{position:fixed;inset:0;z-index:90;background:rgba(15,5,9,.95);display:none;align-items:center;justify-content:center;flex-direction:column}
 .lb.open{display:flex}.lb img{max-width:92vw;max-height:82vh;border-radius:14px}
 .lb button{position:absolute;top:20px;inset-inline-end:20px;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4);width:46px;height:46px;border-radius:50%;font-size:20px;cursor:pointer}
 .mbar{position:fixed;bottom:0;inset-inline:0;z-index:70;display:none;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(251,247,242,.95);border-top:1px solid var(--line)}
 .mbar a{flex:1;text-align:center;padding:13px;border-radius:14px;font-weight:800}.mbar .w{background:#25D366;color:#06300E}.mbar .c{background:var(--acc);color:#fff}
 @media(max-width:760px){.mbar{display:flex}}
-</style></head><body>
+</style><script>document.documentElement.classList.add("js")</script></head><body>
 <header class="hd"><a class="logo" href="#">مزون <span>آوین</span></a>
 <nav><a href="#catalog">مدل‌ها</a><a href="#how">نحوهٔ سفارش</a><a href="#shops">شعب</a><a href="#faq">سؤال‌ها</a></nav>
 <a class="cta" href="https://wa.me/989134802824?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%84%D8%A8%D8%A7%D8%B3%20%D9%85%D8%AC%D9%84%D8%B3%DB%8C%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%85.">سفارش در واتساپ</a></header>
-<div class="hero"><div class="slide on" style="background-image:url(img/p1.webp)"></div><div class="slide" style="background-image:url(img/p5.webp)"></div><div class="slide" style="background-image:url(img/p3.webp)"></div><div class="hc"><span class="badge">لباس مجلسی حضوری و آنلاین — تهران و اصفهان</span>
+<div class="hero"><div class="slide on"><img src="img/p1.webp" alt="لباس مجلسی مزون آوین" style="width:100%;height:100%;object-fit:cover;object-position:center 22%"></div><div class="slide"><img src="img/p5.webp" alt="لباس مجلسی مزون آوین" style="width:100%;height:100%;object-fit:cover;object-position:center 22%"></div><div class="slide"><img src="img/p3.webp" alt="لباس مجلسی مزون آوین" style="width:100%;height:100%;object-fit:cover;object-position:center 22%"></div><div class="hc"><span class="badge">لباس مجلسی حضوری و آنلاین — تهران و اصفهان</span>
 <h1>برای مجلس بعدی‌ات،<br><em>بدون گشتن توی صدتا پست</em></h1>
 <p>همهٔ مدل‌ها این‌جا یکجا هستند؛ با سایز، رنگ و قیمت مشخص. مدلت را انتخاب کن و با یک لمس سفارش بده.</p>
 <a class="b1" href="#catalog">دیدن مدل‌ها</a><a class="b2" href="https://wa.me/989134802824?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%84%D8%A8%D8%A7%D8%B3%20%D9%85%D8%AC%D9%84%D8%B3%DB%8C%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%85.">سفارش در واتساپ</a></div></div>
@@ -79,37 +79,37 @@ footer{text-align:center;color:var(--soft);font-size:13.5px;padding:26px 5vw 110
 <p class="sub">قیمت هر مدل با کد تخفیف 20521 نوشته شده. برای سفارش، کافی است دکمهٔ زیر همان مدل را بزنید؛ پیام‌تان با نام مدل آماده می‌شود.</p>
 <div class="filters"><button class="on" data-f="all">همه</button><button data-f="maxi">ماکسی مجلسی</button><button data-f="plus">سایز بزرگ</button><button data-f="set">ست و شومیز</button></div>
 <div class="grid"><article class="card rv" data-cat="maxi">
-<div class="cimg" style="background-image:url(img/p1.webp)" data-i="0"></div>
+<div class="cimg" data-i="0"><img loading="lazy" src="img/p1.webp" alt="مدل لباس مجلسی مزون آوین"></div>
 <div class="cb"><span class="tag">ماکسی مجلسی</span><h3>مدل آرزو</h3><p class="fab">مخمل مرواریدی، قد ۱۵۰</p>
 <div class="row"><span>سایز: ۳۶ تا ۴۸</span><span>رنگ: مشکی</span></div>
 <div class="pr">۶٫۳۰۰٫۰۰۰ تومان <small>با کد 20521</small></div>
 <a class="ord" href="https://wa.me/989134802824?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%85%D8%AF%D9%84%20%C2%AB%D8%A2%D8%B1%D8%B2%D9%88%C2%BB%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%85.%20%D8%B3%D8%A7%DB%8C%D8%B2%20%D9%88%20%D8%B1%D9%86%DA%AF%20%D9%85%D9%88%D8%AC%D9%88%D8%AF%20%D8%B1%D9%88%20%D9%85%DB%8C%E2%80%8C%D9%81%D8%B1%D9%85%D8%A7%DB%8C%DB%8C%D8%AF%D8%9F">سفارش این مدل در واتساپ ←</a></div></article><article class="card rv" data-cat="plus">
-<div class="cimg" style="background-image:url(img/p2.webp)" data-i="1"></div>
+<div class="cimg" data-i="1"><img loading="lazy" src="img/p2.webp" alt="مدل لباس مجلسی مزون آوین"></div>
 <div class="cb"><span class="tag">سایز بزرگ</span><h3>مدل لعیا</h3><p class="fab">حریر درجه‌یک، کاپ‌دار، نگین و مروارید</p>
 <div class="row"><span>سایز: ۴۶ تا ۶۰ (سایز بزرگ)</span><span>رنگ: مشکی، سبز، زرشکی</span></div>
 <div class="pr">۷٫۲۰۰٫۰۰۰ تومان <small>با کد 20521</small></div>
 <a class="ord" href="https://wa.me/989134802824?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%85%D8%AF%D9%84%20%C2%AB%D9%84%D8%B9%DB%8C%D8%A7%C2%BB%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%85.%20%D8%B3%D8%A7%DB%8C%D8%B2%20%D9%88%20%D8%B1%D9%86%DA%AF%20%D9%85%D9%88%D8%AC%D9%88%D8%AF%20%D8%B1%D9%88%20%D9%85%DB%8C%E2%80%8C%D9%81%D8%B1%D9%85%D8%A7%DB%8C%DB%8C%D8%AF%D8%9F">سفارش این مدل در واتساپ ←</a></div></article><article class="card rv" data-cat="maxi">
-<div class="cimg" style="background-image:url(img/p3.webp)" data-i="2"></div>
+<div class="cimg" data-i="2"><img loading="lazy" src="img/p3.webp" alt="مدل لباس مجلسی مزون آوین"></div>
 <div class="cb"><span class="tag">ماکسی مجلسی</span><h3>مدل بهار شاین</h3><p class="fab">تور شاین، کمربنددار، قد ۱۵۰</p>
 <div class="row"><span>سایز: ۳۸ تا ۴۸</span><span>رنگ: مشکی‌طلایی، گلبهی، سورمه‌ای</span></div>
 <div class="pr">۵٫۹۰۰٫۰۰۰ تومان <small>با کد 20521</small></div>
 <a class="ord" href="https://wa.me/989134802824?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%85%D8%AF%D9%84%20%C2%AB%D8%A8%D9%87%D8%A7%D8%B1%20%D8%B4%D8%A7%DB%8C%D9%86%C2%BB%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%85.%20%D8%B3%D8%A7%DB%8C%D8%B2%20%D9%88%20%D8%B1%D9%86%DA%AF%20%D9%85%D9%88%D8%AC%D9%88%D8%AF%20%D8%B1%D9%88%20%D9%85%DB%8C%E2%80%8C%D9%81%D8%B1%D9%85%D8%A7%DB%8C%DB%8C%D8%AF%D8%9F">سفارش این مدل در واتساپ ←</a></div></article><article class="card rv" data-cat="set">
-<div class="cimg" style="background-image:url(img/p4.webp)" data-i="3"></div>
+<div class="cimg" data-i="3"><img loading="lazy" src="img/p4.webp" alt="مدل لباس مجلسی مزون آوین"></div>
 <div class="cb"><span class="tag">ست و شومیز</span><h3>مدل ققنوس</h3><p class="fab">شومیز و شلوار — مازراتی و حریر</p>
 <div class="row"><span>سایز: ۳۸ تا ۴۸</span><span>رنگ: مشکی، سفید، آسمانی، قهوه‌ای</span></div>
 <div class="pr">۵٫۹۰۰٫۰۰۰ تومان <small>با کد 20521</small></div>
 <a class="ord" href="https://wa.me/989134802824?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%85%D8%AF%D9%84%20%C2%AB%D9%82%D9%82%D9%86%D9%88%D8%B3%C2%BB%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%85.%20%D8%B3%D8%A7%DB%8C%D8%B2%20%D9%88%20%D8%B1%D9%86%DA%AF%20%D9%85%D9%88%D8%AC%D9%88%D8%AF%20%D8%B1%D9%88%20%D9%85%DB%8C%E2%80%8C%D9%81%D8%B1%D9%85%D8%A7%DB%8C%DB%8C%D8%AF%D8%9F">سفارش این مدل در واتساپ ←</a></div></article><article class="card rv" data-cat="maxi">
-<div class="cimg" style="background-image:url(img/p5.webp)" data-i="4"></div>
+<div class="cimg" data-i="4"><img loading="lazy" src="img/p5.webp" alt="مدل لباس مجلسی مزون آوین"></div>
 <div class="cb"><span class="tag">ماکسی مجلسی</span><h3>مدل یکتا</h3><p class="fab">ساتن درجه‌یک و تور و نگین، کاپ‌دار</p>
 <div class="row"><span>سایز: ۳۶ تا ۵۰</span><span>رنگ: آبی آسمانی</span></div>
 <div class="pr">۵٫۰۰۰٫۰۰۰ تومان <small>با کد 20521</small></div>
 <a class="ord" href="https://wa.me/989134802824?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%85%D8%AF%D9%84%20%C2%AB%DB%8C%DA%A9%D8%AA%D8%A7%C2%BB%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%85.%20%D8%B3%D8%A7%DB%8C%D8%B2%20%D9%88%20%D8%B1%D9%86%DA%AF%20%D9%85%D9%88%D8%AC%D9%88%D8%AF%20%D8%B1%D9%88%20%D9%85%DB%8C%E2%80%8C%D9%81%D8%B1%D9%85%D8%A7%DB%8C%DB%8C%D8%AF%D8%9F">سفارش این مدل در واتساپ ←</a></div></article><article class="card rv" data-cat="maxi">
-<div class="cimg" style="background-image:url(img/p6.webp)" data-i="5"></div>
+<div class="cimg" data-i="5"><img loading="lazy" src="img/p6.webp" alt="مدل لباس مجلسی مزون آوین"></div>
 <div class="cb"><span class="tag">ماکسی مجلسی</span><h3>مدل مینا</h3><p class="fab">گیپور پولکی و ساتن، دوخت مزونی، قد ۱۵۰</p>
 <div class="row"><span>سایز: ۳۸ تا ۵۰</span><span>رنگ: مشکی، سورمه‌ای، پاستیلی</span></div>
 <div class="pr">۵٫۹۰۰٫۰۰۰ تومان <small>با کد 20521</small></div>
 <a class="ord" href="https://wa.me/989134802824?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%85%D8%AF%D9%84%20%C2%AB%D9%85%DB%8C%D9%86%D8%A7%C2%BB%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%85.%20%D8%B3%D8%A7%DB%8C%D8%B2%20%D9%88%20%D8%B1%D9%86%DA%AF%20%D9%85%D9%88%D8%AC%D9%88%D8%AF%20%D8%B1%D9%88%20%D9%85%DB%8C%E2%80%8C%D9%81%D8%B1%D9%85%D8%A7%DB%8C%DB%8C%D8%AF%D8%9F">سفارش این مدل در واتساپ ←</a></div></article><article class="card rv" data-cat="maxi">
-<div class="cimg" style="background-image:url(img/p7.webp)" data-i="6"></div>
+<div class="cimg" data-i="6"><img loading="lazy" src="img/p7.webp" alt="مدل لباس مجلسی مزون آوین"></div>
 <div class="cb"><span class="tag">ماکسی مجلسی</span><h3>مدل نسترن</h3><p class="fab">حریر بیده و ساندویچی</p>
 <div class="row"><span>سایز: ۳۶ تا ۴۲</span><span>رنگ: مشکی، آسمانی، سبز پاستیلی</span></div>
 <div class="pr">۴٫۳۰۰٫۰۰۰ تومان <small>با کد 20521</small></div>
@@ -135,7 +135,7 @@ document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{
  document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
  const f=b.dataset.f;document.querySelectorAll('.card').forEach(c=>c.classList.toggle('hide',f!=='all'&&c.dataset.cat!==f));});
 const lb=document.getElementById('lb'),lbi=document.getElementById('lbi');
-document.querySelectorAll('.cimg').forEach(c=>c.onclick=()=>{lbi.src=c.style.backgroundImage.slice(5,-2);lb.classList.add('open')});
+document.querySelectorAll('.cimg').forEach(c=>c.onclick=()=>{lbi.src=c.querySelector('img').src;lb.classList.add('open')});
 document.getElementById('lbx').onclick=()=>lb.classList.remove('open');
 lb.onclick=e=>{if(e.target===lb)lb.classList.remove('open')});
 </script></body></html>

@@ -37,7 +37,7 @@ h2{font-size:clamp(24px,3.6vw,36px);font-weight:900;text-align:center}h2 span{co
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:18px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:.35s;display:flex;flex-direction:column}
 .card:hover{transform:translateY(-6px);box-shadow:0 24px 44px rgba(120,70,30,.14)}
-.cimg{height:190px;background-size:cover;background-position:center 25%}
+.cimg{height:190px;overflow:hidden}.cimg img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block}
 .cbody{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
 .age{align-self:flex-start;background:#F7E8D8;color:#9A5A2E;font-size:12.5px;font-weight:700;padding:3px 12px;border-radius:30px}
 .card h3{font-size:18px}.card ul{list-style:none;color:var(--soft);font-size:14px;flex:1}
@@ -76,7 +76,7 @@ form button{background:#25D366;color:#06300E;border:0;padding:16px;border-radius
 .info div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;text-align:center}
 .info b{display:block;color:var(--acc);margin-bottom:6px}
 footer{text-align:center;color:var(--soft);font-size:13.5px;padding:26px 5vw 110px}
-.rv{opacity:0;transform:translateY(26px);transition:.8s}.rv.vis{opacity:1;transform:none}
+html.js .rv{opacity:0;transform:translateY(26px);transition:.8s}.rv.vis{opacity:1;transform:none}
 .lb{position:fixed;inset:0;z-index:90;background:rgba(15,8,3,.95);display:none;align-items:center;justify-content:center;flex-direction:column}
 .lb.open{display:flex}.lb img{max-width:92vw;max-height:78vh;border-radius:14px}
 .lb .cap{color:#F1E3D2;margin-top:14px;font-size:14.5px}.lb .cnt{color:#B9A48F;font-size:12.5px}
@@ -85,7 +85,7 @@ footer{text-align:center;color:var(--soft);font-size:13.5px;padding:26px 5vw 110
 .mbar{position:fixed;bottom:0;inset-inline:0;z-index:70;display:none;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(253,249,243,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
 .mbar a{flex:1;text-align:center;padding:13px;border-radius:14px;font-weight:800}.mbar .w{background:#25D366;color:#08360F}.mbar .c{background:var(--acc);color:#fff}
 @media(max-width:760px){.mbar{display:flex}}
-</style></head><body>
+</style><script>document.documentElement.classList.add("js")</script></head><body>
 <header class="hd"><a class="logo" href="#">فانوس <span>| کودک و بارداری</span></a>
 <nav><a href="#sessions">جلسه‌ها</a><a href="#gallery">گالری</a><a href="#expect">روز عکاسی</a><a href="#prep">راهنمای آماده‌سازی</a><a href="#faq">سؤال‌ها</a></nav>
 <a class="cta" href="#book">رزرو نوبت</a></header>
@@ -103,7 +103,7 @@ footer{text-align:center;color:var(--soft);font-size:13.5px;padding:26px 5vw 110
 <div><b>آتلیه + فضای باز</b>همراه با ساخت کلیپ</div></div>
 <section id="sessions"><h2>جلسه‌های <span>عکاسی فانوس</span></h2>
 <p class="sub">عکاسی در هر سن، روانشناسی و طراحی مخصوص خودش را دارد. جلسهٔ مناسب سن کوچولوی شما را انتخاب کنید؛ شرایط و جزئیات را در واتساپ با هم نهایی می‌کنیم.</p>
-<div class="grid"><article class="card rv"><div class="cimg" style="background-image:url(img/g3.webp)"></div><div class="cbody"><span class="age">۰ تا ۳ ماهگی</span><h3>نوزاد و ماهگرد</h3><ul><li>نور نرم و فضای آرام، با ریتم خواب و بیداری نوزاد</li><li>انتخاب عکس‌ها بلافاصله بعد از عکاسی</li><li>تأیید نهایی قبل از چاپ</li></ul><a href="#book" class="mini">رزرو این جلسه ←</a></div></article><article class="card rv"><div class="cimg" style="background-image:url(img/g4.webp)"></div><div class="cbody"><span class="age">۱ سالگی</span><h3>تولد و یکسالگی</h3><ul><li>تم تولد اختصاصی با هماهنگی قبلی</li><li>ثبت لحظهٔ کیک و اولین شمع</li><li>امکان ساخت کلیپ تولد</li></ul><a href="#book" class="mini">رزرو این جلسه ←</a></div></article><article class="card rv"><div class="cimg" style="background-image:url(img/g5.webp)"></div><div class="cbody"><span class="age">۳ ماه تا ۱۳ سال</span><h3>کودک و پرتره</h3><ul><li>ژست و طراحی مخصوص سن کودک</li><li>آتلیه یا فضای باز</li><li>پرتره‌های خاص سیاه‌وسفید</li></ul><a href="#book" class="mini">رزرو این جلسه ←</a></div></article><article class="card rv"><div class="cimg" style="background-image:url(img/g6.webp)"></div><div class="cbody"><span class="age">همهٔ سن‌ها</span><h3>فصل‌ها و مناسبت‌ها</h3><ul><li>دکور فصلی: یلدا، پاییز و مناسبت‌ها</li><li>هماهنگی تم و لباس قبل از جلسه</li><li>امکان عکاسی خانوادگی کنار کودک</li></ul><a href="#book" class="mini">رزرو این جلسه ←</a></div></article><article class="card rv grad"><div class="cbody"><span class="age">قبل از تولد</span><h3>بارداری و تعیین جنسیت</h3><ul><li>ثبت شیرین‌ترین انتظار زندگی‌تان</li><li>جشن تعیین جنسیت با ساخت کلیپ</li><li>هماهنگی کامل قبل از روز عکاسی</li></ul><a href="#book" class="mini">رزرو این جلسه ←</a></div></article></div></section>
+<div class="grid"><article class="card rv"><div class="cimg"><img loading="lazy" src="img/g3.webp" alt="نمونه‌کار آتلیه کودک و بارداری فانوس"></div><div class="cbody"><span class="age">۰ تا ۳ ماهگی</span><h3>نوزاد و ماهگرد</h3><ul><li>نور نرم و فضای آرام، با ریتم خواب و بیداری نوزاد</li><li>انتخاب عکس‌ها بلافاصله بعد از عکاسی</li><li>تأیید نهایی قبل از چاپ</li></ul><a href="#book" class="mini">رزرو این جلسه ←</a></div></article><article class="card rv"><div class="cimg"><img loading="lazy" src="img/g4.webp" alt="نمونه‌کار آتلیه کودک و بارداری فانوس"></div><div class="cbody"><span class="age">۱ سالگی</span><h3>تولد و یکسالگی</h3><ul><li>تم تولد اختصاصی با هماهنگی قبلی</li><li>ثبت لحظهٔ کیک و اولین شمع</li><li>امکان ساخت کلیپ تولد</li></ul><a href="#book" class="mini">رزرو این جلسه ←</a></div></article><article class="card rv"><div class="cimg"><img loading="lazy" src="img/g5.webp" alt="نمونه‌کار آتلیه کودک و بارداری فانوس"></div><div class="cbody"><span class="age">۳ ماه تا ۱۳ سال</span><h3>کودک و پرتره</h3><ul><li>ژست و طراحی مخصوص سن کودک</li><li>آتلیه یا فضای باز</li><li>پرتره‌های خاص سیاه‌وسفید</li></ul><a href="#book" class="mini">رزرو این جلسه ←</a></div></article><article class="card rv"><div class="cimg"><img loading="lazy" src="img/g6.webp" alt="نمونه‌کار آتلیه کودک و بارداری فانوس"></div><div class="cbody"><span class="age">همهٔ سن‌ها</span><h3>فصل‌ها و مناسبت‌ها</h3><ul><li>دکور فصلی: یلدا، پاییز و مناسبت‌ها</li><li>هماهنگی تم و لباس قبل از جلسه</li><li>امکان عکاسی خانوادگی کنار کودک</li></ul><a href="#book" class="mini">رزرو این جلسه ←</a></div></article><article class="card rv grad"><div class="cbody"><span class="age">قبل از تولد</span><h3>بارداری و تعیین جنسیت</h3><ul><li>ثبت شیرین‌ترین انتظار زندگی‌تان</li><li>جشن تعیین جنسیت با ساخت کلیپ</li><li>هماهنگی کامل قبل از روز عکاسی</li></ul><a href="#book" class="mini">رزرو این جلسه ←</a></div></article></div></section>
 <section id="gallery"><h2>گالری <span>نمونه‌کارها</span></h2>
 <p class="sub">بخشی از خاطره‌هایی که برای خانواده‌های تهرانپارس ساخته‌ایم. دسته را انتخاب کنید و برای دیدن بزرگ‌تر روی هر عکس بزنید.</p>
 <div class="filters">
