@@ -6,8 +6,6 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Dalia’s Beauty Ltd | BIAB Nails, Lashes, Laser & Aesthetic Clinic in Ipswich</title>
 <meta name="description" content="Award-winning nail atelier, UV lash extensions, laser skin clinic & accredited beauty training in Ipswich town centre (58 St Matthews St, IP1 3EP). Book online 24/7.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BeautySalon", "name": "Dalia\u2019s Beauty Ltd", "founder": "Dalia Metrikiene", "telephone": "+447414970252", "address": {"@type": "PostalAddress", "streetAddress": "58 St Matthews Street", "addressLocality": "Ipswich", "postalCode": "IP1 3EP", "addressCountry": "GB"}, "priceRange": "\u00a3\u00a3"}</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -96,7 +94,7 @@ nav.main-nav a:hover{color:var(--accent)}
 .split-img img{width:100%;height:auto;object-fit:cover}
 .check-list{list-style:none;display:grid;gap:10px;margin:20px 0 26px}
 .check-list li{padding-left:26px;position:relative;font-size:14.5px}
-.check-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:800}
+.check-list li::before{content:"";position:absolute;left:0;top:0;color:var(--accent);font-weight:800}
 @media(max-width:860px){.split{grid-template-columns:1fr}}
 
 /* Reviews */
@@ -133,13 +131,21 @@ nav.main-nav a:hover{color:var(--accent)}
 footer{background:var(--ink);color:#C9BBAE;padding:42px 4vw;font-size:13px}
 .ft-in{max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 </style>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dalia’s Beauty & Laser Clinic — Ipswich, UK">
+<meta property="og:description" content="BIAB Nails, Medical Pedicure, UV Lashes, Laser Hair Removal & Accredited Beauty Academy on St Matthews Street.">
+<meta property="og:image" content="https://mobomas2.github.io/sitepine-demos/p/dalia-uk/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mobomas2.github.io/sitepine-demos/p/dalia-uk/og-cover.jpg">
 </head>
 <body>
 
 <div class="topbar">
-  <span>📍 58 St Matthews Street, Ipswich, IP1 3EP</span>
+  <span>58 St Matthews Street, Ipswich, IP1 3EP</span>
   <span class="hide-sm">Award-Winning Nail Atelier · UV Lashes · Laser Clinic & Accredited Academy</span>
-  <a href="tel:+447414970252">📞 +44 7414 970252</a>
+  <a href="tel:+447414970252">+44 7414 970252</a>
 </div>
 
 <header class="hd">
@@ -164,7 +170,7 @@ footer{background:var(--ink);color:#C9BBAE;padding:42px 4vw;font-size:13px}
 
 <section class="hero">
   <div>
-    <span class="eyebrow">★ 5.0 Client Rated · Ipswich Town Centre (IP1 3EP)</span>
+    <span class="eyebrow">5.0 Client Rated · Ipswich Town Centre (IP1 3EP)</span>
     <h1>Precision Nails, UV Lashes & <em>Advanced Laser Care</em> Under One Roof.</h1>
     <p class="lead">Led by championship-awarded master technician <strong>Dalia Metrikiene</strong>, Dalia’s Beauty Ltd combines long-wear BIAB & sculpted nails, next-generation UV lash extensions, clinical laser treatments and accredited student training in a calm, spotless studio on St Matthews Street.</p>
     <div class="hero-btns">
@@ -284,17 +290,17 @@ footer{background:var(--ink);color:#C9BBAE;padding:42px 4vw;font-size:13px}
   </div>
   <div class="rev-grid">
     <article class="rev-card">
-      <div class="stars">★★★★★</div>
+      <div class="stars"></div>
       <blockquote>“After going to numerous nail techs, I finally found the best! Dalia is absolutely outstanding!!! She’s been doing my nails for years. Always so professional and courteous. Her uber clean salon is comfortable and relaxing. I would give her a ten-star rating if there was one.”</blockquote>
       <div class="rev-author"><span>Alvyda Vaskeviciute</span><span>Verified Long-Term Client</span></div>
     </article>
     <article class="rev-card">
-      <div class="stars">★★★★★</div>
+      <div class="stars"></div>
       <blockquote>“Been a client for many years now and always receive best care. From pedicure, eyelashes to the manicure. Even when I come with most crazy ideas for my nails and drawings, always leave happy and satisfied. Highly recommend Dalia and the team!”</blockquote>
       <div class="rev-author"><span>Justina Scelkunovaite</span><span>Nails, Pedicure & Lashes</span></div>
     </article>
     <article class="rev-card">
-      <div class="stars">★★★★★</div>
+      <div class="stars"></div>
       <blockquote>“Spotless, welcoming clinic right on St Matthews Street with super convenient early 8am and 7:30pm evening slots for working women. Everything from BIAB infills to laser and brows in one trusted place.”</blockquote>
       <div class="rev-author"><span>Ipswich Studio Standard</span><span>IP1 Town Centre</span></div>
     </article>
@@ -369,7 +375,7 @@ function renderMenu() {
       </div>
       <div class="s-right">
         <span class="s-price"><small>from </small>£${s.price}</span>
-        <span class="add-pill">${on ? '✓ Selected' : '+ Select'}</span>
+        <span class="add-pill">${on ? 'Selected' : '+ Select'}</span>
       </div>
     </article>`;
   }).join('');
