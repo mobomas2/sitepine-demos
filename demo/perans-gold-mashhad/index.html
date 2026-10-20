@@ -241,7 +241,7 @@ html.js .rv.vis{opacity:1;transform:none}
 <div class="ticker">
   <div class="ticker-in">
     <div class="t-items">
-      <span class="t-item"><i class="dot-live"></i>نرخ لحظه‌ای طلای ۱۸ عیار: <b id="tk-g18">۲۶٬۱۸۰٬۰۰۰ تومان</b></span>
+      <span class="t-item"><i class="dot-live"></i>نرخ روز طلای ۱۸ عیار: <b id="tk-g18">۲۶٬۱۸۰٬۰۰۰ تومان</b></span>
       <span class="t-item">طلای ۲۴ عیار: <b id="tk-g24">۳۴٬۹۰۹٬۰۰۰ تومان</b></span>
       <span class="t-item">سکه امامی: <b>۲۶۵٬۹۷۵٬۰۰۰ تومان</b></span>
     </div>
@@ -669,7 +669,7 @@ html.js .rv.vis{opacity:1;transform:none}
     <div class="step rv"><h3>انتخاب آنلاین یا مشاوره</h3><p>مدل آماده را با قیمت لحظه‌ای به سبد خرید اضافه کنید یا طرح سفارشی خود را بفرستید.</p></div>
     <div class="step rv"><h3>قفل نرخ لحظه‌ای طلا</h3><p>مبلغ دقیق بر اساس وزن ترازو و نرخ لحظه‌ای طلای ۱۸ عیار در پیش‌فاکتور ثبت و قفل می‌شود.</p></div>
     <div class="step rv"><h3>پرداخت امن درگاه یا بیعانه</h3><p>تسویه مستقیم از طریق درگاه بانکی شاپرک (یا پرداخت بیعانه برای سفارش‌های ساخت سفارشی).</p></div>
-    <div class="step rv"><h3>آماده‌سازی با دقت کارگاهی</h3><p>کنترل نهایی وزن، کیفیت ساخت، بسته‌بندی کادویی مخمل و صدور فاکتور رسمی ممهور پرنس.</p></div>
+    <div class="step rv"><h3>آماده‌سازی با دقت کارگاهی</h3><p>کنترل نهایی وزن، کیفیت ساخت، بسته‌بندی کادویی مخمل و همراه کردن فاکتور رسمی کاغذی ممهور پرنس در بسته ارسالی.</p></div>
     <div class="step rv"><h3>پیک مشهد یا ارسال بیمه‌شده</h3><p>ارسال سریع با پیک ویژه در مشهد، پست بیمه‌شده به سراسر کشور یا تحویل حضوری در مفتح ۱۴.</p></div>
   </div>
 </section>
@@ -986,8 +986,8 @@ function showGatewayBox(sumPrice) {
   const box = document.getElementById('gwBox');
   box.classList.add('open');
   box.innerHTML = `
-    <b style="color:var(--gold2);display:block;margin-bottom:6px">🔒 قفل نرخ لحظه‌ای و انتقال به درگاه شاپرک (زرین‌پال)</b>
-    نرخ طلای ۱۸ عیار (${fmtToman(gold18Rate)}) به مدت <b>۱۰ دقیقه</b> برای فاکتور شما قفل شد. پس از ثبت کد پذیرنده شاپرک گالری پرنس، خریدار مستقیماً به صفحه پرداخت کارت‌های عضو شتاب هدایت و کد رهگیری فاکتور صادر می‌شود.<br>
+    <b style="color:var(--gold2);display:block;margin-bottom:6px">🔒 ثبت پیش‌فاکتور و انتقال به درگاه بانکی شاپرک (زرین‌پال)</b>
+    مبلغ سفارش بر اساس نرخ فعلی ثبت‌شده در سایت (${fmtToman(gold18Rate)}) محاسبه و به مدت <b>۱۰ دقیقه</b> معتبر است. پس از ثبت کد پذیرنده اینماد/زرین‌پال گالری پرنس، خریدار مستقیماً به درگاه شاپرک متصل شده و فاکتور رسمی کاغذی همراه مرسوله ارسال می‌گردد.<br>
     <button type="button" onclick="sendCartWhatsApp(${sumPrice})" style="margin-top:10px;width:100%;background:var(--gold2);color:#0F1D3A;border:0;padding:10px;border-radius:10px;font-weight:900;cursor:pointer">ارسال همین پیش‌فاکتور به واتساپ گالری پرنس ←</button>
   `;
 }
