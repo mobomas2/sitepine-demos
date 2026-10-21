@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>اتوگالری روما موتورز اندرزگو | تجربه فضایی کلکسیون خاص — ROMA MOTORS</title>
-<meta name="description" content="نمایشگاه اتومبیل روما موتورز — تهران، قیطریه، بلوار اندرزگو. بررسی تعاملی کابین و کنسول مرسدس میباخ GLS 600، لکسوس LX 600 و بی‌ام‌و سری ۷.">
+<title>اتوگالری روما موتورز | چهارراه قیطریه، نبش سلیمانی غربی — ROMA MOTORS</title>
+<meta name="description" content="وب‌سایت رسمی نمایشگاه اتومبیل روما موتورز (تهران، بلوار اندرزگو، چهارراه قیطریه، نبش سلیمانی غربی). مرجع تخصصی خودروهای صفر پلاک ملی ۲۰۲۶، میباخ GLS 600، لکسوس LX 700h کیت Kuro، دیفندر سفید و بی‌ام‌و 735Li.">
 <link rel="preload" as="image" href="img/01-maybach-ext.webp" fetchpriority="high">
 <link rel="preload" as="image" href="img/02-maybach-cabin.webp">
 <style>
@@ -15,365 +15,474 @@
 @font-face{font-family:'Cormorant Garamond';src:url('fonts/CormorantGaramond-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
 
 :root{
-  --bg:#050608;
-  --surface:#0c0f15;
-  --ink:#f5f2ec;
-  --muted:#a0a7b5;
-  --chrome:#d8c29d;
-  --chrome-line:rgba(216,194,157,.24);
-  --glass:rgba(8,10,15,.72);
-  --accent-red:#c92a35;
+  --bg:#06070a;
+  --bg-2:#0b0d12;
+  --card:#0f1219;
+  --ink:#f4f2ed;
+  --muted:#949aa7;
+  --platinum:#d4c3a3;
+  --line:rgba(255,255,255,.08);
+  --line-gold:rgba(212,195,163,.24);
+  --glass:rgba(8,10,14,.74);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 html{background:var(--bg);color:var(--ink);-webkit-text-size-adjust:100%}
 body{
   font-family:'Vazirmatn',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  background:var(--bg);color:var(--ink);overflow-x:hidden;
+  background:var(--bg);color:var(--ink);line-height:1.78;overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
 a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-.latin{font-family:'Cormorant Garamond',Georgia,serif;letter-spacing:.05em}
-.mono-num{font-variant-numeric:tabular-nums;direction:ltr;display:inline-block}
+button,input,select{font-family:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+img{display:block;max-width:100%}
+.en{font-family:'Cormorant Garamond',Georgia,serif;letter-spacing:.08em}
+.ltr{direction:ltr;display:inline-block;font-variant-numeric:tabular-nums}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
 
-/* Top Master Progress Bar */
-.top-progress{position:fixed;top:0;left:0;right:0;height:2.5px;z-index:200;background:rgba(255,255,255,.07)}
-.top-progress-fill{
+/* Master Hairline Scroll Progress */
+.master-progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:220;background:rgba(255,255,255,.05);pointer-events:none}
+.master-progress-bar{
   height:100%;width:100%;
-  background:linear-gradient(90deg,#8f7346,var(--chrome),#fff1d6);
+  background:linear-gradient(90deg,#8b7958,var(--platinum),#ffffff);
   transform-origin:right center;transform:scaleX(0);will-change:transform;
 }
 
-/* Floating Studio Top Header */
-.hud-header{
-  position:fixed;top:0;left:0;right:0;z-index:150;
-  padding:12px clamp(14px,3vw,38px);
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  background:linear-gradient(180deg,rgba(5,6,8,.86) 0%,rgba(5,6,8,.42) 70%,transparent 100%);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+/* Minimal Architectural Top Navigation */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:180;
+  height:68px;padding:0 clamp(14px,3vw,40px);
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  background:rgba(6,7,10,.78);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
 }
-.brand-id{display:flex;align-items:center;gap:11px}
-.crest{
-  width:38px;height:38px;border-radius:10px;
-  border:1px solid var(--chrome-line);
-  background:rgba(12,15,21,.88);
-  display:grid;place-items:center;flex-shrink:0;
+.brand{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.brand-mark{
+  width:36px;height:36px;border-radius:9px;
+  border:1px solid var(--line-gold);
+  display:grid;place-items:center;background:rgba(255,255,255,.02);
 }
-.brand-txt b{display:block;font-size:.94rem;letter-spacing:.12em;font-weight:800}
-.brand-txt small{display:block;font-size:.7rem;color:var(--chrome)}
+.brand-name b{display:block;font-size:.9rem;letter-spacing:.14em;font-weight:800;line-height:1.2}
+.brand-name span{display:block;font-size:.69rem;color:var(--platinum)}
 
-/* Quick Vehicle Jump Switcher */
-.car-tabs{
-  display:flex;align-items:center;gap:6px;
-  background:rgba(10,13,19,.8);border:1px solid rgba(255,255,255,.1);
-  padding:4px;border-radius:999px;backdrop-filter:blur(14px);
+.chapter-nav{
+  display:flex;align-items:center;gap:4px;
+  background:rgba(15,18,25,.85);border:1px solid var(--line);
+  padding:4px;border-radius:999px;
+  overflow-x:auto;scrollbar-width:none;max-width:100%;
 }
-.car-tab{
-  padding:6px 13px;border-radius:999px;font-size:.76rem;font-weight:700;
-  color:var(--muted);transition:background .25s ease,color .25s ease;white-space:nowrap;
+.chapter-nav::-webkit-scrollbar{display:none}
+.ch-btn{
+  padding:5px 12px;border-radius:999px;font-size:.73rem;font-weight:700;
+  color:var(--muted);white-space:nowrap;transition:.22s;
 }
-.car-tab.active{background:var(--chrome);color:#06080b;font-weight:800}
-@media(max-width:680px){
-  .car-tabs{
-    position:fixed;top:62px;left:50%;transform:translateX(-50%);
-    z-index:145;box-shadow:0 12px 30px rgba(0,0,0,.6);
+.ch-btn.active{background:var(--ink);color:#06070a;font-weight:800}
+@media(max-width:860px){
+  .chapter-nav{
+    position:fixed;top:68px;left:0;right:0;border-radius:0;
+    justify-content:center;border-left:none;border-right:none;
+    background:rgba(6,7,10,.88);padding:7px 10px;
   }
 }
 
-.vip-cta-top{
-  display:inline-flex;align-items:center;gap:7px;
-  padding:8px 16px;border-radius:999px;font-size:.79rem;font-weight:800;
-  border:1px solid var(--chrome);color:var(--chrome);background:rgba(216,194,157,.09);
+.header-links{display:none;align-items:center;gap:22px;font-size:.82rem;color:var(--muted)}
+.header-links a:hover{color:var(--ink)}
+@media(min-width:1100px){.header-links{display:flex}}
+
+.btn-min{
+  padding:8px 16px;border-radius:999px;font-size:.78rem;font-weight:700;
+  border:1px solid var(--line-gold);color:var(--ink);background:rgba(212,195,163,.08);
   transition:.22s;white-space:nowrap;
 }
-.vip-cta-top:hover{background:var(--chrome);color:#06080b}
+.btn-min:hover{background:var(--platinum);color:#06070a}
 
-/* =====================================================================
-   V5 SPATIAL Z-PORTAL RUNWAY (780vh Total Scroll Depth -> 100dvh Stage)
-   ===================================================================== */
-.v5-runway{
-  position:relative;
-  height:780vh;
-  background:#050608;
+/* =========================================================================
+   PART 1: 12-STAGE PINNED SPATIAL CAMERA DIVE (960vh Runway -> 100dvh Stage)
+   ========================================================================= */
+.spatial-runway{position:relative;height:960vh;background:var(--bg)}
+.spatial-stage{
+  position:sticky;top:0;width:100%;height:100vh;height:100dvh;
+  overflow:hidden;background:var(--bg);
 }
-.v5-stage{
-  position:sticky;
-  top:0;
-  width:100%;
-  height:100vh;
-  height:100dvh;
-  overflow:hidden;
-  background:#050608;
-}
-
-/* Individual Real Press Photo Layers */
-.v5-layer{
+.sp-frame{
   position:absolute;inset:0;width:100%;height:100%;
   opacity:0;visibility:hidden;
-  will-change:transform,opacity;
-  pointer-events:none;
+  will-change:transform,opacity;pointer-events:none;
 }
-.v5-layer.first{opacity:1;visibility:visible}
-.v5-layer img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:center center;
-  display:block;user-select:none;-webkit-user-drag:none;
+.sp-frame.first{opacity:1;visibility:visible}
+.sp-frame img{
+  width:100%;height:100%;object-fit:cover;object-position:center center;
+  user-select:none;-webkit-user-drag:none;
 }
 
-/* Optical Cinema Vignette (Pure CSS Gradient — 0ms GPU Cost, Zero CSS Filter Blur Lag!) */
-.v5-vignette{
-  position:absolute;inset:0;pointer-events:none;z-index:20;
+/* Pure GPU Radial & Linear Vignette (Zero CSS Blur Lag) */
+.sp-vignette{
+  position:absolute;inset:0;z-index:20;pointer-events:none;
   background:
-    radial-gradient(circle at 50% 46%, transparent 34%, rgba(5,6,8,.56) 84%, rgba(5,6,8,.92) 100%),
-    linear-gradient(180deg, rgba(5,6,8,.55) 0%, transparent 22%, transparent 56%, rgba(5,6,8,.94) 100%);
+    radial-gradient(circle at 50% 45%, transparent 36%, rgba(6,7,10,.52) 85%, rgba(6,7,10,.9) 100%),
+    linear-gradient(180deg, rgba(6,7,10,.62) 0%, transparent 20%, transparent 55%, rgba(6,7,10,.95) 100%);
 }
 
-/* Optical Target Reticle Ring (Guides the eye into Windshield -> Cabin -> Console) */
-.v5-reticle{
-  position:absolute;left:50%;top:46%;width:64px;height:64px;
-  margin-left:-32px;margin-top:-32px;z-index:25;pointer-events:none;
-  border:1px solid rgba(216,194,157,.42);border-radius:50%;
+/* Minimal Optical Crosshair Ring */
+.sp-reticle{
+  position:absolute;left:50%;top:45%;width:54px;height:54px;
+  margin:-27px 0 0 -27px;z-index:25;pointer-events:none;
+  border:1px solid rgba(212,195,163,.38);border-radius:50%;
   display:grid;place-items:center;
-  transition:left .45s ease,top .45s ease,opacity .3s ease;
-  will-change:transform,opacity;
+  transition:left .4s ease,top .4s ease;will-change:transform,opacity;
 }
-.v5-reticle::after{
-  content:'';width:6px;height:6px;border-radius:50%;
-  background:var(--chrome);box-shadow:0 0 12px var(--chrome);
-}
+.sp-reticle::after{content:'';width:5px;height:5px;border-radius:50%;background:var(--platinum)}
 
-/* Right Optical Lens Depth Rail (Desktop & Tablet) */
-.lens-rail{
-  position:absolute;left:22px;top:50%;transform:translateY(-50%);
-  z-index:35;display:none;flex-direction:column;align-items:flex-start;gap:10px;
-  direction:ltr;font-size:.72rem;color:var(--muted);pointer-events:none;
+/* Side Telemetry Rail */
+.sp-rail{
+  position:absolute;left:24px;top:50%;transform:translateY(-50%);
+  z-index:35;display:none;flex-direction:column;align-items:flex-start;gap:9px;
+  direction:ltr;font-size:.7rem;color:var(--muted);pointer-events:none;
 }
-@media(min-width:768px){.lens-rail{display:flex}}
-.lens-pill{
-  padding:5px 10px;border-radius:8px;
-  background:rgba(8,10,15,.72);border:1px solid rgba(216,194,157,.22);
-  backdrop-filter:blur(10px);color:var(--chrome);font-weight:700;letter-spacing:.08em;
+@media(min-width:768px){.sp-rail{display:flex}}
+.rail-tag{
+  padding:4px 9px;border-radius:6px;border:1px solid var(--line-gold);
+  background:rgba(6,7,10,.7);color:var(--platinum);letter-spacing:.09em;font-weight:700;
 }
-.stage-dots{display:flex;flex-direction:column;gap:7px;padding-left:6px}
-.s-dot{
-  width:6px;height:6px;border-radius:99px;background:rgba(255,255,255,.22);
-  transition:height .25s ease,background .25s ease;
-}
-.s-dot.on{height:22px;background:var(--chrome)}
+.rail-ticks{display:flex;flex-direction:column;gap:5px;padding-left:5px}
+.r-tick{width:5px;height:5px;border-radius:99px;background:rgba(255,255,255,.2);transition:.22s}
+.r-tick.on{height:18px;background:var(--platinum)}
 
-/* Live Spatial Telemetry HUD Card (Updates dynamically at every depth layer!) */
-.v5-hud{
-  position:absolute;bottom:clamp(18px,4vh,42px);left:0;right:0;z-index:40;
-  padding:0 clamp(14px,4vw,52px);
+/* Minimal Floating Bottom HUD */
+.sp-hud{
+  position:absolute;bottom:clamp(16px,3.5vh,38px);left:0;right:0;z-index:40;
+  padding:0 clamp(14px,4vw,48px);
 }
-.hud-grid{
-  max-width:1220px;margin:0 auto;
-  display:grid;gap:14px;align-items:end;
+.sp-hud-in{
+  max-width:1200px;margin:0 auto;
+  display:grid;gap:12px;align-items:end;
 }
-@media(min-width:880px){.hud-grid{grid-template-columns:1.15fr .85fr}}
+@media(min-width:900px){.sp-hud-in{grid-template-columns:1.2fr .8fr}}
 
-.hud-main{
+.hud-box{
   background:var(--glass);
   backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  border:1px solid var(--chrome-line);
-  border-radius:20px;padding:clamp(16px,2.4vw,26px);
-  transition:transform .28s ease,opacity .28s ease;
+  border:1px solid var(--line);border-top-color:var(--line-gold);
+  border-radius:18px;padding:clamp(15px,2.2vw,24px);
 }
-.hud-step-row{
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  margin-bottom:8px;font-size:.76rem;color:var(--chrome);font-weight:700;
+.hud-meta{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  font-size:.73rem;color:var(--platinum);margin-bottom:6px;font-weight:700;
 }
-.depth-badge{
-  padding:3px 10px;border-radius:999px;
-  background:rgba(216,194,157,.14);border:1px solid rgba(216,194,157,.3);
-  font-size:.72rem;
+.plate-pill{
+  padding:2px 9px;border-radius:999px;border:1px solid var(--line-gold);
+  background:rgba(212,195,163,.1);font-size:.69rem;
 }
-.hud-car-en{
-  font-size:.8rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;
-  direction:ltr;text-align:right;
-}
-.hud-title{
-  font-size:clamp(1.22rem,2.5vw,1.9rem);font-weight:800;line-height:1.3;margin:4px 0 8px;
-}
-.hud-desc{
-  font-size:clamp(.84rem,1.2vw,.95rem);color:#cfd5e2;line-height:1.68;
-}
+.hud-box h1{font-size:clamp(1.15rem,2.3vw,1.72rem);font-weight:800;line-height:1.32;margin-bottom:6px}
+.hud-box p{font-size:clamp(.82rem,1.1vw,.92rem);color:#c7cdd9;line-height:1.65}
 
-.hud-specs{
+.hud-metrics{
   background:var(--glass);
   backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:20px;padding:clamp(14px,2vw,22px);
+  border:1px solid var(--line);border-radius:18px;
+  padding:clamp(14px,2vw,22px);
   display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
 }
-.spec-item small{display:block;font-size:.71rem;color:var(--muted);margin-bottom:3px}
-.spec-item b{display:block;font-size:clamp(.88rem,1.3vw,1.08rem);color:var(--chrome);font-weight:800}
+.hm-cell small{display:block;font-size:.69rem;color:var(--muted);margin-bottom:3px}
+.hm-cell b{display:block;font-size:clamp(.84rem,1.2vw,1.02rem);color:var(--ink);font-weight:700}
 
-.scroll-prompt{
-  grid-column:1 / -1;display:flex;align-items:center;justify-content:space-between;
-  font-size:.77rem;color:var(--chrome);padding:2px 6px 0;
-}
-.pulse-arrow{display:inline-block;animation:bob 1.5s infinite ease-in-out}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-
-/* =====================================================================
-   POST-DIVE VIP SHOWROOM CONCIERGE VAULT (Andarzgoo Showroom Booking)
-   ===================================================================== */
-.vault{
-  position:relative;z-index:50;
-  background:linear-gradient(180deg,#07090d 0%,#0b0f17 100%);
-  border-top:1px solid var(--chrome-line);
-  padding:84px 20px 110px;
-}
-.vault-wrap{max-width:1160px;margin:0 auto}
-.vault-head{
-  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;
-  gap:20px;margin-bottom:40px;
-}
-.vault-head h2{font-size:clamp(1.7rem,3.4vw,2.6rem);font-weight:800;line-height:1.28}
-.vault-eyebrow{color:var(--chrome);font-size:.78rem;font-weight:700;letter-spacing:.12em;display:block;margin-bottom:8px}
-
-.showroom-cards{display:grid;gap:18px;margin-bottom:40px}
-@media(min-width:860px){.showroom-cards{grid-template-columns:repeat(3,1fr)}}
-.s-card{
-  background:var(--surface);border:1px solid rgba(255,255,255,.08);
-  border-radius:20px;overflow:hidden;display:flex;flex-direction:column;
-  transition:border-color .25s,transform .25s;
-}
-.s-card:hover{border-color:var(--chrome);transform:translateY(-4px)}
-.s-card img{width:100%;height:200px;object-fit:cover}
-.s-card-body{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}
-.s-card h3{font-size:1.08rem;font-weight:800}
-.s-card p{font-size:.84rem;color:var(--muted);line-height:1.65}
-.s-card-actions{margin-top:auto;padding-top:12px;display:flex;gap:8px}
-.btn-chrome{
-  flex:1;text-align:center;padding:10px 14px;border-radius:999px;
-  background:linear-gradient(135deg,#e2cca8,#b99963);color:#06080b;
-  font-size:.82rem;font-weight:800;transition:.2s;
-}
-.btn-chrome:hover{filter:brightness(1.07)}
-.btn-ghost{
-  padding:10px 14px;border-radius:999px;border:1px solid var(--chrome-line);
-  font-size:.8rem;font-weight:700;color:var(--chrome);
+.hud-foot{
+  grid-column:1 / -1;display:flex;justify-content:space-between;align-items:center;
+  font-size:.74rem;color:var(--muted);padding:0 4px;
 }
 
-/* VIP Appointment & Trade-In Concierge Box */
-.vip-desk{
-  background:linear-gradient(145deg,#101521,#080b11);
-  border:1px solid var(--chrome-line);border-radius:24px;
-  padding:clamp(22px,4vw,40px);
-  display:grid;gap:28px;align-items:center;
+/* =========================================================================
+   PART 2: DEEP VERTICAL MINIMAL V4 ARCHITECTURE (100% ROMA MOTORS BESPOKE)
+   ========================================================================= */
+.v-section{padding:clamp(68px,8vw,112px) 0;border-top:1px solid var(--line);background:var(--bg)}
+.v-section.alt{background:var(--bg-2)}
+
+.mask-line{overflow:hidden;display:block}
+.mask-in{display:block;will-change:transform}
+
+.kicker{
+  display:inline-block;font-size:.74rem;font-weight:700;letter-spacing:.14em;
+  color:var(--platinum);text-transform:uppercase;margin-bottom:10px;
 }
-@media(min-width:880px){.vip-desk{grid-template-columns:1.1fr .9fr}}
-.vip-options{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
-.opt-pill{
-  padding:8px 15px;border-radius:999px;font-size:.82rem;font-weight:700;
-  border:1px solid rgba(255,255,255,.12);color:var(--muted);background:rgba(255,255,255,.03);
+.sec-title{
+  font-size:clamp(1.65rem,3.4vw,2.65rem);font-weight:800;line-height:1.26;letter-spacing:-.01em;
 }
-.opt-pill.active{border-color:var(--chrome);background:var(--chrome);color:#06080b}
-.contact-lines{display:grid;gap:12px}
-.c-line{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:14px 18px;border-radius:14px;background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.07);font-size:.9rem;
+.sec-lead{color:var(--muted);font-size:.98rem;max-width:60ch;margin-top:14px}
+
+/* Roma Motors Identity & Verified Numbers */
+.identity-grid{display:grid;gap:36px;align-items:end;margin-bottom:48px}
+@media(min-width:900px){.identity-grid{grid-template-columns:1.25fr .75fr}}
+
+.stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(min-width:860px){.stats-row{grid-template-columns:repeat(4,1fr)}}
+.stat-box{
+  background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:24px 20px;transition:border-color .25s;
 }
-.c-line b{color:var(--chrome);direction:ltr}
+.stat-box:hover{border-color:var(--line-gold)}
+.stat-num{font-size:clamp(1.8rem,3vw,2.45rem);font-weight:800;color:var(--platinum);line-height:1.1}
+.stat-txt{font-size:.84rem;color:var(--muted);margin-top:8px}
+
+/* Filterable Live Showroom Stock (Real Roma Motors Qeytarieh Inventory) */
+.filter-bar{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;
+  margin:34px 0 28px;
+}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{
+  padding:8px 16px;border-radius:999px;font-size:.8rem;font-weight:700;
+  border:1px solid var(--line);color:var(--muted);background:var(--card);transition:.22s;
+}
+.pill.active,.pill:hover{border-color:var(--ink);background:var(--ink);color:#06070a}
+
+.stock-grid{display:grid;gap:20px}
+@media(min-width:840px){.stock-grid{grid-template-columns:repeat(2,1fr)}}
+
+.stock-card{
+  background:var(--card);border:1px solid var(--line);border-radius:20px;
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:border-color .3s ease,transform .3s ease;
+}
+.stock-card:hover{border-color:var(--line-gold);transform:translateY(-3px)}
+.stock-img-wrap{
+  position:relative;height:250px;overflow:hidden;
+  clip-path:inset(0% 0% 0% 0%);will-change:clip-path;
+}
+.stock-img-wrap img{
+  width:100%;height:100%;object-fit:cover;
+  transform:scale(1.05);transition:transform .7s cubic-bezier(.16,1,.3,1);
+}
+.stock-card:hover .stock-img-wrap img{transform:scale(1.0)}
+.stock-top-tags{
+  position:absolute;top:12px;left:12px;right:12px;
+  display:flex;justify-content:space-between;gap:8px;
+}
+.s-tag{
+  padding:4px 11px;border-radius:999px;font-size:.72rem;font-weight:700;
+  background:rgba(6,7,10,.82);backdrop-filter:blur(8px);border:1px solid var(--line-gold);
+}
+.stock-body{padding:22px;display:flex;flex-direction:column;gap:11px;flex:1}
+.stock-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.stock-head h3{font-size:1.12rem;font-weight:800}
+.stock-year{font-size:.78rem;color:var(--platinum);font-weight:700}
+.stock-specs{
+  display:flex;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--muted);
+  padding:10px 0;border-block:1px solid var(--line);
+}
+.stock-foot{
+  margin-top:auto;padding-top:4px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.stock-price b{display:block;font-size:1.06rem;color:var(--ink)}
+.stock-price small{font-size:.73rem;color:var(--muted)}
+.stock-actions{display:flex;gap:7px}
+.btn-solid{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:9px 16px;border-radius:999px;font-size:.8rem;font-weight:800;
+  background:var(--ink);color:#06070a;transition:.2s;white-space:nowrap;
+}
+.btn-solid:hover{background:var(--platinum)}
+
+/* Compact Real Bama Live Stock Rows (Additional Verified Cars on Qeytarieh Floor) */
+.more-stock{
+  margin-top:26px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--card);
+}
+.ms-header{
+  padding:16px 22px;background:rgba(255,255,255,.02);border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;font-size:.84rem;font-weight:700;
+}
+.ms-row{
+  padding:16px 22px;border-bottom:1px solid var(--line);
+  display:grid;gap:10px;align-items:center;
+}
+.ms-row:last-child{border-bottom:none}
+@media(min-width:820px){.ms-row{grid-template-columns:1.5fr 1fr .9fr auto}}
+.ms-row h4{font-size:.96rem;font-weight:800}
+.ms-row span{font-size:.82rem;color:var(--muted)}
+.ms-row strong{font-size:.92rem;color:var(--platinum)}
+
+/* 4-Pillar Roma Standard with Scroll-Scrubbed Vertical Line */
+.pillars-wrap{position:relative;margin-top:44px;padding-right:28px}
+.pillars-line{
+  position:absolute;right:6px;top:8px;bottom:8px;width:2px;background:var(--line);
+}
+.pillars-line-fill{
+  width:100%;height:100%;background:var(--platinum);
+  transform-origin:top center;transform:scaleY(0);will-change:transform;
+}
+.pillars-grid{display:grid;gap:22px}
+@media(min-width:860px){.pillars-grid{grid-template-columns:repeat(2,1fr)}}
+.pillar-card{
+  background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;
+}
+.pillar-no{font-size:.8rem;color:var(--platinum);font-weight:800;letter-spacing:.1em;display:block;margin-bottom:8px}
+.pillar-card h3{font-size:1.1rem;font-weight:800;margin-bottom:8px}
+.pillar-card p{font-size:.88rem;color:var(--muted);line-height:1.75}
+
+/* Interactive Trade-In, Purchase & Consignment Desk */
+.deal-desk{
+  background:linear-gradient(155deg,#111520,#090b10);
+  border:1px solid var(--line-gold);border-radius:24px;
+  padding:clamp(22px,4vw,42px);display:grid;gap:32px;
+}
+@media(min-width:920px){.deal-desk{grid-template-columns:1.15fr .85fr;align-items:start}}
+
+.mode-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+.field-grid{display:grid;gap:14px;margin-top:16px}
+@media(min-width:640px){.field-grid{grid-template-columns:repeat(2,1fr)}}
+.f-group label{display:block;font-size:.78rem;color:var(--muted);margin-bottom:6px}
+.f-input{
+  width:100%;padding:12px 14px;border-radius:12px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line);
+  font-size:.88rem;outline:none;transition:border-color .2s;
+}
+.f-input:focus{border-color:var(--platinum)}
+.f-input option{background:#0f1219;color:#f4f2ed}
+
+.desk-card{
+  background:rgba(6,7,10,.7);border:1px solid var(--line);
+  border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px;
+}
+.d-row{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.025);
+  border:1px solid var(--line);font-size:.86rem;
+}
+.d-row b{color:var(--platinum)}
+
+/* Executive Minimal FAQ Accordion */
+.faq-list{margin-top:34px;border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{
+  width:100%;padding:20px 4px;display:flex;justify-content:space-between;align-items:center;
+  gap:16px;text-align:right;font-size:.98rem;font-weight:700;
+}
+.faq-icon{
+  width:28px;height:28px;border-radius:50%;border:1px solid var(--line);
+  display:grid;place-items:center;flex-shrink:0;color:var(--platinum);transition:transform .25s;
+}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .32s ease;
+  color:var(--muted);font-size:.88rem;line-height:1.8;
+}
+.faq-a-in{padding:0 4px 20px}
+
+/* Minimal Architectural Footer */
+.site-footer{
+  padding:52px 0 110px;border-top:1px solid var(--line);
+  background:#050608;color:var(--muted);font-size:.84rem;
+}
+.footer-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
+
+/* Sticky Mobile Action Bar */
+.m-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:170;
+  display:flex;gap:9px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(6,7,10,.92);backdrop-filter:blur(16px);border-top:1px solid var(--line);
+}
+.m-bar a{flex:1;text-align:center;padding:11px 10px;border-radius:999px;font-size:.82rem;font-weight:800}
+@media(min-width:860px){.m-bar{display:none}.site-footer{padding-bottom:56px}}
 </style>
 </head>
 <body>
 
-<div class="top-progress"><div class="top-progress-fill" id="topBar"></div></div>
+<div class="master-progress"><div class="master-progress-bar" id="masterBar"></div></div>
 
-<header class="hud-header">
-  <a href="#" class="brand-id">
-    <div class="crest" aria-hidden="true">
-      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#d8c29d" stroke-width="1.7">
-        <polygon points="12 2 21 8.5 17.5 20 6.5 20 3 8.5 12 2"/>
-        <circle cx="12" cy="12" r="3.2"/>
+<header class="site-header">
+  <a href="#" class="brand">
+    <div class="brand-mark" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4c3a3" stroke-width="1.6">
+        <path d="M4 19L12 4L20 19H4Z"/>
+        <circle cx="12" cy="14" r="2.2"/>
       </svg>
     </div>
-    <div class="brand-txt">
+    <div class="brand-name">
       <b>ROMA MOTORS</b>
-      <small>اتوگالری روما موتورز · بلوار اندرزگو</small>
+      <span>چهارراه قیطریه · نبش سلیمانی غربی</span>
     </div>
   </a>
 
-  <nav class="car-tabs" aria-label="انتخاب سریع خودرو">
-    <button type="button" class="car-tab active" data-jump="0">۰۱ میباخ GLS 600</button>
-    <button type="button" class="car-tab" data-jump="0.355">۰۲ لکسوس LX 600</button>
-    <button type="button" class="car-tab" data-jump="0.695">۰۳ بی‌ام‌و 730Li</button>
+  <nav class="chapter-nav" aria-label="پرش سریع بین ۴ خودروی شاخص">
+    <button type="button" class="ch-btn active" data-jump="0">۰۱ میباخ GLS 600</button>
+    <button type="button" class="ch-btn" data-jump="0.275">۰۲ لکسوس LX700 Kuro</button>
+    <button type="button" class="ch-btn" data-jump="0.548">۰۳ دیفندر سفید</button>
+    <button type="button" class="ch-btn" data-jump="0.822">۰۴ بی‌ام‌و 735 ۲۰۲۶</button>
   </nav>
 
-  <a href="#showroomVault" class="vip-cta-top">رزرو بازدید VIP</a>
+  <div class="header-links">
+    <a href="#inventory">موجودی روز تالار</a>
+    <a href="#standard">استاندارد روما</a>
+    <a href="#tradein">معاوضه و امانی</a>
+    <a href="#faq">پرسش‌های پلاک ملی</a>
+  </div>
+
+  <a href="#tradein" class="btn-min">استعلام و بازدید</a>
 </header>
 
 <!-- =========================================================================
-     V5 SPATIAL Z-PORTAL STAGE (9 REAL PRESS LAYERS · PURE GPU COMPOSITOR)
+     PART 1: 12-STAGE SPATIAL Z-PORTAL TOUR (4 FLAGSHIP NATIONAL-PLATE CARS)
      ========================================================================= -->
-<section class="v5-runway" id="v5Runway">
-  <div class="v5-stage" id="v5Stage">
+<section class="spatial-runway" id="spatialRunway">
+  <div class="spatial-stage" id="spatialStage">
 
-    <!-- ACT I: MERCEDES-MAYBACH GLS 600 (Exterior -> Cabin -> Center Console) -->
-    <div class="v5-layer first" data-idx="0"><img src="img/01-maybach-ext.webp" alt="Mercedes-Maybach GLS 600 Exterior Showroom" fetchpriority="high" decoding="sync"></div>
-    <div class="v5-layer" data-idx="1"><img src="img/02-maybach-cabin.webp" alt="Mercedes-Maybach GLS 600 First-Class Cabin" decoding="async"></div>
-    <div class="v5-layer" data-idx="2"><img src="img/03-maybach-console.webp" alt="Mercedes-Maybach GLS 600 Center Console Macro" decoding="async"></div>
+    <!-- 01..03: MERCEDES-MAYBACH GLS 600 (پلاک ملی) -->
+    <div class="sp-frame first"><img src="img/01-maybach-ext.webp" alt="Mercedes-Maybach GLS 600 National Plate Roma Motors" fetchpriority="high" decoding="sync"></div>
+    <div class="sp-frame"><img src="img/02-maybach-cabin.webp" alt="Mercedes-Maybach GLS 600 First-Class Cabin" decoding="async"></div>
+    <div class="sp-frame"><img src="img/03-maybach-console.webp" alt="Mercedes-Maybach GLS 600 Center Console" decoding="async"></div>
 
-    <!-- ACT II: LEXUS LX 600 VIP (Exterior -> Cabin -> Center Console) -->
-    <div class="v5-layer" data-idx="3"><img src="img/04-lexus-ext.webp" alt="Lexus LX 600 Black Onyx Exterior" decoding="async"></div>
-    <div class="v5-layer" data-idx="4"><img src="img/05-lexus-cabin.webp" alt="Lexus LX 600 Takumi Leather Cockpit" decoding="async"></div>
-    <div class="v5-layer" data-idx="5"><img src="img/06-lexus-console.webp" alt="Lexus LX 600 Dual-Screen Console Macro" decoding="async"></div>
+    <!-- 04..06: LEXUS LX 700h HYBRID KURO BLACK EDITION (پلاک ملی) -->
+    <div class="sp-frame"><img src="img/04-lx700-kuro-ext.webp" alt="Lexus LX 700h Kuro Black Edition Roma Motors" decoding="async"></div>
+    <div class="sp-frame"><img src="img/05-lx700-cabin.webp" alt="Lexus LX 700h Official Cabin Interior" decoding="async"></div>
+    <div class="sp-frame"><img src="img/06-lx700-console.webp" alt="Lexus LX 700h Dual Display Center Console" decoding="async"></div>
 
-    <!-- ACT III: BMW 730Li / SERIES 7 MASTERPIECE (Exterior -> Cabin -> Crystal iDrive Console) -->
-    <div class="v5-layer" data-idx="6"><img src="img/07-bmw-ext.webp" alt="BMW 7 Series Black Sapphire Studio Exterior" decoding="async"></div>
-    <div class="v5-layer" data-idx="7"><img src="img/08-bmw-cabin.webp" alt="BMW 7 Series Executive Lounge Cabin" decoding="async"></div>
-    <div class="v5-layer" data-idx="8"><img src="img/09-bmw-console.webp" alt="BMW 7 Series Crystal iDrive Console Macro" decoding="async"></div>
+    <!-- 07..09: LAND ROVER DEFENDER 110 WHITE (پلاک ملی سفید) -->
+    <div class="sp-frame"><img src="img/07-defender-white-ext.webp" alt="Land Rover Defender White National Plate Roma Motors" decoding="async"></div>
+    <div class="sp-frame"><img src="img/08-defender-cabin.webp" alt="Land Rover Defender Cabin Cockpit" decoding="async"></div>
+    <div class="sp-frame"><img src="img/09-defender-console.webp" alt="Land Rover Defender Pivi Pro Console" decoding="async"></div>
 
-    <!-- Hardware-Free Optical Vignette + Focal Guide Ring -->
-    <div class="v5-vignette"></div>
-    <div class="v5-reticle" id="reticle"></div>
+    <!-- 10..12: BMW 735Li 2026 G70 NEW GENERATION (پلاک ملی) -->
+    <div class="sp-frame"><img src="img/10-bmw735-ext.webp" alt="BMW 735Li 2026 G70 New Generation Roma Motors" decoding="async"></div>
+    <div class="sp-frame"><img src="img/11-bmw735-cabin.webp" alt="BMW 735Li 2026 Crystal Interaction Bar Cabin" decoding="async"></div>
+    <div class="sp-frame"><img src="img/12-bmw735-console.webp" alt="BMW 735Li 2026 8K Theater Screen Lounge" decoding="async"></div>
 
-    <!-- Optical Lens & 9-Stage Telemetry Rail -->
-    <aside class="lens-rail" aria-hidden="true">
-      <div class="lens-pill" id="lensLabel">24mm · EXTERIOR</div>
-      <div class="stage-dots" id="stageDots">
-        <span class="s-dot on"></span><span class="s-dot"></span><span class="s-dot"></span>
-        <span class="s-dot"></span><span class="s-dot"></span><span class="s-dot"></span>
-        <span class="s-dot"></span><span class="s-dot"></span><span class="s-dot"></span>
+    <div class="sp-vignette"></div>
+    <div class="sp-reticle" id="spReticle"></div>
+
+    <!-- Left Telemetry Depth Rail -->
+    <aside class="sp-rail" aria-hidden="true">
+      <div class="rail-tag" id="railLens">24mm · EXTERIOR</div>
+      <div class="rail-ticks" id="railTicks">
+        <span class="r-tick on"></span><span class="r-tick"></span><span class="r-tick"></span>
+        <span class="r-tick"></span><span class="r-tick"></span><span class="r-tick"></span>
+        <span class="r-tick"></span><span class="r-tick"></span><span class="r-tick"></span>
+        <span class="r-tick"></span><span class="r-tick"></span><span class="r-tick"></span>
       </div>
-      <div class="mono-num" id="frameCounter">01 / 09</div>
+      <span class="ltr" id="frameReadout">01 / 12</span>
     </aside>
 
-    <!-- Dynamic Spatial Telemetry HUD -->
-    <div class="v5-hud">
-      <div class="hud-grid">
-        <div class="hud-main" id="hudMain">
-          <div class="hud-step-row">
-            <span class="depth-badge" id="hudStageTag">خودروی ۱ از ۳ · نمای بیرونی</span>
-            <span class="hud-car-en latin" id="hudCarEn">MERCEDES-MAYBACH GLS 600 4MATIC</span>
+    <!-- Bottom Live HUD -->
+    <div class="sp-hud">
+      <div class="sp-hud-in">
+        <div class="hud-box">
+          <div class="hud-meta">
+            <span id="hudChapter">کلکسیون خاص روما موتورز · خودروی ۱ از ۴</span>
+            <span class="plate-pill" id="hudPlate">پلاک ملی دائم · تحویل قیطریه</span>
           </div>
-          <h1 class="hud-title" id="hudTitle">مرسدس‌ـ‌میباخ GLS 600؛ اوج اشرافیت شاسی‌بلندهای جهان</h1>
-          <p class="hud-desc" id="hudDesc">با اسکرول به پایین، از شیشه جلو عبور کنید و وارد کابین چرم دست‌دوز و جزئیات کنسول میانی میباخ شوید.</p>
+          <h1 id="hudHeading">مرسدس‌ـ‌میباخ GLS 600 پلاک ملی؛ گل سرسبد تالار روما موتورز</h1>
+          <p id="hudCopy">با اسکرول به پایین از شیشه جلو عبور کنید؛ ابتدا وارد کابین چرم ناپا و کنسول میباخ شوید و در ادامه مسیر وارد لکسوس LX700 کیت کورو، دیفندر سفید و بی‌ام‌و 735 مدل ۲۰۲۶ شوید.</p>
         </div>
 
-        <div class="hud-specs">
-          <div class="spec-item">
-            <small id="spLbl1">پیشرانه</small>
-            <b id="spVal1">4.0L V8 BiTurbo</b>
-          </div>
-          <div class="spec-item">
-            <small id="spLbl2">قدرت خروجی</small>
-            <b id="spVal2">550 اسب‌بخار</b>
-          </div>
-          <div class="spec-item">
-            <small id="spLbl3">شتاب ۰ تا ۱۰۰</small>
-            <b id="spVal3">۴.۹ ثانیه</b>
-          </div>
+        <div class="hud-metrics">
+          <div class="hm-cell"><small id="mL1">وضعیت پلاک</small><b id="mV1">پلاک ملی تک‌برگ</b></div>
+          <div class="hm-cell"><small id="mL2">پیشرانه</small><b id="mV2">4.0L V8 BiTurbo</b></div>
+          <div class="hm-cell"><small id="mL3">محل بازدید</small><b id="mV3">چهارراه قیطریه</b></div>
         </div>
 
-        <div class="scroll-prompt" id="scrollHintBar">
-          <span>با حرکت آرام انگشت به جلو، وارد کابین خودرو شوید <i class="pulse-arrow" style="font-style:normal">↓</i></span>
-          <span class="mono-num" id="pctReadout">0%</span>
+        <div class="hud-foot">
+          <span>اسکرول نرم به پایین: ورود به کابین و کنسول هر ۴ خودرو ↓</span>
+          <span class="ltr" id="scrollPct">0%</span>
         </div>
       </div>
     </div>
@@ -382,355 +491,718 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 </section>
 
 <!-- =========================================================================
-     ROMA MOTORS ANDARZGOO — VIP SHOWROOM VAULT & DIRECT APPOINTMENT DESK
+     PART 2: ROMA MOTORS BRAND MANIFESTO & VERIFIED TRACK RECORD (V4 ENGINE)
      ========================================================================= -->
-<section class="vault" id="showroomVault">
-  <div class="vault-wrap">
-    <div class="vault-head">
+<section class="v-section" id="aboutRoma">
+  <div class="wrap">
+    <div class="identity-grid">
       <div>
-        <span class="vault-eyebrow">ROMA MOTORS · TEHRAN ANDARZGOO SHOWROOM</span>
-        <h2>بازدید حضوری و استعلام موجودی روز نمایشگاه روما موتورز</h2>
+        <span class="kicker">ROMA MOTORS · ANDARZGOO & QEYTARIEH</span>
+        <h2 class="sec-title">
+          <span class="mask-line"><span class="mask-in">بیش از شش سال مرجع خودروهای کلکسیونی</span></span>
+          <span class="mask-line"><span class="mask-in" style="color:var(--platinum)">و واردات پلاک ملی خاص در چهارراه قیطریه</span></span>
+        </h2>
       </div>
-      <button type="button" class="btn-ghost" id="replayTourBtn">بازگشت به ابتدای تور سه‌بعدی ↑</button>
+      <p class="sec-lead" style="margin-top:0">
+        اتوگالری روما موتورز در نبش سلیمانی غربی بلوار اندرزگو، فقط محل نمایش خودرو نیست؛ مرجع تامین مستقیم تریم‌های کمیاب پلاک ملی، اصالت‌سنجی حقوقی و فنی مکتوب و معامله امن بدون واسطه برای خریداران سخت‌پسند تهران و سراسر ایران است.
+      </p>
     </div>
 
-    <div class="showroom-cards">
-      <article class="s-card">
-        <img src="img/01-maybach-ext.webp" alt="Mercedes-Maybach GLS 600 Roma Motors">
-        <div class="s-card-body">
-          <h3>Mercedes-Maybach GLS 600</h3>
-          <p>نسخه ۴ نفره VIP First-Class، سیستم صوتی سه‌بعدی Burmester، تعلیق هوشمند E-Active و میز و سردکن عقب.</p>
-          <div class="s-card-actions">
-            <button type="button" class="btn-chrome jump-inside" data-jump="0.145">ورود مستقیم به کابین</button>
-            <a class="btn-ghost" target="_blank" rel="noopener" href="https://t.me/MohammadrezaSz">استعلام قیمت</a>
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-num"><span class="v4-count" data-val="46">0</span>+ دستگاه</div>
+        <div class="stat-txt">موجودی فعال و آماده تحویل فوری در کف نمایشگاه قیطریه</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num"><span class="v4-count" data-val="148">0</span>K+</div>
+        <div class="stat-txt">مخاطب تخصصی و خریدار مستقیم در صفحه رسمی @roma__motors</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num"><span class="v4-count" data-val="6">0</span>+ سال</div>
+        <div class="stat-txt">عضویت رسمی پریمیوم و فعالیت مستمر تاییدشده در بلوار اندرزگو</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num"><span class="v4-count" data-val="12">0</span> برند تراز اول</div>
+        <div class="stat-txt">تامین مستقیم میباخ، لکسوس، لندروور، بی‌ام‌و، تویوتا و پورشه</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     PART 3: LIVE SHOWROOM INVENTORY (REAL ROMA MOTORS BAMA #4540 + VIP STOCK)
+     ========================================================================= -->
+<section class="v-section alt" id="inventory">
+  <div class="wrap">
+    <span class="kicker">LIVE QEYTARIEH FLOOR INVENTORY</span>
+    <h2 class="sec-title">موجودی منتخب تالار روما موتورز</h2>
+    <p class="sec-lead">تمامی خودروهای زیر با مدارک کامل پلاک ملی، برگ سبز و کارشناسی بدنه و دیاگ مکتوب در نمایشگاه چهارراه قیطریه قابل بازدید حضوری هستند.</p>
+
+    <div class="filter-bar">
+      <div class="pills" id="stockFilter">
+        <button type="button" class="pill active" data-f="all">همه خودروهای شاخص (۴)</button>
+        <button type="button" class="pill" data-f="suv">شاسی‌بلندهای پلاک ملی</button>
+        <button type="button" class="pill" data-f="sedan">سدان تشریفاتی ۲۰۲۶</button>
+      </div>
+    </div>
+
+    <div class="stock-grid">
+      <!-- Card 1: Maybach GLS 600 National Plate -->
+      <article class="stock-card v4-reveal" data-cat="suv">
+        <div class="stock-img-wrap">
+          <img src="img/01-maybach-ext.webp" alt="Mercedes-Maybach GLS 600 National Plate">
+          <div class="stock-top-tags">
+            <span class="s-tag">پلاک ملی دائم</span>
+            <span class="s-tag">VIP First-Class</span>
+          </div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-head">
+            <h3>Mercedes-Maybach GLS 600 4MATIC</h3>
+            <span class="stock-year">صفر خشک · واردات خاص</span>
+          </div>
+          <div class="stock-specs">
+            <span>۴.۰ لیتر ۸ سیلندر توئین‌توربو هیبرید</span>
+            <span>کابین ۴ نفره VIP + سردکن</span>
+            <span>سیستم صوتی Burmester 3D</span>
+          </div>
+          <div class="stock-foot">
+            <div class="stock-price">
+              <b>استعلام ویژه میز VIP</b>
+              <small>بازدید اختصاصی با هماهنگی قبلی در قیطریه</small>
+            </div>
+            <div class="stock-actions">
+              <button type="button" class="btn-min" data-jump="0.09">کابین ↑</button>
+              <a class="btn-solid" target="_blank" rel="noopener" href="https://t.me/MohammadrezaSz?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%A7%D8%B3%D8%AA%D8%B9%D9%84%D8%A7%D9%85%20%D9%82%DB%8C%D9%85%D8%AA%20%D8%B1%D9%88%D8%B2%20%D9%85%DB%8C%D8%A8%D8%A7%D8%AE%20GLS%20600%20%D9%BE%D9%84%D8%A7%DA%A9%20%D9%85%D9%84%DB%8C%20%D8%AF%D8%B1%20%D8%B1%D9%88%D9%85%D8%A7%20%D9%85%D9%88%D8%AA%D9%88%D8%B1%D8%B2%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%85.">استعلام قیمت روز</a>
+            </div>
           </div>
         </div>
       </article>
 
-      <article class="s-card">
-        <img src="img/04-lexus-ext.webp" alt="Lexus LX 600 VIP Roma Motors">
-        <div class="s-card-body">
-          <h3>Lexus LX 600 VIP Black Onyx</h3>
-          <p>فول رادار، استارت اثر انگشت، کنسول دو نمایشگر لمسی و سیستم صوتی مرجع Mark Levinson با ۲۵ بلندگو.</p>
-          <div class="s-card-actions">
-            <button type="button" class="btn-chrome jump-inside" data-jump="0.48">ورود مستقیم به کابین</button>
-            <a class="btn-ghost" target="_blank" rel="noopener" href="https://t.me/MohammadrezaSz">استعلام قیمت</a>
+      <!-- Card 2: Lexus LX 700h KURO Black National Plate (Real 95B Bama listing!) -->
+      <article class="stock-card v4-reveal" data-cat="suv">
+        <div class="stock-img-wrap">
+          <img src="img/04-lx700-kuro-ext.webp" alt="Lexus LX 700h Kuro Kit National Plate">
+          <div class="stock-top-tags">
+            <span class="s-tag">پلاک ملی · کیت KURO</span>
+            <span class="s-tag">موجود در کف نمایشگاه</span>
+          </div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-head">
+            <h3>Lexus LX 700h Hybrid · کیت مشکی Kuro</h3>
+            <span class="stock-year">۲۰۲۵ – ۲۰۲۶ · صفر کیلومتر</span>
+          </div>
+          <div class="stock-specs">
+            <span>۳.۴ لیتر V6 Twin-Turbo هیبرید (۴۵۷ اسب)</span>
+            <span>جلوپنجره و رینگ بلک Kuro</span>
+            <span>Mark Levinson ۲۵ بلندگو</span>
+          </div>
+          <div class="stock-foot">
+            <div class="stock-price">
+              <b>۹۵٬۰۰۰٬۰۰۰٬۰۰۰ تومان</b>
+              <small>تحویل فوری · سند آماده انتقال در دفترخانه</small>
+            </div>
+            <div class="stock-actions">
+              <button type="button" class="btn-min" data-jump="0.365">کابین ↑</button>
+              <a class="btn-solid" target="_blank" rel="noopener" href="https://t.me/MohammadrezaSz?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%A8%D8%A7%D8%B2%D8%AF%DB%8C%D8%AF%20%D9%88%20%D9%82%DB%8C%D9%85%D8%AA%20%D8%B1%D9%88%D8%B2%20%D9%84%DA%A9%D8%B3%D9%88%D8%B3%20LX%20700h%20%DA%A9%DB%8C%D8%AA%20Kuro%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%85.">استعلام قیمت روز</a>
+            </div>
           </div>
         </div>
       </article>
 
-      <article class="s-card">
-        <img src="img/07-bmw-ext.webp" alt="BMW 730Li Masterpiece Roma Motors">
-        <div class="s-card-body">
-          <h3>BMW 7 Series · 730Li Masterpiece</h3>
-          <p>پکیج تشریفاتی محبوب اندرزگو با کلید هوشمند نمایشگردار، سقف پانورامای Sky Lounge و کنسول کریستالی iDrive.</p>
-          <div class="s-card-actions">
-            <button type="button" class="btn-chrome jump-inside" data-jump="0.81">ورود مستقیم به کابین</button>
-            <a class="btn-ghost" target="_blank" rel="noopener" href="https://t.me/MohammadrezaSz">استعلام قیمت</a>
+      <!-- Card 3: Land Rover Defender White National Plate -->
+      <article class="stock-card v4-reveal" data-cat="suv">
+        <div class="stock-img-wrap">
+          <img src="img/07-defender-white-ext.webp" alt="Land Rover Defender White National Plate">
+          <div class="stock-top-tags">
+            <span class="s-tag">پلاک ملی · سفید یخچالی</span>
+            <span class="s-tag">آفرود اشرافی</span>
+          </div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-head">
+            <h3>Land Rover Defender 110 · سفید</h3>
+            <span class="stock-year">۲۰۲۵ · صفر کیلومتر خشک</span>
+          </div>
+          <div class="stock-specs">
+            <span>رنگ سفید پرطرفدار Fuji White</span>
+            <span>تعلیق بادی الکترونیکی</span>
+            <span>نمایشگر Pivi Pro + سیستم Meridian</span>
+          </div>
+          <div class="stock-foot">
+            <div class="stock-price">
+              <b>توافقی (به نرخ روز تالار)</b>
+              <small>کارشناسی بدنه و اصالت گمرکی تاییدشده</small>
+            </div>
+            <div class="stock-actions">
+              <button type="button" class="btn-min" data-jump="0.635">کابین ↑</button>
+              <a class="btn-solid" target="_blank" rel="noopener" href="https://t.me/MohammadrezaSz?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%A7%D8%B3%D8%AA%D8%B9%D9%84%D8%A7%D9%85%20%D9%82%DB%8C%D9%85%D8%AA%20%D9%84%D9%86%D8%AF%D8%B1%D9%88%D9%88%D8%B1%20%D8%AF%DB%8C%D9%81%D9%86%D8%AF%D8%B1%20%D8%B3%D9%81%DB%8C%D8%AF%20%D9%BE%D9%84%D8%A7%DA%A9%20%D9%85%D9%84%DB%8C%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%85.">استعلام قیمت روز</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4: BMW 735Li 2026 G70 New Generation -->
+      <article class="stock-card v4-reveal" data-cat="sedan">
+        <div class="stock-img-wrap">
+          <img src="img/10-bmw735-ext.webp" alt="BMW 735Li 2026 New Generation Roma Motors">
+          <div class="stock-top-tags">
+            <span class="s-tag">مدل ۲۰۲۶ · اتاق جدید G70</span>
+            <span class="s-tag">پلاک ملی صفر</span>
+          </div>
+        </div>
+        <div class="stock-body">
+          <div class="stock-head">
+            <h3>BMW 735Li Executive · مدل ۲۰۲۶</h3>
+            <span class="stock-year">۲۰۲۶ · صفر کیلومتر</span>
+          </div>
+          <div class="stock-specs">
+            <span>جلوپنجره نورانی Iconic Glow</span>
+            <span>نوار کریستالی Interaction Bar</span>
+            <span>سینمای ۳۱.۳ اینچی ۸K عقب</span>
+          </div>
+          <div class="stock-foot">
+            <div class="stock-price">
+              <b>توافقی (موجود در قیطریه)</b>
+              <small>تحویل فوری با برگه کارشناسی رسمی</small>
+            </div>
+            <div class="stock-actions">
+              <button type="button" class="btn-min" data-jump="0.91">کابین ↑</button>
+              <a class="btn-solid" target="_blank" rel="noopener" href="https://t.me/MohammadrezaSz?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%A7%D8%B3%D8%AA%D8%B9%D9%84%D8%A7%D9%85%20%D9%82%DB%8C%D9%85%D8%AA%20%D8%A8%DB%8C%E2%80%8C%D8%A7%D9%85%E2%80%8C%D9%88%20735%20%D9%85%D8%AF%D9%84%202026%20%D8%AF%D8%B1%20%D8%B1%D9%88%D9%85%D8%A7%20%D9%85%D9%88%D8%AA%D9%88%D8%B1%D8%B2%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%85.">استعلام قیمت روز</a>
+            </div>
           </div>
         </div>
       </article>
     </div>
 
-    <div class="vip-desk">
-      <div>
-        <span class="vault-eyebrow">PRIVATE SHOWROOM CONCIERGE</span>
-        <h3 style="font-size:1.45rem;margin-bottom:8px">هماهنگی بازدید اختصاصی یا معاوضه خودرو در بلوار اندرزگو</h3>
-        <p style="color:var(--muted);font-size:.9rem;line-height:1.7">
-          خودروی موردنظر و نوع درخواست خود را انتخاب کنید تا کارشناسان فروش روما موتورز مشخصات کامل پلاک، کارکرد و قیمت لحظه‌ای را برایتان ارسال کنند:
-        </p>
-        <div class="vip-options" id="modelSelect">
-          <button type="button" class="opt-pill active" data-car="Mercedes-Maybach GLS 600">میباخ GLS 600</button>
-          <button type="button" class="opt-pill" data-car="Lexus LX 600 VIP">لکسوس LX 600</button>
-          <button type="button" class="opt-pill" data-car="BMW 730Li Masterpiece">بی‌ام‌و 730Li</button>
-          <button type="button" class="opt-pill" data-car="موجودی کامل نمایشگاه (۴۶ دستگاه)">کل موجودی روز (۴۶ خودرو)</button>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px">
-          <a id="tgDirectBtn" href="https://t.me/MohammadrezaSz" target="_blank" rel="noopener" class="btn-chrome" style="flex:none;padding:12px 24px">
-            ارسال مستقیم به تلگرام کارشناس فروش (@MohammadrezaSz)
-          </a>
-          <a href="tel:09125555502" class="btn-ghost" style="padding:12px 20px">تماس خط ویژه VIP</a>
-        </div>
+    <!-- Real Additional Stock Currently Active on Roma Motors Qeytarieh Floor -->
+    <div class="more-stock">
+      <div class="ms-header">
+        <span>سایر خودروهای صفر و کلکسیونی فعال امروز در کف نمایشگاه روما موتورز</span>
+        <span style="color:var(--platinum)">به‌روزرسانی امروز · قیطریه</span>
       </div>
+      <div class="ms-row">
+        <h4>Toyota Land Cruiser 300 Hybrid · 3.5L Twin-Turbo VXR</h4>
+        <span>مدل ۲۰۲۶ · صفر کیلومتر خشک</span>
+        <strong>قیمت توافقی روز</strong>
+        <a href="https://t.me/MohammadrezaSz?text=%D8%A7%D8%B3%D8%AA%D8%B9%D9%84%D8%A7%D9%85%20%D9%84%D9%86%D8%AF%DA%A9%D8%B1%D9%88%D8%B2%20%D9%87%DB%8C%D8%A8%D8%B1%DB%8C%D8%AF%202026%20VXR" target="_blank" rel="noopener" class="btn-min">استعلام</a>
+      </div>
+      <div class="ms-row">
+        <h4>Land Rover Range Rover Velar Dynamic</h4>
+        <span>مدل ۲۰۲۵ · اتوماتیک صفر پلاک ملی</span>
+        <strong>۶۰٬۰۰۰٬۰۰۰٬۰۰۰ تومان</strong>
+        <a href="https://t.me/MohammadrezaSz?text=%D8%A7%D8%B3%D8%AA%D8%B9%D9%84%D8%A7%D9%85%20%D8%B1%D9%86%D8%AC%D8%B1%D9%88%D9%88%D8%B1%20%D9%88%D9%84%D8%A7%D8%B1%202025" target="_blank" rel="noopener" class="btn-min">استعلام</a>
+      </div>
+      <div class="ms-row">
+        <h4>Nissan Patrol V6 3.5L Twin-Turbo (نسل جدید وارداتی)</h4>
+        <span>مدل ۲۰۲۶ · صفر کیلومتر خشک</span>
+        <strong>قیمت توافقی روز</strong>
+        <a href="https://t.me/MohammadrezaSz?text=%D8%A7%D8%B3%D8%AA%D8%B9%D9%84%D8%A7%D9%85%20%D9%86%DB%8C%D8%B3%D8%A7%D9%86%20%D9%BE%D8%A7%D8%AA%D8%B1%D9%88%D9%84%202026%20%D8%AA%D9%88%D8%B1%D8%A8%D9%88" target="_blank" rel="noopener" class="btn-min">استعلام</a>
+      </div>
+      <div class="ms-row">
+        <h4>Lexus NX 350h AWD Hybrid &amp; Toyota Prado 2.4T</h4>
+        <span>مدل ۲۰۲۵ و ۲۰۲۶ · آماده تحویل در قیطریه</span>
+        <strong>قیمت توافقی روز</strong>
+        <a href="https://t.me/MohammadrezaSz?text=%D8%A7%D8%B3%D8%AA%D8%B9%D9%84%D8%A7%D9%85%20%D9%84%DA%A9%D8%B3%D9%88%D8%B3%20NX350h%20%D9%88%20%D9%BE%D8%B1%D8%A7%D8%AF%D9%88%202025" target="_blank" rel="noopener" class="btn-min">استعلام</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="contact-lines">
-        <a href="tel:09125555502" class="c-line">
-          <span>خط ویژه VIP مدیریت نمایشگاه</span>
-          <b>0912 555 5502</b>
-        </a>
-        <a href="tel:09124445809" class="c-line">
-          <span>کارشناس ارشد فروش و معاوضه</span>
-          <b>0912 444 5809</b>
-        </a>
-        <a href="https://t.me/MohammadrezaSz" target="_blank" rel="noopener" class="c-line">
-          <span>ارتباط مستقیم تلگرام</span>
-          <b>@MohammadrezaSz</b>
-        </a>
-        <div class="c-line">
-          <span>نشانی نمایشگاه</span>
-          <b style="direction:rtl">تهران، قیطریه، بلوار اندرزگو</b>
+<!-- =========================================================================
+     PART 4: THE 4 PILLARS OF ROMA MOTORS ANDARZGOO
+     ========================================================================= -->
+<section class="v-section" id="standard">
+  <div class="wrap">
+    <span class="kicker">THE ROMA MOTORS PROTOCOL</span>
+    <h2 class="sec-title">چرا معاملات سنگین خودرو در روما موتورز بسته می‌شود؟</h2>
+
+    <div class="pillars-wrap" id="pillarsWrap">
+      <div class="pillars-line"><div class="pillars-line-fill" id="pillarsLineFill"></div></div>
+      <div class="pillars-grid">
+        <div class="pillar-card v4-reveal">
+          <span class="pillar-no">۰۱ · اصالت مدارک پلاک ملی</span>
+          <h3>بررسی حقوقی کامل سهمیه واردات و برگ سبز</h3>
+          <p>در خرید خودروهای وارداتی جدید (میباخ، LX 700h، دیفندر و سری ۷ جدید)، حساس‌ترین بخش اصالت ترخیص گمرکی، تسویه حقوق دولتی و قابلیت وکالت و تعویض پلاک قطعی است که واحد حقوقی روما پیش از معامله ۱۰۰٪ استعلام و تضمین می‌کند.</p>
+        </div>
+
+        <div class="pillar-card v4-reveal">
+          <span class="pillar-no">۰۲ · کارشناسی مکتوب در مبایعه‌نامه</span>
+          <h3>ضمانت کتبی رنگ، شاسی، آپشن فابریک و کیلومتر</h3>
+          <p>تمامی آپشن‌ها (اصالت کیت کارخانه‌ای Kuro، تریم و رادارها) و سلامت بدنه با برگه کارشناسی معتبر ثبت‌شده تحویل خریدار می‌گردد و مسئولیت کامل تطابق مشخصات در متن قرارداد درج می‌شود.</p>
+        </div>
+
+        <div class="pillar-card v4-reveal">
+          <span class="pillar-no">۰۳ · معاوضه آنی و فروش امانی بدون خواب سرمایه</span>
+          <h3>تبدیل خودروی قبلی شما در یک جلسه</h3>
+          <p>می‌توانید خودروی فعلی خود را به قیمت واقعی روز بازار به عنوان بخشی از ثمن معامله تحویل دهید، یا فروش امانی آن را در تالار چهارراه قیطریه و رسانه ۱۴۸ هزار نفری روما موتورز به کارشناسان ما بسپارید.</p>
+        </div>
+
+        <div class="pillar-card v4-reveal">
+          <span class="pillar-no">۰۴ · تحویل تشریفاتی سراسری</span>
+          <h3>ارسال با خودروبر سرپوشیده VIP به تمام شهرها</h3>
+          <p>برای خریداران محترم سایر کلان‌شهرها (مشهد، اصفهان، تبریز، شیراز، کیش و شمال)، امکان کارشناسی ویدیویی آنلاین و ارسال خودرو با کفی تک‌ظرفیت سرپوشیده و بیمه کامل تا درب منزل فراهم است.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- =========================================================================
+     PART 5: INTERACTIVE TRADE-IN, PURCHASE & CONSIGNMENT CONCIERGE
+     ========================================================================= -->
+<section class="v-section alt" id="tradein">
+  <div class="wrap">
+    <div class="deal-desk">
+      <div>
+        <span class="kicker">DIRECT SHOWROOM DESK · QEYTARIEH</span>
+        <h2 class="sec-title" style="font-size:clamp(1.45rem,2.8vw,2.15rem)">میز مستقیم خرید، معاوضه (Trade-In) و فروش امانی</h2>
+        <p class="sec-lead">نوع درخواست خود را مشخص کنید تا پرونده شما مستقیم برای کارشناس ارشد فروش روما موتورز ارسال شود:</p>
+
+        <div class="mode-tabs" id="dealModes">
+          <button type="button" class="pill active" data-mode="خرید نقدی و هماهنگی بازدید حضوری">خرید نقدی / بازدید</button>
+          <button type="button" class="pill" data-mode="معاوضه با خودروی فعلی من (Trade-In)">معاوضه با خودروی من</button>
+          <button type="button" class="pill" data-mode="سپردن خودرو برای فروش امانی در نمایشگاه">فروش امانی خودرو</button>
+        </div>
+
+        <div class="field-grid">
+          <div class="f-group">
+            <label for="targetCar">خودروی موردنظر از موجودی روما</label>
+            <select id="targetCar" class="f-input">
+              <option value="Mercedes-Maybach GLS 600 پلاک ملی">Mercedes-Maybach GLS 600 (پلاک ملی)</option>
+              <option value="Lexus LX 700h پلاک ملی کیت Kuro">Lexus LX 700h پلاک ملی با کیت Kuro</option>
+              <option value="Land Rover Defender سفید پلاک ملی">Land Rover Defender سفید (پلاک ملی)</option>
+              <option value="BMW 735Li مدل 2026 پلاک ملی">BMW 735Li مدل ۲۰۲۶ (اتاق جدید)</option>
+              <option value="تویوتا لندکروز / پرادو / نیسان پاترول ۲۰۲۶">لندکروز VXR / پرادو / پاترول ۲۰۲۶</option>
+              <option value="سایر موجودی نمایشگاه قیطریه">مشاوره روی کل موجودی (۴۶ دستگاه)</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label for="userCar">مشخصات خودروی فعلی شما (ویژه معاوضه یا فروش امانی)</label>
+            <input type="text" id="userCar" class="f-input" placeholder="مثلاً: بنز E250 مدل ۲۰۱۶ سفید بی‌رنگ">
+          </div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:22px">
+          <a id="submitDealTg" href="https://t.me/MohammadrezaSz" target="_blank" rel="noopener" class="btn-solid" style="padding:12px 24px">
+            ارسال مستقیم به تلگرام فروش (@MohammadrezaSz)
+          </a>
+          <a id="submitDealWa" href="https://wa.me/989124445809" target="_blank" rel="noopener" class="btn-min" style="padding:12px 20px">
+            ارسال در واتساپ کارشناس فروش
+          </a>
+        </div>
+      </div>
+
+      <div class="desk-card">
+        <div class="d-row">
+          <span>خط ویژه VIP مدیریت نمایشگاه</span>
+          <a href="tel:09125555502"><b class="ltr">0912 555 5502</b></a>
+        </div>
+        <div class="d-row">
+          <span>خط مستقیم کارشناس فروش و معاوضه</span>
+          <a href="tel:09124445809"><b class="ltr">0912 444 5809</b></a>
+        </div>
+        <div class="d-row">
+          <span>پشتیبانی تلگرام استعلام قیمت روز</span>
+          <a href="https://t.me/MohammadrezaSz" target="_blank" rel="noopener"><b class="ltr">@MohammadrezaSz</b></a>
+        </div>
+        <div class="d-row">
+          <span>نشانی دقیق نمایشگاه</span>
+          <b>خیابان اندرزگو، چهارراه قیطریه، نبش سلیمانی غربی</b>
+        </div>
+        <div class="d-row">
+          <span>ساعات پذیرش حضوری</span>
+          <b>همه‌روزه ۱۰:۰۰ صبح تا ۲۱:۳۰ شب</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     PART 6: BUYER FAQ ON NATIONAL-PLATE 2026 LUXURY IMPORTS
+     ========================================================================= -->
+<section class="v-section" id="faq">
+  <div class="wrap">
+    <span class="kicker">FREQUENTLY ASKED QUESTIONS</span>
+    <h2 class="sec-title">پرسش‌های متداول خریداران خودروهای خاص پلاک ملی</h2>
+
+    <div class="faq-list" id="faqList">
+      <div class="faq-item">
+        <button type="button" class="faq-q">
+          <span>تفاوت کیت مشکی KURO در لکسوس LX 700h موجود در روما موتورز با نسخه‌های معمولی چیست؟</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-in">در پکیج فابریک Kuro (کورو)، جلوپنجره دوکی بزرگ، قاب آینه‌ها، زهوارهای کروم دور شیشه، رینگ‌های فورج‌کاری‌شده و پس‌زمینه چراغ‌ها با کروم دودی و مشکی براق کارخانه‌ای عرضه می‌شوند که در کنار پیشرانه جدید ۳.۴ لیتری هیبرید ۴۵۷ اسب‌بخاری، خاص‌ترین ترکیب ظاهری و بالاترین نقدشوندگی را در بازار تهران دارد.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-q">
+          <span>آیا پلاک ملی میباخ GLS 600، دیفندر سفید و بی‌ام‌و 735 مدل ۲۰۲۶ قطعی و قابل انتقال به نام خریدار است؟</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-in">بله؛ تمامی خودروهای وارداتی جدید موجود در تالار روما موتورز دارای پلاک ملی دائم (تردد آزاد در سراسر کشور بدون محدودیت زمانی گذرموقت)، برگ سبز رسمی راهور و مفاصاحساب کامل گمرکی و مالیاتی بوده و به صورت رسمی در دفترخانه به نام خریدار منتقل می‌شوند.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-q">
+          <span>امکان آوردن کارشناس رنگ و فنی مورد اعتماد خریدار به نمایشگاه چهارراه قیطریه وجود دارد؟</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-in">صددرصد؛ علاوه بر برگه کارشناسی رسمی نمایشگاه، فضای نورپردازی استاندارد در تالار نبش سلیمانی غربی فراهم است تا هر کارشناس رسمی منتخب شما پیش از تنظیم قرارداد، بدنه، شاسی و دیاگ تخصصی خودرو را به دقت بررسی نماید.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <span>© اتوگالری روما موتورز (ROMA MOTORS) — تهران، بلوار اندرزگو، چهارراه قیطریه، نبش سلیمانی غربی</span>
+    <span class="ltr">@roma__motors · VIP 0912 555 5502</span>
+  </div>
+</footer>
+
+<div class="m-bar">
+  <a href="tel:09125555502" class="btn-solid">تماس VIP (۰۹۱۲۵۵۵۵۵۰۲)</a>
+  <a href="https://t.me/MohammadrezaSz" target="_blank" rel="noopener" class="btn-min">تلگرام فروش</a>
+</div>
 
 <script src="js/gsap.min.js"></script>
 <script src="js/ScrollTrigger.min.js"></script>
 <script src="js/lenis.min.js"></script>
 <script>
 (function () {
-  /*
-   * 9 Calibrated Spatial Stages:
-   * Each frame defines:
-   * - ox, oy: Optical vanishing focal point (%) that the camera zooms straight into!
-   * - inScale: Starting scale when emerging from behind previous frame (0.86 creates 3D forward arrival)
-   * - midScale: Scale at full visibility plateau
-   * - outScale: Deep forward zoom scale (2.15x) passing through windshield / dashboard into next layer
-   */
   var STAGES = [
+    // 01..03: MERCEDES-MAYBACH GLS 600 NATIONAL PLATE
     {
-      carIdx: 0, lens: '24mm · EXTERIOR', ox: 50, oy: 43, inScale: 1.0, midScale: 1.14, outScale: 2.15,
-      tag: 'خودروی ۱ از ۳ · نمای بیرونی',
-      en: 'MERCEDES-MAYBACH GLS 600 4MATIC',
-      title: 'مرسدس‌ـ‌میباخ GLS 600؛ اوج اشرافیت شاسی‌بلندهای جهان',
-      desc: 'جلوپنجره کروم عمودی اختصاصی میباخ و رنگ مشکی ابسیدین. به اسکرول ادامه دهید تا از شیشه جلو وارد کابین شوید.',
-      s1: ['پیشرانه', '4.0L V8 BiTurbo'], s2: ['قدرت خروجی', '550 اسب‌بخار'], s3: ['شتاب ۰ تا ۱۰۰', '۴.۹ ثانیه']
+      car: 0, lens: '24mm · EXTERIOR', ox: 50, oy: 44, inS: 1.0, midS: 1.12, outS: 2.15,
+      ch: 'کلکسیون خاص روما موتورز · خودروی ۱ از ۴', plate: 'پلاک ملی دائم · تحویل قیطریه',
+      h: 'مرسدس‌ـ‌میباخ GLS 600 پلاک ملی؛ اوج پرستیژ در تالار روما موتورز',
+      p: 'نسخه فول وارداتی با پلاک ملی دائم. با اسکرول به پایین از شیشه جلو عبور کنید تا وارد کابین چرم ناپا و کنسول میباخ شوید.',
+      m1: ['وضعیت پلاک', 'پلاک ملی تک‌برگ'], m2: ['پیشرانه', '4.0L V8 BiTurbo'], m3: ['قدرت', '550 اسب‌بخار']
     },
     {
-      carIdx: 0, lens: '35mm · CABIN DIVE', ox: 52, oy: 58, inScale: 0.85, midScale: 1.06, outScale: 1.95,
-      tag: 'خودروی ۱ از ۳ · داخل کابین First-Class',
-      en: 'MAYBACH EXCLUSIVE NAPPA COCKPIT',
-      title: 'ورود به کابین دست‌دوز چرم ناپا و کاکپیت عریض MBUX',
-      desc: 'عایق‌بندی صوتی چندلایه به همراه چهار صندلی VIP مجهز به ماساژور سنگ داغ، تهویه مستقل و نورپردازی ۶۴ رنگ.',
-      s1: ['پوشش کابین', 'چرم Nappa دست‌دوز'], s2: ['نمایشگرها', 'دوگانه ۱۲.۳ اینچ'], s3: ['صندلی‌ها', '۴ نفره VIP گرم/سرد']
+      car: 0, lens: '35mm · CABIN DIVE', ox: 52, oy: 58, inS: 0.85, midS: 1.06, outS: 1.95,
+      ch: 'میباخ GLS 600 پلاک ملی · داخل کابین', plate: 'چرم دست‌دوز Exclusive Nappa',
+      h: 'ورود به کابین First-Class میباخ؛ آرامش مطلق پشت شیشه‌های دوجداره',
+      p: 'چهار صندلی VIP مجهز به ماساژور سنگ داغ، تهویه مستقل، سقف پانوراما و نورپردازی محیطی ۶۴ رنگ.',
+      m1: ['کابین', '۴ نفره VIP مجزا'], m2: ['نمایشگر', 'یکپارچه MBUX'], m3: ['عایق صوتی', 'شیشه لمینت آکوستیک']
     },
     {
-      carIdx: 0, lens: '85mm · CONSOLE MACRO', ox: 50, oy: 55, inScale: 0.87, midScale: 1.05, outScale: 1.75,
-      tag: 'خودروی ۱ از ۳ · جزئیات کنسول میانی',
-      en: 'MBUX CONSOLE & E-ACTIVE CONTROL',
-      title: 'نمای نزدیک کنسول میانی، تریم چوب طبیعی و پد فرماندهی',
-      desc: 'کلیدهای اختصاصی تنظیم تعلیق هوشمند E-Active Body Control، حالت رانندگی Maybach و سیستم صوتی سه‌بعدی Burmester.',
-      s1: ['سیستم صوتی', 'Burmester High-End'], s2: ['سیستم تعلیق', 'E-Active اسکن جاده'], s3: ['وضعیت ادامه مسیر', 'ورود به لکسوس LX 600 ↓']
+      car: 0, lens: '85mm · CONSOLE MACRO', ox: 50, oy: 55, inS: 0.87, midS: 1.05, outS: 1.80,
+      ch: 'میباخ GLS 600 · جزئیات کنسول میانی', plate: 'آماده بازدید در نبش سلیمانی غربی',
+      h: 'کنسول میانی چوب طبیعی و کلیدهای تعلیق هوشمند E-Active',
+      p: 'کنترل کامل ارتفاع مستقل چرخ‌ها، حالت اختصاصی سواری Maybach و سیستم صوتی سه‌بعدی Burmester. ادامه اسکرول: ورود به لکسوس LX700 کیت کورو ↓',
+      m1: ['سیستم صوتی', 'Burmester 3D'], m2: ['تعلیق', 'اسکن هوشمند جاده'], m3: ['خودروی بعدی', 'Lexus LX 700h Kuro ↓']
+    },
+
+    // 04..06: LEXUS LX 700h HYBRID KURO BLACK EDITION
+    {
+      car: 1, lens: '24mm · EXTERIOR', ox: 50, oy: 45, inS: 0.88, midS: 1.08, outS: 2.15,
+      ch: 'موجودی کف تالار روما · خودروی ۲ از ۴', plate: 'پلاک ملی · کیت فابریک KURO',
+      h: 'لکسوس LX 700h پلاک ملی با کیت مشکی Kuro؛ غول ۹۵ میلیاردی قیطریه',
+      p: 'قوی‌ترین شاسی‌بلند تاریخ لکسوس با جلوپنجره، رینگ و کروم دودی فابریک Kuro. اسکرول کنید تا وارد کابین شوید.',
+      m1: ['نسخه بدنه', 'Black Edition KURO'], m2: ['پیشرانه هیبرید', '3.4L V6 Twin-Turbo'], m3: ['قدرت ترکیبی', '457 اسب‌بخار']
     },
     {
-      carIdx: 1, lens: '24mm · EXTERIOR', ox: 48, oy: 41, inScale: 0.88, midScale: 1.08, outScale: 2.15,
-      tag: 'خودروی ۲ از ۳ · نمای بیرونی شاسی‌بلند پرچم‌دار',
-      en: 'LEXUS LX 600 VIP · BLACK ONYX',
-      title: 'لکسوس LX 600 مشکی؛ پادشاه بی‌رقیب دوام و پرستیژ جاده‌ای',
-      desc: 'نسل جدید پلتفرم GA-F با جلوپنجره دوکی سه‌بعدی و چراغ‌های BladeScan. اسکرول کنید تا وارد کابین Takumi شوید.',
-      s1: ['پیشرانه', '3.5L V6 Twin-Turbo'], s2: ['گشتاور', '650 نیوتن‌متر'], s3: ['گیربکس', '۱۰ سرعته Direct-Shift']
+      car: 1, lens: '35mm · CABIN DIVE', ox: 50, oy: 54, inS: 0.85, midS: 1.06, outS: 1.95,
+      ch: 'لکسوس LX 700h کیت کورو · نمای کابین', plate: 'صفر کیلومتر خشک',
+      h: 'کابین دست‌دوز استادکاران Takumi با استارت اثر انگشت',
+      p: 'ترکیب دو نمایشگر مرکزی لمسی، هداپ دیسپلی رنگی، رادار کامل ایمنی و عایق‌بندی بی‌صدا در ترافیک شهری و جاده.',
+      m1: ['امنیت استارت', 'اسکن اثر انگشت'], m2: ['کاکپیت', 'دو مانیتور ۱۲.۳ + ۷'], m3: ['گیربکس', '۱۰ سرعته اتوماتیک']
     },
     {
-      carIdx: 1, lens: '35mm · CABIN DIVE', ox: 50, oy: 55, inScale: 0.85, midScale: 1.06, outScale: 1.95,
-      tag: 'خودروی ۲ از ۳ · داخل کابین استادکاران Takumi',
-      en: 'LEXUS TAKUMI DUAL-SCREEN COCKPIT',
-      title: 'کابین دوخت لوزی چرم طبیعی با معماری دو مانیتور مستقل',
-      desc: 'طراحی ارگونومیک Tazuna که تمام نمایشگرها و کلیدهای کنترلی را بدون برداشتن چشم از مسیر در زاویه دید راننده قرار می‌دهد.',
-      s1: ['امنیت استارت', 'اسکن اثر انگشت'], s2: ['کاکپیت مرکزی', '۱۲.۳ + ۷ اینچ لمسی'], s3: ['تهویه کابین', 'Climate Concierge']
+      car: 1, lens: '85mm · CONSOLE MACRO', ox: 50, oy: 56, inS: 0.87, midS: 1.05, outS: 1.80,
+      ch: 'لکسوس LX 700h · کنسول میانی', plate: 'سند تک‌برگ آماده انتقال',
+      h: 'کنسول فرماندهی Multi-Terrain، کلیدهای تیتانیومی و کول‌باکس',
+      p: 'مدیریت قفل دیفرانسیل، تنظیم ارتفاع هیدرولیک، شارژر بی‌سیم سریع و سیستم صوتی مرجع Mark Levinson. ادامه اسکرول: ورود به دیفندر سفید ↓',
+      m1: ['سیستم صوتی', 'Mark Levinson 25SP'], m2: ['امکانات کنسول', 'کول‌باکس + Multi-Terrain'], m3: ['خودروی بعدی', 'Defender سفید ↓']
+    },
+
+    // 07..09: LAND ROVER DEFENDER 110 WHITE NATIONAL PLATE
+    {
+      car: 2, lens: '24mm · EXTERIOR', ox: 48, oy: 45, inS: 0.88, midS: 1.08, outS: 2.15,
+      ch: 'کلکسیون خاص روما موتورز · خودروی ۳ از ۴', plate: 'پلاک ملی · سفید Fuji White',
+      h: 'لندروور دیفندر سفید پلاک ملی؛ طراحی ماندگار بریتانیایی در اندرزگو',
+      p: 'محبوب‌ترین رنگ سفید یخچالی با تعلیق بادی الکترونیکی و شاسی یکپارچه آلومینیومی. اسکرول کنید تا وارد کابین شوید.',
+      m1: ['رنگ بدنه', 'سفید یخچالی فابریک'], m2: ['وضعیت پلاک', 'پلاک ملی دائم'], m3: ['تعلیق', 'بادی تنظیم‌شونده']
     },
     {
-      carIdx: 1, lens: '85mm · CONSOLE MACRO', ox: 50, oy: 54, inScale: 0.87, midScale: 1.05, outScale: 1.75,
-      tag: 'خودروی ۲ از ۳ · جزئیات کنسول میانی لکسوس',
-      en: 'MULTI-TERRAIN & MARK LEVINSON CONSOLE',
-      title: 'کنسول فرماندهی Multi-Terrain، کلیدهای فلزی و کول‌باکس',
-      desc: 'نمایشگر اختصاصی شیب‌سنج و وضعیت چرخ‌ها در کنار سیستم صوتی مرجع Mark Levinson با ۲۵ بلندگو و قدرت ۲۴۰۰ وات.',
-      s1: ['سیستم صوتی', 'Mark Levinson 25SP'], s2: ['کنسول میانی', 'کول‌باکس + شارژر بی‌سیم'], s3: ['وضعیت ادامه مسیر', 'ورود به بی‌ام‌و سری ۷ ↓']
+      car: 2, lens: '35mm · CABIN DIVE', ox: 50, oy: 52, inS: 0.85, midS: 1.06, outS: 1.95,
+      ch: 'لندروور دیفندر سفید · فضای کابین', plate: 'صفر کیلومتر خشک',
+      h: 'معماری مدرن و مستحکم کابین دیفندر با تیر عرضی منیزیمی',
+      p: 'ترکیب چرم طبیعی Windsor، دوربین ۳۶۰ درجه ClearSight (دید زیر کاپوت) و فضای جادار خانوادگی و سفری.',
+      m1: ['دید اطراف', 'دوربین سه‌بعدی 360'], m2: ['آینه دیجیتال', 'ClearSight هوشمند'], m3: ['سقف', 'پانورامای بازشو']
     },
     {
-      carIdx: 2, lens: '24mm · EXTERIOR', ox: 50, oy: 45, inScale: 0.88, midScale: 1.08, outScale: 2.15,
-      tag: 'خودروی ۳ از ۳ · نمای استودیویی سدان تشریفاتی',
-      en: 'BMW 7 SERIES · 730Li MASTERPIECE',
-      title: 'بی‌ام‌و سری ۷ (730Li Masterpiece)؛ نماد اصالت بلوار اندرزگو',
-      desc: 'ترکیب شاسی سبک Carbon Core، جلوپنجره نورانی و فرمان‌پذیری بی‌نقص آلمانی. اسکرول کنید تا وارد کابین کریستالی شوید.',
-      s1: ['شاسی مهندسی', 'Carbon Core سبک'], s2: ['نورپردازی جلو', 'Adaptive Crystal LED'], s3: ['کلید هوشمند', 'BMW Display Key']
+      car: 2, lens: '85mm · CONSOLE MACRO', ox: 50, oy: 54, inS: 0.87, midS: 1.05, outS: 1.80,
+      ch: 'لندروور دیفندر · کنسول Pivi Pro', plate: 'موجود در تالار قیطریه',
+      h: 'نمایشگر خمیده Pivi Pro، لیور دنده ارگونومیک و کلیدهای دوکاره',
+      p: 'کنترلرهای چرخشی هوشمند تهویه و سیستم چهارچرخ محرک Terrain Response 2. ادامه اسکرول: ورود به بی‌ام‌و 735 مدل ۲۰۲۶ ↓',
+      m1: ['رابط کاربری', 'Pivi Pro نسل جدید'], m2: ['سیستم صوتی', 'Meridian Surround'], m3: ['خودروی بعدی', 'BMW 735 2026 ↓']
+    },
+
+    // 10..12: BMW 735Li 2026 G70 NEW GENERATION
+    {
+      car: 3, lens: '24mm · EXTERIOR', ox: 50, oy: 45, inS: 0.88, midS: 1.08, outS: 2.15,
+      ch: 'ورودی جدید ۲۰۲۶ روما موتورز · خودروی ۴ از ۴', plate: 'مدل ۲۰۲۶ · پلاک ملی صفر',
+      h: 'بی‌ام‌و 735Li مدل ۲۰۲۶؛ نسل جدید سدان پرچم‌دار آلمانی با جلوپنجره نورانی',
+      p: 'طراحی باشکوه اتاق G70 با چراغ‌های دوتکه کریستالی و درب‌های اتوماتیک برقی. اسکرول کنید تا وارد کابین شوید.',
+      m1: ['سال ساخت', '۲۰۲۶ صفر کیلومتر'], m2: ['جلوپنجره', 'Iconic Glow نورانی'], m3: ['درب‌ها', 'باز و بسته شدن خودکار']
     },
     {
-      carIdx: 2, lens: '35mm · CABIN DIVE', ox: 52, oy: 60, inScale: 0.85, midScale: 1.06, outScale: 1.95,
-      tag: 'خودروی ۳ از ۳ · داخل کابین Executive Lounge',
-      en: 'BMW CURVED DISPLAY & INTERACTION BAR',
-      title: 'ورود به کابین مدرن بی‌ام‌و با نوار کریستالی سرتاسری',
-      desc: 'ترکیب نمایشگر منحنی یکپارچه، سقف پانورامای نوری Sky Lounge و تبلت فرماندهی اختصاصی سرنشینان عقب.',
-      s1: ['سقف پانوراما', 'Sky Lounge LED'], s2: ['تریم داخلی', 'کریستال تراش‌خورده'], s3: ['کنترل چندرسانه‌ای', 'فرمان حرکت دست']
+      car: 3, lens: '35mm · CABIN DIVE', ox: 52, oy: 58, inS: 0.85, midS: 1.06, outS: 1.95,
+      ch: 'بی‌ام‌و 735 مدل ۲۰۲۶ · کابین کریستالی', plate: 'اتاق جدید G70',
+      h: 'نوار نوری کریستالی Interaction Bar و نمایشگر خمیده یکپارچه',
+      p: 'حذف کلیدهای سنتی و جایگزینی با کریستال لمسی سرتاسری داشبورد و کلید کریستالی تراش‌خورده کنسول میانی.',
+      m1: ['داشبورد', 'Curved Display یکپارچه'], m2: ['تریم نوری', 'کریستال Interaction Bar'], m3: ['سقف', 'پانورامای Sky Lounge']
     },
     {
-      carIdx: 2, lens: '85mm · CONSOLE MACRO', ox: 50, oy: 52, inScale: 0.87, midScale: 1.05, outScale: 1.24,
-      tag: 'خودروی ۳ از ۳ · نمای ماکرو کلید کریستالی iDrive',
-      en: 'CRAFTED CLARITY CRYSTAL iDRIVE CONSOLE',
-      title: 'جزئیات تراش کریستال کنترلر iDrive روی کنسول میانی بی‌ام‌و',
-      desc: 'هر سه پرچم‌دار آماده بازدید حضوری و کارشناسی VIP در اتوگالری روما موتورز اندرزگو هستند. کمی پایین‌تر رزرو کنید.',
-      s1: ['تراش کلیدها', 'CraftedClarity شیشه‌ای'], s2: ['سیستم صوتی', 'Bowers & Wilkins'], s3: ['موجودی نمایشگاه', '۴۶ خودروی خاص آماده']
+      car: 3, lens: '85mm · EXECUTIVE LOUNGE', ox: 50, oy: 50, inS: 0.87, midS: 1.04, outS: 1.18,
+      ch: 'بی‌ام‌و 735 مدل ۲۰۲۶ · سینمای اختصاصی عقب', plate: 'ادامه صفحه: موجودی و خدمات روما ↓',
+      h: 'نمایشگر سینمایی ۳۱.۳ اینچی 8K و پنل‌های لمسی روی درب‌های عقب',
+      p: 'اکنون اسکرول را ادامه دهید تا فهرست کامل موجودی امروز روما موتورز، شرایط معاوضه (Trade-In) و میز استعلام قیطریه را ببینید ↓',
+      m1: ['نمایشگر عقب', '۳۱.۳ اینچ Theater 8K'], m2: ['کنترل سرنشین', 'تاچ‌اسکرین روی درب‌ها'], m3: ['ادامه صفحه', 'موجودی تالار روما ↓']
     }
   ];
 
-  var layers = Array.prototype.slice.call(document.querySelectorAll('.v5-layer'));
-  var dots = Array.prototype.slice.call(document.querySelectorAll('.s-dot'));
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.car-tab'));
+  var frames = Array.prototype.slice.call(document.querySelectorAll('.sp-frame'));
+  var ticks = Array.prototype.slice.call(document.querySelectorAll('.r-tick'));
+  var chBtns = Array.prototype.slice.call(document.querySelectorAll('.ch-btn'));
+  var reticle = document.getElementById('spReticle');
 
-  // Apply calibrated optical vanishing origin on each layer
-  layers.forEach(function (el, i) {
+  frames.forEach(function (el, i) {
     el.style.transformOrigin = STAGES[i].ox + '% ' + STAGES[i].oy + '%';
   });
 
-  // Progressive Off-Main-Thread Image Pre-Decoder (Frames 02..09 decode right after first paint!)
+  // Decode frames 02..12 asynchronously off main thread immediately after First Paint
   window.requestAnimationFrame(function () {
     setTimeout(function () {
-      layers.forEach(function (el, idx) {
+      frames.forEach(function (el, idx) {
         if (idx === 0) return;
         var im = el.querySelector('img');
-        if (im && im.decode) {
-          im.decode().catch(function () {});
-        }
+        if (im && im.decode) im.decode().catch(function () {});
       });
-    }, 120);
+    }, 100);
   });
 
-  var activeIdx = -1;
-  var reticle = document.getElementById('reticle');
-  var hudMain = document.getElementById('hudMain');
-
-  function updateHUD(idx) {
-    if (idx === activeIdx) return;
-    activeIdx = idx;
+  var curStage = -1;
+  function applyStageMeta(idx) {
+    if (idx === curStage) return;
+    curStage = idx;
     var s = STAGES[idx];
-
-    document.getElementById('lensLabel').textContent = s.lens;
-    document.getElementById('frameCounter').textContent = '0' + (idx + 1) + ' / 09';
-    document.getElementById('hudStageTag').textContent = s.tag;
-    document.getElementById('hudCarEn').textContent = s.en;
-    document.getElementById('hudTitle').textContent = s.title;
-    document.getElementById('hudDesc').textContent = s.desc;
-
-    document.getElementById('spLbl1').textContent = s.s1[0];
-    document.getElementById('spVal1').textContent = s.s1[1];
-    document.getElementById('spLbl2').textContent = s.s2[0];
-    document.getElementById('spVal2').textContent = s.s2[1];
-    document.getElementById('spLbl3').textContent = s.s3[0];
-    document.getElementById('spVal3').textContent = s.s3[1];
+    document.getElementById('railLens').textContent = s.lens;
+    document.getElementById('frameReadout').textContent = (idx < 9 ? '0' : '') + (idx + 1) + ' / 12';
+    document.getElementById('hudChapter').textContent = s.ch;
+    document.getElementById('hudPlate').textContent = s.plate;
+    document.getElementById('hudHeading').textContent = s.h;
+    document.getElementById('hudCopy').textContent = s.p;
+    document.getElementById('mL1').textContent = s.m1[0];
+    document.getElementById('mV1').textContent = s.m1[1];
+    document.getElementById('mL2').textContent = s.m2[0];
+    document.getElementById('mV2').textContent = s.m2[1];
+    document.getElementById('mL3').textContent = s.m3[0];
+    document.getElementById('mV3').textContent = s.m3[1];
 
     reticle.style.left = s.ox + '%';
     reticle.style.top = s.oy + '%';
 
-    dots.forEach(function (d, di) { d.classList.toggle('on', di === idx); });
-    tabs.forEach(function (t, ti) { t.classList.toggle('active', ti === s.carIdx); });
+    ticks.forEach(function (t, ti) { t.classList.toggle('on', ti === idx); });
+    chBtns.forEach(function (b, bi) { b.classList.toggle('active', bi === s.car); });
   }
 
-  /*
-   * Core V5 Optical Z-Portal Renderer (runs at pure 60-120Hz GPU speed):
-   * Maps global runway progress p in [0, 1] across N=9 stages with seamless optical overlap.
-   */
-  function renderPortal(p) {
+  function renderSpatial(p) {
     var N = STAGES.length;
-    var scaled = p * (N - 1); // 0.0 -> 8.0 continuous camera coordinate
-    var baseIdx = Math.min(N - 2, Math.max(0, Math.floor(scaled)));
-    var localT = scaled - baseIdx; // [0..1] progress from baseIdx -> baseIdx + 1
+    var pos = p * (N - 1); // 0.0 -> 11.0
+    var base = Math.min(N - 2, Math.max(0, Math.floor(pos)));
+    var t = pos - base;
 
-    // Smooth cosine optical blend curve in transition window [0.42 -> 1.0]
     var blend = 0;
-    if (localT > 0.42) {
-      var u = (localT - 0.42) / 0.58;
+    if (t > 0.42) {
+      var u = (t - 0.42) / 0.58;
       blend = 0.5 - 0.5 * Math.cos(Math.PI * Math.min(1, Math.max(0, u)));
     }
 
     for (var i = 0; i < N; i++) {
-      var el = layers[i];
-      if (i === baseIdx) {
+      var el = frames[i];
+      if (i === base) {
         var st = STAGES[i];
-        var sc = localT <= 0.42
-          ? st.midScale + (localT / 0.42) * 0.14
-          : (st.midScale + 0.14) + blend * (st.outScale - (st.midScale + 0.14));
+        var sc = t <= 0.42
+          ? st.midS + (t / 0.42) * 0.14
+          : (st.midS + 0.14) + blend * (st.outS - (st.midS + 0.14));
         var op = 1 - blend;
         el.style.visibility = op > 0.004 ? 'visible' : 'hidden';
         el.style.opacity = op.toFixed(3);
         el.style.transform = 'scale3d(' + sc.toFixed(4) + ',' + sc.toFixed(4) + ',1)';
         el.style.zIndex = '11';
-      } else if (i === baseIdx + 1 && blend > 0.004) {
-        var stNext = STAGES[i];
-        var scIn = stNext.inScale + blend * (stNext.midScale - stNext.inScale);
+      } else if (i === base + 1 && blend > 0.004) {
+        var stN = STAGES[i];
+        var scIn = stN.inS + blend * (stN.midS - stN.inS);
         el.style.visibility = 'visible';
         el.style.opacity = blend.toFixed(3);
         el.style.transform = 'scale3d(' + scIn.toFixed(4) + ',' + scIn.toFixed(4) + ',1)';
         el.style.zIndex = '12';
-      } else {
-        // Active-Window GPU Culling: keep inactive textures strictly off compositor!
-        if (el.style.visibility !== 'hidden') {
-          el.style.visibility = 'hidden';
-          el.style.opacity = '0';
-        }
+      } else if (el.style.visibility !== 'hidden') {
+        el.style.visibility = 'hidden';
+        el.style.opacity = '0';
       }
     }
 
-    // Pulse reticle scale gently during portal dive
-    var retScale = 1 + blend * 0.65;
-    reticle.style.transform = 'scale3d(' + retScale.toFixed(3) + ',' + retScale.toFixed(3) + ',1)';
-    reticle.style.opacity = (0.85 - blend * 0.35).toFixed(2);
-
-    document.getElementById('pctReadout').textContent = Math.round(p * 100) + '%';
-    updateHUD(blend > 0.52 ? baseIdx + 1 : baseIdx);
+    var rs = 1 + blend * 0.55;
+    reticle.style.transform = 'scale3d(' + rs.toFixed(3) + ',' + rs.toFixed(3) + ',1)';
+    document.getElementById('scrollPct').textContent = Math.round(p * 100) + '%';
+    applyStageMeta(blend > 0.52 ? base + 1 : base);
   }
 
-  // Initialize Frame 0 immediately before scroll
-  renderPortal(0);
+  renderSpatial(0);
 
-  var lenisInstance = null;
+  var lenis = null;
   if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Desktop-only silky wheel smoothing; mobile keeps 100% native 0ms touch responsiveness
     if (window.Lenis && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      lenisInstance = new Lenis({ duration: 1.05, smoothWheel: true, syncTouch: false });
-      lenisInstance.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add(function (t) { lenisInstance.raf(t * 1000); });
+      lenis = new Lenis({ duration: 1.05, smoothWheel: true, syncTouch: false });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
       gsap.ticker.lagSmoothing(0);
     }
 
-    gsap.to('#topBar', {
+    // Master Progress Bar across entire document
+    gsap.to('#masterBar', {
       scaleX: 1,
       ease: 'none',
       scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.1 }
     });
 
+    // Part 1: 12-Stage Spatial Camera Dive
     ScrollTrigger.create({
-      trigger: '#v5Runway',
+      trigger: '#spatialRunway',
       start: 'top top',
       end: 'bottom bottom',
       scrub: 0.45,
-      onUpdate: function (self) {
-        renderPortal(self.progress);
+      onUpdate: function (self) { renderSpatial(self.progress); }
+    });
+
+    // Part 2: V4 Masked Editorial Line Reveal on Roma Manifesto
+    gsap.from('#aboutRoma .mask-in', {
+      yPercent: 115,
+      opacity: 0,
+      duration: 0.9,
+      stagger: 0.12,
+      ease: 'power4.out',
+      scrollTrigger: { trigger: '#aboutRoma', start: 'top 80%', once: true }
+    });
+
+    // Animated Counters on Roma Motors Track Record
+    document.querySelectorAll('.v4-count').forEach(function (el) {
+      var target = parseInt(el.getAttribute('data-val'), 10);
+      var o = { v: 0 };
+      gsap.to(o, {
+        v: target,
+        duration: 1.4,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        onUpdate: function () { el.textContent = Math.round(o.v); }
+      });
+    });
+
+    // Curtain Mask + Elevation on Showroom Stock & Pillar Cards
+    gsap.utils.toArray('.v4-reveal').forEach(function (card) {
+      var imgWrap = card.querySelector('.stock-img-wrap');
+      if (imgWrap) {
+        gsap.fromTo(imgWrap,
+          { clipPath: 'inset(16% 0% 0% 0%)' },
+          {
+            clipPath: 'inset(0% 0% 0% 0%)',
+            duration: 0.9,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: card, start: 'top 88%', once: true }
+          }
+        );
       }
+      gsap.from(card, {
+        y: 30,
+        opacity: 0,
+        duration: 0.75,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: card, start: 'top 90%', once: true }
+      });
+    });
+
+    // Scroll-Scrubbed Gold Protocol Line
+    gsap.to('#pillarsLineFill', {
+      scaleY: 1,
+      ease: 'none',
+      scrollTrigger: { trigger: '#pillarsWrap', start: 'top 75%', end: 'bottom 70%', scrub: 0.35 }
     });
   }
 
-  function jumpToProgress(targetP) {
-    var runway = document.getElementById('v5Runway');
-    var maxScroll = runway.offsetHeight - window.innerHeight;
-    var y = runway.offsetTop + Math.max(0, maxScroll * targetP);
-    if (lenisInstance) {
-      lenisInstance.scrollTo(y, { duration: 1.2 });
-    } else {
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-  }
-
+  // Chapter Jump Buttons
   document.querySelectorAll('[data-jump]').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      jumpToProgress(parseFloat(this.getAttribute('data-jump')));
+      var p = parseFloat(this.getAttribute('data-jump'));
+      var runway = document.getElementById('spatialRunway');
+      var y = runway.offsetTop + Math.max(0, (runway.offsetHeight - window.innerHeight) * p);
+      if (lenis) lenis.scrollTo(y, { duration: 1.15 });
+      else window.scrollTo({ top: y, behavior: 'smooth' });
     });
   });
 
-  document.getElementById('replayTourBtn').addEventListener('click', function () {
-    jumpToProgress(0);
+  // Inventory Category Filter
+  document.getElementById('stockFilter').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-f]');
+    if (!b) return;
+    document.querySelectorAll('#stockFilter .pill').forEach(function (x) { x.classList.remove('active'); });
+    b.classList.add('active');
+    var f = b.getAttribute('data-f');
+    document.querySelectorAll('.stock-card').forEach(function (c) {
+      c.style.display = (f === 'all' || c.getAttribute('data-cat') === f) ? 'flex' : 'none';
+    });
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
   });
 
-  // VIP Showroom Model Picker -> Telegram Pre-fill
-  document.getElementById('modelSelect').addEventListener('click', function (e) {
-    var b = e.target.closest('button[data-car]');
+  // Interactive Deal Structurer (Purchase / Trade-In / Consignment -> Telegram & WhatsApp)
+  var currentMode = 'خرید نقدی و هماهنگی بازدید حضوری';
+  function updateDealLinks() {
+    var car = document.getElementById('targetCar').value;
+    var userCar = document.getElementById('userCar').value.trim();
+    var text = 'سلام وقت بخیر، از وب‌سایت رسمی روما موتورز پیام می‌دم.\n'
+      + '• نوع درخواست: ' + currentMode + '\n'
+      + '• خودروی مدنظر در روما: ' + car
+      + (userCar ? '\n• مشخصات خودروی من: ' + userCar : '');
+    var enc = encodeURIComponent(text);
+    document.getElementById('submitDealTg').href = 'https://t.me/MohammadrezaSz?text=' + enc;
+    document.getElementById('submitDealWa').href = 'https://wa.me/989124445809?text=' + enc;
+  }
+
+  document.getElementById('dealModes').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-mode]');
     if (!b) return;
-    document.querySelectorAll('#modelSelect .opt-pill').forEach(function (x) { x.classList.remove('active'); });
+    document.querySelectorAll('#dealModes .pill').forEach(function (x) { x.classList.remove('active'); });
     b.classList.add('active');
-    var car = b.getAttribute('data-car');
-    var msg = 'سلام وقت بخیر، از پرتال اختصاصی روما موتورز برای استعلام قیمت و شرایط بازدید «' + car + '» پیام می‌دم.';
-    document.getElementById('tgDirectBtn').href = 'https://t.me/MohammadrezaSz?text=' + encodeURIComponent(msg);
+    currentMode = b.getAttribute('data-mode');
+    updateDealLinks();
+  });
+  document.getElementById('targetCar').addEventListener('change', updateDealLinks);
+  document.getElementById('userCar').addEventListener('input', updateDealLinks);
+  updateDealLinks();
+
+  // Smooth Minimal FAQ Accordion
+  document.getElementById('faqList').addEventListener('click', function (e) {
+    var q = e.target.closest('.faq-q');
+    if (!q) return;
+    var item = q.parentElement;
+    var ans = item.querySelector('.faq-a');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function (it) {
+      it.classList.remove('open');
+      it.querySelector('.faq-a').style.maxHeight = '0px';
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      ans.style.maxHeight = ans.scrollHeight + 'px';
+    }
   });
 })();
 </script>
