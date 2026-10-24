@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#211825">
+  <title>LE PAON ROYAL — جدة</title>
+  <meta name="description" content="تصوّر مفاهيمي مستقل من SitePine لمعلومات وخدمات واتصال LE PAON ROYAL في جدة؛ غير رسمي ولا يمثّل الصالون.">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #211825;
+      --ink-soft: #3c303e;
+      --paper: #f4f0e8;
+      --paper-deep: #e8e0d5;
+      --rose: #b98a9c;
+      --rose-deep: #80546a;
+      --teal: #557c7d;
+      --gold: #c5a36d;
+      --line: rgba(33, 24, 37, .15);
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Noto Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--paper); }
+    body { margin: 0; min-width: 320px; overflow-x: hidden; color: var(--ink); background: var(--paper); font-family: var(--sans); line-height: 1.65; }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid #d8ae6e; outline-offset: 4px; }
+    .wrap { width: min(100% - 48px, 1240px); margin-inline: auto; }
+    .preview-ribbon { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 7px 18px; color: #e9dfd1; background: #16111a; font-size: 12px; letter-spacing: .02em; text-align: center; }
+    .ribbon-dot { width: 6px; height: 6px; flex: 0 0 6px; border-radius: 50%; background: #d4b17a; box-shadow: 0 0 0 4px rgba(212,177,122,.13); }
+    .site-header { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 22px; min-height: 88px; color: var(--paper); background: #211825; padding-inline: max(24px, calc((100vw - 1240px) / 2)); }
+    .brand { display: inline-flex; align-items: center; gap: 10px; min-width: 180px; text-decoration: none; }
+    .brand img { width: 35px; height: 48px; object-fit: contain; }
+    .brand-wordmark { display: grid; line-height: 1.02; font-family: var(--serif); font-size: 15px; letter-spacing: .12em; direction: ltr; text-align: left; }
+    .brand-wordmark em { margin-top: 5px; color: var(--gold); font-style: normal; font-size: 11px; letter-spacing: .3em; }
+    .main-nav { display: flex; align-items: center; justify-content: center; gap: clamp(14px, 2.2vw, 32px); flex: 1; }
+    .main-nav a { color: rgba(244,240,232,.75); font-size: 13px; text-decoration: none; transition: color .2s ease; }
+    .main-nav a:hover { color: #fff; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .lang-toggle { min-width: 74px; border: 1px solid rgba(244,240,232,.34); border-radius: 999px; padding: 8px 13px; color: var(--paper); background: transparent; cursor: pointer; font-size: 12px; }
+    .header-call { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; border-radius: 999px; padding: 0 17px; color: var(--ink); background: var(--gold); font-size: 12px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .mobile-links { display: none; }
+    .hero { position: relative; isolation: isolate; min-height: 590px; overflow: hidden; color: var(--paper); background: #211825; }
+    .hero::before { position: absolute; z-index: -1; inset: 0; content: ""; background: radial-gradient(ellipse at 78% 16%, rgba(185,138,156,.19), transparent 34%), radial-gradient(ellipse at 20% 100%, rgba(85,124,125,.17), transparent 40%); }
+    .hero-inner { display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; gap: 28px; min-height: 590px; padding-block: 54px 72px; }
+    .hero-copy { max-width: 620px; padding-block: 18px; }
+    .kicker { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 21px; color: #d7c4ac; font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
+    .kicker::before { display: inline-block; width: 28px; height: 1px; content: ""; background: var(--gold); }
+    .hero h1 { margin: 0; font-family: var(--serif); font-size: clamp(42px, 6.2vw, 82px); font-weight: 400; line-height: .94; letter-spacing: .035em; direction: ltr; text-align: right; }
+    .hero h1 span { display: block; margin-top: 9px; color: var(--gold); font-size: .76em; letter-spacing: .18em; }
+    .hero h2 { max-width: 540px; margin: 28px 0 14px; font-size: clamp(22px, 3vw, 34px); font-weight: 400; line-height: 1.45; }
+    .hero-description { max-width: 470px; margin: 0; color: rgba(244,240,232,.7); font-size: 15px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 49px; gap: 10px; border: 1px solid transparent; border-radius: 999px; padding: 0 21px; text-decoration: none; font-size: 13px; font-weight: 700; cursor: pointer; transition: transform .2s ease, background .2s ease, border-color .2s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { color: var(--ink); background: var(--gold); }
+    .button-secondary { color: var(--paper); border-color: rgba(244,240,232,.3); background: transparent; }
+    .button-ink { color: var(--paper); background: var(--ink); }
+    .button-outline { color: var(--ink); border-color: var(--line); background: transparent; }
+    .button:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 29px 0 0; padding: 0; list-style: none; }
+    .hero-tags li { border: 1px solid rgba(244,240,232,.2); border-radius: 999px; padding: 5px 11px; color: rgba(244,240,232,.76); font-size: 11px; }
+    .hero-art { position: relative; display: grid; place-items: center; min-height: 420px; }
+    .art-halo { position: absolute; width: min(88%, 440px); aspect-ratio: 1; border: 1px solid rgba(210,184,139,.23); border-radius: 50%; background: radial-gradient(circle, rgba(196,163,109,.06) 0 38%, transparent 39%); box-shadow: inset 0 0 80px rgba(185,138,156,.08), 0 0 90px rgba(85,124,125,.1); }
+    .art-halo::before, .art-halo::after { position: absolute; content: ""; border: 1px solid rgba(210,184,139,.18); border-radius: 50%; }
+    .art-halo::before { inset: 10%; }
+    .art-halo::after { inset: 21%; border-color: rgba(185,138,156,.2); }
+    .feather-frame { position: relative; z-index: 1; display: grid; place-items: center; width: min(72%, 310px); aspect-ratio: .8; border: 1px solid rgba(210,184,139,.28); border-radius: 50% 50% 46% 46% / 44% 44% 56% 56%; background: linear-gradient(145deg, rgba(104,74,99,.5), rgba(42,70,73,.48) 55%, rgba(44,34,47,.78)); box-shadow: 0 28px 75px rgba(0,0,0,.26); transform: rotate(-5deg); }
+    .feather-frame::before { position: absolute; inset: 14px; border: 1px solid rgba(244,240,232,.12); border-radius: inherit; content: ""; }
+    .feather-frame img { width: 61%; height: 75%; object-fit: contain; filter: drop-shadow(0 14px 20px rgba(0,0,0,.25)); transform: rotate(5deg); }
+    .art-caption { position: absolute; z-index: 1; bottom: 11%; inset-inline-start: 4%; max-width: 150px; color: rgba(244,240,232,.66); font-family: var(--serif); font-size: 13px; line-height: 1.45; letter-spacing: .06em; }
+    .art-caption strong { display: block; margin-bottom: 5px; color: var(--gold); font-size: 10px; font-weight: 400; letter-spacing: .18em; }
+    .art-index { position: absolute; top: 13%; inset-inline-end: 6%; color: rgba(244,240,232,.5); font-family: var(--serif); font-size: 11px; letter-spacing: .2em; writing-mode: vertical-rl; }
+    .hero-bottom { position: absolute; inset-inline: 0; bottom: 0; display: flex; align-items: center; justify-content: space-between; min-height: 44px; border-top: 1px solid rgba(244,240,232,.12); color: rgba(244,240,232,.52); font-size: 10px; letter-spacing: .08em; }
+    .hero-bottom .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .section { padding-block: 100px; }
+    .section-light { background: var(--paper); }
+    .section-heading { display: grid; grid-template-columns: .65fr 1.35fr; align-items: end; gap: 35px; margin-bottom: 43px; }
+    .section-number { color: var(--rose-deep); font-family: var(--serif); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+    .section-heading h2 { max-width: 640px; margin: 0; font-size: clamp(28px, 4vw, 46px); font-weight: 400; line-height: 1.28; }
+    .section-heading p { max-width: 510px; grid-column: 2; margin: 12px 0 0; color: #6d6268; font-size: 14px; }
+    .service-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
+    .service-card { position: relative; display: flex; flex-direction: column; align-items: flex-start; min-height: 280px; overflow: hidden; border: 1px solid var(--line); border-radius: 2px; padding: 25px; color: var(--ink); background: #f8f5ef; text-align: start; cursor: pointer; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+    .service-card:hover, .service-card:focus-visible { transform: translateY(-4px); border-color: rgba(128,84,106,.48); box-shadow: 0 18px 35px rgba(33,24,37,.08); }
+    .service-card::before { position: absolute; width: 180px; height: 180px; inset-inline-end: -70px; bottom: -80px; border: 1px solid rgba(128,84,106,.18); border-radius: 50%; content: ""; }
+    .service-card:nth-child(2) { background: #ece7df; }
+    .service-card:nth-child(3) { color: var(--paper); border-color: transparent; background: var(--rose-deep); }
+    .service-card:nth-child(3)::before { border-color: rgba(244,240,232,.28); }
+    .service-top { display: flex; align-items: center; justify-content: space-between; width: 100%; color: #8f776f; font-family: var(--serif); font-size: 12px; letter-spacing: .12em; }
+    .service-card:nth-child(3) .service-top { color: #e1c7d2; }
+    .service-icon { display: grid; place-items: center; width: 45px; height: 45px; border: 1px solid currentColor; border-radius: 50%; }
+    .service-icon svg { width: 21px; height: 21px; }
+    .service-card h3 { margin: 50px 0 8px; font-size: 23px; font-weight: 500; }
+    .service-card p { max-width: 260px; margin: 0; color: #6f6668; font-size: 13px; }
+    .service-card:nth-child(3) p { color: rgba(244,240,232,.74); }
+    .card-link { display: inline-flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 17px; color: var(--rose-deep); font-size: 12px; font-weight: 700; }
+    .service-card:nth-child(3) .card-link { color: #f3d8e4; }
+    .inquiry-section { color: var(--paper); background: #302437; }
+    .inquiry-layout { display: grid; grid-template-columns: .78fr 1.22fr; align-items: start; gap: clamp(38px, 7vw, 100px); }
+    .inquiry-copy .section-number { color: #d9b783; }
+    .inquiry-copy h2 { max-width: 470px; margin: 21px 0 15px; font-size: clamp(30px, 4vw, 47px); font-weight: 400; line-height: 1.28; }
+    .inquiry-copy p { max-width: 390px; margin: 0; color: rgba(244,240,232,.66); font-size: 14px; }
+    .tool-panel { border: 1px solid rgba(244,240,232,.18); padding: clamp(20px, 4vw, 38px); background: rgba(255,255,255,.035); }
+    .tool-label { display: block; margin-bottom: 16px; color: #d9b783; font-size: 11px; letter-spacing: .12em; }
+    .choice-list { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 24px; }
+    .choice { min-height: 42px; border: 1px solid rgba(244,240,232,.26); border-radius: 999px; padding: 0 16px; color: var(--paper); background: transparent; cursor: pointer; font-size: 13px; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+    .choice[aria-pressed="true"] { border-color: var(--gold); color: var(--ink); background: var(--gold); }
+    .summary-card { border-inline-start: 2px solid var(--gold); padding: 0 18px 2px; }
+    .summary-card p { max-width: 550px; min-height: 48px; margin: 8px 0 17px; color: rgba(244,240,232,.91); font-size: 17px; }
+    .summary-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .summary-card small { display: block; margin-top: 17px; color: rgba(244,240,232,.55); font-size: 11px; }
+    .tool-status { min-height: 22px; margin-top: 10px; color: #dfc695; font-size: 12px; }
+    .contact-section { padding-block: 88px 66px; background: #e8e0d5; }
+    .contact-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 35px; }
+    .contact-heading h2 { max-width: 510px; margin: 10px 0 0; font-size: clamp(29px, 4vw, 44px); font-weight: 400; line-height: 1.3; }
+    .contact-heading p { max-width: 310px; margin: 0; color: #6e6267; font-size: 13px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .contact-card { display: flex; flex-direction: column; align-items: flex-start; min-height: 210px; border: 1px solid rgba(33,24,37,.16); padding: 25px; background: rgba(255,255,255,.34); }
+    .contact-card .eyebrow { margin: 0 0 25px; color: var(--rose-deep); font-size: 11px; letter-spacing: .12em; }
+    .contact-card h3 { margin: 0 0 7px; font-size: 21px; font-weight: 500; }
+    .contact-card p { max-width: 360px; margin: 0 0 16px; color: #6e6267; font-size: 13px; }
+    .contact-link { display: inline-flex; align-items: center; gap: 9px; margin-top: auto; color: var(--ink); font-size: 14px; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    .phone { direction: ltr; unicode-bidi: isolate; font-family: var(--serif); font-size: 24px; letter-spacing: .035em; text-decoration: none; }
+    .social-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 29px; }
+    .social-row a { border: 1px solid rgba(33,24,37,.2); border-radius: 999px; padding: 8px 14px; font-size: 12px; text-decoration: none; transition: background .2s ease, color .2s ease; }
+    .social-row a:hover { color: var(--paper); background: var(--ink); }
+    .footer { padding-block: 23px; color: rgba(244,240,232,.63); background: #211825; font-size: 11px; }
+    .footer-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 25px; }
+    .footer-note { max-width: 700px; margin: 0; }
+    .footer-mark { color: var(--gold); font-family: var(--serif); letter-spacing: .14em; white-space: nowrap; }
+    .mobile-call { display: none; }
+    [hidden] { display: none !important; }
+    html[lang="en"] .hero h1 { text-align: left; }
+    html[lang="en"] .hero-bottom { direction: ltr; }
+    html[lang="en"] .main-nav { direction: ltr; }
+    @media (max-width: 900px) {
+      .site-header { min-height: 78px; }
+      .header-call { display: none; }
+      .main-nav { gap: 15px; }
+      .hero-inner { grid-template-columns: 1.05fr .95fr; min-height: 550px; }
+      .hero-art { min-height: 350px; }
+      .section { padding-block: 78px; }
+      .inquiry-layout { grid-template-columns: .82fr 1.18fr; gap: 40px; }
+    }
+    @media (max-width: 680px) {
+      .wrap { width: min(100% - 36px, 540px); }
+      .site-header { flex-wrap: wrap; min-height: 73px; gap: 8px 14px; padding: 11px 18px; }
+      .brand { min-width: 0; }
+      .brand img { width: 30px; height: 40px; }
+      .brand-wordmark { font-size: 13px; }
+      .brand-wordmark em { font-size: 9px; }
+      .main-nav { display: none; }
+      .header-actions { margin-inline-start: auto; }
+      .mobile-links { display: flex; align-items: center; gap: 18px; width: 100%; overflow-x: auto; padding: 7px 0 4px; white-space: nowrap; scrollbar-width: none; }
+      .mobile-links::-webkit-scrollbar { display: none; }
+      .mobile-links a { color: rgba(244,240,232,.72); font-size: 12px; text-decoration: none; }
+      .hero { min-height: 0; padding-bottom: 50px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 2px; min-height: 0; padding-block: 43px 28px; }
+      .hero-copy { order: 1; padding: 0; }
+      .hero-art { order: 0; min-height: 255px; margin-bottom: 10px; }
+      .art-halo { width: min(67vw, 265px); }
+      .feather-frame { width: min(50vw, 195px); }
+      .art-caption { bottom: 10%; inset-inline-start: 3%; font-size: 11px; }
+      .art-index { top: 10%; inset-inline-end: 5%; }
+      .hero h1 { font-size: clamp(43px, 13vw, 66px); }
+      .hero h2 { margin-top: 21px; font-size: 25px; }
+      .hero-description { font-size: 14px; }
+      .hero-bottom { display: none; }
+      .section { padding-block: 66px; }
+      .section-heading { display: block; margin-bottom: 28px; }
+      .section-heading h2 { margin-top: 15px; font-size: 31px; }
+      .section-heading p { margin-top: 10px; }
+      .service-grid { grid-template-columns: 1fr; gap: 10px; }
+      .service-card { min-height: 220px; padding: 21px; }
+      .service-card h3 { margin-top: 34px; }
+      .inquiry-layout { grid-template-columns: 1fr; gap: 28px; }
+      .inquiry-copy h2 { margin-top: 13px; font-size: 32px; }
+      .tool-panel { padding: 21px 18px; }
+      .summary-card { padding-inline: 14px; }
+      .summary-card p { font-size: 15px; }
+      .contact-section { padding-block: 64px 54px; }
+      .contact-heading { display: block; margin-bottom: 25px; }
+      .contact-heading h2 { margin-top: 13px; font-size: 31px; }
+      .contact-heading p { margin-top: 11px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 10px; }
+      .contact-card { min-height: 185px; padding: 21px; }
+      .footer-inner { display: block; }
+      .footer-mark { display: block; margin-top: 13px; }
+      .mobile-call { position: fixed; z-index: 5; inset-inline: 12px; bottom: max(12px, env(safe-area-inset-bottom)); display: flex; justify-content: center; }
+      .mobile-call a { width: min(100%, 420px); min-height: 48px; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; color: var(--ink); background: var(--gold); box-shadow: 0 10px 30px rgba(33,24,37,.22); font-size: 13px; font-weight: 700; text-decoration: none; }
+      body { padding-bottom: 60px; }
+    }
+    @media (max-width: 390px) {
+      .wrap { width: calc(100% - 30px); }
+      .preview-ribbon { padding-inline: 10px; font-size: 10px; }
+      .site-header { padding-inline: 15px; }
+      .hero-inner { padding-top: 35px; }
+      .hero-art { min-height: 225px; }
+      .hero-actions { gap: 9px; }
+      .hero-actions .button { min-height: 46px; padding-inline: 16px; font-size: 12px; }
+      .service-card { min-height: 208px; }
+      .summary-actions .button { flex: 1 1 auto; }
+      .phone { font-size: 22px; }
+    }
+    @media (max-width: 340px) {
+      .brand-wordmark { font-size: 11px; }
+      .brand-wordmark em { letter-spacing: .2em; }
+      .lang-toggle { min-width: 67px; padding-inline: 10px; }
+      .hero h1 { font-size: 39px; }
+      .hero h2 { font-size: 22px; }
+      .button { padding-inline: 14px; }
+      .choice { padding-inline: 12px; font-size: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="preview-ribbon" role="note">
+    <span class="ribbon-dot" aria-hidden="true"></span>
+    <span data-i18n="previewNote">تصوّر مفاهيمي من SitePine — غير رسمي ولا يمثّل الصالون</span>
+  </div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="LE PAON ROYAL">
+      <img src="assets/peacock-feather.svg" alt="">
+      <span class="brand-wordmark"><span>LE PAON</span><em>ROYAL</em></span>
+    </a>
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a href="#services" data-i18n="navServices">الخدمات</a>
+      <a href="#inquiry" data-i18n="navTool">جهّزي استفسارك</a>
+      <a href="#visit" data-i18n="navVisit">الموقع والتواصل</a>
+    </nav>
+    <div class="header-actions">
+      <button class="lang-toggle" id="languageToggle" type="button" data-i18n="toggleLanguage" aria-label="Switch language">English</button>
+      <a class="header-call" href="tel:+966559509160" data-i18n="headerCall">اتصلي للحجز</a>
+    </div>
+    <nav class="mobile-links" aria-label="Mobile navigation">
+      <a href="#services" data-i18n="navServices">الخدمات</a>
+      <a href="#inquiry" data-i18n="navTool">جهّزي استفسارك</a>
+      <a href="#visit" data-i18n="navVisit">الموقع والتواصل</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <p class="kicker" data-i18n="heroKicker">جدة · حي الخالدية</p>
+          <h1 id="hero-title">LE PAON <span>ROYAL</span></h1>
+          <h2 data-i18n="heroHeadline">معلومات الصالون، بواجهة رقمية أوضح.</h2>
+          <p class="hero-description" data-i18n="heroText">صفحة تصورية تجمع فئات الصالون وموقعه وطريقة التواصل، مع إبقاء الحجز عبر قناة الصالون المباشرة.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#services"><span data-i18n="exploreServices">استكشفي الخدمات</span><span aria-hidden="true">↙</span></a>
+            <a class="button button-secondary" href="tel:+966559509160"><span data-i18n="callNow">اتصلي للحجز</span><span aria-hidden="true">↗</span></a>
+          </div>
+          <ul class="hero-tags" aria-label="Service categories">
+            <li data-i18n="tagColor">صبغات</li>
+            <li data-i18n="tagCare">عناية بالشعر</li>
+            <li data-i18n="tagMakeup">مكياج</li>
+          </ul>
+        </div>
+        <div class="hero-art" aria-label="Original peacock-feather illustration">
+          <div class="art-halo" aria-hidden="true"></div>
+          <div class="feather-frame"><img src="assets/peacock-feather.svg" alt=""></div>
+          <span class="art-index" dir="ltr">JEDDAH · 01</span>
+          <p class="art-caption"><strong data-i18n="artCaptionTop">CONCEPT PREVIEW</strong><span data-i18n="artCaption">إشارة بصرية مستوحاة من اسم الصالون، وليست شعاراً رسمياً.</span></p>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <div class="wrap"><span data-i18n="heroFootLeft">صفحة معلومات واتصال — بلا مواعيد أو أسعار مفترضة</span><span dir="ltr">LE PAON ROYAL · JEDDAH</span></div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="services" aria-labelledby="services-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="section-number" dir="ltr">01 / SERVICES</span>
+          <div>
+            <h2 id="services-title" data-i18n="servicesHeadline">اختاري الفئة التي تهمّكِ أولاً.</h2>
+            <p data-i18n="servicesIntro">الفئات المعروضة مأخوذة من القنوات العامة للصالون؛ التفاصيل والأسعار والتوافر تُؤكَّد مباشرةً مع الصالون.</p>
+          </div>
+        </div>
+        <div class="service-grid">
+          <button class="service-card" type="button" data-select="color" aria-label="اختيار استفسار عن الصبغات" data-i18n-aria="ariaSelectColor">
+            <span class="service-top"><span dir="ltr">01</span><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19c5-1 9-6 10-14 3 3 4 6 2 10-2 4-6 6-12 4Z" stroke="currentColor" stroke-width="1.35"/><path d="M6 18 17 7m-4 2 2 3m-6 0 3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span></span>
+            <h3 data-i18n="serviceColorTitle">صبغات</h3>
+            <p data-i18n="serviceColorText">استكشفي فئة اللون والإضاءات المنشورة في قنوات الصالون.</p>
+            <span class="card-link"><span data-i18n="selectCategory">اختاري الفئة</span><span aria-hidden="true">↗</span></span>
+          </button>
+          <button class="service-card" type="button" data-select="care" aria-label="اختيار استفسار عن العناية بالشعر" data-i18n-aria="ariaSelectCare">
+            <span class="service-top"><span dir="ltr">02</span><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c-1.7 3.1-6 7.3-6 11a6 6 0 0 0 12 0c0-3.7-4.3-7.9-6-11Z" stroke="currentColor" stroke-width="1.35"/><path d="M9 15c.4 1.5 1.4 2.2 2.7 2.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span></span>
+            <h3 data-i18n="serviceCareTitle">عناية بالشعر</h3>
+            <p data-i18n="serviceCareText">تصفّحي محتوى العناية بالشعر كما يظهر في حسابات الصالون.</p>
+            <span class="card-link"><span data-i18n="selectCategory">اختاري الفئة</span><span aria-hidden="true">↗</span></span>
+          </button>
+          <button class="service-card" type="button" data-select="makeup" aria-label="اختيار استفسار عن المكياج" data-i18n-aria="ariaSelectMakeup">
+            <span class="service-top"><span dir="ltr">03</span><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3.8c1.8 2.7 5.8 5.9 5.8 10a5.8 5.8 0 1 1-11.6 0c0-4.1 4-7.3 5.8-10Z" stroke="currentColor" stroke-width="1.35"/><path d="M9.6 14.1c1.7-1.2 3.1-1.2 4.8 0m-3.6-3.2h.1m2.2 0h.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span></span>
+            <h3 data-i18n="serviceMakeupTitle">مكياج</h3>
+            <p data-i18n="serviceMakeupText">مساحة مباشرة للوصول إلى فئة المكياج والاستفسار عنها.</p>
+            <span class="card-link"><span data-i18n="selectCategory">اختاري الفئة</span><span aria-hidden="true">↗</span></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section inquiry-section" id="inquiry" aria-labelledby="inquiry-title">
+      <div class="wrap inquiry-layout">
+        <div class="inquiry-copy">
+          <span class="section-number" dir="ltr">02 / CALL PREP</span>
+          <h2 id="inquiry-title" data-i18n="toolHeadline">جهّزي استفسارك قبل الاتصال.</h2>
+          <p data-i18n="toolIntro">اختاري فئةً لتكوين عبارة قصيرة تساعدكِ على بدء المكالمة. لا تُرسل هذه الأداة بياناتٍ إلى الصالون ولا تؤكد موعداً.</p>
+        </div>
+        <div class="tool-panel">
+          <span class="tool-label" data-i18n="toolLabel">اختاري موضوع الاستفسار</span>
+          <div class="choice-list" role="group" aria-label="Choose a service category">
+            <button class="choice" type="button" data-choice="color" aria-pressed="false" data-i18n="tagColor">صبغات</button>
+            <button class="choice" type="button" data-choice="care" aria-pressed="false" data-i18n="tagCare">عناية بالشعر</button>
+            <button class="choice" type="button" data-choice="makeup" aria-pressed="false" data-i18n="tagMakeup">مكياج</button>
+          </div>
+          <div class="summary-card">
+            <span class="tool-label" data-i18n="phraseLabel">عبارة للاستعانة بها</span>
+            <p id="inquiryPhrase" aria-live="polite" data-i18n="phrasePlaceholder">اختاري فئةً أعلاه لتظهر هنا عبارة الاستفسار.</p>
+            <div class="summary-actions">
+              <button class="button button-outline" id="copyPhrase" type="button" disabled data-i18n="copyButton">نسخ العبارة</button>
+              <a class="button button-primary" href="tel:+966559509160"><span data-i18n="phoneButton">اتصلي بالصالون</span><span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="tool-status" id="copyStatus" role="status" aria-live="polite"></div>
+            <small data-i18n="toolDisclosure">لا تُعرض أسعار أو أوقات عمل، ولا يتم إرسال أي طلب أو تأكيد حجز.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="visit" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="contact-heading">
+          <div>
+            <span class="section-number" dir="ltr">03 / FIND & CONTACT</span>
+            <h2 id="contact-title" data-i18n="contactHeadline">الموقع والتواصل، من مكان واحد.</h2>
+          </div>
+          <p data-i18n="contactIntro">استخدمي القنوات المنشورة للصالون للتحقق من التفاصيل قبل الزيارة أو الحجز.</p>
+        </div>
+        <div class="contact-grid">
+          <article class="contact-card">
+            <p class="eyebrow" data-i18n="locationLabel">الموقع</p>
+            <h3 data-i18n="locationTitle">جدة · حي الخالدية</h3>
+            <p data-i18n="locationText">الحي كما يظهر في الملف العام؛ افتحي رابط الخريطة للتحقق من الاتجاهات.</p>
+            <a class="contact-link" href="https://yandex.com/maps/org/le_paon_royal/35914022729/" target="_blank" rel="noopener noreferrer"><span data-i18n="mapLink">افتحي الخريطة</span><span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="contact-card">
+            <p class="eyebrow" data-i18n="bookingLabel">للاستفسار والحجز</p>
+            <h3 data-i18n="bookingTitle">اتصال مباشر</h3>
+            <p data-i18n="bookingText">رقم الحجز المنشور على قناة الصالون، مع تجنّب افتراض واتساب أو نظام مواعيد إلكتروني.</p>
+            <a class="contact-link phone" href="tel:+966559509160" dir="ltr">+966 55 950 9160</a>
+          </article>
+        </div>
+        <div class="social-row" aria-label="Published social channels" data-i18n-aria="ariaSocialChannels">
+          <a href="https://www.instagram.com/lepaon.royal.sa/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+          <a href="https://www.tiktok.com/@le.paon.royal.salon" target="_blank" rel="noopener noreferrer">TikTok ↗</a>
+          <a href="https://www.snapchat.com/@lepaon.royal" target="_blank" rel="noopener noreferrer">Snapchat ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p class="footer-note" data-i18n="footerNote">هذا تصوّر مفاهيمي مستقل من SitePine، غير رسمي ولا يمثّل الصالون. لا يستخدم صوراً حقيقية ولا يعرض أسعاراً أو ساعات عمل أو وعوداً بالحجز؛ يُرجى تأكيد التفاصيل مباشرةً مع الصالون.</p>
+      <span class="footer-mark" dir="ltr">LE PAON ROYAL · CONCEPT</span>
+    </div>
+  </footer>
+  <div class="mobile-call"><a class="button" href="tel:+966559509160"><span data-i18n="mobileCall">اتصلي للحجز</span><span aria-hidden="true">↗</span></a></div>
+
+  <script>
+    (function () {
+      const copy = {
+        ar: {
+          pageTitle: 'LE PAON ROYAL — جدة', pageDescription: 'تصوّر مفاهيمي مستقل من SitePine لمعلومات وخدمات واتصال LE PAON ROYAL في جدة؛ غير رسمي ولا يمثّل الصالون.',
+          ariaSocialChannels: 'القنوات الاجتماعية المنشورة', ariaSelectColor: 'اختيار استفسار عن الصبغات', ariaSelectCare: 'اختيار استفسار عن العناية بالشعر', ariaSelectMakeup: 'اختيار استفسار عن المكياج',
+          previewNote: 'تصوّر مفاهيمي من SitePine — غير رسمي ولا يمثّل الصالون', navServices: 'الخدمات', navTool: 'جهّزي استفسارك', navVisit: 'الموقع والتواصل', toggleLanguage: 'English', headerCall: 'اتصلي للحجز',
+          heroKicker: 'جدة · حي الخالدية', heroHeadline: 'معلومات الصالون، بواجهة رقمية أوضح.', heroText: 'صفحة تصورية تجمع فئات الصالون وموقعه وطريقة التواصل، مع إبقاء الحجز عبر قناة الصالون المباشرة.', exploreServices: 'استكشفي الخدمات', callNow: 'اتصلي للحجز', tagColor: 'صبغات', tagCare: 'عناية بالشعر', tagMakeup: 'مكياج', artCaptionTop: 'CONCEPT PREVIEW', artCaption: 'إشارة بصرية مستوحاة من اسم الصالون، وليست شعاراً رسمياً.', heroFootLeft: 'صفحة معلومات واتصال — بلا مواعيد أو أسعار مفترضة',
+          servicesHeadline: 'اختاري الفئة التي تهمّكِ أولاً.', servicesIntro: 'الفئات المعروضة مأخوذة من القنوات العامة للصالون؛ التفاصيل والأسعار والتوافر تُؤكَّد مباشرةً مع الصالون.', serviceColorTitle: 'صبغات', serviceColorText: 'استكشفي فئة اللون والإضاءات المنشورة في قنوات الصالون.', serviceCareTitle: 'عناية بالشعر', serviceCareText: 'تصفّحي محتوى العناية بالشعر كما يظهر في حسابات الصالون.', serviceMakeupTitle: 'مكياج', serviceMakeupText: 'مساحة مباشرة للوصول إلى فئة المكياج والاستفسار عنها.', selectCategory: 'اختاري الفئة',
+          toolHeadline: 'جهّزي استفسارك قبل الاتصال.', toolIntro: 'اختاري فئةً لتكوين عبارة قصيرة تساعدكِ على بدء المكالمة. لا تُرسل هذه الأداة بياناتٍ إلى الصالون ولا تؤكد موعداً.', toolLabel: 'اختاري موضوع الاستفسار', phraseLabel: 'عبارة للاستعانة بها', phrasePlaceholder: 'اختاري فئةً أعلاه لتظهر هنا عبارة الاستفسار.', copyButton: 'نسخ العبارة', phoneButton: 'اتصلي بالصالون', toolDisclosure: 'لا تُعرض أسعار أو أوقات عمل، ولا يتم إرسال أي طلب أو تأكيد حجز.',
+          contactHeadline: 'الموقع والتواصل، من مكان واحد.', contactIntro: 'استخدمي القنوات المنشورة للصالون للتحقق من التفاصيل قبل الزيارة أو الحجز.', locationLabel: 'الموقع', locationTitle: 'جدة · حي الخالدية', locationText: 'الحي كما يظهر في الملف العام؛ افتحي رابط الخريطة للتحقق من الاتجاهات.', mapLink: 'افتحي الخريطة', bookingLabel: 'للاستفسار والحجز', bookingTitle: 'اتصال مباشر', bookingText: 'رقم الحجز المنشور على قناة الصالون، مع تجنّب افتراض واتساب أو نظام مواعيد إلكتروني.', footerNote: 'هذا تصوّر مفاهيمي مستقل من SitePine، غير رسمي ولا يمثّل الصالون. لا يستخدم صوراً حقيقية ولا يعرض أسعاراً أو ساعات عمل أو وعوداً بالحجز؛ يُرجى تأكيد التفاصيل مباشرةً مع الصالون.', mobileCall: 'اتصلي للحجز',
+          ariaPrimaryNav: 'التنقل الرئيسي', ariaMobileNav: 'التنقل للجوال', ariaServices: 'فئات الخدمات', ariaChoices: 'اختيار فئة الخدمة', ariaVisual: 'رسم توضيحي أصلي لريشة طاووس'
+        },
+        en: {
+          pageTitle: 'LE PAON ROYAL — Jeddah · SitePine concept', pageDescription: 'An independent SitePine concept for salon information, services and contact in Jeddah; unofficial and not salon-endorsed.',
+          ariaSocialChannels: 'Published social channels', ariaSelectColor: 'Select a hair colour enquiry', ariaSelectCare: 'Select a hair care enquiry', ariaSelectMakeup: 'Select a makeup enquiry',
+          previewNote: 'SitePine concept preview — unofficial, not salon-endorsed', navServices: 'Services', navTool: 'Prepare an enquiry', navVisit: 'Visit & contact', toggleLanguage: 'العربية', headerCall: 'Call to enquire',
+          heroKicker: 'Jeddah · Al Khalidiyah', heroHeadline: 'Salon information, brought together in a clearer digital front door.', heroText: 'A concept page bringing the salon’s service categories, location and contact route together while keeping booking on the salon’s published direct channel.', exploreServices: 'Explore services', callNow: 'Call to enquire', tagColor: 'Hair colour', tagCare: 'Hair care', tagMakeup: 'Makeup', artCaptionTop: 'CONCEPT PREVIEW', artCaption: 'An original visual cue inspired by the salon name, not an official logo.', heroFootLeft: 'Information and contact page — no invented prices or appointments',
+          servicesHeadline: 'Start with the category you have in mind.', servicesIntro: 'These categories are drawn from the salon’s public channels; details, prices and availability should be confirmed directly with the salon.', serviceColorTitle: 'Hair colour', serviceColorText: 'Explore the colour and highlights category shown on the salon’s channels.', serviceCareTitle: 'Hair care', serviceCareText: 'Browse the hair-care category as presented on the salon’s accounts.', serviceMakeupTitle: 'Makeup', serviceMakeupText: 'A direct route to explore the makeup category and ask a question.', selectCategory: 'Choose this category',
+          toolHeadline: 'Prepare your question before you call.', toolIntro: 'Choose a category to create a short opening line for your call. This tool sends no data to the salon and does not confirm an appointment.', toolLabel: 'Choose an enquiry topic', phraseLabel: 'A phrase to use', phrasePlaceholder: 'Choose a category above to create an enquiry phrase.', copyButton: 'Copy phrase', phoneButton: 'Call the salon', toolDisclosure: 'No prices or opening hours are shown. Nothing is submitted and no booking is confirmed.',
+          contactHeadline: 'Location and contact, in one place.', contactIntro: 'Use the salon’s published channels to confirm details before visiting or booking.', locationLabel: 'Location', locationTitle: 'Jeddah · Al Khalidiyah', locationText: 'District as shown on the public profile; open the map link to confirm directions.', mapLink: 'Open map', bookingLabel: 'Enquiries & booking', bookingTitle: 'Direct phone enquiry', bookingText: 'The booking number published on the salon channel; no WhatsApp or online appointment system is assumed.', footerNote: 'Independent SitePine concept; this page is unofficial and not endorsed by the salon. It uses no real salon photos and shows no prices, opening hours or booking promises; confirm details directly with the salon.', mobileCall: 'Call to enquire',
+          ariaPrimaryNav: 'Primary navigation', ariaMobileNav: 'Mobile navigation', ariaServices: 'Service categories', ariaChoices: 'Choose a service category', ariaVisual: 'Original peacock-feather illustration'
+        }
+      };
+      const labels = { color: { ar: 'صبغات الشعر', en: 'hair colour' }, care: { ar: 'العناية بالشعر', en: 'hair care' }, makeup: { ar: 'المكياج', en: 'makeup' } };
+      let language = 'ar';
+      let selected = null;
+      const phrase = document.getElementById('inquiryPhrase');
+      const status = document.getElementById('copyStatus');
+      const copyButton = document.getElementById('copyPhrase');
+      const languageToggle = document.getElementById('languageToggle');
+      function updatePhrase() {
+        if (!selected) {
+          phrase.textContent = copy[language].phrasePlaceholder;
+          copyButton.disabled = true;
+          return;
+        }
+        const category = labels[selected][language];
+        phrase.textContent = language === 'ar'
+          ? `أرغب بالاستفسار عن ${category} لدى LE PAON ROYAL.`
+          : `I'd like to ask about ${category} at LE PAON ROYAL.`;
+        copyButton.disabled = false;
+      }
+      function choose(key) {
+        if (!labels[key]) return;
+        selected = key;
+        document.querySelectorAll('[data-choice]').forEach((button) => {
+          button.setAttribute('aria-pressed', String(button.dataset.choice === key));
+        });
+        document.querySelectorAll('[data-select]').forEach((button) => {
+          button.setAttribute('aria-pressed', String(button.dataset.select === key));
+        });
+        status.textContent = '';
+        updatePhrase();
+      }
+      function setLanguage(next) {
+        language = next;
+        document.documentElement.lang = next;
+        document.documentElement.dir = next === 'ar' ? 'rtl' : 'ltr';
+        document.title = copy[next].pageTitle;
+        document.querySelector('meta[name="description"]').setAttribute('content', copy[next].pageDescription);
+        document.querySelectorAll('[data-i18n]').forEach((element) => {
+          const key = element.dataset.i18n;
+          if (copy[next][key]) element.textContent = copy[next][key];
+        });
+        document.querySelectorAll('[data-i18n-aria]').forEach((element) => {
+          const key = element.dataset.i18nAria;
+          if (copy[next][key]) element.setAttribute('aria-label', copy[next][key]);
+        });
+        document.querySelector('.main-nav').setAttribute('aria-label', copy[next].ariaPrimaryNav);
+        document.querySelector('.mobile-links').setAttribute('aria-label', copy[next].ariaMobileNav);
+        document.querySelector('.hero-tags').setAttribute('aria-label', copy[next].ariaServices);
+        document.querySelector('.choice-list').setAttribute('aria-label', copy[next].ariaChoices);
+        document.querySelector('.hero-art').setAttribute('aria-label', copy[next].ariaVisual);
+        languageToggle.setAttribute('aria-label', next === 'ar' ? 'Switch to English' : 'التبديل إلى العربية');
+        status.textContent = '';
+        updatePhrase();
+      }
+      languageToggle.addEventListener('click', () => setLanguage(language === 'ar' ? 'en' : 'ar'));
+      document.querySelectorAll('[data-choice]').forEach((button) => button.addEventListener('click', () => choose(button.dataset.choice)));
+      document.querySelectorAll('[data-select]').forEach((button) => button.addEventListener('click', () => {
+        choose(button.dataset.select);
+        document.getElementById('inquiry').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }));
+      copyButton.addEventListener('click', async () => {
+        if (!selected) return;
+        try {
+          await navigator.clipboard.writeText(phrase.textContent);
+          status.textContent = language === 'ar' ? 'نُسخت العبارة إلى الحافظة.' : 'Phrase copied to clipboard.';
+        } catch (error) {
+          status.textContent = language === 'ar' ? 'تعذّر النسخ تلقائياً؛ يمكنكِ تحديد العبارة ونسخها.' : 'Copy is unavailable here; select and copy the phrase manually.';
+        }
+      });
+    }());
+  </script>
+</body>
+</html>
