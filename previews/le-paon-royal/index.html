@@ -7,9 +7,34 @@
   <meta name="googlebot" content="noindex, nofollow, noarchive">
   <meta name="theme-color" content="#f3eee5">
   <title>LE PAON ROYAL — جدة</title>
-  <meta name="description" content="تصوّر مستقل من SitePine لصفحة LE PAON ROYAL، مستلهم من مواد الصالون العامة ومصمم لتسهيل تجهيز الاستفسار.">
-  <!-- Design review: 2026-10-24. Public references reviewed: instagram.com/lepaon.royal.sa, tiktok.com/@le.paon.royal.salon, snapchat.com/@lepaon.royal. All editorial photos in this concept are generated illustrations, not salon work. -->
+  <meta name="description" content="تصوّر مستقل من SitePine لصفحة LE PAON ROYAL، مع تجربة تفاعلية تقريبية لاختيار درجة اللون وتجهيز الاستفسار.">
+  <!-- Design update: 2026-10-24. Audience: Arabic-speaking salon customers in Jeddah. Public references reviewed: instagram.com/lepaon.royal.sa, tiktok.com/@le.paon.royal.salon, snapchat.com/@lepaon.royal. The salon's public TikTok posts advertise WhatsApp booking at 0559509160. All model/gallery visuals below are generated concepts, not salon work or clients. -->
   <style>
+    /* Locally bundled Noto Arabic families; SIL Open Font License text is in assets/fonts/OFL-Noto-Arabic.txt. */
+    @font-face {
+      font-family: "Noto Sans Arabic";
+      src: url("assets/fonts/noto-sans-arabic-arabic-variable.woff2") format("woff2");
+      font-style: normal; font-weight: 100 900; font-display: swap;
+      unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+    }
+    @font-face {
+      font-family: "Noto Sans Arabic";
+      src: url("assets/fonts/noto-sans-arabic-latin-variable.woff2") format("woff2");
+      font-style: normal; font-weight: 100 900; font-display: swap;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Noto Naskh Arabic";
+      src: url("assets/fonts/noto-naskh-arabic-400.woff2") format("woff2");
+      font-style: normal; font-weight: 400; font-display: swap;
+      unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+    }
+    @font-face {
+      font-family: "Noto Naskh Arabic";
+      src: url("assets/fonts/noto-naskh-arabic-700.woff2") format("woff2");
+      font-style: normal; font-weight: 700; font-display: swap;
+      unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+    }
     :root {
       color-scheme: light;
       --ink: #211d18;
@@ -25,215 +50,289 @@
       --gold: #b99a63;
       --line: rgba(33, 29, 24, .17);
       --serif: Georgia, "Times New Roman", serif;
+      --arabic-display: "Noto Naskh Arabic", Georgia, serif;
       --sans: "Noto Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
       --wrap: 1240px;
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; background: var(--paper); }
-    body { margin: 0; min-width: 320px; overflow-x: hidden; color: var(--ink); background: var(--paper); font-family: var(--sans); line-height: 1.65; }
-    img { display: block; max-width: 100%; }
+    html { scroll-behavior: smooth; background: var(--paper); scroll-padding-top: 24px; }
+    body { margin: 0; min-width: 320px; overflow-x: hidden; color: var(--ink); background: var(--paper); font-family: var(--sans); font-size: 16px; line-height: 1.7; }
+    img, canvas { display: block; max-width: 100%; }
     a { color: inherit; }
-    button, textarea { font: inherit; }
-    button, a { -webkit-tap-highlight-color: transparent; }
-    button:focus-visible, a:focus-visible, textarea:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+    button, input, select, textarea { font: inherit; }
+    button, a, input { -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+    h1, h2, h3, .story-step h3, .gallery-card h3 { font-family: var(--arabic-display); font-weight: 400; }
+    html[lang="en"] h1, html[lang="en"] h2, html[lang="en"] h3, html[lang="en"] .story-step h3, html[lang="en"] .gallery-card h3 { font-family: Georgia, "Times New Roman", serif; }
     .wrap { width: min(calc(100% - 56px), var(--wrap)); margin-inline: auto; }
     .concept-strip { display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 31px; padding: 5px 16px; color: #eee8dd; background: var(--olive-deep); font-size: 11px; text-align: center; letter-spacing: .02em; }
     .concept-dot { width: 6px; height: 6px; flex: 0 0 6px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(185,154,99,.17); }
-    .site-header { position: relative; z-index: 4; border-bottom: 1px solid rgba(33,29,24,.11); background: rgba(243,238,229,.94); }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 26px; min-height: 84px; }
-    .brand { display: inline-flex; align-items: center; gap: 13px; min-width: 220px; text-decoration: none; }
+    .site-header { position: relative; z-index: 5; border-bottom: 1px solid rgba(33,29,24,.11); background: rgba(243,238,229,.96); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 82px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; min-width: 215px; text-decoration: none; }
     .brand-mark { position: relative; display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid rgba(118,75,80,.45); border-radius: 50%; color: var(--rose-deep); font-family: var(--serif); font-size: 19px; }
     .brand-mark::after { position: absolute; inset: 5px; border: 1px solid rgba(185,154,99,.48); border-radius: 50%; content: ""; }
-    .brand-name { display: block; font-family: var(--serif); font-size: 17px; line-height: 1.05; letter-spacing: .13em; direction: ltr; text-align: left; }
-    .brand-sub { display: block; margin-top: 5px; color: #756b60; font-size: 10px; letter-spacing: .09em; }
-    .main-nav { display: flex; align-items: center; gap: clamp(18px, 3vw, 42px); }
-    .main-nav a { color: #655c52; font-size: 13px; text-decoration: none; transition: color .18s ease; }
-    .main-nav a:hover { color: var(--rose-deep); }
+    .brand-name { display: block; font-family: var(--serif); font-size: 16px; line-height: 1.05; letter-spacing: .13em; direction: ltr; text-align: left; }
+    .brand-sub { display: block; margin-top: 4px; color: #756b60; font-size: 10px; }
+    .main-nav { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 33px); }
+    .main-nav a, .mobile-nav a { color: #655c52; font-size: 12px; text-decoration: none; transition: color .18s ease; }
+    .main-nav a:hover, .mobile-nav a:hover { color: var(--rose-deep); }
     .header-actions { display: flex; align-items: center; gap: 10px; }
-    .lang-toggle { min-width: 76px; min-height: 38px; border: 1px solid rgba(33,29,24,.28); border-radius: 999px; padding: 0 13px; color: var(--ink); background: transparent; cursor: pointer; font-size: 12px; }
+    .lang-toggle { min-width: 75px; min-height: 38px; border: 1px solid rgba(33,29,24,.28); border-radius: 999px; padding: 0 13px; color: var(--ink); background: transparent; cursor: pointer; font-size: 12px; }
     .header-link { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; border-radius: 999px; padding: 0 17px; color: var(--paper-light); background: var(--olive); font-size: 12px; text-decoration: none; white-space: nowrap; }
     .mobile-nav { display: none; }
-    .hero { position: relative; overflow: hidden; padding-block: clamp(44px, 6vw, 86px) clamp(58px, 8vw, 112px); background: var(--paper); }
+    .hero { position: relative; overflow: hidden; padding-block: clamp(42px, 6vw, 82px) clamp(60px, 8vw, 108px); background: var(--paper); }
     .hero::before { position: absolute; z-index: 0; top: 0; inset-inline-start: -180px; width: 420px; aspect-ratio: 1; border: 1px solid rgba(118,75,80,.15); border-radius: 50%; content: ""; box-shadow: 0 0 0 24px rgba(118,75,80,.025), 0 0 0 48px rgba(185,154,99,.035); pointer-events: none; }
     .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr .94fr; align-items: center; gap: clamp(40px, 7vw, 100px); }
-    .hero-copy { max-width: 600px; padding-block: 18px; }
-    .eyebrow { display: flex; align-items: center; gap: 11px; margin: 0 0 17px; color: var(--rose-deep); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    .hero-copy { max-width: 610px; padding-block: 18px; }
+    .eyebrow { display: flex; align-items: center; gap: 11px; margin: 0 0 15px; color: var(--rose-deep); font-size: 11px; font-weight: 700; letter-spacing: .12em; }
     .eyebrow::before { display: inline-block; width: 30px; height: 1px; content: ""; background: var(--gold); }
-    .hero-wordmark { margin: 0 0 14px; color: var(--olive); font-family: var(--serif); font-size: clamp(14px, 1.5vw, 19px); letter-spacing: .24em; direction: ltr; text-align: start; }
-    .hero h1 { max-width: 600px; margin: 0; font-size: clamp(42px, 5.4vw, 74px); font-weight: 400; line-height: 1.18; letter-spacing: -.035em; }
+    .hero-wordmark { margin: 0 0 15px; color: var(--olive); font-family: var(--serif); font-size: clamp(14px, 1.5vw, 19px); letter-spacing: .24em; direction: ltr; text-align: start; }
+    .hero h1 { max-width: 620px; margin: 0; font-size: clamp(44px, 5.3vw, 74px); line-height: 1.16; letter-spacing: -.025em; }
     .hero h1 span { display: block; color: var(--rose-deep); }
-    .hero-description { max-width: 520px; margin: 21px 0 0; color: #625a50; font-size: 16px; line-height: 1.95; }
-    .service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; padding: 0; list-style: none; }
+    .hero-description { max-width: 535px; margin: 20px 0 0; color: #625a50; font-size: 16px; line-height: 1.9; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
     .service-tags li { border: 1px solid rgba(118,75,80,.25); border-radius: 999px; padding: 5px 12px; color: var(--rose-deep); background: rgba(251,248,241,.75); font-size: 11px; }
-    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 11px; margin-top: 29px; }
-    .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 49px; border: 1px solid transparent; border-radius: 999px; padding: 0 21px; font-size: 13px; font-weight: 700; text-decoration: none; cursor: pointer; transition: transform .18s ease, background .18s ease, border-color .18s ease; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 11px; margin-top: 27px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; border: 1px solid transparent; border-radius: 999px; padding: 0 20px; font-size: 13px; font-weight: 700; text-decoration: none; cursor: pointer; transition: transform .18s ease, background .18s ease, border-color .18s ease; }
     .button:hover { transform: translateY(-2px); }
     .button-primary { color: var(--paper-light); background: var(--olive); }
     .button-secondary { border-color: rgba(33,29,24,.3); color: var(--ink); background: transparent; }
-    .hero-note { margin: 14px 0 0; color: #776d62; font-size: 11px; }
+    .hero-note { margin: 13px 0 0; color: #776d62; font-size: 11px; line-height: 1.8; }
     .hero-media { position: relative; min-width: 0; margin: 0; padding: 10px; border: 1px solid rgba(185,154,99,.65); background: rgba(251,248,241,.62); box-shadow: 0 28px 70px rgba(40,34,28,.1); }
     .hero-media::before { position: absolute; z-index: 1; top: 21px; inset-inline-start: 21px; width: 42px; height: 42px; border-top: 1px solid rgba(251,248,241,.8); border-inline-start: 1px solid rgba(251,248,241,.8); content: ""; pointer-events: none; }
     .hero-media img { width: 100%; height: clamp(420px, 56vw, 670px); object-fit: cover; object-position: center 47%; }
-    .media-stamp { position: absolute; z-index: 2; inset-inline-end: -18px; bottom: 56px; display: grid; place-items: center; width: 94px; height: 94px; border: 1px solid rgba(251,248,241,.8); border-radius: 50%; color: var(--paper-light); background: var(--olive); box-shadow: 0 8px 28px rgba(33,29,24,.18); font-family: var(--serif); font-size: 12px; letter-spacing: .08em; text-align: center; transform: rotate(-8deg); }
-    .media-caption { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 13px 8px 4px; color: #675d52; font-size: 10px; }
+    .media-stamp { position: absolute; z-index: 2; inset-inline-end: -18px; bottom: 55px; display: grid; place-items: center; width: 90px; height: 90px; border: 1px solid rgba(251,248,241,.8); border-radius: 50%; color: var(--paper-light); background: var(--olive); box-shadow: 0 8px 28px rgba(33,29,24,.18); font-family: var(--serif); font-size: 11px; letter-spacing: .08em; text-align: center; transform: rotate(-8deg); }
+    .media-caption { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 8px 4px; color: #675d52; font-size: 10px; }
     .media-caption span:last-child { font-family: var(--serif); letter-spacing: .13em; direction: ltr; }
-    .hero-index { position: absolute; bottom: 24px; inset-inline-start: max(28px, calc((100vw - var(--wrap)) / 2)); color: #9b8f81; font-family: var(--serif); font-size: 10px; letter-spacing: .18em; direction: ltr; }
-    .section { padding-block: clamp(70px, 8.5vw, 118px); }
-    .lookbook { background: var(--paper-light); }
-    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 34px; margin-bottom: 41px; }
-    .section-heading h2 { max-width: 660px; margin: 0; font-size: clamp(31px, 4vw, 52px); font-weight: 400; line-height: 1.35; }
-    .section-heading p { max-width: 380px; margin: 0; color: #71675d; font-size: 14px; line-height: 1.9; }
-    .look-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 18px; align-items: stretch; }
-    .look-card { position: relative; min-width: 0; min-height: 390px; overflow: hidden; background: var(--olive-deep); }
-    .look-card img { width: 100%; height: 100%; min-height: 390px; object-fit: cover; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
-    .look-card:hover img { transform: scale(1.025); }
-    .look-card::after { position: absolute; inset: 35% 0 0; content: ""; background: linear-gradient(180deg, transparent, rgba(20,22,18,.72)); pointer-events: none; }
-    .look-caption { position: absolute; z-index: 1; inset-inline: 26px; bottom: 24px; color: white; }
-    .look-caption small { display: block; margin-bottom: 8px; color: #e7d1a7; font-size: 10px; letter-spacing: .17em; direction: ltr; }
-    .look-caption h3 { margin: 0; font-size: clamp(22px, 2.5vw, 32px); font-weight: 400; }
-    .look-side { display: grid; grid-template-rows: 1fr auto; gap: 18px; min-width: 0; }
-    .look-floral { position: relative; min-height: 250px; overflow: hidden; background: #e8e0d1; }
-    .look-floral img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 43%; }
-    .look-floral::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, rgba(243,238,229,.93), rgba(243,238,229,.48) 52%, transparent); }
-    .floral-copy { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: center; width: min(55%, 300px); min-height: 100%; padding: 26px; }
-    .floral-copy small { color: var(--rose-deep); font-size: 10px; font-weight: 700; letter-spacing: .14em; direction: ltr; }
-    .floral-copy h3 { margin: 10px 0 7px; color: var(--olive-deep); font-family: var(--serif); font-size: clamp(21px, 2.2vw, 28px); font-weight: 400; line-height: 1.3; }
-    .floral-copy p { margin: 0; color: #655c51; font-size: 12px; line-height: 1.8; }
-    .look-note { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 120px; border: 1px solid rgba(56,67,49,.2); padding: 22px 24px; background: var(--paper); }
-    .look-note p { max-width: 420px; margin: 0; color: #655c51; font-size: 13px; line-height: 1.85; }
-    .text-link { flex: 0 0 auto; color: var(--rose-deep); font-size: 12px; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 4px; }
-    .image-disclaimer { margin: 17px 0 0; color: #8a7e70; font-size: 10px; }
-    .concierge { position: relative; overflow: hidden; color: var(--paper-light); background: var(--olive-deep); }
-    .concierge::before { position: absolute; top: -130px; inset-inline-end: -110px; width: 360px; aspect-ratio: 1; border: 1px solid rgba(185,154,99,.25); border-radius: 50%; content: ""; box-shadow: 0 0 0 22px rgba(185,154,99,.035), 0 0 0 48px rgba(185,154,99,.03); pointer-events: none; }
-    .concierge-grid { position: relative; display: grid; grid-template-columns: .7fr 1.3fr; align-items: start; gap: clamp(36px, 7vw, 92px); }
-    .concierge-copy { padding-top: 16px; }
-    .concierge-copy .eyebrow { color: #d9bd89; }
-    .concierge-copy h2 { max-width: 460px; margin: 0 0 16px; font-size: clamp(32px, 4vw, 52px); font-weight: 400; line-height: 1.35; }
-    .concierge-copy p { max-width: 440px; margin: 0; color: rgba(251,248,241,.73); font-size: 14px; line-height: 1.95; }
-    .concierge-points { display: grid; gap: 11px; margin: 27px 0 0; padding: 0; list-style: none; color: rgba(251,248,241,.78); font-size: 12px; }
-    .concierge-points li { display: flex; align-items: flex-start; gap: 10px; }
-    .concierge-points li::before { width: 6px; height: 6px; flex: 0 0 6px; margin-top: 8px; border-radius: 50%; background: var(--gold); content: ""; }
-    .planner-card { min-width: 0; border: 1px solid rgba(251,248,241,.24); padding: clamp(22px, 3.5vw, 42px); color: var(--ink); background: var(--paper-light); box-shadow: 0 24px 70px rgba(0,0,0,.17); }
-    .planner-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 25px; padding-bottom: 17px; border-bottom: 1px solid var(--line); }
-    .planner-top strong { font-size: 14px; font-weight: 700; }
-    .planner-top span { color: #887d70; font-family: var(--serif); font-size: 10px; letter-spacing: .14em; direction: ltr; }
-    .field-step { min-width: 0; margin: 0 0 23px; padding: 0; border: 0; }
-    .field-step legend { margin-bottom: 11px; color: #766b5f; font-size: 11px; font-weight: 700; }
-    .choice-row { display: flex; flex-wrap: wrap; gap: 8px; }
-    .choice { min-height: 40px; border: 1px solid rgba(33,29,24,.21); border-radius: 999px; padding: 0 14px; color: #4b433a; background: transparent; font-size: 12px; cursor: pointer; transition: color .18s ease, background .18s ease, border-color .18s ease; }
-    .choice:hover { border-color: var(--rose-deep); }
-    .choice[aria-pressed="true"] { border-color: var(--olive); color: var(--paper-light); background: var(--olive); }
-    .history-step[hidden] { display: none; }
-    .note-label { display: block; margin: 0 0 8px; color: #766b5f; font-size: 11px; font-weight: 700; }
-    .note-field { width: 100%; min-height: 76px; resize: vertical; border: 1px solid rgba(33,29,24,.2); border-radius: 2px; padding: 12px 14px; color: var(--ink); background: #fffdf9; font-size: 13px; }
-    .message-box { margin-top: 20px; border-inline-start: 2px solid var(--gold); padding: 15px 17px; background: #f1ebe0; }
-    .message-box-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; color: var(--rose-deep); font-size: 11px; font-weight: 700; }
-    .message-box-head span:last-child { font-family: var(--serif); font-size: 10px; font-weight: 400; letter-spacing: .12em; direction: ltr; }
-    .generated-message { min-height: 64px; margin: 9px 0 0; color: #383129; font-size: 13px; line-height: 1.9; white-space: pre-wrap; }
-    .planner-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 15px; }
-    .planner-actions .button { min-height: 43px; padding-inline: 15px; font-size: 12px; }
-    .button-gold { color: var(--ink); background: var(--gold); }
-    .button-outline-light { border-color: rgba(33,29,24,.3); color: var(--ink); background: transparent; }
-    .copy-status { min-height: 20px; margin: 9px 0 0; color: var(--rose-deep); font-size: 11px; }
-    .privacy-note { margin: 11px 0 0; color: #85796b; font-size: 10px; line-height: 1.7; }
+    .hero-index { position: absolute; bottom: 22px; inset-inline-start: max(28px, calc((100vw - var(--wrap)) / 2)); color: #9b8f81; font-family: var(--serif); font-size: 10px; letter-spacing: .18em; direction: ltr; }
+    .section { padding-block: clamp(68px, 8vw, 112px); }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 42px; }
+    .section-heading h2 { max-width: 680px; margin: 0; font-size: clamp(32px, 4vw, 52px); line-height: 1.3; }
+    .section-heading p { max-width: 390px; margin: 0; color: #71675d; font-size: 14px; line-height: 1.85; }
+
+    /* Scroll-led editorial story */
+    .scroll-story { background: var(--paper-light); }
+    .story-grid { display: grid; grid-template-columns: .95fr 1.05fr; align-items: start; gap: clamp(36px, 6vw, 82px); }
+    .story-stage { position: sticky; top: 22px; min-width: 0; height: min(690px, calc(100vh - 44px)); margin: 0; padding: 9px; border: 1px solid rgba(185,154,99,.58); background: #eee7db; }
+    .story-stage img { width: 100%; height: 100%; object-fit: cover; transition: opacity .3s ease, transform .6s ease; }
+    .story-stage.is-changing img { opacity: .35; transform: scale(.985); }
+    .story-stage::after { position: absolute; inset: 9px; content: ""; background: linear-gradient(180deg, transparent 60%, rgba(26,30,23,.58)); pointer-events: none; }
+    .story-stage figcaption { position: absolute; z-index: 2; inset-inline: 27px; bottom: 28px; display: flex; align-items: end; justify-content: space-between; gap: 16px; color: white; }
+    .story-stage figcaption strong { display: block; font-size: 21px; font-weight: 500; }
+    .story-stage figcaption small { color: #e8d3ac; font-family: var(--serif); font-size: 10px; letter-spacing: .14em; direction: ltr; }
+    .story-index { display: flex; align-items: center; gap: 8px; color: white; font-family: var(--serif); font-size: 11px; letter-spacing: .16em; direction: ltr; }
+    .story-index::before { display: inline-block; width: 23px; height: 1px; background: var(--gold); content: ""; }
+    .story-steps { position: relative; padding-top: 4px; }
+    .story-progress { position: absolute; top: 0; inset-inline-start: 0; width: 100%; height: 2px; background: rgba(56,67,49,.13); }
+    .story-progress span { display: block; width: 33%; height: 100%; background: var(--rose-deep); transition: width .35s ease; }
+    .story-step { display: flex; flex-direction: column; justify-content: center; min-height: 57vh; padding: clamp(34px, 5vw, 65px) 0; border-bottom: 1px solid var(--line); opacity: .45; transition: opacity .35s ease; }
+    .story-step.is-active { opacity: 1; }
+    .story-step-number { margin-bottom: 20px; color: var(--rose-deep); font-family: var(--serif); font-size: 12px; letter-spacing: .16em; direction: ltr; }
+    .story-step h3 { max-width: 520px; margin: 0; font-size: clamp(30px, 3.5vw, 46px); line-height: 1.35; }
+    .story-step p { max-width: 470px; margin: 16px 0 0; color: #70665b; font-size: 14px; line-height: 1.95; }
+    .story-step a { align-self: flex-start; margin-top: 22px; color: var(--rose-deep); font-size: 12px; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    .story-disclaimer { margin: 18px 0 0; color: #8a7e70; font-size: 10px; }
+
+    /* Interactive shade studio */
+    .studio { position: relative; overflow: hidden; color: var(--paper-light); background: var(--olive-deep); }
+    .studio::before { position: absolute; top: -140px; inset-inline-end: -110px; width: 370px; aspect-ratio: 1; border: 1px solid rgba(185,154,99,.24); border-radius: 50%; content: ""; box-shadow: 0 0 0 22px rgba(185,154,99,.035), 0 0 0 48px rgba(185,154,99,.03); pointer-events: none; }
+    .studio-head { position: relative; }
+    .studio-head .eyebrow { color: #d8bc87; }
+    .studio-head h2 { max-width: 800px; margin: 0; font-size: clamp(34px, 4.3vw, 56px); line-height: 1.32; }
+    .studio-head > p:last-child { max-width: 720px; margin: 14px 0 0; color: rgba(251,248,241,.72); font-size: 14px; line-height: 1.9; }
+    .studio-card { position: relative; display: grid; grid-template-columns: .93fr 1.07fr; gap: 18px; margin-top: 38px; }
+    .studio-controls { min-width: 0; border: 1px solid rgba(251,248,241,.24); padding: clamp(22px, 3.5vw, 40px); color: var(--ink); background: var(--paper-light); }
+    .studio-stage { position: relative; min-width: 0; overflow: hidden; min-height: 560px; border: 1px solid rgba(185,154,99,.66); background: #dfd6c9; }
+    .studio-visual { position: absolute; inset: 0; overflow: hidden; }
+    .color-canvas { width: 100%; height: 100%; object-fit: cover; }
+    .color-canvas[hidden], .service-preview[hidden], .color-panel[hidden], .service-panel[hidden], .history-row[hidden] { display: none !important; }
+    .target-window { position: absolute; inset: 0; overflow: hidden; clip-path: inset(0 0 0 50%); transition: clip-path .08s linear; }
+    .target-window canvas { width: 100%; height: 100%; object-fit: cover; }
+    .compare-rule { position: absolute; z-index: 2; top: 0; bottom: 0; left: 50%; width: 1px; background: rgba(255,255,255,.96); box-shadow: 0 0 0 1px rgba(28,28,22,.2); pointer-events: none; }
+    .compare-rule::after { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid rgba(255,255,255,.8); border-radius: 50%; color: var(--ink); background: var(--paper-light); content: "↔"; font-family: var(--serif); font-size: 16px; transform: translate(-50%,-50%); }
+    .stage-badge { position: absolute; z-index: 3; top: 16px; border: 1px solid rgba(255,255,255,.72); border-radius: 999px; padding: 5px 10px; color: white; background: rgba(30,35,27,.58); font-size: 10px; backdrop-filter: blur(7px); }
+    .stage-badge.before { left: 15px; }
+    .stage-badge.after { right: 15px; }
+    .stage-caption { position: absolute; z-index: 3; inset-inline: 17px; bottom: 17px; display: flex; align-items: end; justify-content: space-between; gap: 12px; color: white; text-shadow: 0 1px 10px rgba(0,0,0,.45); }
+    .stage-caption strong { display: block; font-size: 14px; }
+    .stage-caption span { font-size: 10px; }
+    .stage-caption small { direction: ltr; font-family: var(--serif); letter-spacing: .14em; }
+    .service-preview { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .preview-label { position: absolute; z-index: 2; left: 14px; bottom: 14px; border-radius: 999px; padding: 6px 10px; color: white; background: rgba(30,35,27,.63); font-size: 10px; }
+    .studio-topline { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 19px; padding-bottom: 15px; border-bottom: 1px solid var(--line); }
+    .studio-topline strong { font-size: 14px; }
+    .studio-topline span { color: #887d70; font-family: var(--serif); font-size: 9px; letter-spacing: .14em; direction: ltr; }
+    .field-label { display: block; margin: 0 0 9px; color: #766b5f; font-size: 11px; font-weight: 700; }
+    .service-tabs { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 6px; margin-bottom: 23px; }
+    .service-tab { min-height: 44px; border: 1px solid rgba(33,29,24,.18); border-radius: 2px; padding: 5px 7px; color: #50483e; background: transparent; font-size: 11px; cursor: pointer; transition: background .18s ease, color .18s ease, border-color .18s ease; }
+    .service-tab[aria-pressed="true"] { border-color: var(--olive); color: var(--paper-light); background: var(--olive); }
+    .field-block { margin: 0 0 19px; }
+    .field-block legend { margin-bottom: 10px; color: #766b5f; font-size: 11px; font-weight: 700; }
+    .current-swatches, .target-swatches, .goal-options { display: flex; flex-wrap: wrap; gap: 7px; }
+    .shade-choice { display: inline-flex; align-items: center; gap: 7px; min-height: 36px; border: 1px solid rgba(33,29,24,.19); border-radius: 999px; padding: 4px 10px 4px 7px; color: #50483e; background: transparent; font-size: 10px; cursor: pointer; transition: border-color .18s ease, background .18s ease; }
+    .shade-choice[aria-pressed="true"] { border-color: var(--rose-deep); background: #f1e9df; }
+    .shade-dot { width: 19px; height: 19px; flex: 0 0 19px; border: 1px solid rgba(0,0,0,.18); border-radius: 50%; background: var(--swatch); }
+    .range-line { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; margin: 12px 0 10px; }
+    .range-line input[type="range"] { width: 100%; accent-color: var(--rose-deep); direction: ltr; }
+    .range-hint { color: #887d70; font-size: 10px; white-space: nowrap; }
+    .color-readouts { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 12px; }
+    .color-readout { display: flex; align-items: center; gap: 9px; min-width: 0; border: 1px solid rgba(33,29,24,.13); padding: 9px; background: rgba(255,255,255,.53); }
+    .readout-chip { width: 27px; height: 27px; flex: 0 0 27px; border: 1px solid rgba(0,0,0,.17); border-radius: 50%; background: var(--swatch); }
+    .readout-copy { min-width: 0; }
+    .readout-copy small { display: block; color: #807569; font-size: 9px; }
+    .readout-copy strong { display: block; overflow: hidden; color: var(--ink); font-family: var(--serif); font-size: 11px; text-overflow: ellipsis; white-space: nowrap; direction: ltr; text-align: start; }
+    .compare-control { margin-top: 14px; }
+    .compare-control label { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 4px; color: #e0d7c9; font-size: 10px; }
+    .compare-control input[type="range"] { width: 100%; accent-color: var(--gold); direction: ltr; }
+    .history-select, .note-field { width: 100%; border: 1px solid rgba(33,29,24,.2); border-radius: 2px; padding: 10px 12px; color: var(--ink); background: #fffdf9; font-size: 12px; }
+    .note-field { min-height: 70px; resize: vertical; line-height: 1.7; }
+    .service-panel { margin-bottom: 20px; }
+    .service-panel .field-label { margin-bottom: 10px; }
+    .goal-options .choice { min-height: 36px; border: 1px solid rgba(33,29,24,.19); border-radius: 999px; padding: 0 12px; color: #50483e; background: transparent; font-size: 11px; cursor: pointer; }
+    .goal-options .choice[aria-pressed="true"] { border-color: var(--olive); color: white; background: var(--olive); }
+    .studio-disclaimer { margin: 13px 0 0; color: #877b6d; font-size: 10px; line-height: 1.7; }
+    .share-card { display: grid; grid-template-columns: 1.25fr .75fr; align-items: center; gap: 22px; margin-top: 16px; border: 1px solid rgba(251,248,241,.24); padding: 20px 23px; background: rgba(255,255,255,.055); }
+    .share-copy-label { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #e1c99e; font-size: 10px; }
+    .share-copy-label span:last-child { color: rgba(251,248,241,.5); font-family: var(--serif); font-size: 9px; letter-spacing: .15em; direction: ltr; }
+    .share-message { margin: 8px 0 0; color: rgba(251,248,241,.9); font-size: 12px; line-height: 1.8; }
+    .share-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+    .share-actions .button { min-height: 42px; padding-inline: 14px; font-size: 11px; }
+    .button-whatsapp { color: #123628; background: #b9d7c3; }
+    .button-copy { border-color: rgba(251,248,241,.34); color: var(--paper-light); background: transparent; }
+    .share-status { min-height: 18px; margin: 6px 0 0; color: #e1c99e; font-size: 10px; }
+    .share-footnote { grid-column: 1 / -1; margin: -4px 0 0; color: rgba(251,248,241,.54); font-size: 9px; }
+
+    /* Swipeable visual gallery */
+    .gallery { background: var(--paper); }
+    .gallery-heading { display: flex; align-items: end; justify-content: space-between; gap: 25px; margin-bottom: 26px; }
+    .gallery-heading h2 { margin: 0; font-size: clamp(31px, 4vw, 49px); }
+    .gallery-controls { display: flex; align-items: center; gap: 9px; color: #766b5f; font-family: var(--serif); font-size: 11px; direction: ltr; }
+    .gallery-control { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid rgba(33,29,24,.24); border-radius: 50%; color: var(--ink); background: transparent; cursor: pointer; }
+    .gallery-track { display: flex; gap: 14px; overflow-x: auto; padding: 4px 2px 17px; direction: ltr; scroll-snap-type: x mandatory; scrollbar-color: var(--gold) transparent; scrollbar-width: thin; }
+    .gallery-card { position: relative; flex: 0 0 clamp(250px, 31vw, 370px); min-width: 0; overflow: hidden; border: 1px solid rgba(33,29,24,.13); background: var(--paper-light); scroll-snap-align: start; direction: rtl; }
+    html[lang="en"] .gallery-card { direction: ltr; }
+    .gallery-card img { width: 100%; height: clamp(300px, 38vw, 440px); object-fit: cover; }
+    .gallery-card-body { padding: 15px 17px 17px; }
+    .gallery-card-body small { color: var(--rose-deep); font-family: var(--serif); font-size: 9px; letter-spacing: .12em; direction: ltr; }
+    .gallery-card h3 { margin: 5px 0 8px; font-size: 22px; line-height: 1.35; }
+    .gallery-card p { min-height: 41px; margin: 0; color: #71675d; font-size: 11px; line-height: 1.75; }
+    .gallery-pick { display: inline-flex; align-items: center; gap: 8px; margin-top: 13px; border: 0; padding: 0; color: var(--rose-deep); background: none; font-size: 11px; font-weight: 700; cursor: pointer; }
+    .gallery-note { margin: 11px 0 0; color: #8a7e70; font-size: 10px; }
+    .gallery-track::-webkit-scrollbar { height: 5px; }
+    .gallery-track::-webkit-scrollbar-thumb { border-radius: 10px; background: var(--gold); }
+    .gallery-track::-webkit-scrollbar-track { background: rgba(33,29,24,.08); }
+
     .contact { background: var(--paper-deep); }
     .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; align-items: stretch; gap: 18px; }
     .contact-intro { display: flex; flex-direction: column; justify-content: center; padding: 28px 0; }
-    .contact-intro h2 { max-width: 460px; margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 400; line-height: 1.35; }
-    .contact-intro p { max-width: 420px; margin: 16px 0 0; color: #675f56; font-size: 14px; line-height: 1.9; }
+    .contact-intro h2 { max-width: 470px; margin: 0; font-size: clamp(34px, 4vw, 49px); line-height: 1.35; }
+    .contact-intro p:not(.eyebrow) { max-width: 430px; margin: 15px 0 0; color: #675f56; font-size: 14px; line-height: 1.9; }
     .contact-card { border: 1px solid rgba(33,29,24,.16); padding: clamp(24px, 4vw, 40px); background: rgba(251,248,241,.75); }
-    .contact-card-label { margin: 0 0 11px; color: var(--rose-deep); font-size: 10px; font-weight: 700; letter-spacing: .12em; }
-    .contact-card h3 { margin: 0 0 8px; font-size: 22px; font-weight: 500; }
+    .contact-card-label { margin: 0 0 10px; color: var(--rose-deep); font-size: 10px; font-weight: 700; letter-spacing: .12em; }
+    .contact-card h3 { margin: 0 0 8px; font-family: var(--arabic-display); font-size: 23px; font-weight: 400; }
+    html[lang="en"] .contact-card h3 { font-family: Georgia, serif; }
     .contact-card > p:not(.contact-card-label) { max-width: 500px; margin: 0; color: #71665b; font-size: 13px; line-height: 1.9; }
-    .contact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 11px; margin-top: 22px; }
-    .phone-link { color: var(--olive-deep); font-family: var(--serif); font-size: 20px; letter-spacing: .05em; text-decoration: none; direction: ltr; unicode-bidi: isolate; }
-    .social-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; padding-top: 19px; border-top: 1px solid var(--line); }
-    .social-row a { border: 1px solid rgba(33,29,24,.21); border-radius: 999px; padding: 7px 12px; color: #554b40; font-size: 11px; text-decoration: none; transition: color .18s ease, background .18s ease; }
+    .contact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 21px; }
+    .phone-link { color: var(--olive-deep); font-family: var(--serif); font-size: 19px; letter-spacing: .05em; text-decoration: none; direction: ltr; unicode-bidi: isolate; }
+    .social-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line); }
+    .social-row a { border: 1px solid rgba(33,29,24,.21); border-radius: 999px; padding: 7px 12px; color: #554b40; font-size: 10px; text-decoration: none; transition: color .18s ease, background .18s ease; }
     .social-row a:hover { color: var(--paper-light); background: var(--olive); }
-    .footer { padding-block: 25px 31px; color: rgba(251,248,241,.78); background: var(--olive-deep); font-size: 10px; }
+    .footer { padding-block: 24px 30px; color: rgba(251,248,241,.78); background: var(--olive-deep); font-size: 10px; }
     .footer-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
-    .footer-note { max-width: 780px; margin: 0; line-height: 1.8; }
+    .footer-note { max-width: 820px; margin: 0; line-height: 1.85; }
     .footer-mark { flex: 0 0 auto; color: #d5bd91; font-family: var(--serif); letter-spacing: .15em; direction: ltr; }
     .mobile-cta { display: none; }
+    [hidden] { display: none !important; }
     .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; clip-path: inset(50%); }
-    @media (max-width: 900px) {
-      .wrap { width: min(calc(100% - 42px), var(--wrap)); }
-      .header-inner { min-height: 76px; gap: 16px; }
+    @media (max-width: 980px) {
+      .wrap { width: min(calc(100% - 44px), var(--wrap)); }
+      .header-inner { min-height: 75px; gap: 14px; }
       .brand { min-width: 190px; }
-      .main-nav { gap: 18px; }
-      .main-nav a { font-size: 12px; }
+      .main-nav { gap: 16px; }
+      .main-nav a { font-size: 11px; }
       .header-link { display: none; }
-      .hero-grid { gap: 34px; grid-template-columns: 1fr .9fr; }
-      .hero-media img { height: 560px; }
-      .look-card, .look-card img { min-height: 330px; }
-      .concierge-grid { grid-template-columns: .75fr 1.25fr; gap: 34px; }
+      .hero-grid { grid-template-columns: 1fr .9fr; gap: 33px; }
+      .hero-media img { height: 550px; }
+      .story-step { min-height: 51vh; }
+      .studio-card { grid-template-columns: .9fr 1.1fr; }
+      .studio-stage { min-height: 520px; }
     }
-    @media (max-width: 680px) {
+    @media (max-width: 720px) {
       .wrap { width: calc(100% - 34px); }
       .concept-strip { min-height: 34px; padding-inline: 10px; font-size: 10px; }
-      .header-inner { min-height: 69px; }
+      .header-inner { min-height: 67px; }
       .brand { min-width: 0; gap: 9px; }
-      .brand-mark { width: 32px; height: 32px; font-size: 16px; }
-      .brand-name { font-size: 14px; }
+      .brand-mark { width: 31px; height: 31px; font-size: 16px; }
+      .brand-name { font-size: 13px; }
       .brand-sub { margin-top: 3px; font-size: 9px; }
-      .lang-toggle { min-width: 66px; min-height: 36px; padding-inline: 10px; }
+      .lang-toggle { min-width: 62px; min-height: 35px; padding-inline: 9px; font-size: 11px; }
       .main-nav { display: none; }
-      .mobile-nav { display: flex; align-items: center; gap: 22px; overflow-x: auto; padding: 0 17px 12px; white-space: nowrap; scrollbar-width: none; }
+      .mobile-nav { display: flex; align-items: center; gap: 21px; overflow-x: auto; padding: 0 17px 11px; white-space: nowrap; scrollbar-width: none; }
       .mobile-nav::-webkit-scrollbar { display: none; }
-      .mobile-nav a { color: #655c52; font-size: 12px; text-decoration: none; }
-      .hero { padding-block: 28px 58px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 30px; }
-      .hero-media { grid-row: 1; width: min(100%, 470px); justify-self: center; padding: 7px; }
-      .hero-media img { height: min(108vw, 455px); min-height: 350px; object-position: center 45%; }
-      .media-stamp { inset-inline-end: -11px; bottom: 48px; width: 76px; height: 76px; font-size: 10px; }
-      .media-caption { padding-top: 10px; font-size: 9px; }
+      .mobile-nav a { font-size: 11px; }
+      .hero { padding-block: 27px 55px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 25px; }
+      .hero-media { grid-row: 1; width: min(100%, 440px); justify-self: center; padding: 7px; }
+      .hero-media img { height: min(110vw, 440px); min-height: 330px; object-position: center 44%; }
+      .media-stamp { inset-inline-end: -10px; bottom: 47px; width: 75px; height: 75px; font-size: 9px; }
+      .media-caption { padding-top: 9px; font-size: 9px; }
       .hero-copy { grid-row: 2; padding-block: 0; }
-      .hero h1 { font-size: clamp(39px, 11vw, 60px); }
-      .hero-description { margin-top: 14px; font-size: 14px; }
-      .service-tags { margin-top: 19px; }
-      .hero-actions { margin-top: 22px; }
+      .hero h1 { font-size: clamp(40px, 10.6vw, 58px); }
+      .hero-description { margin-top: 13px; font-size: 14px; }
+      .service-tags { margin-top: 17px; }
+      .hero-actions { margin-top: 20px; }
       .hero-index { display: none; }
-      .section { padding-block: 67px; }
-      .section-heading { display: block; margin-bottom: 24px; }
-      .section-heading h2 { font-size: 31px; }
-      .section-heading p { margin-top: 11px; font-size: 13px; }
-      .look-grid { grid-template-columns: 1fr; gap: 12px; }
-      .look-card, .look-card img { min-height: 410px; }
-      .look-side { gap: 12px; }
-      .look-floral { min-height: 250px; }
-      .floral-copy { width: min(65%, 290px); padding: 20px; }
-      .look-note { display: block; padding: 19px; }
-      .look-note .text-link { display: inline-block; margin-top: 12px; }
-      .concierge-grid { grid-template-columns: 1fr; gap: 28px; }
-      .concierge-copy h2 { font-size: 34px; }
-      .concierge-copy p { font-size: 13px; }
-      .planner-card { padding: 20px 17px; }
-      .choice { min-height: 39px; padding-inline: 12px; font-size: 11px; }
-      .generated-message { font-size: 12px; }
-      .planner-actions .button { flex: 1 1 auto; }
-      .contact-grid { grid-template-columns: 1fr; gap: 16px; }
-      .contact-intro { padding: 0 0 8px; }
-      .contact-intro h2 { font-size: 33px; }
-      .contact-card { padding: 22px 19px; }
+      .section { padding-block: 65px; }
+      .section-heading { display: block; margin-bottom: 25px; }
+      .section-heading h2, .gallery-heading h2 { font-size: 31px; }
+      .section-heading p { margin-top: 10px; font-size: 13px; }
+      .story-grid { grid-template-columns: 1fr; gap: 0; }
+      .story-stage { z-index: 2; top: 8px; height: min(74vw, 320px); margin-bottom: 12px; }
+      .story-stage figcaption { inset-inline: 18px; bottom: 16px; }
+      .story-stage figcaption strong { font-size: 16px; }
+      .story-steps { padding-top: 0; }
+      .story-step { min-height: 37vh; padding: 42px 0; }
+      .story-step h3 { font-size: 31px; }
+      .studio-head h2 { font-size: 34px; }
+      .studio-head > p:last-child { font-size: 13px; }
+      .studio-card { grid-template-columns: 1fr; gap: 12px; margin-top: 25px; }
+      .studio-stage { grid-row: 1; min-height: 0; aspect-ratio: 4 / 5; }
+      .studio-controls { grid-row: 2; padding: 20px 16px; }
+      .service-tabs { gap: 5px; }
+      .service-tab { min-height: 42px; padding-inline: 4px; font-size: 10px; }
+      .share-card { grid-template-columns: 1fr; gap: 13px; padding: 17px; }
+      .share-actions { justify-content: flex-start; }
+      .share-actions .button { flex: 1 1 auto; }
+      .share-footnote { grid-column: auto; }
+      .gallery-heading { align-items: end; }
+      .gallery-card { flex-basis: min(82vw, 330px); }
+      .gallery-card img { height: 340px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 14px; }
+      .contact-intro { padding: 0 0 9px; }
+      .contact-intro h2 { font-size: 34px; }
+      .contact-card { padding: 22px 18px; }
       .footer-inner { display: block; }
-      .footer-mark { display: block; margin-top: 15px; }
-      .mobile-cta { position: fixed; z-index: 6; inset-inline: 12px; bottom: max(12px, env(safe-area-inset-bottom)); display: flex; justify-content: center; visibility: hidden; opacity: 0; pointer-events: none; transform: translateY(120%); transition: opacity .22s ease, transform .22s ease, visibility .22s ease; }
+      .footer-mark { display: block; margin-top: 14px; }
+      .mobile-cta { position: fixed; z-index: 8; inset-inline: 12px; bottom: max(12px, env(safe-area-inset-bottom)); display: flex; justify-content: center; visibility: hidden; opacity: 0; pointer-events: none; transform: translateY(120%); transition: opacity .22s ease, transform .22s ease, visibility .22s ease; }
       .mobile-cta.is-visible { visibility: visible; opacity: 1; pointer-events: auto; transform: translateY(0); }
-      .mobile-cta a { width: min(100%, 440px); min-height: 48px; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; color: var(--paper-light); background: var(--olive); box-shadow: 0 10px 28px rgba(33,29,24,.24); font-size: 12px; text-decoration: none; }
+      .mobile-cta a { width: min(100%, 440px); min-height: 48px; border: 1px solid rgba(255,255,255,.24); border-radius: 999px; color: var(--paper-light); background: var(--olive); box-shadow: 0 10px 28px rgba(33,29,24,.24); font-size: 12px; text-decoration: none; }
       body { padding-bottom: 65px; }
     }
     @media (max-width: 360px) {
       .wrap { width: calc(100% - 30px); }
-      .brand-mark { width: 29px; height: 29px; }
-      .brand-name { font-size: 12px; }
+      .brand-mark { width: 28px; height: 28px; }
+      .brand-name { font-size: 11px; }
       .brand-sub { font-size: 8px; }
-      .lang-toggle { min-width: 60px; font-size: 11px; }
-      .hero-media img { min-height: 320px; }
+      .lang-toggle { min-width: 57px; font-size: 10px; }
+      .hero-media img { min-height: 315px; }
       .hero h1 { font-size: 38px; }
-      .hero-actions .button { min-height: 46px; padding-inline: 15px; font-size: 12px; }
+      .button { padding-inline: 14px; font-size: 12px; }
+      .color-readouts { grid-template-columns: 1fr 1fr; gap: 6px; }
+      .readout-copy strong { font-size: 10px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
     }
   </style>
 </head>
@@ -246,245 +345,337 @@
         <span><span class="brand-name">LE PAON ROYAL</span><span class="brand-sub" data-i18n="brandSub">جدة · صبغات وعناية ومكياج</span></span>
       </a>
       <nav class="main-nav" aria-label="التنقل الرئيسي" data-i18n-aria="primaryNavAria">
-        <a href="#lookbook" data-i18n="navLooks">اللمسات</a>
-        <a href="#planner" data-i18n="navPlanner">جهّزي استفسارك</a>
-        <a href="#contact" data-i18n="navContact">الموقع والتواصل</a>
+        <a href="#story" data-i18n="navStory">القصة</a><a href="#studio" data-i18n="navStudio">استوديو اللون</a><a href="#gallery" data-i18n="navGallery">المعرض</a><a href="#contact" data-i18n="navContact">التواصل</a>
       </nav>
-      <div class="header-actions">
-        <button class="lang-toggle" id="languageToggle" type="button" aria-label="Switch to English" data-i18n="languageToggle">English</button>
-        <a class="header-link" href="#planner" data-i18n="headerCta">ابدئي من هنا</a>
-      </div>
+      <div class="header-actions"><button class="lang-toggle" id="languageToggle" type="button" aria-label="Switch to English" data-i18n="languageToggle">English</button><a class="header-link" href="#studio" data-i18n="headerCta">ابدئي التجربة</a></div>
     </div>
-    <nav class="mobile-nav" aria-label="التنقل للجوال" data-i18n-aria="mobileNavAria">
-      <a href="#lookbook" data-i18n="navLooks">اللمسات</a>
-      <a href="#planner" data-i18n="navPlanner">جهّزي استفسارك</a>
-      <a href="#contact" data-i18n="navContact">الموقع والتواصل</a>
-    </nav>
+    <nav class="mobile-nav" aria-label="التنقل للجوال" data-i18n-aria="mobileNavAria"><a href="#story" data-i18n="navStory">القصة</a><a href="#studio" data-i18n="navStudio">استوديو اللون</a><a href="#gallery" data-i18n="navGallery">المعرض</a><a href="#contact" data-i18n="navContact">التواصل</a></nav>
   </header>
 
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow" data-i18n="heroKicker">جدة · ملاحظات جمالية</p>
+          <p class="eyebrow" data-i18n="heroKicker">جدة · صبغات وعناية ومكياج</p>
           <p class="hero-wordmark">LE PAON ROYAL</p>
-          <h1 id="hero-title"><span data-i18n="heroLineOne">من اللون،</span><span data-i18n="heroLineTwo">إلى اللمسة الأخيرة.</span></h1>
-          <p class="hero-description" data-i18n="heroDescription">صفحة مفاهيمية تجمع مسارات الصبغات والعناية والمكياج، وتساعدكِ على تحويل فكرتكِ إلى استفسار واضح قبل التواصل.</p>
-          <ul class="service-tags" aria-label="فئات الخدمات" data-i18n-aria="serviceTagsAria">
-            <li data-i18n="tagColor">صبغات</li><li data-i18n="tagCare">عناية بالشعر</li><li data-i18n="tagMakeup">مكياج</li>
-          </ul>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#planner"><span data-i18n="heroPrimary">جهّزي استفساركِ</span><span aria-hidden="true">↙</span></a>
-            <a class="button button-secondary" href="#lookbook"><span data-i18n="heroSecondary">استلهمي اللمسات</span><span aria-hidden="true">↙</span></a>
-          </div>
-          <p class="hero-note" data-i18n="heroNote">المحتوى البصري هنا تصوّري، وليس عرضاً لأعمال فعلية للصالون.</p>
+          <h1 id="hero-title"><span data-i18n="heroLineOne">اختاري اللون،</span><span data-i18n="heroLineTwo">وشوفي الفرق.</span></h1>
+          <p class="hero-description" data-i18n="heroDescription">جرّبي درجات قريبة من ذوقكِ على موديل افتراضي، قارني بين الأساس والنتيجة، ثم جهّزي استفساركِ مع تفاصيل الاختيار.</p>
+          <ul class="service-tags" aria-label="فئات الخدمات" data-i18n-aria="serviceTagsAria"><li data-i18n="tagColor">صبغات</li><li data-i18n="tagCare">عناية بالشعر</li><li data-i18n="tagStyle">تسريحات</li><li data-i18n="tagMakeup">مكياج</li></ul>
+          <div class="hero-actions"><a class="button button-primary" href="#studio"><span data-i18n="heroPrimary">افتحي استوديو اللون</span><span aria-hidden="true">↙</span></a><a class="button button-secondary" href="#story"><span data-i18n="heroSecondary">تابعي القصة</span><span aria-hidden="true">↙</span></a></div>
+          <p class="hero-note" data-i18n="heroNote">المعاينة تقريبية على صورة مولّدة؛ النتيجة الفعلية تعتمد على لون شعركِ وتاريخه وتقييم المختصة.</p>
         </div>
-        <figure class="hero-media">
-          <img src="assets/editorial-hair-hero.jpg" alt="شعر بني داكن لامع في صورة توضيحية مولّدة، لا تمثل عميلة أو عملاً للصالون" data-i18n-alt="heroAlt" fetchpriority="high">
-          <span class="media-stamp" aria-hidden="true" data-i18n="mediaStamp">COLOR · STORY</span>
-          <figcaption class="media-caption"><span data-i18n="heroImageCaption">إلهام لدرجات البني الغني · صورة توضيحية</span><span>01 / HAIR</span></figcaption>
-        </figure>
+        <figure class="hero-media"><img src="assets/editorial-hair-hero.jpg" alt="شعر بني داكن لامع في صورة تحريرية مولّدة للتصور" data-i18n-alt="heroAlt" fetchpriority="high"><span class="media-stamp" aria-hidden="true" data-i18n="mediaStamp">HAIR<br>STORY</span><figcaption class="media-caption"><span data-i18n="heroImageCaption">إلهام لدرجات البني الغني · صورة توضيحية</span><span>01 / HAIR</span></figcaption></figure>
       </div>
       <span class="hero-index">JEDDAH · 01</span>
     </section>
 
-    <section class="section lookbook" id="lookbook" aria-labelledby="lookbook-title">
+    <section class="section scroll-story" id="story" aria-labelledby="story-title">
       <div class="wrap">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow" data-i18n="lookbookEyebrow">لوحة إلهام · 01</p>
-            <h2 id="lookbook-title" data-i18n="lookbookTitle">جمالٌ يتكوّن من تفاصيله.</h2>
+        <div class="section-heading"><div><p class="eyebrow" data-i18n="storyEyebrow">رحلة الإطلالة · 01</p><h2 id="story-title" data-i18n="storyTitle">من أول لمعة، إلى آخر تفصيل.</h2></div><p data-i18n="storyIntro">مرّري الصفحة؛ تتبدّل الصورة مع كل خطوة من القصة. هذا التصوّر مستلهم من درجات الشعر اللامعة وتسريحات المناسبات الظاهرة في محتوى الصالون العام، مع لوحة نباتية مقترحة لهذا التصميم.</p></div>
+        <div class="story-grid">
+          <figure class="story-stage" id="storyStage"><img id="storyImage" src="assets/color-model.jpg" alt="موديل افتراضي بشعر كستنائي، صورة تصورية وليست من أعمال الصالون" data-i18n-alt="storyColorAlt" loading="lazy"><figcaption><div><strong id="storyCaption" data-i18n="storyColorCaption">درجة غنيّة، بلمعة هادئة</strong><small id="storySubcaption" data-i18n="storyColorSub">صورة تصورية · ليست نتيجة فعلية</small></div><span class="story-index" id="storyIndex">01 / 03</span></figcaption></figure>
+          <div class="story-steps"><div class="story-progress" aria-hidden="true"><span id="storyProgress"></span></div>
+            <article class="story-step is-active" data-story-step="color" aria-current="step"><span class="story-step-number">01 / COLOR</span><h3 data-i18n="storyColorTitle">ابدئي بدرجة تشبه ذوقكِ.</h3><p data-i18n="storyColorText">من البني الغني إلى الكستنائي الدافئ؛ اختاري إحساس اللون أولاً، من دون وعد بنتيجة مطابقة على كل شعر.</p><a href="#studio" data-i18n="storyColorLink">جرّبي الدرجة على الموديل ←</a></article>
+            <article class="story-step" data-story-step="style"><span class="story-step-number">02 / STYLING</span><h3 data-i18n="storyStyleTitle">ثم اختاري شكل اللمسة.</h3><p data-i18n="storyStyleText">تسريحة مناسبة، تموّجات ناعمة أو رفعة عروس؛ كوّني فكرة واضحة قبل أن تسألي عن التفاصيل.</p><a href="#gallery" data-i18n="storyStyleLink">تصفّحي الإلهام ←</a></article>
+            <article class="story-step" data-story-step="finish"><span class="story-step-number">03 / FINISH</span><h3 data-i18n="storyFinishTitle">واجمعي اختياراتكِ في رسالة.</h3><p data-i18n="storyFinishText">الصبغة، تاريخ الشعر، أو الستايل الذي تفضّلينه—كلها تُرتّب في استفسار قصير جاهز للنسخ أو فتح WhatsApp.</p><a href="#studio" data-i18n="storyFinishLink">جهّزي الاستفسار ←</a></article>
           </div>
-          <p data-i18n="lookbookIntro">اتجاه بصري مستلهم من محتوى الصالون العام: درجات شعر بنية لامعة، تسريحات مناسبات، ولمسات نباتية هادئة.</p>
         </div>
-        <div class="look-grid">
-          <figure class="look-card">
-            <img src="assets/editorial-bridal.jpg" alt="تسريحة مرفوعة أنيقة في صورة توضيحية مولّدة، وليست من أعمال الصالون" data-i18n-alt="bridalAlt" loading="lazy">
-            <figcaption class="look-caption"><small>02 / THE FINISH</small><h3 data-i18n="bridalLookTitle">تفاصيل تكمّل الإطلالة</h3></figcaption>
+        <p class="story-disclaimer" data-i18n="storyDisclaimer">الصور في القصة تصوّرات مولّدة وليست صور عميلات أو أعمال حقيقية للصالون.</p>
+      </div>
+    </section>
+
+    <section class="section studio" id="studio" aria-labelledby="studio-title">
+      <div class="wrap">
+        <header class="studio-head"><p class="eyebrow" data-i18n="studioEyebrow">استوديو الاختيار · 02</p><h2 id="studio-title" data-i18n="studioTitle">قارني الدرجة قبل أن تكتبي.</h2><p data-i18n="studioIntro">اختاري الخدمة، ثم بدّلي اللون على الموديل لحظياً. سيظهر كود الدرجة الحالية والمطلوبة في الاستفسار الذي تجهزينه.</p></header>
+        <div class="studio-card">
+          <div class="studio-controls">
+            <div class="studio-topline"><strong data-i18n="studioCardTitle">اختياركِ، خطوة بخطوة</strong><span>LIVE COLOR / 01</span></div>
+            <p class="field-label" data-i18n="serviceLabel">ما الذي تريدين استشارته؟</p>
+            <div class="service-tabs" id="serviceTabs" role="group" aria-label="اختيار نوع الخدمة" data-i18n-aria="serviceTabsAria">
+              <button class="service-tab" type="button" data-service="color" aria-pressed="true" data-i18n="serviceColor">صبغات</button><button class="service-tab" type="button" data-service="care" aria-pressed="false" data-i18n="serviceCare">عناية</button><button class="service-tab" type="button" data-service="style" aria-pressed="false" data-i18n="serviceStyle">تسريحات</button><button class="service-tab" type="button" data-service="makeup" aria-pressed="false" data-i18n="serviceMakeup">مكياج</button>
+            </div>
+            <div class="color-panel" id="colorPanel">
+              <fieldset class="field-block"><legend data-i18n="currentColorLabel">01 / أقرب لون لشعركِ الآن</legend><div class="current-swatches" id="currentPalette" role="group" aria-label="لوحة الألوان الحالية" data-i18n-aria="currentPaletteAria"></div></fieldset>
+              <fieldset class="field-block"><legend data-i18n="targetColorLabel">02 / الدرجة التي ترغبين بها</legend><div class="range-line"><input id="colorRange" type="range" min="0" max="7" step="1" value="2" dir="ltr" aria-label="اختيار درجة اللون" data-i18n-aria="colorRangeAria"><span class="range-hint" data-i18n="dragHint">اسحبي المؤشر</span></div><div class="target-swatches" id="targetPalette" role="group" aria-label="لوحة الدرجة المطلوبة" data-i18n-aria="targetPaletteAria"></div><div class="color-readouts"><div class="color-readout"><span class="readout-chip" id="baseChip"></span><span class="readout-copy"><small data-i18n="baseCodeLabel">اللون الحالي · تقريبي</small><strong id="baseHex">#49352A</strong></span></div><div class="color-readout"><span class="readout-chip" id="targetChip"></span><span class="readout-copy"><small data-i18n="targetCodeLabel">اللون المطلوب</small><strong id="targetHex">#684632</strong></span></div></div></fieldset>
+              <fieldset class="field-block history-row"><label class="field-label" for="hairHistory" data-i18n="historyLabel">03 / هل سبق صبغ الشعر أو تفتيحه؟</label><select id="hairHistory" class="history-select"><option value="unsure" data-i18n="historyUnsure">غير متأكدة</option><option value="natural" data-i18n="historyNatural">شعر طبيعي</option><option value="colored" data-i18n="historyColored">صبغة سابقة</option><option value="lightened" data-i18n="historyLightened">تفتيح سابق</option></select></fieldset>
+            </div>
+            <div class="service-panel" id="servicePanel" hidden><p class="field-label" data-i18n="goalLabel">اختاري الفكرة الأقرب لكِ</p><div class="goal-options" id="goalOptions" role="group" aria-label="اختيار الفكرة" data-i18n-aria="goalOptionsAria"></div></div>
+            <div class="field-block"><label class="field-label" for="extraNote" data-i18n="noteLabel">ملاحظة إضافية (اختيارية)</label><textarea id="extraNote" class="note-field" maxlength="120" data-i18n-placeholder="notePlaceholder" placeholder="مثلاً: أفضّل درجة دافئة وناعمة."></textarea></div>
+            <p class="studio-disclaimer" data-i18n="studioDisclaimer">الموديل والصورة مولّدان، والمعاينة اللونية تقريبية فقط. اللون النهائي يتأثر بالدرجة الحالية وتاريخ الشعر وتقييم المختصة.</p>
+          </div>
+          <figure class="studio-stage" id="studioStage">
+            <div class="studio-visual" id="colorVisual"><canvas id="currentCanvas" class="color-canvas" role="img" aria-label="الموديل بلون الشعر الحالي التقريبي"></canvas><div class="target-window" id="targetWindow"><canvas id="targetCanvas" aria-hidden="true"></canvas></div><div class="compare-rule" id="compareRule" aria-hidden="true"></div><span class="stage-badge before" data-i18n="beforeBadge">الحالي</span><span class="stage-badge after" data-i18n="afterBadge">المطلوب</span><div class="stage-caption"><div><strong data-i18n="modelLabel">موديل افتراضي</strong><span data-i18n="modelDisclosure">صورة مولّدة · المعاينة تقريبية</span></div><small>COLOR / LAB</small></div></div>
+            <img class="service-preview" id="servicePreview" src="assets/editorial-hair-hero.jpg" alt="تصوّر بصري مولّد" data-i18n-alt="servicePreviewAlt" hidden>
+            <figcaption class="preview-label" id="previewLabel" data-i18n="previewLabel">معاينة تقريبية — ليست ضماناً للنتيجة</figcaption>
           </figure>
-          <div class="look-side">
-            <article class="look-floral">
-              <img src="assets/floral-campaign.jpg" alt="تصميم نباتي توضيحي بألوان عاجية وخضراء ووردية" data-i18n-alt="floralAlt" loading="lazy">
-              <div class="floral-copy"><small>03 / BOTANICAL NOTE</small><h3 data-i18n="floralTitle">لمسة زهرية هادئة</h3><p data-i18n="floralText">تفصيل تحريري يوازن بين العاجي، الأخضر العميق، والوردي الهادئ.</p></div>
-            </article>
-            <div class="look-note"><p data-i18n="lookNote">هل لديكِ فكرة عن لون أو مناسبة؟ رتّبيها في استفسار قصير قبل التواصل، من دون تخمين سعر أو موعد.</p><a class="text-link" href="#planner" data-i18n="lookLink">ابدئي الاستفسار ←</a></div>
-          </div>
         </div>
-        <p class="image-disclaimer" data-i18n="imageDisclaimer">جميع الصور في هذه الصفحة تصوّرات مولّدة لمعاينة الاتجاه الفني، وليست صوراً من أعمال LE PAON ROYAL أو عميلاته.</p>
-      </div>
-    </section>
-
-    <section class="section concierge" id="planner" aria-labelledby="planner-title">
-      <div class="wrap concierge-grid">
-        <div class="concierge-copy">
-          <p class="eyebrow" data-i18n="plannerEyebrow">مساعد الاستفسار · 02</p>
-          <h2 id="planner-title" data-i18n="plannerTitle">حوّلي الفكرة إلى سؤال واضح.</h2>
-          <p data-i18n="plannerIntro">اختاري الخدمة والنتيجة التي في بالكِ، ثم أضيفي ما يفيد عن تاريخ شعركِ. سيجهّز لكِ الموقع نصاً للنسخ إلى القناة التي تختارينها؛ لا يرسل بيانات أو يحجز موعداً.</p>
-          <ul class="concierge-points"><li data-i18n="plannerPointOne">يساعدكِ على وصف ما تريدين استشارته.</li><li data-i18n="plannerPointTwo">يضمّن تاريخ اللون فقط إن اخترتِ الصبغات.</li><li data-i18n="plannerPointThree">لا تُحفظ البيانات ولا تغادر جهازكِ.</li></ul>
-        </div>
-        <div class="planner-card">
-          <div class="planner-top"><strong data-i18n="plannerCardTitle">ملاحظة الاستشارة</strong><span>CONSULTATION NOTE · 01</span></div>
-          <fieldset class="field-step"><legend data-i18n="stepService">01 / ما الخدمة التي تريدين الاستفسار عنها؟</legend><div class="choice-row" id="serviceChoices" role="group" aria-label="اختيار الخدمة"></div></fieldset>
-          <fieldset class="field-step"><legend data-i18n="stepGoal">02 / ما النتيجة أو الفكرة؟</legend><div class="choice-row" id="goalChoices" role="group" aria-label="اختيار الفكرة"></div></fieldset>
-          <fieldset class="field-step history-step" id="historyFieldset"><legend data-i18n="stepHistory">03 / ما تاريخ شعركِ؟</legend><div class="choice-row" id="historyChoices" role="group" aria-label="تاريخ الشعر"></div></fieldset>
-          <div class="field-step"><label class="note-label" for="extraNote" data-i18n="stepNote">ملاحظة إضافية (اختيارية)</label><textarea id="extraNote" class="note-field" maxlength="120" data-i18n-placeholder="notePlaceholder" placeholder="مثلاً: أبحث عن درجة طبيعية، ولا أعرف اسم اللون."></textarea></div>
-          <div class="message-box"><div class="message-box-head"><span data-i18n="messageHeading">استفساركِ الجاهز</span><span>READY TO COPY</span></div><p id="generatedMessage" class="generated-message" aria-live="polite"></p></div>
-          <div class="planner-actions"><button class="button button-gold" id="copyMessage" type="button"><span data-i18n="copyCta">نسخ الاستفسار</span><span aria-hidden="true">⧉</span></button><a class="button button-outline-light" href="https://www.instagram.com/lepaon.royal.sa/" target="_blank" rel="noopener noreferrer"><span data-i18n="instagramCta">فتح Instagram</span><span aria-hidden="true">↗</span></a></div>
-          <p id="copyStatus" class="copy-status" role="status" aria-live="polite"></p>
-          <p class="privacy-note" data-i18n="plannerDisclaimer">النص يبقى على جهازكِ إلى أن تنسخيه بنفسكِ. الأسعار، التوافر، ونوع الخدمة تُؤكَّد مباشرةً مع الصالون.</p>
+        <div class="compare-control" id="compareControl"><label for="compareRange"><span data-i18n="compareLabel">اسحبي للمقارنة بين قبل وبعد</span><span id="compareValue">50%</span></label><input id="compareRange" type="range" min="0" max="100" value="50" dir="ltr" aria-label="مقارنة الصورة قبل وبعد" data-i18n-aria="compareAria"></div>
+        <div class="share-card">
+          <div><div class="share-copy-label"><span data-i18n="shareTitle">استفساركِ الجاهز</span><span>READY TO SHARE</span></div><p class="share-message" id="shareMessage" aria-live="polite"></p><p class="share-status" id="shareStatus" role="status" aria-live="polite"></p></div>
+          <div class="share-actions"><button class="button button-copy" id="copyRequest" type="button"><span data-i18n="copyCta">نسخ الاستفسار</span><span aria-hidden="true">⧉</span></button><a class="button button-whatsapp" id="whatsappLink" href="https://wa.me/966559509160" target="_blank" rel="noopener noreferrer"><span data-i18n="whatsappCta">متابعة عبر WhatsApp</span><span aria-hidden="true">↗</span></a><a class="button button-secondary" href="https://www.instagram.com/lepaon.royal.sa/" target="_blank" rel="noopener noreferrer"><span data-i18n="instagramCta">فتح Instagram</span><span aria-hidden="true">↗</span></a></div>
+          <p class="share-footnote" data-i18n="shareDisclaimer">يفتح WhatsApp برسالة مهيّأة؛ لا تُرسل تلقائياً. لا تحفظ الصفحة اختياراتكِ ولا ترسلها إلا عند اختياركِ للقناة.</p>
         </div>
       </div>
     </section>
 
-    <section class="section contact" id="contact" aria-labelledby="contact-title">
+    <section class="section gallery" id="gallery" aria-labelledby="galleryTitle">
+      <div class="wrap">
+        <div class="gallery-heading"><div><p class="eyebrow" data-i18n="galleryEyebrow">معرض الإلهام · 03</p><h2 id="galleryTitle" data-i18n="galleryTitle">اختاري نقطة البداية.</h2></div><div class="gallery-controls"><button class="gallery-control" type="button" id="galleryPrev" aria-label="Previous inspiration" data-i18n-aria="galleryPrevAria">←</button><span id="galleryCounter">01 / 04</span><button class="gallery-control" type="button" id="galleryNext" aria-label="Next inspiration" data-i18n-aria="galleryNextAria">→</button></div></div>
+        <div class="gallery-track" id="galleryTrack" role="region" aria-roledescription="carousel" aria-label="معرض صور توضيحية" data-i18n-aria="galleryAria">
+          <article class="gallery-card" data-slide="0"><img src="assets/color-model.jpg" alt="موديل افتراضي بشعر بني للتجربة اللونية" data-i18n-alt="galleryColorAlt" loading="lazy"><div class="gallery-card-body"><small>01 / COLOR</small><h3 data-i18n="galleryColorTitle">درجات اللون</h3><p data-i18n="galleryColorText">اختاري الأساس والدرجة المطلوبة، ثم قارني على الموديل.</p><button class="gallery-pick" type="button" data-gallery-pick="color"><span data-i18n="galleryColorAction">جرّبي اللون</span><span aria-hidden="true">↙</span></button></div></article>
+          <article class="gallery-card" data-slide="1"><img src="assets/editorial-bridal.jpg" alt="تسريحة عروس في صورة مولّدة للتوضيح" data-i18n-alt="galleryStyleAlt" loading="lazy"><div class="gallery-card-body"><small>02 / STYLING</small><h3 data-i18n="galleryStyleTitle">تسريحات المناسبات</h3><p data-i18n="galleryStyleText">استلهمي رفعة ناعمة أو تسريحة عروس، ثم أضيفيها لاستفساركِ.</p><button class="gallery-pick" type="button" data-gallery-pick="style"><span data-i18n="galleryStyleAction">اختاري تسريحة</span><span aria-hidden="true">↙</span></button></div></article>
+          <article class="gallery-card" data-slide="2"><img src="assets/editorial-makeup.jpg" alt="إطلالة مكياج مولّدة للتوضيح وليست عميلة فعلية" data-i18n-alt="galleryMakeupAlt" loading="lazy"><div class="gallery-card-body"><small>03 / MAKEUP</small><h3 data-i18n="galleryMakeupTitle">إطلالة المكياج</h3><p data-i18n="galleryMakeupText">حدّدي الطابع الذي يناسب المناسبة قبل التواصل مع الفريق.</p><button class="gallery-pick" type="button" data-gallery-pick="makeup"><span data-i18n="galleryMakeupAction">اختاري إطلالة</span><span aria-hidden="true">↙</span></button></div></article>
+          <article class="gallery-card" data-slide="3"><img src="assets/editorial-hair-hero.jpg" alt="شعر لامع في صورة تحريرية مولّدة للتوضيح" data-i18n-alt="galleryCareAlt" loading="lazy"><div class="gallery-card-body"><small>04 / HAIR CARE</small><h3 data-i18n="galleryCareTitle">العناية بالشعر</h3><p data-i18n="galleryCareText">اختاري سؤالاً عن اللمعان أو العناية لتضمينه في الرسالة.</p><button class="gallery-pick" type="button" data-gallery-pick="care"><span data-i18n="galleryCareAction">استفسري عن العناية</span><span aria-hidden="true">↙</span></button></div></article>
+        </div>
+        <p class="gallery-note" data-i18n="galleryNote">كل الصور في المعرض تصوّرات مولّدة وليست من أعمال الصالون؛ اختياراتكِ تنتقل إلى الاستفسار فقط.</p>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact" aria-labelledby="contactTitle">
       <div class="wrap contact-grid">
-        <div class="contact-intro"><p class="eyebrow" data-i18n="contactEyebrow">الموقع والتواصل · 03</p><h2 id="contact-title" data-i18n="contactTitle">كل التفاصيل، من قنوات الصالون.</h2><p data-i18n="contactIntro">استخدمي المعلومات المنشورة للتحقق من الموقع والخدمات قبل الزيارة. لا تعرض هذه الصفحة ساعات عمل أو أسعاراً غير مؤكدة.</p></div>
-        <div class="contact-card">
-          <p class="contact-card-label" data-i18n="locationLabel">الموقع</p><h3 data-i18n="locationTitle">جدة · حي الخالدية</h3><p data-i18n="locationText">الحي كما يظهر في الملف العام؛ تحققي من الاتجاهات عبر رابط الخريطة.</p>
-          <div class="contact-actions"><a class="button button-primary" href="https://yandex.com/maps/org/le_paon_royal/35914022729/" target="_blank" rel="noopener noreferrer"><span data-i18n="mapCta">افتحي الخريطة</span><span aria-hidden="true">↗</span></a><a class="phone-link" href="tel:+966559509160" dir="ltr">+966 55 950 9160</a></div>
-          <div class="social-row" aria-label="القنوات الاجتماعية المنشورة" data-i18n-aria="socialAria"><a href="https://www.instagram.com/lepaon.royal.sa/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.tiktok.com/@le.paon.royal.salon" target="_blank" rel="noopener noreferrer">TikTok ↗</a><a href="https://www.snapchat.com/@lepaon.royal" target="_blank" rel="noopener noreferrer">Snapchat ↗</a></div>
-        </div>
+        <div class="contact-intro"><p class="eyebrow" data-i18n="contactEyebrow">الموقع والتواصل · 04</p><h2 id="contactTitle" data-i18n="contactTitle">من الاستفسار، إلى القناة المناسبة.</h2><p data-i18n="contactIntro">اختاري WhatsApp للرسالة المهيّأة، Instagram للمراسلة، أو الاتصال الهاتفي. تأكدي من التفاصيل والأسعار والمواعيد مباشرةً مع الصالون.</p></div>
+        <div class="contact-card"><p class="contact-card-label" data-i18n="locationLabel">الموقع</p><h3 data-i18n="locationName">جدة · حي الخالدية</h3><p data-i18n="locationText">الحي كما يظهر في الملف العام؛ تحققي من الاتجاهات عبر رابط الخريطة.</p><div class="contact-actions"><a class="button button-primary" href="https://yandex.com/maps/org/le_paon_royal/35914022729/" target="_blank" rel="noopener noreferrer"><span data-i18n="mapCta">افتحي الخريطة</span><span aria-hidden="true">↗</span></a><a class="phone-link" href="tel:+966559509160" dir="ltr">+966 55 950 9160</a></div><div class="social-row" aria-label="القنوات الاجتماعية المنشورة" data-i18n-aria="socialAria"><a href="https://wa.me/966559509160" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a href="https://www.instagram.com/lepaon.royal.sa/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.tiktok.com/@le.paon.royal.salon" target="_blank" rel="noopener noreferrer">TikTok ↗</a><a href="https://www.snapchat.com/@lepaon.royal" target="_blank" rel="noopener noreferrer">Snapchat ↗</a></div></div>
       </div>
     </section>
   </main>
-
-  <footer class="footer"><div class="wrap footer-inner"><p class="footer-note" data-i18n="footerNote">هذا تصوّر مستقل من SitePine، غير رسمي ولا يمثّل LE PAON ROYAL. الصور مولّدة للتوضيح ولا تمثّل أعمالاً فعلية أو عميلات الصالون. فئات الخدمات والقنوات مقتبسة من الملفات العامة، ويجب تأكيد التفاصيل مباشرةً مع الصالون.</p><span class="footer-mark">LE PAON ROYAL · CONCEPT</span></div></footer>
-  <div class="mobile-cta"><a class="button" href="#planner"><span data-i18n="mobileCta">جهّزي استفساركِ</span><span aria-hidden="true">↙</span></a></div>
+  <footer class="footer"><div class="wrap footer-inner"><p class="footer-note" data-i18n="footerNote">هذا تصوّر مستقل من SitePine، غير رسمي ولا يمثّل LE PAON ROYAL. صور الموديلات والنتائج مولّدة للتوضيح ولا تمثّل عميلات أو أعمالاً فعلية للصالون. أداة اللون تقريبية وليست استشارة مهنية أو ضماناً للنتيجة؛ أكّدي السعر والتوافر والملاءمة مباشرةً مع الصالون.</p><span class="footer-mark">LE PAON ROYAL · CONCEPT</span></div></footer>
+  <div class="mobile-cta"><a class="button" href="#studio"><span data-i18n="mobileCta">جرّبي اللون الآن</span><span aria-hidden="true">↙</span></a></div>
 
   <script>
     (() => {
       const copy = {
         ar: {
-          title: 'LE PAON ROYAL — جدة', description: 'تصوّر مستقل من SitePine لصفحة LE PAON ROYAL، مستلهم من المواد العامة ومصمم لتسهيل تجهيز الاستفسار.',
-          conceptNote: 'تصوّر مستقل من SitePine — غير رسمي ولا يمثّل الصالون', brandSub: 'جدة · صبغات وعناية ومكياج', navLooks: 'اللمسات', navPlanner: 'جهّزي استفسارك', navContact: 'الموقع والتواصل', languageToggle: 'English', languageAria: 'التبديل إلى الإنجليزية', headerCta: 'ابدئي من هنا',
-          heroKicker: 'جدة · ملاحظات جمالية', heroLineOne: 'من اللون،', heroLineTwo: 'إلى اللمسة الأخيرة.', heroDescription: 'صفحة مفاهيمية تجمع مسارات الصبغات والعناية والمكياج، وتساعدكِ على تحويل فكرتكِ إلى استفسار واضح قبل التواصل.', tagColor: 'صبغات', tagCare: 'عناية بالشعر', tagMakeup: 'مكياج', heroPrimary: 'جهّزي استفساركِ', heroSecondary: 'استلهمي اللمسات', heroNote: 'المحتوى البصري هنا تصوّري، وليس عرضاً لأعمال فعلية للصالون.', mediaStamp: 'COLOR · STORY', heroImageCaption: 'إلهام لدرجات البني الغني · صورة توضيحية', heroAlt: 'شعر بني داكن لامع في صورة توضيحية مولّدة، لا تمثل عميلة أو عملاً للصالون',
-          lookbookEyebrow: 'لوحة إلهام · 01', lookbookTitle: 'جمالٌ يتكوّن من تفاصيله.', lookbookIntro: 'اتجاه بصري مستلهم من محتوى الصالون العام: درجات شعر بنية لامعة، تسريحات مناسبات، ولمسات نباتية هادئة.', bridalAlt: 'تسريحة مرفوعة أنيقة في صورة توضيحية مولّدة، وليست من أعمال الصالون', bridalLookTitle: 'تفاصيل تكمّل الإطلالة', floralAlt: 'تصميم نباتي توضيحي بألوان عاجية وخضراء ووردية', floralTitle: 'لمسة زهرية هادئة', floralText: 'تفصيل تحريري يوازن بين العاجي، الأخضر العميق، والوردي الهادئ.', lookNote: 'هل لديكِ فكرة عن لون أو مناسبة؟ رتّبيها في استفسار قصير قبل التواصل، من دون تخمين سعر أو موعد.', lookLink: 'ابدئي الاستفسار ←', imageDisclaimer: 'جميع الصور في هذه الصفحة تصوّرات مولّدة لمعاينة الاتجاه الفني، وليست صوراً من أعمال LE PAON ROYAL أو عميلاته.',
-          plannerEyebrow: 'مساعد الاستفسار · 02', plannerTitle: 'حوّلي الفكرة إلى سؤال واضح.', plannerIntro: 'اختاري الخدمة والنتيجة التي في بالكِ، ثم أضيفي ما يفيد عن تاريخ شعركِ. سيجهّز لكِ الموقع نصاً للنسخ إلى القناة التي تختارينها؛ لا يرسل بيانات أو يحجز موعداً.', plannerPointOne: 'يساعدكِ على وصف ما تريدين استشارته.', plannerPointTwo: 'يضمّن تاريخ اللون فقط إن اخترتِ الصبغات.', plannerPointThree: 'لا تُحفظ البيانات ولا تغادر جهازكِ.', plannerCardTitle: 'ملاحظة الاستشارة', stepService: '01 / ما الخدمة التي تريدين الاستفسار عنها؟', stepGoal: '02 / ما النتيجة أو الفكرة؟', stepHistory: '03 / ما تاريخ شعركِ؟', stepNote: 'ملاحظة إضافية (اختيارية)', notePlaceholder: 'مثلاً: أبحث عن درجة طبيعية، ولا أعرف اسم اللون.', messageHeading: 'استفساركِ الجاهز', copyCta: 'نسخ الاستفسار', instagramCta: 'فتح Instagram', plannerDisclaimer: 'النص يبقى على جهازكِ إلى أن تنسخيه بنفسكِ. الأسعار، التوافر، ونوع الخدمة تُؤكَّد مباشرةً مع الصالون.',
-          contactEyebrow: 'الموقع والتواصل · 03', contactTitle: 'كل التفاصيل، من قنوات الصالون.', contactIntro: 'استخدمي المعلومات المنشورة للتحقق من الموقع والخدمات قبل الزيارة. لا تعرض هذه الصفحة ساعات عمل أو أسعاراً غير مؤكدة.', locationLabel: 'الموقع', locationTitle: 'جدة · حي الخالدية', locationText: 'الحي كما يظهر في الملف العام؛ تحققي من الاتجاهات عبر رابط الخريطة.', mapCta: 'افتحي الخريطة', socialAria: 'القنوات الاجتماعية المنشورة', primaryNavAria: 'التنقل الرئيسي', mobileNavAria: 'التنقل للجوال', serviceTagsAria: 'فئات الخدمات', footerNote: 'هذا تصوّر مستقل من SitePine، غير رسمي ولا يمثّل LE PAON ROYAL. الصور مولّدة للتوضيح ولا تمثّل أعمالاً فعلية أو عميلات الصالون. فئات الخدمات والقنوات مقتبسة من الملفات العامة، ويجب تأكيد التفاصيل مباشرةً مع الصالون.', mobileCta: 'جهّزي استفساركِ',
-          serviceNames: { color: 'الصبغات', care: 'العناية بالشعر', makeup: 'المكياج' },
-          goalOptions: { color: [{id:'rich',label:'بني غني / لولايت'}, {id:'soft',label:'لمسات لونية ناعمة'}, {id:'advice',label:'أحتاج استشارة'}], care: [{id:'routine',label:'روتين مناسب لشعري'}, {id:'shine',label:'اللمعان والنعومة'}, {id:'advice',label:'أحتاج توجيهاً'}], makeup: [{id:'occasion',label:'إطلالة لمناسبة'}, {id:'bridal',label:'إطلالة عروس'}, {id:'advice',label:'أحتاج استشارة'}] },
-          historyOptions: [{id:'previous',label:'صبغة سابقة'}, {id:'lightened',label:'تفتيح سابق'}, {id:'natural',label:'شعر طبيعي'}, {id:'unsure',label:'غير متأكدة'}],
-          copied: 'نُسخ الاستفسار إلى الحافظة.', copyFailed: 'تعذّر النسخ تلقائياً؛ حدّدي النص وانسخيه يدوياً.', serviceLegend: 'اختيار الخدمة', goalLegend: 'اختيار الفكرة', historyLegend: 'تاريخ الشعر',
-          introMessage: 'السلام عليكم، أرغب بالاستفسار عن', hairHistoryLead: 'تاريخ شعري:', askEnd: 'هل يمكن توضيح ما يلزم قبل الزيارة؟', noteLead: 'ملاحظة:',
+          title:'LE PAON ROYAL — جدة', description:'تصوّر مستقل من SitePine لصفحة LE PAON ROYAL، مع تجربة تفاعلية تقريبية لاختيار درجة اللون وتجهيز الاستفسار.',
+          conceptNote:'تصوّر مستقل من SitePine — غير رسمي ولا يمثّل الصالون', brandSub:'جدة · صبغات وعناية ومكياج', navStory:'القصة', navStudio:'استوديو اللون', navGallery:'المعرض', navContact:'التواصل', languageToggle:'English', languageAria:'التبديل إلى الإنجليزية', headerCta:'ابدئي التجربة', primaryNavAria:'التنقل الرئيسي', mobileNavAria:'التنقل للجوال', serviceTagsAria:'فئات الخدمات',
+          heroKicker:'جدة · صبغات وعناية ومكياج', heroLineOne:'اختاري اللون،', heroLineTwo:'وشوفي الفرق.', heroDescription:'جرّبي درجات قريبة من ذوقكِ على موديل افتراضي، قارني بين الأساس والنتيجة، ثم جهّزي استفساركِ مع تفاصيل الاختيار.', tagColor:'صبغات', tagCare:'عناية بالشعر', tagStyle:'تسريحات', tagMakeup:'مكياج', heroPrimary:'افتحي استوديو اللون', heroSecondary:'تابعي القصة', heroNote:'المعاينة تقريبية على صورة مولّدة؛ النتيجة الفعلية تعتمد على لون شعركِ وتاريخه وتقييم المختصة.', heroAlt:'شعر بني داكن لامع في صورة تحريرية مولّدة للتصور', mediaStamp:'HAIR · STORY', heroImageCaption:'إلهام لدرجات البني الغني · صورة توضيحية',
+          storyEyebrow:'رحلة الإطلالة · 01', storyTitle:'من أول لمعة، إلى آخر تفصيل.', storyIntro:'مرّري الصفحة؛ تتبدّل الصورة مع كل خطوة من القصة. هذا التصوّر مستلهم من درجات الشعر اللامعة وتسريحات المناسبات الظاهرة في محتوى الصالون العام، مع لوحة نباتية مقترحة لهذا التصميم.', storyColorCaption:'درجة غنيّة، بلمعة هادئة', storyColorSub:'صورة تصورية · ليست نتيجة فعلية', storyColorAlt:'موديل افتراضي بشعر كستنائي، صورة تصورية وليست من أعمال الصالون', storyColorTitle:'ابدئي بدرجة تشبه ذوقكِ.', storyColorText:'من البني الغني إلى الكستنائي الدافئ؛ اختاري إحساس اللون أولاً، من دون وعد بنتيجة مطابقة على كل شعر.', storyColorLink:'جرّبي الدرجة على الموديل ←', storyStyleCaption:'تفاصيل تصنع الإطلالة', storyStyleSub:'تسريحة مناسبات · صورة تصورية', storyStyleAlt:'تسريحة مرفوعة أنيقة على موديل افتراضي، وليست من أعمال الصالون', storyStyleTitle:'ثم اختاري شكل اللمسة.', storyStyleText:'تسريحة مناسبة، تموّجات ناعمة أو رفعة عروس؛ كوّني فكرة واضحة قبل أن تسألي عن التفاصيل.', storyStyleLink:'تصفّحي الإلهام ←', storyFinishCaption:'لمسات هادئة، تكتمل بها الصورة', storyFinishSub:'اتجاه بصري · صورة تصورية', storyFinishAlt:'لوحة زهرية توضيحية بألوان عاجية وزيتونية ووردية', storyFinishTitle:'واجمعي اختياراتكِ في رسالة.', storyFinishText:'الصبغة، تاريخ الشعر، أو الستايل الذي تفضّلينه—كلها تُرتّب في استفسار قصير جاهز للنسخ أو فتح WhatsApp.', storyFinishLink:'جهّزي الاستفسار ←', storyDisclaimer:'الصور في القصة تصوّرات مولّدة وليست صور عميلات أو أعمال حقيقية للصالون.',
+          studioEyebrow:'استوديو الاختيار · 02', studioTitle:'قارني الدرجة قبل أن تكتبي.', studioIntro:'اختاري الخدمة، ثم بدّلي اللون على الموديل لحظياً. سيظهر كود الدرجة الحالية والمطلوبة في الاستفسار الذي تجهزينه.', studioCardTitle:'اختياركِ، خطوة بخطوة', serviceLabel:'ما الذي تريدين استشارته؟', serviceTabsAria:'اختيار نوع الخدمة', serviceColor:'صبغات', serviceCare:'عناية', serviceStyle:'تسريحات', serviceMakeup:'مكياج', currentColorLabel:'01 / أقرب لون لشعركِ الآن', targetColorLabel:'02 / الدرجة التي ترغبين بها', currentPaletteAria:'خيارات لون الشعر الحالي', targetPaletteAria:'خيارات الدرجة المطلوبة', goalOptionsAria:'اختيار فكرة الخدمة', colorRangeAria:'اختيار الدرجة المطلوبة', dragHint:'اسحبي المؤشر', baseCodeLabel:'اللون الحالي · تقريبي', targetCodeLabel:'اللون المطلوب', historyLabel:'03 / هل سبق صبغ الشعر أو تفتيحه؟', historyUnsure:'غير متأكدة', historyNatural:'شعر طبيعي', historyColored:'صبغة سابقة', historyLightened:'تفتيح سابق', goalLabel:'اختاري الفكرة الأقرب لكِ', noteLabel:'ملاحظة إضافية (اختيارية)', notePlaceholder:'مثلاً: أفضّل درجة دافئة وناعمة.', studioDisclaimer:'الموديل والصورة مولّدان، والمعاينة اللونية تقريبية فقط. اللون النهائي يتأثر بالدرجة الحالية وتاريخ الشعر وتقييم المختصة.', beforeBadge:'الأساس', afterBadge:'المطلوب', modelLabel:'موديل افتراضي', modelDisclosure:'صورة مولّدة · المعاينة تقريبية', previewLabel:'معاينة تقريبية — ليست ضماناً للنتيجة', compareLabel:'اسحبي للمقارنة بين الأساس والدرجة المطلوبة', compareAria:'مقارنة الدرجة الحالية والمطلوبة', shareTitle:'استفساركِ الجاهز', copyCta:'نسخ الاستفسار', whatsappCta:'متابعة عبر WhatsApp', instagramCta:'فتح Instagram', copiedStatus:'نُسخ الاستفسار إلى الحافظة.', copyFailed:'تعذّر النسخ تلقائياً؛ حدّدي النص وانسخيه يدوياً.', shareDisclaimer:'يفتح WhatsApp برسالة مهيّأة؛ لا تُرسل تلقائياً. لا تحفظ الصفحة اختياراتكِ ولا ترسلها إلا عند اختياركِ للقناة.',
+          galleryEyebrow:'معرض الإلهام · 03', galleryTitle:'اختاري نقطة البداية.', galleryPrevAria:'الصورة السابقة', galleryNextAria:'الصورة التالية', galleryAria:'معرض صور توضيحية', galleryColorAlt:'موديل افتراضي بشعر بني للتجربة اللونية', galleryColorTitle:'درجات اللون', galleryColorText:'اختاري الأساس والدرجة المطلوبة، ثم قارني على الموديل.', galleryColorAction:'جرّبي اللون', galleryStyleAlt:'تسريحة عروس في صورة مولّدة للتوضيح', galleryStyleTitle:'تسريحات المناسبات', galleryStyleText:'استلهمي رفعة ناعمة أو تسريحة عروس، ثم أضيفيها لاستفساركِ.', galleryStyleAction:'اختاري تسريحة', galleryMakeupAlt:'إطلالة مكياج مولّدة للتوضيح وليست عميلة فعلية', galleryMakeupTitle:'إطلالة المكياج', galleryMakeupText:'حدّدي الطابع الذي يناسب المناسبة قبل التواصل مع الفريق.', galleryMakeupAction:'اختاري إطلالة', galleryCareAlt:'شعر لامع في صورة تحريرية مولّدة للتوضيح', galleryCareTitle:'العناية بالشعر', galleryCareText:'اختاري سؤالاً عن اللمعان أو العناية لتضمينه في الرسالة.', galleryCareAction:'استفسري عن العناية', galleryNote:'كل الصور في المعرض تصوّرات مولّدة وليست من أعمال الصالون؛ اختياراتكِ تنتقل إلى الاستفسار فقط.',
+          contactEyebrow:'الموقع والتواصل · 04', contactTitle:'من الاستفسار، إلى القناة المناسبة.', contactIntro:'اختاري WhatsApp للرسالة المهيّأة، Instagram للمراسلة، أو الاتصال الهاتفي. تأكدي من التفاصيل والأسعار والمواعيد مباشرةً مع الصالون.', locationLabel:'الموقع', locationName:'جدة · حي الخالدية', locationText:'الحي كما يظهر في الملف العام؛ تحققي من الاتجاهات عبر رابط الخريطة.', mapCta:'افتحي الخريطة', socialAria:'القنوات الاجتماعية المنشورة', footerNote:'هذا تصوّر مستقل من SitePine، غير رسمي ولا يمثّل LE PAON ROYAL. صور الموديلات والنتائج مولّدة للتوضيح ولا تمثّل عميلات أو أعمالاً فعلية للصالون. أداة اللون تقريبية وليست استشارة مهنية أو ضماناً للنتيجة؛ أكّدي السعر والتوافر والملاءمة مباشرةً مع الصالون.', mobileCta:'جرّبي اللون الآن',
+          serviceNames:{color:'صبغات الشعر',care:'العناية بالشعر',style:'تسريحات المناسبات',makeup:'المكياج'},
+          shades:[{id:'espresso',name:'إسبريسو',hex:'#30211B'},{id:'dark',name:'شوكولاتة داكنة',hex:'#49352A'},{id:'rich',name:'بني غني',hex:'#684632'},{id:'chestnut',name:'كستنائي',hex:'#80543B'},{id:'hazel',name:'بندقي',hex:'#9A6848'},{id:'caramel',name:'كراميل',hex:'#B37A4C'},{id:'honey',name:'عسلي',hex:'#C99D63'},{id:'auburn',name:'عنابي دافئ',hex:'#713C3D'}],
+          baseOptions:[{id:'espresso',name:'داكن جداً',hex:'#30211B'},{id:'dark',name:'بني داكن',hex:'#49352A'},{id:'chestnut',name:'كستنائي',hex:'#80543B'},{id:'caramel',name:'بني فاتح',hex:'#A87550'}],
+          goals:{care:[{id:'shine',label:'لمعان ونعومة'},{id:'routine',label:'روتين عناية'},{id:'advice',label:'أحتاج استشارة'}],style:[{id:'bridal',label:'تسريحة عروس'},{id:'waves',label:'تموّجات ناعمة'},{id:'updo',label:'رفعة كلاسيكية'}],makeup:[{id:'soft',label:'مكياج هادئ'},{id:'occasion',label:'مكياج مناسبة'},{id:'bridal',label:'إطلالة عروس'}]},
+          messages:{hello:'السلام عليكم، أرغب بالاستفسار عن', current:'لون شعري الحالي التقريبي', target:'والدرجة التي أطمح إليها', history:'تاريخ شعري', note:'ملاحظة', ask:'هل يمكن إرشادي لما يناسب شعري وما يلزم قبل الزيارة؟'},
+          goalsLegend:{care:'العناية بالشعر',style:'التسريحة',makeup:'طابع المكياج'}, storySceneNames:{color:'درجة غنيّة، بلمعة هادئة',style:'تفاصيل تصنع الإطلالة',finish:'لمسات هادئة، تكتمل بها الصورة'}, storySceneSubs:{color:'صورة تصورية · ليست نتيجة فعلية',style:'تسريحة مناسبات · صورة تصورية',finish:'اتجاه بصري · صورة تصورية'}
         },
         en: {
-          title: 'LE PAON ROYAL — Jeddah · SitePine concept', description: 'An independent SitePine concept for LE PAON ROYAL, inspired by public salon content and designed to make enquiries easier to prepare.',
-          conceptNote: 'Independent SitePine concept — unofficial and not salon-endorsed', brandSub: 'Jeddah · colour, care & makeup', navLooks: 'The details', navPlanner: 'Prepare an enquiry', navContact: 'Location & contact', languageToggle: 'العربية', languageAria: 'Switch to Arabic', headerCta: 'Start here',
-          heroKicker: 'Jeddah · beauty notes', heroLineOne: 'From colour,', heroLineTwo: 'to the finishing touch.', heroDescription: 'A concept page bringing together colour, hair care and makeup pathways, then helping visitors turn an idea into a clear enquiry before they get in touch.', tagColor: 'Colour', tagCare: 'Hair care', tagMakeup: 'Makeup', heroPrimary: 'Prepare an enquiry', heroSecondary: 'Explore the details', heroNote: 'The visuals here are conceptual, not examples of the salon’s actual work.', mediaStamp: 'COLOR · STORY', heroImageCaption: 'Rich brunette inspiration · illustrative image', heroAlt: 'Glossy deep-brown hair in a generated concept image, not a salon client or salon work',
-          lookbookEyebrow: 'Moodboard · 01', lookbookTitle: 'Beauty, composed from details.', lookbookIntro: 'A visual direction informed by the salon’s public content: glossy brunette tones, occasion styling, and quiet botanical accents.', bridalAlt: 'An elegant updo in a generated concept image, not work by the salon', bridalLookTitle: 'Details that finish a look', floralAlt: 'Illustrative botanical artwork in ivory, olive and rose', floralTitle: 'A quiet floral note', floralText: 'An editorial balance of warm ivory, deep olive and muted rose.', lookNote: 'Have a colour or occasion in mind? Shape it into a short enquiry before getting in touch—without guessing a price or appointment time.', lookLink: 'Build an enquiry →', imageDisclaimer: 'All images on this page are generated concept visuals, not photos of LE PAON ROYAL’s work or clients.',
-          plannerEyebrow: 'Enquiry assistant · 02', plannerTitle: 'Turn an idea into a clear question.', plannerIntro: 'Choose a service and the result you have in mind, then add any useful hair history. The page prepares text for you to copy into your chosen channel; it sends no data and books no appointment.', plannerPointOne: 'Helps you describe what you want to ask about.', plannerPointTwo: 'Includes colour history only when colour is selected.', plannerPointThree: 'Nothing is saved or leaves your device.', plannerCardTitle: 'Consultation note', stepService: '01 / What would you like to ask about?', stepGoal: '02 / What result or idea do you have in mind?', stepHistory: '03 / What is your hair history?', stepNote: 'Optional additional note', notePlaceholder: 'For example: I am looking for a natural tone, but do not know the colour name.', messageHeading: 'Your enquiry, ready to copy', copyCta: 'Copy enquiry', instagramCta: 'Open Instagram', plannerDisclaimer: 'The text stays on your device until you copy it. Confirm pricing, availability and service details directly with the salon.',
-          contactEyebrow: 'Location & contact · 03', contactTitle: 'Details from the salon’s public channels.', contactIntro: 'Use the published information to check the location and services before visiting. No unverified hours or prices are shown here.', locationLabel: 'Location', locationTitle: 'Jeddah · Al Khalidiyah', locationText: 'District as shown on the public profile; confirm directions using the map link.', mapCta: 'Open map', socialAria: 'Published social channels', primaryNavAria: 'Primary navigation', mobileNavAria: 'Mobile navigation', serviceTagsAria: 'Service categories', footerNote: 'This is an independent SitePine concept, not an official or salon-endorsed page. Generated visuals do not show real salon work or clients. Service categories and contact channels are drawn from public profiles; confirm details directly with the salon.', mobileCta: 'Prepare an enquiry',
-          serviceNames: { color: 'hair colour', care: 'hair care', makeup: 'makeup' },
-          goalOptions: { color: [{id:'rich',label:'Rich brunette / lowlights'}, {id:'soft',label:'Soft colour accents'}, {id:'advice',label:'I need advice'}], care: [{id:'routine',label:'A routine for my hair'}, {id:'shine',label:'Shine / smoothness'}, {id:'advice',label:'I need guidance'}], makeup: [{id:'occasion',label:'A look for an event'}, {id:'bridal',label:'A bridal look'}, {id:'advice',label:'I need advice'}] },
-          historyOptions: [{id:'previous',label:'Previously coloured'}, {id:'lightened',label:'Previously lightened'}, {id:'natural',label:'Natural / not coloured'}, {id:'unsure',label:'Not sure'}],
-          copied: 'Enquiry copied to clipboard.', copyFailed: 'Automatic copy is unavailable; select and copy the text manually.', serviceLegend: 'Choose a service', goalLegend: 'Choose an idea', historyLegend: 'Hair history',
-          introMessage: 'Hello, I would like to ask about', hairHistoryLead: 'Hair history:', askEnd: 'Could you advise what I should confirm before visiting?', noteLead: 'Note:',
+          title:'LE PAON ROYAL — Jeddah · SitePine concept', description:'An independent SitePine concept for LE PAON ROYAL, with a live illustrative shade preview and a copy-ready salon enquiry.',
+          conceptNote:'Independent SitePine concept — unofficial, not salon-endorsed', brandSub:'Jeddah · colour, care & makeup', navStory:'The story', navStudio:'Colour studio', navGallery:'Gallery', navContact:'Contact', languageToggle:'العربية', languageAria:'Switch to Arabic', headerCta:'Try the studio', primaryNavAria:'Primary navigation', mobileNavAria:'Mobile navigation', serviceTagsAria:'Service categories',
+          heroKicker:'Jeddah · colour, care & makeup', heroLineOne:'Choose a shade,', heroLineTwo:'see the shift.', heroDescription:'Try shades on a generated model, compare the starting tone with your target, then prepare an enquiry with your choices included.', tagColor:'Colour', tagCare:'Hair care', tagStyle:'Styling', tagMakeup:'Makeup', heroPrimary:'Open the colour studio', heroSecondary:'Follow the story', heroNote:'A visual approximation on a generated model; real results depend on your hair, its history and a stylist’s assessment.', heroAlt:'Glossy dark-brown hair in a generated editorial concept image', mediaStamp:'HAIR · STORY', heroImageCaption:'Rich brunette inspiration · illustrative image',
+          storyEyebrow:'A look, step by step · 01', storyTitle:'From the first shine to the final detail.', storyIntro:'Scroll through the story; the image changes with each step. This concept draws on glossy brunette tones and occasion styling in the salon’s public content, with a proposed botanical palette for this page.', storyColorCaption:'A rich shade, softly luminous', storyColorSub:'Concept image · not an actual result', storyColorAlt:'Generated model with chestnut hair; not salon work', storyColorTitle:'Start with a shade that feels like you.', storyColorText:'From rich brunette to warm chestnut, choose a direction first—without promising the same result on every head of hair.', storyColorLink:'Try a shade on the model →', storyStyleCaption:'Details make the look', storyStyleSub:'Occasion styling · concept image', storyStyleAlt:'Elegant updo on a generated model, not work by the salon', storyStyleTitle:'Then choose the finishing touch.', storyStyleText:'An occasion style, soft waves or a bridal updo: shape the idea before asking for the details.', storyStyleLink:'Browse inspiration →', storyFinishCaption:'Quiet details, the final note', storyFinishSub:'Visual direction · concept image', storyFinishAlt:'Botanical concept artwork in ivory, olive and rose', storyFinishTitle:'Bring your choices into one message.', storyFinishText:'Colour, hair history or a style you like—organize them into a short enquiry ready to copy or open in WhatsApp.', storyFinishLink:'Prepare your enquiry →', storyDisclaimer:'All story visuals are generated concepts, not salon clients or actual work.',
+          studioEyebrow:'Interactive selector · 02', studioTitle:'Compare shades before you write.', studioIntro:'Choose a service, then change the model’s shade live. The starting and target colour codes appear in the enquiry you prepare.', studioCardTitle:'Your choices, step by step', serviceLabel:'What would you like to ask about?', serviceTabsAria:'Choose a service', serviceColor:'Colour', serviceCare:'Care', serviceStyle:'Styling', serviceMakeup:'Makeup', currentColorLabel:'01 / Closest to your current shade', targetColorLabel:'02 / The shade you want', currentPaletteAria:'Current shade options', targetPaletteAria:'Target shade options', goalOptionsAria:'Choose a service inspiration', colorRangeAria:'Choose the target shade', dragHint:'Drag to explore', baseCodeLabel:'Current shade · approximate', targetCodeLabel:'Target shade', historyLabel:'03 / Has your hair been coloured or lightened?', historyUnsure:'Not sure', historyNatural:'Natural / not coloured', historyColored:'Previously coloured', historyLightened:'Previously lightened', goalLabel:'Choose the idea closest to yours', noteLabel:'Optional note', notePlaceholder:'For example: I prefer a warm, soft tone.', studioDisclaimer:'The model and images are generated; the shade preview is approximate. The actual result depends on your current colour, hair history and a stylist’s assessment.', beforeBadge:'Current', afterBadge:'Target', modelLabel:'Generated model', modelDisclosure:'Illustrative image · approximate preview', previewLabel:'Illustrative preview — no result is guaranteed', compareLabel:'Drag to compare current and target', compareAria:'Compare current and target shades', shareTitle:'Your enquiry, ready to share', copyCta:'Copy enquiry', whatsappCta:'Continue in WhatsApp', instagramCta:'Open Instagram', copiedStatus:'Enquiry copied to clipboard.', copyFailed:'Automatic copy is unavailable; select and copy the text manually.', shareDisclaimer:'WhatsApp opens with a prepared message; it is not sent automatically. Your choices stay on this device until you choose a channel.',
+          galleryEyebrow:'Inspiration gallery · 03', galleryTitle:'Choose a place to begin.', galleryPrevAria:'Previous image', galleryNextAria:'Next image', galleryAria:'Illustrative inspiration gallery', galleryColorAlt:'Generated brunette model for colour preview', galleryColorTitle:'Colour directions', galleryColorText:'Choose a starting shade and target, then compare them on the model.', galleryColorAction:'Try a shade', galleryStyleAlt:'Generated bridal hairstyle concept', galleryStyleTitle:'Occasion styling', galleryStyleText:'Save a soft updo or bridal style idea for your enquiry.', galleryStyleAction:'Choose a style', galleryMakeupAlt:'Generated makeup look, not a real client', galleryMakeupTitle:'Makeup direction', galleryMakeupText:'Choose a makeup mood to discuss with the salon team.', galleryMakeupAction:'Choose a look', galleryCareAlt:'Glossy hair in a generated editorial image, for illustration', galleryCareTitle:'Hair care', galleryCareText:'Choose a question about shine or care to add to your message.', galleryCareAction:'Ask about care', galleryNote:'All gallery images are generated concepts, not salon work; your selections only populate the enquiry.',
+          contactEyebrow:'Location & contact · 04', contactTitle:'From an idea to the right channel.', contactIntro:'Use WhatsApp for the prepared message, Instagram for a profile message, or call. Confirm details, prices and appointments directly with the salon.', locationLabel:'Location', locationName:'Jeddah · Al Khalidiyah', locationText:'District as shown on the public profile; confirm directions using the map link.', mapCta:'Open map', socialAria:'Published social channels', footerNote:'This is an independent SitePine concept, not an official or salon-endorsed page. Model and result visuals are generated and do not show real clients or salon work. The colour preview is illustrative—not professional advice or a guarantee; confirm pricing, availability and suitability directly with the salon.', mobileCta:'Try the colour studio',
+          serviceNames:{color:'hair colour',care:'hair care',style:'occasion styling',makeup:'makeup'},
+          shades:[{id:'espresso',name:'Espresso',hex:'#30211B'},{id:'dark',name:'Dark chocolate',hex:'#49352A'},{id:'rich',name:'Rich brunette',hex:'#684632'},{id:'chestnut',name:'Chestnut',hex:'#80543B'},{id:'hazel',name:'Hazelnut',hex:'#9A6848'},{id:'caramel',name:'Caramel',hex:'#B37A4C'},{id:'honey',name:'Honey',hex:'#C99D63'},{id:'auburn',name:'Warm auburn',hex:'#713C3D'}],
+          baseOptions:[{id:'espresso',name:'Very dark',hex:'#30211B'},{id:'dark',name:'Dark brunette',hex:'#49352A'},{id:'chestnut',name:'Chestnut',hex:'#80543B'},{id:'caramel',name:'Light brown',hex:'#A87550'}],
+          goals:{care:[{id:'shine',label:'Shine and smoothness'},{id:'routine',label:'A care routine'},{id:'advice',label:'I need advice'}],style:[{id:'bridal',label:'Bridal updo'},{id:'waves',label:'Soft waves'},{id:'updo',label:'Classic updo'}],makeup:[{id:'soft',label:'Soft glam'},{id:'occasion',label:'Occasion makeup'},{id:'bridal',label:'Bridal makeup'}]},
+          messages:{hello:'Hello, I would like to ask about', current:'My approximate current shade is', target:'and I am interested in', history:'Hair history', note:'Note', ask:'Could you advise what may suit my hair and what I should confirm before visiting?'},
+          goalsLegend:{care:'Hair care',style:'Hairstyle',makeup:'Makeup direction'}, storySceneNames:{color:'A rich shade, softly luminous',style:'Details make the look',finish:'Quiet details, the final note'}, storySceneSubs:{color:'Concept image · not an actual result',style:'Occasion styling · concept image',finish:'Visual direction · concept image'}
         }
       };
-      const services = ['color', 'care', 'makeup'];
-      let language = 'ar';
-      let service = 'color';
-      let goal = 'rich';
-      let history = 'unsure';
-      const serviceChoices = document.getElementById('serviceChoices');
-      const goalChoices = document.getElementById('goalChoices');
-      const historyChoices = document.getElementById('historyChoices');
-      const historyFieldset = document.getElementById('historyFieldset');
-      const noteField = document.getElementById('extraNote');
-      const message = document.getElementById('generatedMessage');
-      const copyStatus = document.getElementById('copyStatus');
-      const copyButton = document.getElementById('copyMessage');
-      const languageButton = document.getElementById('languageToggle');
-      const mobileCta = document.querySelector('.mobile-cta');
-      if ('IntersectionObserver' in window) {
-        const ctaObserver = new IntersectionObserver(([entry]) => {
-          mobileCta.classList.toggle('is-visible', !entry.isIntersecting);
-        }, { threshold: 0.08 });
-        ctaObserver.observe(document.querySelector('.hero'));
-      } else {
-        mobileCta.classList.add('is-visible');
-      }
+      const services = ['color','care','style','makeup'];
+      const goalsByService = {care:'shine',style:'bridal',makeup:'soft'};
+      const serviceImages = {care:'assets/editorial-hair-hero.jpg',style:'assets/editorial-bridal.jpg',makeup:'assets/editorial-makeup.jpg'};
+      const serviceAltKeys = {care:'heroAlt',style:'storyStyleAlt',makeup:'galleryMakeupAlt'};
+      const serviceStageKeys = {care:'serviceCare',style:'serviceStyle',makeup:'serviceMakeup'};
+      const storyScenes = {
+        color:{src:'assets/color-model.jpg',alt:'storyColorAlt',name:'storyColorCaption',sub:'storyColorSub',index:'01 / 03'},
+        style:{src:'assets/editorial-bridal.jpg',alt:'storyStyleAlt',name:'storyStyleCaption',sub:'storyStyleSub',index:'02 / 03'},
+        finish:{src:'assets/floral-campaign.jpg',alt:'storyFinishAlt',name:'storyFinishCaption',sub:'storyFinishSub',index:'03 / 03'}
+      };
+      const model = new Image(); model.src='assets/color-model.jpg';
+      let hairMask=null, tintCanvas=null;
+      let language='ar', service='color', baseIndex=1, targetIndex=2, history='unsure', goal=goalsByService.care;
+      const currentCanvas=document.getElementById('currentCanvas'), targetCanvas=document.getElementById('targetCanvas');
+      const targetWindow=document.getElementById('targetWindow'), compareRule=document.getElementById('compareRule');
+      const range=document.getElementById('colorRange'), compareRange=document.getElementById('compareRange');
+      const currentPalette=document.getElementById('currentPalette'), targetPalette=document.getElementById('targetPalette');
+      const historySelect=document.getElementById('hairHistory'), extraNote=document.getElementById('extraNote');
+      const servicePreview=document.getElementById('servicePreview'), colorVisual=document.getElementById('colorVisual');
+      const shareMessage=document.getElementById('shareMessage'), shareStatus=document.getElementById('shareStatus');
+      const whatsappLink=document.getElementById('whatsappLink'), languageButton=document.getElementById('languageToggle');
+      const goalOptions=document.getElementById('goalOptions'), colorPanel=document.getElementById('colorPanel'), servicePanel=document.getElementById('servicePanel');
+      const mobileCta=document.querySelector('.mobile-cta');
 
-      function makeChoice(container, items, selected, onSelect, ariaLabel) {
+      function makeHairPath(ctx,w,h){
+        ctx.beginPath();
+        const sx=w/1122, sy=h/1402;
+        ctx.moveTo(561*sx,155*sy);
+        ctx.bezierCurveTo(470*sx,151*sy,427*sx,195*sy,389*sx,260*sy);
+        ctx.bezierCurveTo(342*sx,338*sy,312*sx,432*sy,282*sx,540*sy);
+        ctx.bezierCurveTo(252*sx,646*sy,238*sx,765*sy,242*sx,880*sy);
+        ctx.bezierCurveTo(246*sx,1005*sy,278*sx,1111*sy,340*sx,1182*sy);
+        ctx.bezierCurveTo(394*sx,1248*sy,476*sx,1270*sy,561*sx,1271*sy);
+        ctx.bezierCurveTo(646*sx,1271*sy,731*sx,1248*sy,782*sx,1182*sy);
+        ctx.bezierCurveTo(844*sx,1111*sy,876*sx,1005*sy,880*sx,880*sy);
+        ctx.bezierCurveTo(884*sx,765*sy,870*sx,646*sy,840*sx,540*sy);
+        ctx.bezierCurveTo(810*sx,432*sy,780*sx,338*sy,733*sx,260*sy);
+        ctx.bezierCurveTo(695*sx,195*sy,652*sx,151*sy,561*sx,155*sy);
+        ctx.closePath();
+      }
+      function buildHairMask(){
+        if(!model.complete || !model.naturalWidth || hairMask)return;
+        const w=model.naturalWidth,h=model.naturalHeight;
+        const source=document.createElement('canvas'); source.width=w; source.height=h;
+        const sourceCtx=source.getContext('2d',{willReadFrequently:true}); sourceCtx.drawImage(model,0,0,w,h);
+        const pixels=sourceCtx.getImageData(0,0,w,h).data;
+        hairMask=document.createElement('canvas'); hairMask.width=w; hairMask.height=h;
+        const maskCtx=hairMask.getContext('2d',{willReadFrequently:true});
+        maskCtx.fillStyle='#fff'; makeHairPath(maskCtx,w,h); maskCtx.fill();
+        const maskData=maskCtx.getImageData(0,0,w,h), alpha=maskData.data;
+        for(let i=0;i<alpha.length;i+=4){
+          const shapeAlpha=alpha[i+3];
+          if(!shapeAlpha){continue;}
+          const r=pixels[i],g=pixels[i+1],b=pixels[i+2],luma=.299*r+.587*g+.114*b;
+          const brownness=Math.min(1,(r-g)/18,(g-b)/14);
+          const lightness=Math.max(0,Math.min(1,(205-luma)/35));
+          alpha[i+3]=Math.round(shapeAlpha*Math.max(0,brownness)*lightness);
+        }
+        maskCtx.putImageData(maskData,0,0);
+        tintCanvas=document.createElement('canvas'); tintCanvas.width=w; tintCanvas.height=h;
+      }
+      function drawHairLayer(canvas,shade){
+        if(!model.complete || !model.naturalWidth) return;
+        if(!hairMask) buildHairMask();
+        const w=model.naturalWidth,h=model.naturalHeight;
+        if(canvas.width!==w || canvas.height!==h){canvas.width=w;canvas.height=h;}
+        const ctx=canvas.getContext('2d');
+        ctx.clearRect(0,0,w,h); ctx.drawImage(model,0,0,w,h);
+        if(!hairMask || !tintCanvas)return;
+        const tintCtx=tintCanvas.getContext('2d');
+        tintCtx.clearRect(0,0,w,h); tintCtx.globalCompositeOperation='source-over'; tintCtx.fillStyle=shade; tintCtx.fillRect(0,0,w,h);
+        tintCtx.globalCompositeOperation='destination-in'; tintCtx.drawImage(hairMask,0,0,w,h); tintCtx.globalCompositeOperation='source-over';
+        ctx.save(); ctx.globalCompositeOperation='color'; ctx.drawImage(tintCanvas,0,0,w,h); ctx.restore();
+      }
+      function renderCanvases(){
+        const words=copy[language], base=words.baseOptions[baseIndex], target=words.shades[targetIndex];
+        drawHairLayer(currentCanvas,base.hex); drawHairLayer(targetCanvas,target.hex);
+        document.getElementById('baseChip').style.setProperty('--swatch',base.hex);
+        document.getElementById('targetChip').style.setProperty('--swatch',target.hex);
+        document.getElementById('baseHex').textContent=base.hex;
+        document.getElementById('targetHex').textContent=target.hex;
+        currentCanvas.setAttribute('aria-label',`${words.modelDisclosure}; ${words.baseCodeLabel}: ${base.name}, ${base.hex}`);
+        updateCompare();
+      }
+      function updateCompare(){
+        const value=Number(compareRange.value), left=100-value;
+        targetWindow.style.clipPath=`inset(0 0 0 ${left}%)`;
+        compareRule.style.left=`${left}%`;
+        document.getElementById('compareValue').textContent=`${value}%`;
+      }
+      function createSwatches(container,items,selected,onClick,ariaPrefix){
         container.replaceChildren();
-        container.setAttribute('aria-label', ariaLabel);
-        items.forEach((item) => {
-          const button = document.createElement('button');
-          button.type = 'button';
-          button.className = 'choice';
-          button.dataset.value = item.id;
-          button.setAttribute('aria-pressed', String(item.id === selected));
-          button.textContent = item.label;
-          button.addEventListener('click', () => onSelect(item.id));
-          container.append(button);
+        items.forEach((item,index)=>{
+          const b=document.createElement('button'); b.type='button'; b.className='shade-choice'; b.setAttribute('aria-pressed',String(index===selected)); b.setAttribute('aria-label',`${ariaPrefix}: ${item.name}, ${item.hex}`); b.style.setProperty('--swatch',item.hex);
+          const dot=document.createElement('span'); dot.className='shade-dot'; dot.setAttribute('aria-hidden','true');
+          const name=document.createElement('span'); name.textContent=item.name;
+          b.append(dot,name); b.addEventListener('click',()=>onClick(index)); container.append(b);
         });
       }
-      function updateChoices() {
-        const words = copy[language];
-        makeChoice(serviceChoices, services.map((id) => ({id, label: words.serviceNames[id]})), service, (value) => {
-          service = value;
-          goal = words.goalOptions[service][0].id;
-          copyStatus.textContent = '';
-          updateChoices();
-          updateMessage();
-        }, words.serviceLegend);
-        const goals = words.goalOptions[service];
-        if (!goals.some((item) => item.id === goal)) goal = goals[0].id;
-        makeChoice(goalChoices, goals, goal, (value) => { goal = value; copyStatus.textContent = ''; updateChoices(); updateMessage(); }, words.goalLegend);
-        historyFieldset.hidden = service !== 'color';
-        if (service === 'color') {
-          makeChoice(historyChoices, words.historyOptions, history, (value) => { history = value; copyStatus.textContent = ''; updateChoices(); updateMessage(); }, words.historyLegend);
+      function renderPalettes(){
+        const words=copy[language];
+        createSwatches(currentPalette,words.baseOptions,baseIndex,(i)=>{baseIndex=i;renderPalettes();renderCanvases();updateShareMessage();},words.currentColorLabel);
+        createSwatches(targetPalette,words.shades,targetIndex,(i)=>{targetIndex=i;range.value=String(i);renderPalettes();renderCanvases();updateShareMessage();},words.targetColorLabel);
+      }
+      function renderGoalOptions(){
+        const words=copy[language]; goalOptions.replaceChildren();
+        const options=words.goals[service]||[];
+        if(!options.some(o=>o.id===goal)) goal=goalsByService[service]||options[0]?.id;
+        goalsByService[service]=goal;
+        options.forEach(item=>{const b=document.createElement('button');b.type='button';b.className='choice';b.dataset.goal=item.id;b.setAttribute('aria-pressed',String(item.id===goal));b.textContent=item.label;b.addEventListener('click',()=>{goal=item.id;goalsByService[service]=goal;renderGoalOptions();updateServiceImage();updateShareMessage();});goalOptions.append(b);});
+      }
+      function updateServiceImage(){
+        if(service==='color'){
+          colorVisual.hidden=false; servicePreview.hidden=true;
+          document.getElementById('previewLabel').textContent=copy[language].previewLabel;
+          return;
         }
+        colorVisual.hidden=true; servicePreview.hidden=false;
+        const wavesPreview=service==='style' && goal==='waves';
+        servicePreview.src=wavesPreview?'assets/editorial-hair-hero.jpg':serviceImages[service];
+        const selectedGoal=(copy[language].goals[service]||[]).find(item=>item.id===goal);
+        servicePreview.alt=copy[language][wavesPreview?'heroAlt':serviceAltKeys[service]]+(selectedGoal?' — '+selectedGoal.label:'');
+        document.getElementById('previewLabel').textContent=(selectedGoal?selectedGoal.label:copy[language][serviceStageKeys[service]])+' · '+copy[language].previewLabel;
       }
-      function updateMessage() {
-        const words = copy[language];
-        const selectedGoal = words.goalOptions[service].find((item) => item.id === goal) || words.goalOptions[service][0];
-        const selectedHistory = words.historyOptions.find((item) => item.id === history) || words.historyOptions[0];
-        const sentences = [`${words.introMessage} ${words.serviceNames[service]}.`, `${language === 'ar' ? 'أفكر في' : 'I have in mind'} ${selectedGoal.label}.`];
-        if (service === 'color') sentences.push(`${words.hairHistoryLead} ${selectedHistory.label}.`);
-        const note = noteField.value.trim().replace(/\s+/g, ' ');
-        if (note) sentences.push(`${words.noteLead} ${note}.`);
-        sentences.push(words.askEnd);
-        message.textContent = sentences.join(' ');
+      function updatePanels(){
+        colorPanel.hidden=service!=='color'; servicePanel.hidden=service==='color';
+        document.getElementById('compareControl').hidden=service!=='color';
+        document.querySelectorAll('[data-service]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.service===service)));
+        renderGoalOptions(); updateServiceImage();
+        if(service==='color') renderCanvases();
       }
-      function setLanguage(next) {
-        language = next;
-        const words = copy[language];
-        document.documentElement.lang = language;
-        document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
-        document.title = words.title;
-        document.querySelector('meta[name="description"]').setAttribute('content', words.description);
-        document.querySelectorAll('[data-i18n]').forEach((element) => {
-          const key = element.dataset.i18n;
-          if (words[key]) element.textContent = words[key];
-        });
-        document.querySelectorAll('[data-i18n-aria]').forEach((element) => {
-          const key = element.dataset.i18nAria;
-          if (words[key]) element.setAttribute('aria-label', words[key]);
-        });
-        document.querySelectorAll('[data-i18n-alt]').forEach((element) => {
-          const key = element.dataset.i18nAlt;
-          if (words[key]) element.setAttribute('alt', words[key]);
-        });
-        document.querySelectorAll('[data-i18n-placeholder]').forEach((element) => {
-          const key = element.dataset.i18nPlaceholder;
-          if (words[key]) element.setAttribute('placeholder', words[key]);
-        });
-        languageButton.setAttribute('aria-label', words.languageAria);
-        copyStatus.textContent = '';
-        updateChoices();
-        updateMessage();
-      }
-      languageButton.addEventListener('click', () => setLanguage(language === 'ar' ? 'en' : 'ar'));
-      noteField.addEventListener('input', updateMessage);
-      copyButton.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(message.textContent);
-          copyStatus.textContent = copy[language].copied;
-        } catch (error) {
-          copyStatus.textContent = copy[language].copyFailed;
+      function updateShareMessage(){
+        const words=copy[language], serviceName=words.serviceNames[service];
+        const note=extraNote.value.trim().replace(/\s+/g,' ');
+        const parts=[`${words.messages.hello} ${serviceName}.`];
+        if(service==='color'){
+          const base=words.baseOptions[baseIndex],target=words.shades[targetIndex];
+          const hist=historySelect.value;
+          parts.push(`${words.messages.current} ${base.name} (${base.hex}), ${words.messages.target} ${target.name} (${target.hex}).`);
+          parts.push(`${words.messages.history}: ${words[historyKey(hist)]}.`);
+        }else{
+          const option=(words.goals[service]||[]).find(o=>o.id===goal);
+          if(option) parts.push(`${language==='ar'?'أفكر في':'I have in mind'} ${option.label}.`);
         }
-      });
+        if(note) parts.push(`${words.messages.note}: ${note}.`);
+        parts.push(words.messages.ask);
+        const text=parts.join(' '); shareMessage.textContent=text;
+        whatsappLink.href=`https://wa.me/966559509160?text=${encodeURIComponent(text)}`;
+      }
+      function historyKey(value){return ({unsure:'historyUnsure',natural:'historyNatural',colored:'historyColored',lightened:'historyLightened'})[value]||'historyUnsure';}
+      function setService(next){if(!services.includes(next))return;service=next;if(service!=='color')goal=goalsByService[service]||(copy[language].goals[service]||[])[0]?.id;shareStatus.textContent='';updatePanels();updateShareMessage();}
+      function setLanguage(next){
+        language=next; const words=copy[language];
+        document.documentElement.lang=language;document.documentElement.dir=language==='ar'?'rtl':'ltr';document.title=words.title;
+        document.querySelector('meta[name="description"]').content=words.description;
+        document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(words[key])el.textContent=words[key];});
+        document.querySelectorAll('[data-i18n-aria]').forEach(el=>{const key=el.dataset.i18nAria;if(words[key])el.setAttribute('aria-label',words[key]);});
+        document.querySelectorAll('[data-i18n-alt]').forEach(el=>{const key=el.dataset.i18nAlt;if(words[key])el.alt=words[key];});
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const key=el.dataset.i18nPlaceholder;if(words[key])el.placeholder=words[key];});
+        languageButton.setAttribute('aria-label',words.languageAria);
+        range.setAttribute('aria-label',words.colorRangeAria);compareRange.setAttribute('aria-label',words.compareAria);
+        renderPalettes();
+        historySelect.innerHTML=`<option value="unsure">${words.historyUnsure}</option><option value="natural">${words.historyNatural}</option><option value="colored">${words.historyColored}</option><option value="lightened">${words.historyLightened}</option>`;
+        historySelect.value=history;
+        document.querySelectorAll('[data-service]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.service===service)));
+        document.querySelectorAll('.story-step').forEach(step=>step.setAttribute('aria-current',step.dataset.storyStep===activeStory?'step':'false'));
+        setStory(activeStory,false);updatePanels();updateShareMessage();
+      }
+      let storyTimer=null;
+      function setStory(scene,animate=true){
+        const s=storyScenes[scene]; if(!s)return; activeStory=scene;
+        const img=document.getElementById('storyImage'), stage=document.getElementById('storyStage');
+        if(storyTimer)window.clearTimeout(storyTimer);
+        if(animate)stage.classList.add('is-changing');
+        storyTimer=window.setTimeout(()=>{img.src=s.src;img.alt=copy[language][s.alt];document.getElementById('storyCaption').textContent=copy[language].storySceneNames[scene];document.getElementById('storySubcaption').textContent=copy[language].storySceneSubs[scene];document.getElementById('storyIndex').textContent=s.index;stage.classList.remove('is-changing');},animate?140:0);
+        document.querySelectorAll('.story-step').forEach(step=>{const active=step.dataset.storyStep===scene;step.classList.toggle('is-active',active);step.setAttribute('aria-current',active?'step':'false');});
+        const index=scene==='color'?1:scene==='style'?2:3;document.getElementById('storyProgress').style.width=`${index/3*100}%`;
+      }
+      let activeStory='color';
+      document.querySelectorAll('[data-service]').forEach(b=>b.addEventListener('click',()=>setService(b.dataset.service)));
+      range.addEventListener('input',()=>{targetIndex=Number(range.value);createSwatches(targetPalette,copy[language].shades,targetIndex,(i)=>{targetIndex=i;range.value=String(i);renderCanvases();updateShareMessage();},copy[language].targetColorLabel);renderCanvases();updateShareMessage();});
+      compareRange.addEventListener('input',updateCompare);
+      historySelect.addEventListener('change',()=>{history=historySelect.value;updateShareMessage();});
+      extraNote.addEventListener('input',updateShareMessage);
+      languageButton.addEventListener('click',()=>setLanguage(language==='ar'?'en':'ar'));
+      document.getElementById('copyRequest').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(shareMessage.textContent);shareStatus.textContent=copy[language].copiedStatus;}catch(e){shareStatus.textContent=copy[language].copyFailed;}});
+      document.querySelectorAll('[data-gallery-pick]').forEach(b=>b.addEventListener('click',()=>{setService(b.dataset.galleryPick);document.getElementById('studio').scrollIntoView({behavior:'smooth'});}));
+      if('IntersectionObserver' in window){
+        const storyObserver=new IntersectionObserver(entries=>{const active=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(active)setStory(active.target.dataset.storyStep);},{threshold:[.25,.45,.65],rootMargin:'-18% 0px -30% 0px'});
+        document.querySelectorAll('.story-step').forEach(step=>storyObserver.observe(step));
+        let heroVisible=true, studioVisible=false;
+        const ctaObserver=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.target.classList.contains('hero'))heroVisible=entry.intersectionRatio>.08;if(entry.target.id==='studio')studioVisible=entry.intersectionRatio>.08;}mobileCta.classList.toggle('is-visible',!heroVisible&&!studioVisible);},{threshold:[0,.08]});
+        ctaObserver.observe(document.querySelector('.hero'));ctaObserver.observe(document.querySelector('#studio'));
+      }else mobileCta.classList.add('is-visible');
+      const galleryTrack=document.getElementById('galleryTrack'), gallerySlides=[...document.querySelectorAll('.gallery-card')];let galleryActive=0;
+      function updateGalleryCounter(){document.getElementById('galleryCounter').textContent=`${String(galleryActive+1).padStart(2,'0')} / ${String(gallerySlides.length).padStart(2,'0')}`;}
+      document.getElementById('galleryPrev').addEventListener('click',()=>galleryTrack.scrollBy({left:-Math.round(galleryTrack.clientWidth*.78),behavior:'smooth'}));
+      document.getElementById('galleryNext').addEventListener('click',()=>galleryTrack.scrollBy({left:Math.round(galleryTrack.clientWidth*.78),behavior:'smooth'}));
+      if('IntersectionObserver' in window){const galleryObserver=new IntersectionObserver(entries=>{const e=entries.filter(x=>x.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(e){galleryActive=Number(e.target.dataset.slide);updateGalleryCounter();}},{root:galleryTrack,threshold:.55});gallerySlides.forEach(card=>galleryObserver.observe(card));}
+      const initModel=()=>{buildHairMask();renderCanvases();};
+      if(model.complete && model.naturalWidth)initModel(); else model.addEventListener('load',initModel,{once:true});
       setLanguage('ar');
     })();
   </script>
