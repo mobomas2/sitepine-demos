@@ -1,22 +1,31 @@
-# MARVELLA demo — media provenance and remaining work
+# MARVELLA demo — media provenance and hosting
 
-- Public profile checked: `https://imginn.com/by_marvella/` and `https://www.pixnoy.com/profile/by_marvella/` on 2026-10-25.
-- The page uses no Instagram embed, feed, API, or external script. Product information, filters, and the order-request builder are static/local HTML and JavaScript.
-- The five product photos in `index.html` are hotlinked from Imginn's image proxy. Their signed URLs carry `oe` expiration values on 2026-10-29. They are **not stored in this repository** and should be replaced by approved local files before treating the demo as durable or publishing it for the brand.
-- Attempts to fetch the binary media through both Imginn's download URL and Pixnoy's mirrored image URL failed in this sandbox (binary fetch HTTP 500; shell egress is blocked). Do not represent the current photo files as uploaded/self-hosted. Keep the CSS fallbacks until local files are supplied.
-- The original public post URLs below are for provenance only; using their images commercially/publicly should be approved by the brand.
+## Local hosting status
+
+- The storefront now serves all five catalogue covers and the hero image from this repository; no product photo depends on an Instagram, Imginn, Pixnoy, or other remote image CDN.
+- Four Reel products have a **پخش ریل** control. Their original MP4 files are hosted locally and loaded only when a visitor opens playback, to avoid downloading video bytes on initial page load.
+- All originals, optimized WebP derivatives, and the source manifest are preserved under `assets/media/`.
+- The package was retrieved from the user-provided Google Drive folder `SitePine/Leads/MARVELLA/media/`. All 14 files match the supplied `manifest.csv` on SHA-256 and file size after transfer into this repository.
+- WebP derivatives are used for page display; original JPEG and MP4 files remain unchanged under `assets/media/originals/`.
+
+## Local files
+
+- Web covers: `assets/media/web/<post_id>_01_web.webp`
+- Original post media: `assets/media/originals/<post_id>/<post_id>_01_original.(jpg|mp4)`
+- Package manifest and notes: `assets/media/manifest.csv`, `assets/media/README.txt`
 
 ## Selected public posts used in the catalogue
 
-| Post | Public mirror | Product information observed |
+| Post | Product detail observed | Local media |
 |---|---|---|
-| Starry-sky handwoven silk crop | `https://imginn.com/p/DKzB7H9sjEC/` | Caption says handwoven silk, custom colour/size, limited; gives size 65–90 without a unit. No size range is reproduced on the site. |
-| Red handmade look | `https://imginn.com/p/DegwQy-sjT2/` | Caption describes handmade made-to-measure crops and wrap skirts. No current stock/price asserted. |
-| Chiffon wrap skirt + handmade top | `https://imginn.com/p/DeXCwKmse5v/` | Caption mentions adjustable wrap tie and sizes 36–42 plus larger sizes. Site labels this as one post's detail, not a universal size chart. |
-| Three-piece crop/shrug/full skirt | `https://imginn.com/p/DePZrsasWxr/` | Caption describes a three-piece combination and separate items; sizes 36–44 plus larger sizes in that caption. Site does not generalize sizes. |
-| Red-or-yellow crop + short wrap skirt | `https://imginn.com/p/DeuTujXMOlM/` | Caption asks “red or yellow?” and says colour/size customization. Current colour availability is not asserted. |
+| [`DKzB7H9sjEC`](https://www.instagram.com/p/DKzB7H9sjEC/) | Handwoven crochet crop with satin skirt; the image contains the brand's own watermark. | Original JPEG + WebP cover |
+| [`DegwQy-sjT2`](https://www.instagram.com/p/DegwQy-sjT2/) | Red handmade crop/skirt look. | Original Reel MP4 + original cover JPEG + WebP cover |
+| [`DeXCwKmse5v`](https://www.instagram.com/p/DeXCwKmse5v/) | Handmade top and wrap-skirt look. | Original Reel MP4 + original cover JPEG + WebP cover |
+| [`DePZrsasWxr`](https://www.instagram.com/p/DePZrsasWxr/) | Three-piece crop, shrug, and skirt look. | Original Reel MP4 + original cover JPEG + WebP cover |
+| [`DeuTujXMOlM`](https://www.instagram.com/p/DeuTujXMOlM/) | Red/orange crop with short skirt; caption asks “red or yellow?”. | Original Reel MP4 + original cover JPEG + WebP cover |
 
-## Ordering details
+## Ordering details and usage caution
 
-- The mirrored profile says orders via DM/WhatsApp. No verified WhatsApp number was found; demo CTA currently opens `https://ig.me/m/by_marvella` and never sends automatically.
-- Prices, current inventory, fabrics for every individual item, production times, shipping rates/destinations, payment, and return/exchange policy are not established. The page asks the seller to confirm them.
+- The public profile indicates orders by DM/WhatsApp. No verified WhatsApp number was found; the demo opens `https://ig.me/m/by_marvella` and never sends a message automatically.
+- Prices, current inventory, production times, shipping rates/destinations, payment, and return/exchange policy are not established. The page asks the seller to confirm them.
+- The media are from public brand posts, but public availability alone does not establish a commercial-use license. Obtain the brand's approval before using these assets in a production storefront or paid campaign.
