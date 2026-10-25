@@ -3,7 +3,7 @@
 - Public profile checked: `https://imginn.com/by_marvella/` and `https://www.pixnoy.com/profile/by_marvella/` on 2026-10-25.
 - The page uses no Instagram embed, feed, API, or external script. Product information, filters, and the order-request builder are static/local HTML and JavaScript.
 - The five product photos in `index.html` are hotlinked from Imginn's image proxy. Their signed URLs carry `oe` expiration values on 2026-10-29. They are **not stored in this repository** and should be replaced by approved local files before treating the demo as durable or publishing it for the brand.
-- Attempts to fetch those binary CDN images from this sandbox failed (direct image fetch HTTP 500; shell TLS egress denied). Do not represent the current photo files as uploaded/self-hosted. Keep the CSS fallbacks until local files are supplied.
+- Attempts to fetch the binary media through both Imginn's download URL and Pixnoy's mirrored image URL failed in this sandbox (binary fetch HTTP 500; shell egress is blocked). Do not represent the current photo files as uploaded/self-hosted. Keep the CSS fallbacks until local files are supplied.
 - The original public post URLs below are for provenance only; using their images commercially/publicly should be approved by the brand.
 
 ## Selected public posts used in the catalogue
