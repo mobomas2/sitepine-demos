@@ -2,13 +2,13 @@
 
 > هیچ پیام یا دایرکتی ارسال نشده است. پیام‌ها عمداً به اطلاعات تأییدنشده استناد نمی‌کنند. لینک دموها در انتهای هر مورد است.
 
-## 1) @by_marvella — زیبایی / سازندهٔ محتوا (تطبیق حساب هنوز قطعی نیست)
+## 1) @by_marvella — پوشاک زنانهٔ دست‌دوز MARVELLA
 
 **Draft (English):**
 
-Hi Marvella — I put together a visual website concept for your beauty-and-creator presence, with separate paths for your content and brand enquiries. Before I tailor it further: should the main goal be selling your own products, receiving brand partnerships, or supporting both? If you have a preferred product/shop link and a few posts you’d like featured, I can build the next version around those exact assets. Here’s the private preview: [demo](https://mobomas2.github.io/sitepine-demos/p/leads/by-marvella/).
+Hi Marvella — I put together a storefront concept for @by_marvella after reviewing the public handmade-clothing posts. It turns selected styles into a browsable catalogue and lets visitors prepare an order request without a live Instagram feed. If this direction fits, could you confirm which styles are current, share approved product-photo files, and tell me your preferred order channel? I have left prices, stock, and delivery promises out until confirmed. Here’s the preview: [demo](https://mobomas2.github.io/sitepine-demos/p/leads/by-marvella/).
 
-**نیازسنجی:** هدف اصلی سایت فروش محصول است یا همکاری‌های تبلیغاتی؟ بازار/ارز فروش و لینک فروشگاه چیست؟ کدام پست‌ها مجازند در صفحهٔ سایت نمایش داده شوند؟ ارتباط این پروفایل با برند Marviano از روی منبع قابل‌اعتماد تأیید نشد؛ در پیام ادعای آن را نکرده‌ایم.
+**نیازسنجی:** فهرست مدل‌های فعلی و موجودی؛ فایل‌های عکس/ویدیو با اجازهٔ استفاده؛ شماره یا لینک رسمی WhatsApp و مسیر نهایی سفارش؛ راهنمای سایز با واحد/روش اندازه‌گیری؛ جنس هر مدل؛ قیمت و ارز؛ زمان دوخت؛ مقصد، هزینه و زمان ارسال؛ شیوهٔ پرداخت؛ تعویض/مرجوعی. در کپشن‌های آینه‌شده بازه‌هایی مثل ۶۵–۹۰ برای بعضی کراپ‌ها آمده اما واحد معلوم نیست؛ آن را به‌عنوان جدول سایز منتشر نکرده‌ایم. هیچ قیمت، موجودی یا سیاستی حدس زده نشده است.
 
 ## 2) @lipsforkiss_dubai — کلینیک زیبایی دبی
 
@@ -52,4 +52,4 @@ Hi Angelina — I made a personal-site concept that gives your work and story mo
 
 ## محدودیت مدیا و بررسی
 
-واکشی مستقیم هر شش پروفایل اینستاگرام از محیط پژوهش با HTTP 403 رد شد. بنابراین در پنج دمو محتوای زندهٔ پروفایل به‌صورت embed اختیاری و لینک به منبع اصلی آمده؛ پست یا تصویرِ نامرتبط از نتایج جست‌وجو استفاده نشده است. دموهای قابل‌تأیید و تصاویر رسمی فعلی فقط برای Lips for Kiss موجود بود. برای انتخاب و ذخیرهٔ دقیق مدیای پنج پروفایل دیگر، لازم است پست‌های عمومیِ قابل‌دسترسی یا فایل‌های موردتأیید از طرف صاحبان حساب فراهم شود.
+واکشی مستقیم هر شش پروفایل اینستاگرام از محیط پژوهش با HTTP 403 رد شد. برای @by_marvella محتوای عمومیِ دقیق حساب از آینه‌های Imginn و Pixnoy بررسی شد؛ صفحهٔ دمو فید زنده، API یا embed اینستاگرام ندارد و کاتالوگ و فرم محلی‌اند. بااین‌حال، عکس‌های فعلی به URLهای امضاشدهٔ CDN آینه hotlink شده‌اند، در مخزن ذخیره نشده‌اند و لینک‌های امضا در ۲۹ اکتبر ۲۰۲۶ منقضی می‌شوند؛ بنابراین این نسخه هنوز شرط «رسانهٔ محلی و مستقل» را کامل نمی‌کند و باید با فایل‌های تأییدشدهٔ برند جایگزین شود. برای پنج حساب دیگر، وضعیت قبلی برقرار است؛ رسانهٔ مجاز و قابل‌دریافت لازم است.
