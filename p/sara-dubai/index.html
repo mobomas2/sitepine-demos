@@ -506,6 +506,187 @@ footer{
   .hero{padding-top:94px}
   .prop-media{height:230px}
 }
+
+
+/* Full visual reset — editorial Dubai cover, adapted from DexZane/awesome-web-prompts.
+   Keep the local city still (no relevant local footage) and scrub its motion with GSAP. */
+:root,html[data-theme="light"]{
+  --bg:#f5f3ec;--bg-elev:#e9eee8;--bg-card:#fffefa;--ink:#18312b;--muted:#687872;
+  --gold:#96713a;--gold-bright:#b79253;--gold-soft:rgba(150,113,58,.14);
+  --line:rgba(24,49,43,.2);--line-subtle:rgba(24,49,43,.09);--topbar-bg:rgba(250,249,244,.9);
+  --calc-bg:linear-gradient(135deg,#f4f1e8,#e0eae4);--calc-out-bg:#fffefa;
+  --badge-bg:rgba(255,254,250,.92);--ok:#2f7656;
+}
+html[data-theme="dark"]{
+  --bg:#0d1916;--bg-elev:#14231f;--bg-card:#182a25;--ink:#f3efe5;--muted:#a7b5ae;
+  --gold:#d1b273;--gold-bright:#e6cf9b;--gold-soft:rgba(209,178,115,.16);
+  --line:rgba(209,178,115,.28);--line-subtle:rgba(255,255,255,.1);--topbar-bg:rgba(13,25,22,.9);
+  --calc-bg:linear-gradient(135deg,#1b302a,#10211c);--calc-out-bg:rgba(9,20,17,.8);
+  --badge-bg:rgba(13,25,22,.9);--ok:#58c491;
+}
+html,body{background:var(--bg);color:var(--ink)}
+body{background-image:none}
+.topbar{
+  top:12px;left:clamp(12px,3vw,42px);right:clamp(12px,3vw,42px);width:auto;
+  border:1px solid rgba(255,255,255,.62);border-radius:999px;
+  box-shadow:0 12px 38px rgba(14,34,29,.16);
+}
+html[data-theme="dark"] .topbar{border-color:rgba(255,255,255,.14);box-shadow:0 12px 38px rgba(0,0,0,.3)}
+.topbar-in{height:68px}
+.monogram{border-radius:50%;background:linear-gradient(145deg,#e6d5ad,#203d34);color:#fff;border-color:rgba(255,255,255,.7)}
+.lang-btn{background:rgba(150,113,58,.08);color:var(--ink)}
+.btn-outline{border-color:rgba(255,255,255,.55);color:#fff;background:rgba(255,255,255,.08)}
+.btn-outline:hover{border-color:var(--gold-bright);color:var(--gold-bright)}
+
+/* The old stacked intro becomes a full-bleed, image-led cover. */
+main{position:relative}
+.hero{
+  position:absolute;z-index:8;top:0;left:0;right:0;width:100%;
+  padding:clamp(105px,13vh,142px) 0 0;pointer-events:none;color:#fff;
+}
+.hero .wrap{pointer-events:auto}
+.hero-meta{border:0;padding:0;margin:0 0 clamp(20px,3vh,34px);gap:10px}
+.verified-pill,.ig-tag{
+  color:#fff;background:rgba(8,22,18,.55);border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;padding:9px 14px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.verified-pill{font-size:.76rem}
+.ig-tag{font-size:.74rem}
+.ig-tag a{color:#f0d7a1;border-bottom-color:rgba(240,215,161,.55)}
+.hero-grid{grid-template-columns:minmax(0,1.5fr) minmax(250px,.55fr);gap:clamp(22px,4vw,62px);align-items:center}
+.hero h1{max-width:760px;color:#fff;font-size:clamp(2.4rem,5.4vw,5.1rem);line-height:1.15;letter-spacing:-.025em;text-shadow:0 3px 28px rgba(0,0,0,.2)}
+html[data-lang="en"] .hero h1{font-size:clamp(2.6rem,5.2vw,5.2rem)}
+.hero h1 .accent{color:#e8ca8d;background:none;-webkit-text-fill-color:currentColor}
+.hero-sub{max-width:58ch;margin-top:18px;color:rgba(255,255,255,.88);font-size:clamp(.86rem,1vw,1rem);line-height:1.9;text-shadow:0 2px 16px rgba(0,0,0,.25)}
+.hero-grid>.hero-ctas{
+  display:grid;grid-template-columns:1fr;gap:10px;align-self:center;justify-self:end;
+  width:min(100%,330px);margin:0;padding:18px;border:1px solid rgba(255,255,255,.25);border-radius:26px;
+  background:rgba(11,29,24,.62);backdrop-filter:blur(22px) saturate(1.2);-webkit-backdrop-filter:blur(22px) saturate(1.2);
+  box-shadow:0 24px 70px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.14);
+}
+.hero-grid>.hero-ctas .btn-gold,.hero-grid>.hero-ctas .btn-outline{width:100%;min-height:48px}
+
+.cinema-section{position:relative;z-index:1;padding:0}
+.cinema-frame{
+  width:100%;height:min(100svh,940px);min-height:700px;margin:0;overflow:hidden;
+  clip-path:inset(0% 2.2% 0% 2.2% round 28px);will-change:clip-path;
+  border:0;box-shadow:0 34px 100px -52px rgba(7,22,18,.55);
+}
+.cinema-img{width:100%;height:100%;object-fit:cover;object-position:center 48%;transform:scale(1.12);filter:saturate(.88) contrast(1.03);will-change:transform}
+.cinema-shade{
+  position:absolute;inset:0;display:block;padding:0;text-align:initial;
+  background:linear-gradient(270deg,rgba(5,17,14,.83) 0%,rgba(5,17,14,.48) 39%,rgba(5,17,14,.05) 76%),
+             linear-gradient(0deg,rgba(5,17,14,.72) 0%,rgba(5,17,14,.08) 38%,rgba(5,17,14,.04) 100%);
+  pointer-events:none;
+}
+.cinema-hud{inset:auto clamp(22px,5vw,70px) 42px;padding:0;align-items:flex-end;gap:16px;pointer-events:none}
+.hud-badge{
+  max-width:min(520px,72vw);padding:18px 22px;border:1px solid rgba(255,255,255,.24);border-radius:22px;
+  color:#fff;background:rgba(9,24,20,.62);backdrop-filter:blur(22px) saturate(1.2);-webkit-backdrop-filter:blur(22px) saturate(1.2);
+  box-shadow:0 22px 65px rgba(0,0,0,.2);transform-style:preserve-3d;will-change:transform;pointer-events:auto;
+}
+.hud-badge small{display:block;color:#e8ca8d;font-size:.7rem;font-weight:800;letter-spacing:.1em;margin-bottom:4px}
+.hud-badge p{color:rgba(255,255,255,.92);font-size:.86rem;line-height:1.7}
+.scroll-cue{display:flex;align-items:center;gap:10px;color:#fff;font-size:.74rem;letter-spacing:.08em;white-space:nowrap;padding:12px 16px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(9,24,20,.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+
+.metrics{position:relative;z-index:5;margin-top:-50px;padding:0 0 82px}
+.metrics-grid{gap:12px}
+.metric-card{
+  background:rgba(255,254,250,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.85);border-top:2px solid var(--gold);border-radius:20px;
+  padding:22px 18px;box-shadow:0 18px 46px -30px rgba(18,49,41,.3);
+}
+html[data-theme="dark"] .metric-card{background:rgba(17,35,30,.92);border-color:rgba(255,255,255,.1);border-top-color:var(--gold)}
+.metric-val{color:var(--gold);font-size:clamp(1.65rem,2.7vw,2.35rem)}
+section.block{position:relative;padding:clamp(62px,8vw,100px) 0;border-top:1px solid var(--line-subtle);background:var(--bg)}
+#tracks{background:linear-gradient(180deg,var(--bg),var(--bg-elev))}
+#calculator{background:var(--bg-elev)}
+#roadmap{background:var(--bg)}
+#advisor{background:var(--bg-elev)}
+.sec-head{margin-bottom:38px}
+.sec-head h2{font-size:clamp(1.9rem,4vw,3.1rem);line-height:1.2;letter-spacing:-.02em}
+.eyebrow{font-size:.7rem;letter-spacing:.16em}
+.prop-grid{gap:26px}
+.prop-card{border-radius:28px;background:var(--bg-card);border-color:var(--line-subtle);box-shadow:0 18px 52px -40px rgba(22,47,40,.42)}
+.prop-card:hover{border-color:var(--gold);transform:translateY(-7px);box-shadow:0 28px 62px -38px rgba(22,47,40,.42)}
+.prop-media{height:clamp(270px,32vw,390px)}
+.prop-body{padding:26px 26px 28px;gap:13px}
+.prop-title{font-size:1.24rem;line-height:1.48}
+.badge{border-color:var(--line-subtle);box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.badge.gv{background:rgba(14,43,33,.88);color:#b9f2d4;border-color:rgba(185,242,212,.4)}
+.calc-box{border-radius:30px;border-color:var(--line);box-shadow:0 26px 70px -45px rgba(21,48,41,.28)}
+.calc-out{box-shadow:0 15px 40px -32px rgba(21,48,41,.25)}
+.roadmap-grid{gap:16px}
+.step-card{border-radius:22px;background:var(--bg-card);border-color:var(--line-subtle);box-shadow:0 16px 40px -32px rgba(21,48,41,.26)}
+.step-num{font-size:2.7rem;color:var(--gold)}
+.advisor-card{border-radius:30px;background:var(--bg-card);box-shadow:0 20px 55px -42px rgba(21,48,41,.3)}
+.faq-item{border-radius:20px;background:var(--bg-card);box-shadow:0 12px 34px -30px rgba(21,48,41,.3)}
+
+footer.parallax-footer{
+  position:relative;isolation:isolate;overflow:hidden;min-height:320px;padding:82px 0 72px;border:0;
+  color:#fff;background:#0b1d18;
+}
+.footer-scene{position:absolute;inset:-14% 0;z-index:-2;overflow:hidden;pointer-events:none}
+.footer-scene::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,18,15,.88),rgba(5,18,15,.54) 50%,rgba(5,18,15,.84)),linear-gradient(0deg,rgba(5,18,15,.5),transparent 62%)}
+.footer-scene img{width:100%;height:100%;object-fit:cover;object-position:center 52%;opacity:.72;filter:saturate(.76);transform:scale(1.16);will-change:transform}
+.foot-in{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;padding:clamp(22px,3vw,34px);border:1px solid rgba(255,255,255,.22);border-radius:24px;background:rgba(8,25,20,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:rgba(255,255,255,.86);box-shadow:0 25px 70px -38px rgba(0,0,0,.7)}
+.foot-in a{color:#ecd39c}
+.footer-kicker{flex-basis:100%;font-size:.66rem;font-weight:800;letter-spacing:.16em;color:#ecd39c}
+
+@media(max-width:900px){
+  .hero{padding-top:104px}
+  .hero-grid{grid-template-columns:1fr;gap:18px;max-width:760px}
+  .hero-grid>.hero-ctas{justify-self:start;display:flex;flex-wrap:wrap;width:auto;max-width:100%;padding:10px;gap:8px}
+  .hero-grid>.hero-ctas .btn-gold,.hero-grid>.hero-ctas .btn-outline{width:auto;min-height:44px;padding:10px 15px}
+  .cinema-frame{min-height:680px}
+  .cinema-hud{inset:auto 22px 32px}
+  .metrics{margin-top:-38px}
+}
+@media(max-width:640px){
+  .topbar{top:8px;left:8px;right:8px;border-radius:24px}
+  .topbar-in{height:62px}
+  .monogram{width:36px;height:36px}
+  .hero{padding-top:92px}
+  .hero-meta{margin-bottom:17px}
+  .ig-tag{display:none}
+  .verified-pill{font-size:.64rem;padding:7px 10px;max-width:100%}
+  .hero-grid{gap:13px}
+  .hero h1{font-size:clamp(1.85rem,8vw,2.8rem);line-height:1.2}
+  .hero-sub{font-size:.76rem;line-height:1.68;margin-top:9px;max-width:48ch}
+  .hero-grid>.hero-ctas{display:grid;grid-template-columns:1fr 1fr;width:100%;padding:8px;border-radius:18px}
+  .hero-grid>.hero-ctas .btn-gold,.hero-grid>.hero-ctas .btn-outline{font-size:.72rem;white-space:normal;text-align:center;padding:8px 10px;line-height:1.45}
+  .cinema-frame{height:100svh;min-height:700px;clip-path:inset(0% 1.5% round 18px)}
+  .cinema-shade{background:linear-gradient(270deg,rgba(5,17,14,.78),rgba(5,17,14,.26) 74%),linear-gradient(0deg,rgba(5,17,14,.72),transparent 48%)}
+  .cinema-hud{inset:auto 14px 22px;display:block}
+  .hud-badge{max-width:none;padding:13px 15px;border-radius:17px}
+  .hud-badge small{font-size:.58rem}
+  .hud-badge p{font-size:.72rem;line-height:1.55}
+  .scroll-cue{display:none}
+  .metrics{margin-top:-20px;padding-bottom:54px}
+  .metrics-grid{gap:8px}
+  .metric-card{padding:16px 12px;border-radius:16px}
+  .metric-lbl{font-size:.7rem}
+  section.block{padding:56px 0}
+  .prop-media{height:250px}
+  .prop-body{padding:20px}
+  .calc-box{padding:18px;gap:20px}
+  .calc-out{padding:16px}
+  footer.parallax-footer{padding:54px 0 calc(84px + env(safe-area-inset-bottom));min-height:360px}
+  .footer-scene{inset:-7% 0}
+  .foot-in{border-radius:18px;padding:20px}
+  .footer-kicker{font-size:.58rem;letter-spacing:.1em}
+}
+@media(max-height:760px) and (min-width:641px){
+  .hero{padding-top:88px}
+  .hero-meta{margin-bottom:16px}
+  .hero h1{font-size:clamp(2.3rem,4.6vw,4.3rem)}
+  .hero-sub{margin-top:10px;font-size:.86rem}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
+
 </style>
 </head>
 <body>
@@ -571,7 +752,7 @@ footer{
 
   <section class="cinema-section" id="cinemaStage">
     <div class="cinema-frame" id="cinemaFrame">
-      <img src="img/hero.webp" alt="سارا نظارت — مشاور ارشد املاک دبی در بلوار شیخ محمد بن راشد داون‌تاون دبی" class="cinema-img" id="cinemaImg">
+      <img src="img/hero.webp" alt="" class="cinema-img" id="cinemaImg">
       <div class="cinema-shade"></div>
       <div class="cinema-hud" id="cinemaHud">
         <div class="hud-badge">
@@ -934,8 +1115,10 @@ footer{
   </section>
 </main>
 
-<footer>
+<footer class="parallax-footer">
+  <div class="footer-scene" aria-hidden="true"><img src="img/downtown-skyline.webp" id="footerParallax" alt="" loading="lazy"></div>
   <div class="wrap foot-in">
+    <span class="footer-kicker">DOWNTOWN DUBAI · SHEIKH MOHAMMED BIN RASHID BOULEVARD 1</span>
     <span data-i18n="foot_copy">© سارا نظارت (Senior Dubai Real Estate Consultant · Downtown Dubai) · تمامی حقوق محفوظ است · موجودی واحدها و جدول اقساط بر اساس لیست روز سازنده تأیید می‌شود.</span>
     <span><a href="https://www.instagram.com/sitepine.web/" target="_blank" rel="noopener">Instagram: @sitepine.web</a> · <a href="tel:+971585556005" dir="ltr">+971 58 555 6005</a></span>
   </div>
@@ -1129,7 +1312,8 @@ footer{
   refreshTrackPrices();
   refreshCalculator();
 
-  if (window.gsap && window.ScrollTrigger) {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (window.gsap && window.ScrollTrigger && !reduceMotion) {
     gsap.registerPlugin(ScrollTrigger);
     /* Native smooth scrolling enabled (Lenis removed to prevent wheel lock) */
     gsap.to('#progressBar', {
@@ -1141,9 +1325,13 @@ footer{
       clipPath: 'inset(0% 0% 0% 0% round 0px)', ease: 'none',
       scrollTrigger: { trigger: '#cinemaStage', start: 'top 78%', end: 'bottom 45%', scrub: 0.45 }
     });
-    gsap.to('#cinemaImg', {
-      scale: 1.0, ease: 'none',
-      scrollTrigger: { trigger: '#cinemaStage', start: 'top 85%', end: 'bottom top', scrub: 0.45 }
+    gsap.fromTo('#cinemaImg', { scale: 1.2, yPercent: -5 }, {
+      scale: 1.04, yPercent: 5, ease: 'none',
+      scrollTrigger: { trigger: '#cinemaStage', start: 'top 85%', end: 'bottom top', scrub: 0.55 }
+    });
+    gsap.fromTo('.hud-badge', { y: 30, opacity: 0, rotationX: 5 }, {
+      y: 0, opacity: 1, rotationX: 0, ease: 'none',
+      scrollTrigger: { trigger: '#cinemaStage', start: 'top 86%', end: 'top 42%', scrub: 0.65 }
     });
     gsap.utils.toArray('.v4-curtain').forEach(function (card) {
       var media = card.querySelector('.prop-media');
@@ -1152,6 +1340,36 @@ footer{
         scrollTrigger: { trigger: card, start: 'top 88%', once: true }
       });
     });
+
+    /* Portfolio Parallax recipe: keep motion attached to local Dubai imagery. */
+    gsap.to('#footerParallax', {
+      yPercent: 12, ease: 'none',
+      scrollTrigger: { trigger: '.parallax-footer', start: 'top bottom', end: 'bottom top', scrub: 0.8 }
+    });
+    gsap.fromTo('.foot-in', { y: 28, opacity: 0.72 }, {
+      y: 0, opacity: 1, ease: 'none',
+      scrollTrigger: { trigger: '.parallax-footer', start: 'top 88%', end: 'top 40%', scrub: 0.7 }
+    });
+
+    /* Luxury Hero recipe: responsive GSAP tilt for the frosted info panel. */
+    var cinemaFrame = document.getElementById('cinemaFrame');
+    var glassPanel = document.querySelector('.hud-badge');
+    if (cinemaFrame && glassPanel && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+      gsap.set(glassPanel, { transformPerspective: 1000, transformOrigin: 'center center' });
+      var tiltX = gsap.quickTo(glassPanel, 'x', { duration: 0.8, ease: 'power3.out' });
+      var tiltY = gsap.quickTo(glassPanel, 'y', { duration: 0.8, ease: 'power3.out' });
+      var tiltRX = gsap.quickTo(glassPanel, 'rotationX', { duration: 0.8, ease: 'power3.out' });
+      var tiltRY = gsap.quickTo(glassPanel, 'rotationY', { duration: 0.8, ease: 'power3.out' });
+      cinemaFrame.addEventListener('pointermove', function (event) {
+        var rect = cinemaFrame.getBoundingClientRect();
+        var nx = (event.clientX - rect.left) / rect.width - 0.5;
+        var ny = (event.clientY - rect.top) / rect.height - 0.5;
+        tiltX(nx * 14); tiltY(ny * 10); tiltRX(-ny * 5); tiltRY(nx * 6);
+      }, { passive: true });
+      cinemaFrame.addEventListener('pointerleave', function () {
+        tiltX(0); tiltY(0); tiltRX(0); tiltRY(0);
+      }, { passive: true });
+    }
   }
 })();
 </script>
