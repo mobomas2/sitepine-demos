@@ -241,6 +241,10 @@ function doGet(e) {
       ]);
     }
 
+    if (action === 'posttest') {
+      return page_('📮 تست POST از بیرون', postTestLines_());
+    }
+
     // 4) ping / پیش‌فرض: گزارش کامل وضعیت
     var lines = ['آدرس این اسکریپت: ' + deployUrl_(), ''];
 
@@ -274,6 +278,63 @@ function doGet(e) {
       'این متن را برایم بفرست تا دقیق بگویم مشکل کجاست.'
     ]);
   }
+}
+
+/**
+ * به خود همین web app یک POST می‌زند (بدون دنبال کردن ریدایرکت) تا ببینیم
+ * تلگرام چه کدی می‌گیرد. کد 302 یعنی گوگل به صفحه لاگین ریدایرکت می‌کند
+ * و همان چیزی است که تلگرام گزارش می‌کند: "Wrong response ... 302 Found".
+ */
+function postTestLines_() {
+  var url = deployUrl_() + '?k=' + encodeURIComponent(CONFIG.WEBHOOK_SECRET);
+  var lines = ['POST → ' + url, ''];
+
+  try {
+    var res = UrlFetchApp.fetch(url, {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify({ update_id: 0, _selftest: true }),
+      followRedirects: false,
+      muteHttpExceptions: true
+    });
+    var code = res.getResponseCode();
+    var headers = {};
+    try { headers = res.getAllHeaders() || {}; } catch (ignore) {}
+
+    lines.push('کد پاسخ: ' + code);
+
+    if (code === 200) {
+      lines.push('');
+      lines.push('✅ عالی: POST بدون ریدایرکت جواب می‌دهد؛ تلگرام هم باید بتواند پیام بفرستد.');
+      lines.push('اگر باز هم ربات ساکت است: action=setup و بعد action=diag را بزن.');
+    } else if (code === 301 || code === 302 || code === 303 || code === 307) {
+      lines.push('Location: ' + (headers['Location'] || headers['location'] || '(نامشخص)'));
+      lines.push('');
+      lines.push('❌ گوگل POST را ریدایرکت می‌کند؛ تلگرام ریدایرکت را دنبال نمی‌کند،');
+      lines.push('   پس همین است علت «Wrong response from the webhook: 302 Found».');
+      lines.push('');
+      lines.push('درستش کن:');
+      lines.push('۱) Deploy → Manage deployments → ✏️ (مداد)');
+      lines.push('۲) Execute as: Me (ایمیل خودت)');
+      lines.push('۳) Who has access: Anyone  ← نه «Anyone with Google account» و نه «Only myself»');
+      lines.push('۴) Version: New version → Deploy');
+      lines.push('۵) بعد این را باز کن: ' + deployUrl_() + '?k=' +
+                 (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=setup');
+      lines.push('۶) و بعد: ' + url + '&action=replay');
+    } else if (code === 401 || code === 403) {
+      lines.push('');
+      lines.push('❌ دسترسی بسته است (کاربر ناشناس اجازه ندارد).');
+      lines.push('در Manage deployments مقدار Who has access را روی Anyone بگذار و New version کن.');
+    } else {
+      lines.push('');
+      lines.push('پاسخ غیرمنتظره. سرآیندها: ' + JSON.stringify(headers));
+      lines.push('متن: ' + String(res.getContentText()).slice(0, 300));
+    }
+  } catch (err) {
+    lines.push('❌ خطا در تست: ' + err);
+  }
+
+  return lines;
 }
 
 /** خطوط گزارش کامل وضعیت (اکشن diag). */

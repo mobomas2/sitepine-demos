@@ -127,6 +127,14 @@ const sandbox = {
   },
   UrlFetchApp: {
     fetch: (url, opts) => {
+      // Self-POST test (posttest): status قابل تنظیم
+      if (opts && opts.followRedirects === false) {
+        return {
+          getResponseCode: () => sandbox.__selfPostStatus,
+          getAllHeaders: () => ({ Location: 'https://accounts.google.com/ServiceLogin' }),
+          getContentText: () => '',
+        };
+      }
       // getFile
       if (/\/getFile$/.test(url)) {
         return {
@@ -169,7 +177,8 @@ const sandbox = {
   },
 };
 
-store.props.BOT_TOKEN = '123456789:AAH_TEST_TOKEN_0123456789'; // در تست، توکن از Script Properties
+store.props.BOT_TOKEN = '123456789:AAH_TEST_TOKEN_0123456789';
+sandbox.__selfPostStatus = 200; // در تست، توکن از Script Properties
 vm.createContext(sandbox);
 const target = process.argv[2] || 'Code.gs';
 const code = fs.readFileSync(path.join(__dirname, target), 'utf8');
@@ -402,6 +411,27 @@ test('replay با پیام معلقِ عکس، فایل را ذخیره می‌�
   const body = sandbox.doGet({ parameter: { k: SECRET, action: 'replay' } }).getContent();
   assert.ok(body.includes('پردازش‌شده: 1'), body);
   assert.strictEqual(store.files.length, beforeFiles + 1);
+});
+
+test('posttest وقتی 302 می‌گیرد علت و راه‌حل را می‌گوید', () => {
+  vm.runInContext('__selfPostStatus = 302', sandbox);
+  const body = sandbox.doGet({ parameter: { k: SECRET, action: 'posttest' } }).getContent();
+  assert.ok(body.includes('کد پاسخ: 302'), body);
+  assert.ok(body.includes('302 Found'), body);
+  assert.ok(body.includes('Who has access: Anyone'), body);
+  assert.ok(body.includes('New version'), body);
+});
+
+test('posttest وقتی 200 می‌گیرد می‌گوید سالم است', () => {
+  vm.runInContext('__selfPostStatus = 200', sandbox);
+  const body = sandbox.doGet({ parameter: { k: SECRET, action: 'posttest' } }).getContent();
+  assert.ok(body.includes('✅ عالی'), body);
+});
+
+test('posttest وقتی 401/403 می‌گیرد دسترسی را نشان می‌دهد', () => {
+  vm.runInContext('__selfPostStatus = 403', sandbox);
+  const body = sandbox.doGet({ parameter: { k: SECRET, action: 'posttest' } }).getContent();
+  assert.ok(body.includes('Who has access'), body);
 });
 
 test('sendtest بدون chat راهنما می‌دهد', () => {

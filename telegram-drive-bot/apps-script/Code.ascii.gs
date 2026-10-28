@@ -7,11 +7,11 @@
  *
  *  STEP 1: put your bot token below -> BOT_TOKEN: 'TOKEN'
  *  STEP 2: save (Ctrl+S), then Deploy -> Manage deployments ->
- *          pencil -> Version: New version -> Deploy
+ *          pencil -> Execute as: Me / Who has access: Anyone ->
+ *          Version: New version -> Deploy
  *  STEP 3: open <WEB_APP_URL>?k=YOUR_SECRET&action=setup
- *  DEBUG : open <WEB_APP_URL>?k=YOUR_SECRET&action=diag
- *          open <WEB_APP_URL>?k=YOUR_SECRET&action=replay
- *          open <WEB_APP_URL>?k=YOUR_SECRET&action=sendtest&chat=CHAT_ID
+ *  DEBUG : &action=diag | &action=posttest | &action=replay
+ *          &action=sendtest&chat=CHAT_ID
  *
  *  Generated from Code.gs - keep the two in sync.
  * ================================================================
@@ -259,6 +259,10 @@ function doGet(e) {
       ]);
     }
 
+    if (action === 'posttest') {
+      return page_('\uD83D\uDCEE \u062A\u0633\u062A POST \u0627\u0632 \u0628\u06CC\u0631\u0648\u0646', postTestLines_());
+    }
+
     // 4) ping / \u067E\u06CC\u0634\u200C\u0641\u0631\u0636: \u06AF\u0632\u0627\u0631\u0634 \u06A9\u0627\u0645\u0644 \u0648\u0636\u0639\u06CC\u062A
     var lines = ['\u0622\u062F\u0631\u0633 \u0627\u06CC\u0646 \u0627\u0633\u06A9\u0631\u06CC\u067E\u062A: ' + deployUrl_(), ''];
 
@@ -292,6 +296,63 @@ function doGet(e) {
       '\u0627\u06CC\u0646 \u0645\u062A\u0646 \u0631\u0627 \u0628\u0631\u0627\u06CC\u0645 \u0628\u0641\u0631\u0633\u062A \u062A\u0627 \u062F\u0642\u06CC\u0642 \u0628\u06AF\u0648\u06CC\u0645 \u0645\u0634\u06A9\u0644 \u06A9\u062C\u0627\u0633\u062A.'
     ]);
   }
+}
+
+/**
+ * \u0628\u0647 \u062E\u0648\u062F \u0647\u0645\u06CC\u0646 web app \u06CC\u06A9 POST \u0645\u06CC\u200C\u0632\u0646\u062F (\u0628\u062F\u0648\u0646 \u062F\u0646\u0628\u0627\u0644 \u06A9\u0631\u062F\u0646 \u0631\u06CC\u062F\u0627\u06CC\u0631\u06A9\u062A) \u062A\u0627 \u0628\u0628\u06CC\u0646\u06CC\u0645
+ * \u062A\u0644\u06AF\u0631\u0627\u0645 \u0686\u0647 \u06A9\u062F\u06CC \u0645\u06CC\u200C\u06AF\u06CC\u0631\u062F. \u06A9\u062F 302 \u06CC\u0639\u0646\u06CC \u06AF\u0648\u06AF\u0644 \u0628\u0647 \u0635\u0641\u062D\u0647 \u0644\u0627\u06AF\u06CC\u0646 \u0631\u06CC\u062F\u0627\u06CC\u0631\u06A9\u062A \u0645\u06CC\u200C\u06A9\u0646\u062F
+ * \u0648 \u0647\u0645\u0627\u0646 \u0686\u06CC\u0632\u06CC \u0627\u0633\u062A \u06A9\u0647 \u062A\u0644\u06AF\u0631\u0627\u0645 \u06AF\u0632\u0627\u0631\u0634 \u0645\u06CC\u200C\u06A9\u0646\u062F: "Wrong response ... 302 Found".
+ */
+function postTestLines_() {
+  var url = deployUrl_() + '?k=' + encodeURIComponent(CONFIG.WEBHOOK_SECRET);
+  var lines = ['POST \u2192 ' + url, ''];
+
+  try {
+    var res = UrlFetchApp.fetch(url, {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify({ update_id: 0, _selftest: true }),
+      followRedirects: false,
+      muteHttpExceptions: true
+    });
+    var code = res.getResponseCode();
+    var headers = {};
+    try { headers = res.getAllHeaders() || {}; } catch (ignore) {}
+
+    lines.push('\u06A9\u062F \u067E\u0627\u0633\u062E: ' + code);
+
+    if (code === 200) {
+      lines.push('');
+      lines.push('\u2705 \u0639\u0627\u0644\u06CC: POST \u0628\u062F\u0648\u0646 \u0631\u06CC\u062F\u0627\u06CC\u0631\u06A9\u062A \u062C\u0648\u0627\u0628 \u0645\u06CC\u200C\u062F\u0647\u062F\u061B \u062A\u0644\u06AF\u0631\u0627\u0645 \u0647\u0645 \u0628\u0627\u06CC\u062F \u0628\u062A\u0648\u0627\u0646\u062F \u067E\u06CC\u0627\u0645 \u0628\u0641\u0631\u0633\u062A\u062F.');
+      lines.push('\u0627\u06AF\u0631 \u0628\u0627\u0632 \u0647\u0645 \u0631\u0628\u0627\u062A \u0633\u0627\u06A9\u062A \u0627\u0633\u062A: action=setup \u0648 \u0628\u0639\u062F action=diag \u0631\u0627 \u0628\u0632\u0646.');
+    } else if (code === 301 || code === 302 || code === 303 || code === 307) {
+      lines.push('Location: ' + (headers['Location'] || headers['location'] || '(\u0646\u0627\u0645\u0634\u062E\u0635)'));
+      lines.push('');
+      lines.push('\u274C \u06AF\u0648\u06AF\u0644 POST \u0631\u0627 \u0631\u06CC\u062F\u0627\u06CC\u0631\u06A9\u062A \u0645\u06CC\u200C\u06A9\u0646\u062F\u061B \u062A\u0644\u06AF\u0631\u0627\u0645 \u0631\u06CC\u062F\u0627\u06CC\u0631\u06A9\u062A \u0631\u0627 \u062F\u0646\u0628\u0627\u0644 \u0646\u0645\u06CC\u200C\u06A9\u0646\u062F\u060C');
+      lines.push('   \u067E\u0633 \u0647\u0645\u06CC\u0646 \u0627\u0633\u062A \u0639\u0644\u062A \u00ABWrong response from the webhook: 302 Found\u00BB.');
+      lines.push('');
+      lines.push('\u062F\u0631\u0633\u062A\u0634 \u06A9\u0646:');
+      lines.push('\u06F1) Deploy \u2192 Manage deployments \u2192 \u270F\uFE0F (\u0645\u062F\u0627\u062F)');
+      lines.push('\u06F2) Execute as: Me (\u0627\u06CC\u0645\u06CC\u0644 \u062E\u0648\u062F\u062A)');
+      lines.push('\u06F3) Who has access: Anyone  \u2190 \u0646\u0647 \u00ABAnyone with Google account\u00BB \u0648 \u0646\u0647 \u00ABOnly myself\u00BB');
+      lines.push('\u06F4) Version: New version \u2192 Deploy');
+      lines.push('\u06F5) \u0628\u0639\u062F \u0627\u06CC\u0646 \u0631\u0627 \u0628\u0627\u0632 \u06A9\u0646: ' + deployUrl_() + '?k=' +
+                 (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=setup');
+      lines.push('\u06F6) \u0648 \u0628\u0639\u062F: ' + url + '&action=replay');
+    } else if (code === 401 || code === 403) {
+      lines.push('');
+      lines.push('\u274C \u062F\u0633\u062A\u0631\u0633\u06CC \u0628\u0633\u062A\u0647 \u0627\u0633\u062A (\u06A9\u0627\u0631\u0628\u0631 \u0646\u0627\u0634\u0646\u0627\u0633 \u0627\u062C\u0627\u0632\u0647 \u0646\u062F\u0627\u0631\u062F).');
+      lines.push('\u062F\u0631 Manage deployments \u0645\u0642\u062F\u0627\u0631 Who has access \u0631\u0627 \u0631\u0648\u06CC Anyone \u0628\u06AF\u0630\u0627\u0631 \u0648 New version \u06A9\u0646.');
+    } else {
+      lines.push('');
+      lines.push('\u067E\u0627\u0633\u062E \u063A\u06CC\u0631\u0645\u0646\u062A\u0638\u0631\u0647. \u0633\u0631\u0622\u06CC\u0646\u062F\u0647\u0627: ' + JSON.stringify(headers));
+      lines.push('\u0645\u062A\u0646: ' + String(res.getContentText()).slice(0, 300));
+    }
+  } catch (err) {
+    lines.push('\u274C \u062E\u0637\u0627 \u062F\u0631 \u062A\u0633\u062A: ' + err);
+  }
+
+  return lines;
 }
 
 /** \u062E\u0637\u0648\u0637 \u06AF\u0632\u0627\u0631\u0634 \u06A9\u0627\u0645\u0644 \u0648\u0636\u0639\u06CC\u062A (\u0627\u06A9\u0634\u0646 diag). */

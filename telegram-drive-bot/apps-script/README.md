@@ -164,6 +164,7 @@ webhook: https://script.google.com/macros/s/.../exec?k=YOUR_SECRET
 |---|---|
 | `...?k=SECRET&action=diag` | گزارش کامل: توکن، پوشه، آدرس webhook، `last_error_message` تلگرام، و «آیا تا حالا آپدیتی رسیده؟» |
 | `...?k=SECRET&action=replay` | پیام‌هایی که تلگرام هنوز تحویل نداده را **همین حالا پردازش می‌کند** (فایل‌ها ذخیره می‌شوند، جواب‌ها می‌آیند) و webhook را دوباره ست می‌کند |
+| `...?k=SECRET&action=posttest` | به خودش یک POST می‌زند و کد پاسخ را نشان می‌دهد؛ **برای خطای 302** |
 | `...?k=SECRET&action=sendtest&chat=CHAT_ID` | تست خروجی: یک پیام تست به آن چت می‌فرستد (آیدی چت را از @userinfobot بگیر) |
 
 **تشخیص سریع بر اساس نتیجه `diag`:**
@@ -179,6 +180,29 @@ webhook: https://script.google.com/macros/s/.../exec?k=YOUR_SECRET
 | همه سبز و webhook درست | کد رسیده ولی جواب نمی‌آید | در ادیتور **Executions** را ببین؛ اگر خطا داشت متنش را بفرست |
 
 **مهم‌ترین تنظیم:** اگر پیام‌ها به اسکریپت نمی‌رسند، تقریباً همیشه *Who has access* روی **Anyone with Google account** است. تلگرام که اکانت گوگل ندارد پس رد می‌شود. باید **Anyone** باشد.
+
+---
+
+## 🚧 خطای `Wrong response from the webhook: 302 Found`
+
+این خطا یعنی **گوگل به تلگرام ریدایرکت (302) می‌دهد** و تلگرام ریدایرکت را دنبال نمی‌کند. پس پیام‌ها به اسکریپت نمی‌رسند و در صف می‌مانند (`pending_update_count`).
+
+در مرورگر خودت صفحه باز می‌شود چون **کوکی لاگین گوگل** داری؛ تلگرام ندارد.
+
+**علت ۹۹٪:** در تنظیمات دیپلوی، *Who has access* روی **Anyone with Google account** (یا Only myself) است.
+
+### درست کردنش (۶۰ ثانیه)
+
+1. **Deploy → Manage deployments** → روی ✏️ (مداد) دیپلوی فعال بزن
+2. **Execute as:** `Me (your@gmail.com)`
+3. **Who has access:** **`Anyone`** — بدون کلمهٔ Google، بدون «با اکانت گوگل»
+4. **Version:** `New version` → **Deploy**
+5. `...?k=SECRET&action=setup` را باز کن (webhook تازه ست می‌شود و خطای قبلی پاک می‌شود)
+6. `...?k=SECRET&action=posttest` → باید بگوید `کد پاسخ: 200` و `✅ عالی`
+7. `...?k=SECRET&action=replay` → همان پیام‌هایی که در صف مانده‌اند **همین حالا** ذخیره می‌شوند
+8. `...?k=SECRET&action=diag` → باید `pending_update_count: 0` و `last_error_message: ندارد` باشد
+
+> اگر `posttest` باز هم 302 داد، یک‌بار **New deployment** از صفر بساز (نه New version) و URL جدید را در `setup` استفاده کن؛ گاهی آدرس یک دیپلوی قدیمی گیر می‌کند.
 
 ---
 
