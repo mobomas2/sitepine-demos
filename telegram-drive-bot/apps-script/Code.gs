@@ -48,6 +48,7 @@ var CONFIG = {
 };
 // ===========================================================================
 
+var CODE_VERSION = 'polling-2026-10-28';
 var API = 'https://api.telegram.org/bot';
 var PROPS = PropertiesService.getScriptProperties();
 
@@ -92,10 +93,27 @@ function token_() {
   return t;
 }
 
+/**
+ * پارامترهای URL را تمیز می‌کند.
+ * اگر کسی آدرس را با &amp; (اچ‌تی‌ام‌ال‌شده) کپی کند، کلید می‌شود «amp;action»؛
+ * اینجا درستش می‌کنیم تا همیشه کار کند.
+ */
+function normalizeParams_(e) {
+  var raw = (e && e.parameter) || {};
+  var out = {};
+  for (var key in raw) {
+    if (!raw.hasOwnProperty(key)) continue;
+    var clean = String(key).replace(/^(amp;)+/i, '');
+    out[clean] = raw[key];
+    if (clean !== key) out[key] = raw[key];
+  }
+  return out;
+}
+
 // ---------------------------------------------------------------- ورودی‌ها
 function doPost(e) {
   try {
-    var params = (e && e.parameter) || {};
+    var params = normalizeParams_(e);
     if (CONFIG.WEBHOOK_SECRET && params.k !== CONFIG.WEBHOOK_SECRET) {
       return jsonOut_({ ok: false, error: 'forbidden' });
     }
@@ -142,8 +160,8 @@ function processUpdate_(update) {
 function doGet(e) {
   // هیچ‌وقت خطا پرت نمی‌کنیم؛ همیشه یک صفحه متنی می‌دهیم تا «صفحه سفید» نبینیم.
   try {
-    var p = (e && e.parameter) || {};
-    var action = String(p.action || 'ping').toLowerCase();
+    var p = normalizeParams_(e);
+    var action = String(p.action || 'ping').toLowerCase().replace(/^(amp;)+/, '');
 
     // 1) سکرت
     if (CONFIG.WEBHOOK_SECRET && p.k !== CONFIG.WEBHOOK_SECRET) {
@@ -259,7 +277,7 @@ function doGet(e) {
     }
 
     // 4) ping / پیش‌فرض: گزارش کامل وضعیت
-    var lines = ['آدرس این اسکریپت: ' + deployUrl_(), ''];
+    var lines = ['آدرس این اسکریپت: ' + deployUrl_(), 'نسخه کد: ' + CODE_VERSION, ''];
 
     var me = tg_('getMe', {});
     if (me && me.ok) {
@@ -278,10 +296,19 @@ function doGet(e) {
     var info = tg_('getWebhookInfo', {});
     lines.push('وضعیت webhook: ' + JSON.stringify(info));
 
+    var bad = info && info.ok && info.result &&
+              String(info.result.last_error_message || '').indexOf('302') !== -1;
     lines.push('');
-    lines.push('مرحله بعد:');
-    lines.push('اگر webhook ست نشده → ' + deployUrl_() + '?k=' + (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=setup');
-    lines.push('در تلگرام: /start و /id');
+    if (bad) {
+      lines.push('⛔️ تلگرام می‌گوید: 302 Found → گوگل به تلگرام ریدایرکت می‌دهد.');
+      lines.push('راه قطعی: حالت Polling را روشن کن (به دسترسی عمومی نیاز ندارد):');
+      lines.push('  ' + deployUrl_() + '?k=' + (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=startpolling');
+      lines.push('یا حتی ساده‌تر: در ادیتور، تابع setupPollingNow را انتخاب و Run کن.');
+    } else {
+      lines.push('مرحله بعد:');
+      lines.push('اگر webhook ست نشده → ' + deployUrl_() + '?k=' + (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=setup');
+      lines.push('در تلگرام: /start و /id');
+    }
 
     return page_('🤖 ربات تلگرام → گوگل درایو', lines);
   } catch (err) {
@@ -294,6 +321,30 @@ function doGet(e) {
 }
 
 // ============================ حالت Polling ============================
+
+/**
+ * ✅ ساده‌ترین راه: در همین ادیتور، از منوی توابع این را انتخاب کن و Run بزن.
+ *    (به هیچ آدرسی، هیچ سکرتی و هیچ دیپلوی جدیدی نیاز ندارد)
+ *
+ * کارهایی که می‌کند:
+ *   ۱) webhook را حذف می‌کند (وگرنه getUpdates خطای 409 می‌دهد)
+ *   ۲) تریگر هر ۱ دقیقه نصب می‌کند
+ *   ۳) همین حالا پیام‌های معلق را پردازش می‌کند
+ */
+function setupPollingNow() {
+  var report = startPolling_().join('\n');
+  Logger.log(report);
+  return report;
+}
+
+/** خاموش کردن polling و برگشت به webhook (از ادیتور هم قابل اجراست). */
+function stopPollingNow() {
+  var report = stopPolling_().join('\n');
+  Logger.log(report);
+  return report;
+}
+
+
 /**
  * اگر گوگل اجازه ندهد web app عمومی باشد (پاسخ 302 به تلگرام)،
  * ربات را می‌توان بدون webhook هم چرخاند: هر ۱ دقیقه خود Apps Script
@@ -469,6 +520,7 @@ function postTestLines_() {
 function diagLines_() {
   var lines = [];
   lines.push('آدرس این اسکریپت: ' + deployUrl_());
+  lines.push('نسخه کد: ' + CODE_VERSION);
   lines.push('');
 
   // توکن

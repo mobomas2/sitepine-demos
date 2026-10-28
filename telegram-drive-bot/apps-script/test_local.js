@@ -513,6 +513,27 @@ test('diag در صورت خطای 302 پیشنهاد polling می‌دهد', () 
   assert.ok(body.includes('حالت Polling'), body);
 });
 
+test('آدرس با &amp; (کپی از چت) هم کار می‌کند', () => {
+  const body = sandbox.doGet({ parameter: { k: SECRET, 'amp;action': 'diag' } }).getContent();
+  assert.ok(body.includes('تشخیص وضعیت'), body);
+  assert.ok(body.includes('نسخه کد: polling-2026-10-28'), body);
+});
+
+test('setupPollingNow از داخل ادیتور کار می‌کند (بدون URL)', () => {
+  const before = sandbox.pollingTriggersCount_();
+  const report = sandbox.setupPollingNow();
+  assert.ok(report.includes('تریگر هر ۱ دقیقه نصب شد'), report);
+  assert.strictEqual(sandbox.pollingTriggersCount_(), 1);
+  assert.ok(store.calls.some((c) => c.method === 'deleteWebhook'));
+  sandbox.stopPollingNow();
+  assert.strictEqual(sandbox.pollingTriggersCount_(), 0);
+});
+
+test('صفحه ping در صورت خطای 302 پیشنهاد polling می‌دهد', () => {
+  const body = sandbox.doGet({ parameter: { k: SECRET } }).getContent();
+  assert.ok(body.includes('نسخه کد'), body);
+});
+
 let failed = 0;
 for (const t of tests) {
   try {
