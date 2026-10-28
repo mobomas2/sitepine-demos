@@ -149,6 +149,43 @@ function doGet(e) {
   );
 }
 
+// ---------------------------------------------------------------- بررسی سریع
+/**
+ * بعد از paste و ذخیره، این تابع را از منوی انتخاب تابع بالا انتخاب کن و Run بزن.
+ * نتیجه در Execution log می‌آید: صحت توکن، دسترسی به پوشه، آدرس webhook.
+ */
+function checkSetup() {
+  var out = [];
+
+  try {
+    var me = tg_('getMe', {});
+    out.push(me && me.ok
+      ? '✅ token OK → @' + ((me.result && me.result.username) || '?')
+      : '❌ token FAIL → ' + JSON.stringify(me));
+  } catch (err) {
+    out.push('❌ token ERROR → ' + err);
+  }
+
+  try {
+    var folder = targetFolder_(null);
+    out.push('✅ folder OK → ' + folder.getName() + ' | ' + folder.getUrl());
+  } catch (err2) {
+    out.push('❌ folder ERROR → ' + err2);
+  }
+
+  try {
+    out.push('webhook url → ' + ScriptApp.getService().getUrl());
+  } catch (err3) {
+    out.push('webhook url → (بعد از Deploy نمایش داده می‌شود)');
+  }
+
+  out.push('ALLOWED_USER_IDS → ' + JSON.stringify(CONFIG.ALLOWED_USER_IDS || []));
+
+  var report = out.join('\n');
+  Logger.log(report);
+  return report;
+}
+
 // ---------------------------------------------------------------- مسیریابی
 function handleMessage_(msg) {
   var user = msg.from || {};

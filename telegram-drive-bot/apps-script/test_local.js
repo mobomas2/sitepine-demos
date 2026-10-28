@@ -161,7 +161,9 @@ const sandbox = {
 
 store.props.BOT_TOKEN = 'TEST:TOKEN'; // در تست، توکن از Script Properties
 vm.createContext(sandbox);
-const code = fs.readFileSync(path.join(__dirname, 'Code.gs'), 'utf8');
+const target = process.argv[2] || 'Code.gs';
+const code = fs.readFileSync(path.join(__dirname, target), 'utf8');
+console.log('# testing ' + target + '\n');
 vm.runInContext(code, sandbox);
 
 // ---------------------------------------------------------------- helpers

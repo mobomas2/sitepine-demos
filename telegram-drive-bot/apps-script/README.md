@@ -12,6 +12,9 @@
 
 اسکریپت داخل خود گوگل اجرا می‌شود، با اجازه‌ی همان اکانتی که لاگین هستی، فایل را از تلگرام می‌گیرد و در درایو می‌گذارد.
 
+> **دو نسخه از همان کد:** [`Code.ascii.gs`](Code.ascii.gs) (کاملاً ASCII، برای paste بی‌دردسر) و [`Code.gs`](Code.gs) (با کامنت فارسی).
+> اگر خطای `SyntaxError` گرفتی، نسخه ASCII را بچسبان — هر دو با ۱۲ تست یکسان تست شده‌اند.
+
 ---
 
 ## 🔴 اول از همه: توکن ربات را عوض کن
@@ -34,7 +37,16 @@
 
 ### ۲. کد را بگذار
 
-محتوای فایل [`Code.gs`](Code.gs) را کامل کپی کن و در ادیتور جای کد نمونه (`function myFunction() {}`) بچسبان. ذخیره کن (Ctrl+S). اسم پروژه را مثلاً `Telegram→Drive` بگذار.
+اول **همه چیز** را در ادیتور انتخاب کن (Ctrl+A) و **پاک کن** (Delete)، بعد یکی از این دو فایل را کامل بچسبان:
+
+| فایل | چه وقت |
+|---|---|
+| [`Code.ascii.gs`](Code.ascii.gs) | ✅ **پیشنهادی** — کاملاً ASCII؛ اگر خطای `SyntaxError` گرفتی از این استفاده کن (فارسی‌ها به `\uXXXX` تبدیل شده‌اند، خروجی ربات همچنان فارسی است) |
+| [`Code.gs`](Code.gs) | همان کد با کامنت‌های فارسی (خوش‌خوان‌تر) |
+
+بعد Ctrl+S بزن. اسم پروژه را مثلاً `Telegram→Drive` بگذار.
+
+**چک سریع:** خط اول باید `/**` باشد و خط آخر `}`. اگر خط اول چیزی مثل `[Code.gs](...)` یا متن دیگری بود، پاکش کن.
 
 ### ۳. توکن و تنظیمات
 
@@ -76,6 +88,14 @@ TIMEZONE: 'Asia/Tehran'
 **Authorize access** → اکانت خودت → «Google hasn't verified this app» → **Advanced** → **Go to Telegram→Drive (unsafe)** → **Allow**
 
 این پیام عادی است چون اسکریپت را خودت نوشتی؛ دسترسی درایو و درخواست به تلگرام (`script.external_request`) را تأیید می‌کند.
+
+**تست سریع قبل از ادامه:** بالای ادیتور، از منوی کشویی توابع **`checkSetup`** را انتخاب کن → **Run**. در **Execution log** باید ببینی:
+
+```
+✅ token OK → @T2GD2Tbot
+✅ folder OK → My Drive | https://drive.google.com/...
+webhook url → https://script.google.com/macros/s/.../exec
+```
 
 ### ۵. Webhook را ست کن
 
@@ -140,6 +160,8 @@ Deploy → **Manage deployments** → مداد ✏️ → Version: **New version
 | `Authorization required` در لاگ | مرحله ۴ را دوباره انجام بده و Allow کن |
 | `⚠️ پوشه مقصد پیدا نشد` | `FOLDER_ID` غلط است یا با این اکانت دسترسی ندارد |
 | `⚠️ سهمیه روزانه … پر شد` | فردا ادامه می‌دهد؛ یا حجم آپلود را کمتر کن |
+| `SyntaxError: Invalid or unexpected token line: 1` | کد ناقص/آلوده کپی شده. Ctrl+A → Delete → کل [`Code.ascii.gs`](Code.ascii.gs) را بچسبان (بدون هیچ متن اضافه‌ای در خط اول) |
+| `Unexpected identifier` یا خطای عجیب در خطی که متن فارسی دارد | نسخه ASCII را استفاده کن؛ کاراکترهای راست‌به‌چپ در کپی/پیست خراب می‌شوند |
 | بعد از تغییر کد اثری ندید | باید **New version** در Manage deployments بزنی |
 | اجرا با `Exceeded maximum execution time` قطع شد | فایل خیلی بزرگ/کند بود؛ `MAX_UPLOAD_MB` را کمتر کن |
 | خطای `Conflict: can't use getUpdates method while webhook is active` | یعنی جای دیگری `bot.py` با همین توکن در حال اجراست؛ آن را ببند (این اسکریپت webhook استفاده می‌کند) |
