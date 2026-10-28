@@ -16,11 +16,11 @@
 
 // ============================ CONFIG =======================================
 var CONFIG = {
-  // توکن ربات از @BotFather
-  // 🔐 بهتر است اینجا خالی بگذاری و توکن را در
-  //    Project Settings ⚙️ → Script Properties → Add property
-  //    با نام BOT_TOKEN و همان مقدار ذخیره کنی.
-  BOT_TOKEN: '',
+  // 🔑 توکن ربات از @BotFather را بین دو کوتیشن اینجا بگذار:
+  //    BOT_TOKEN: '8621978100:AAH...',
+  //    (یا اینجا را خالی بگذار و در Project Settings ⚙️ → Script Properties
+  //     با نام BOT_TOKEN ذخیره کن)
+  BOT_TOKEN: 'PUT-YOUR-NEW-BOT-TOKEN-HERE',
 
   // آیدی پوشه مقصد در گوگل درایو (بعد از /folders/ در آدرس پوشه)
   // خالی بگذار → در ریشه درایو ذخیره می‌شود
@@ -63,13 +63,33 @@ function seenBefore_(key) {
   return false;
 }
 
-/** توکن از CONFIG یا از Script Properties خوانده می‌شود. */
-function token_() {
-  var t = CONFIG.BOT_TOKEN || PROPS.getProperty('BOT_TOKEN');
-  if (!t) {
-    throw new Error('BOT_TOKEN تنظیم نشده: در Script Properties با نام BOT_TOKEN ذخیره کن.');
+/**
+ * توکن فعلی، یا '' اگر هنوز جای‌گذاری نشده باشد.
+ * اول CONFIG.BOT_TOKEN، بعد Script Properties. مقدار نمونه نادیده گرفته می‌شود.
+ */
+function currentToken_() {
+  var candidates = [CONFIG.BOT_TOKEN, PROPS.getProperty('BOT_TOKEN')];
+  for (var i = 0; i < candidates.length; i++) {
+    var t = String(candidates[i] || '').trim().replace(/^['"]+|['"]+$/g, '');
+    if (!t) continue;
+    if (/^(PUT|PASTE|YOUR|توکن)/i.test(t)) continue;   // placeholder
+    if (t.indexOf('...') !== -1) continue;             // 123456:AAH...
+    if (t.length < 20) continue;                       // خیلی کوتاه → توکن نیست
+    return t;
   }
-  return String(t).trim();
+  return '';
+}
+
+/** توکن یا خطای واضح. */
+function token_() {
+  var t = currentToken_();
+  if (!t) {
+    throw new Error(
+      'توکن ربات تنظیم نشده. در بالای کد، BOT_TOKEN را جایگزین کن ' +
+      "مثلاً BOT_TOKEN: '123456:AAH...'  (یا در Script Properties با نام BOT_TOKEN ذخیره کن)"
+    );
+  }
+  return t;
 }
 
 // ---------------------------------------------------------------- ورودی‌ها
@@ -104,49 +124,131 @@ function doPost(e) {
 }
 
 function doGet(e) {
-  var p = (e && e.parameter) || {};
-  if (CONFIG.WEBHOOK_SECRET && p.k !== CONFIG.WEBHOOK_SECRET) {
-    return textOut_('forbidden');
-  }
+  // هیچ‌وقت خطا پرت نمی‌کنیم؛ همیشه یک صفحه متنی می‌دهیم تا «صفحه سفید» نبینیم.
+  try {
+    var p = (e && e.parameter) || {};
+    var action = String(p.action || 'ping').toLowerCase();
 
-  var action = p.action || 'ping';
-
-  if (action === 'setup') {
-    var me = tg_('getMe', {});
-    if (!me || !me.ok) {
-      return textOut_('❌ توکن ربات درست نیست یا ست نشده.\n' + JSON.stringify(me));
+    // 1) سکرت
+    if (CONFIG.WEBHOOK_SECRET && p.k !== CONFIG.WEBHOOK_SECRET) {
+      return page_('⛔️ دسترسی ندارید', [
+        'در آدرس، مقدار k باید برابر WEBHOOK_SECRET باشد.',
+        'درست: ' + deployUrl_() + '?k=YOUR_SECRET&action=setup',
+        'WEBHOOK_SECRET فعلی: ' + (CONFIG.WEBHOOK_SECRET || '(خالی)')
+      ]);
     }
-    var url = ScriptApp.getService().getUrl() + '?k=' + encodeURIComponent(CONFIG.WEBHOOK_SECRET);
-    tg_('deleteWebhook', { drop_pending_updates: false });
-    var res = tg_('setWebhook', {
-      url: url,
-      allowed_updates: ['message', 'channel_post'],
-      max_connections: 1
-    });
-    return textOut_(
-      '✅ webhook ست شد\n\n' +
-      'ربات: @' + ((me.result && me.result.username) || '?') + '\n' +
-      'webhook: ' + url + '\n' +
-      'نتیجه تلگرام: ' + JSON.stringify(res) + '\n\n' +
-      'الان در تلگرام به ربات /start بده.'
-    );
-  }
 
-  if (action === 'delete') {
-    return textOut_(JSON.stringify(tg_('deleteWebhook', { drop_pending_updates: false }), null, 2));
-  }
+    // 2) توکن
+    if (!currentToken_()) {
+      return page_('🔑 توکن تلگرام تنظیم نشده', [
+        'این اسکریپت جای توکن را از تو نمی‌پرسد؛ باید یک‌بار در کد بگذاری:',
+        '',
+        "۱) بالای فایل، این خط را پیدا کن:   BOT_TOKEN: 'PUT-YOUR-NEW-BOT-TOKEN-HERE'",
+        "۲) جایش بنویس:                     BOT_TOKEN: '8621978100:AAH...'  (توکن واقعی بین دو کوتیشن)",
+        '۳) Ctrl+S ذخیره کن',
+        '۴) Deploy → Manage deployments → ✏️ → Version: New version → Deploy',
+        '۵) همین صفحه را رفرش کن',
+        '',
+        'راه دوم (بدون تغییر کد): ⚙️ Project Settings → Script Properties →',
+        'Add property → Name: BOT_TOKEN ، Value: توکن',
+        '',
+        '⛔️ اگر توکن لو رفته، اول در @BotFather → /mybots → API Token → Revoke توکن جدید بگیر.'
+      ]);
+    }
 
-  if (action === 'info') {
-    var info = tg_('getWebhookInfo', {});
+    // 3) اکشن‌ها
+    if (action === 'setup') {
+      var me = tg_('getMe', {});
+      if (!me || !me.ok) {
+        return page_('❌ توکن درست نیست', [
+          'تلگرام این توکن را قبول نکرد:',
+          JSON.stringify(me),
+          '',
+          'اگر توکن را Revoke کرده‌ای، مقدار جدید را بگذار و New version دیپلوی کن.',
+          'توجه: فاصله اضافه، کوتیشن اضافه یا نقل‌قول فارسی، توکن را خراب می‌کند.'
+        ]);
+      }
+
+      var url = deployUrl_() + '?k=' + encodeURIComponent(CONFIG.WEBHOOK_SECRET);
+      tg_('deleteWebhook', { drop_pending_updates: false });
+      var res = tg_('setWebhook', {
+        url: url,
+        allowed_updates: ['message', 'channel_post'],
+        max_connections: 1
+      });
+
+      return page_('✅ webhook ست شد', [
+        'ربات: @' + ((me.result && me.result.username) || '?'),
+        'webhook: ' + url,
+        'پاسخ تلگرام: ' + JSON.stringify(res),
+        '',
+        'الان در تلگرام به ربات /start بده.',
+        'اگر جواب نداد، همین آدرس را با action=info باز کن.'
+      ]);
+    }
+
+    if (action === 'info') {
+      return page_('📊 وضعیت ربات', [
+        'getMe: ' + JSON.stringify(tg_('getMe', {})),
+        '',
+        'webhookInfo: ' + JSON.stringify(tg_('getWebhookInfo', {}), null, 2)
+      ]);
+    }
+
+    if (action === 'delete') {
+      return page_('🗑 webhook حذف شد', [
+        JSON.stringify(tg_('deleteWebhook', { drop_pending_updates: false }))
+      ]);
+    }
+
+    // 4) ping / پیش‌فرض: گزارش کامل وضعیت
+    var lines = ['آدرس این اسکریپت: ' + deployUrl_(), ''];
+
     var me = tg_('getMe', {});
-    return textOut_('me: ' + JSON.stringify(me) + '\n\nwebhookInfo: ' + JSON.stringify(info, null, 2));
-  }
+    if (me && me.ok) {
+      lines.push('✅ توکن: درست → @' + ((me.result && me.result.username) || '?'));
+    } else {
+      lines.push('❌ توکن: تلگرام قبول نکرد → ' + JSON.stringify(me));
+    }
 
-  return textOut_(
-    'ربات فعال است.\n' +
-    'برای ست کردن webhook: ?k=SECRET&action=setup\n' +
-    'وضعیت: ?k=SECRET&action=info'
-  );
+    try {
+      var folder = targetFolder_(null);
+      lines.push('✅ پوشه مقصد: ' + folder.getName() + ' → ' + folder.getUrl());
+    } catch (ferr) {
+      lines.push('❌ پوشه مقصد: ' + ferr);
+    }
+
+    var info = tg_('getWebhookInfo', {});
+    lines.push('وضعیت webhook: ' + JSON.stringify(info));
+
+    lines.push('');
+    lines.push('مرحله بعد:');
+    lines.push('اگر webhook ست نشده → ' + deployUrl_() + '?k=' + (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=setup');
+    lines.push('در تلگرام: /start و /id');
+
+    return page_('🤖 ربات تلگرام → گوگل درایو', lines);
+  } catch (err) {
+    return page_('❌ خطا', [
+      String(err),
+      '',
+      'این متن را برایم بفرست تا دقیق بگویم مشکل کجاست.'
+    ]);
+  }
+}
+
+/** آدرس همین web app (روی نسخه دیپلوی‌شده). */
+function deployUrl_() {
+  try {
+    return ScriptApp.getService().getUrl() || '(بعد از Deploy مشخص می‌شود)';
+  } catch (e) {
+    return '(بعد از Deploy مشخص می‌شود)';
+  }
+}
+
+/** صفحه متنی ساده (به‌جای صفحه سفید). */
+function page_(title, lines) {
+  var body = '=== ' + title + ' ===\n\n' + (lines || []).join('\n');
+  return ContentService.createTextOutput(body).setMimeType(ContentService.MimeType.TEXT);
 }
 
 // ---------------------------------------------------------------- بررسی سریع

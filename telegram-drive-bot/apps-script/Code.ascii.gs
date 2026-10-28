@@ -5,9 +5,11 @@
  *  written as a \uXXXX escape, so no clipboard / RTL / encoding
  *  problem can break the syntax. The bot still answers in Persian.
  *
- *  PASTE THIS WHOLE FILE into the Apps Script editor, replacing
- *  everything that was there. Then follow apps-script/README.md
- *  (Script Properties -> BOT_TOKEN, Deploy as Web app, ?action=setup)
+ *  STEP 1: put your bot token below -> BOT_TOKEN: 'TOKEN'
+ *  STEP 2: save (Ctrl+S), then Deploy -> Manage deployments ->
+ *          pencil -> Version: New version -> Deploy
+ *  STEP 3: open  <WEB_APP_URL>?k=YOUR_SECRET   to see a status page
+ *          open  <WEB_APP_URL>?k=YOUR_SECRET&action=setup  to set webhook
  *
  *  Generated from Code.gs - keep the two in sync.
  * ================================================================
@@ -30,11 +32,11 @@
 
 // ============================ CONFIG =======================================
 var CONFIG = {
-  // \u062A\u0648\u06A9\u0646 \u0631\u0628\u0627\u062A \u0627\u0632 @BotFather
-  // \uD83D\uDD10 \u0628\u0647\u062A\u0631 \u0627\u0633\u062A \u0627\u06CC\u0646\u062C\u0627 \u062E\u0627\u0644\u06CC \u0628\u06AF\u0630\u0627\u0631\u06CC \u0648 \u062A\u0648\u06A9\u0646 \u0631\u0627 \u062F\u0631
-  //    Project Settings \u2699\uFE0F \u2192 Script Properties \u2192 Add property
-  //    \u0628\u0627 \u0646\u0627\u0645 BOT_TOKEN \u0648 \u0647\u0645\u0627\u0646 \u0645\u0642\u062F\u0627\u0631 \u0630\u062E\u06CC\u0631\u0647 \u06A9\u0646\u06CC.
-  BOT_TOKEN: '',
+  // \uD83D\uDD11 \u062A\u0648\u06A9\u0646 \u0631\u0628\u0627\u062A \u0627\u0632 @BotFather \u0631\u0627 \u0628\u06CC\u0646 \u062F\u0648 \u06A9\u0648\u062A\u06CC\u0634\u0646 \u0627\u06CC\u0646\u062C\u0627 \u0628\u06AF\u0630\u0627\u0631:
+  //    BOT_TOKEN: '8621978100:AAH...',
+  //    (\u06CC\u0627 \u0627\u06CC\u0646\u062C\u0627 \u0631\u0627 \u062E\u0627\u0644\u06CC \u0628\u06AF\u0630\u0627\u0631 \u0648 \u062F\u0631 Project Settings \u2699\uFE0F \u2192 Script Properties
+  //     \u0628\u0627 \u0646\u0627\u0645 BOT_TOKEN \u0630\u062E\u06CC\u0631\u0647 \u06A9\u0646)
+  BOT_TOKEN: 'PUT-YOUR-NEW-BOT-TOKEN-HERE',
 
   // \u0622\u06CC\u062F\u06CC \u067E\u0648\u0634\u0647 \u0645\u0642\u0635\u062F \u062F\u0631 \u06AF\u0648\u06AF\u0644 \u062F\u0631\u0627\u06CC\u0648 (\u0628\u0639\u062F \u0627\u0632 /folders/ \u062F\u0631 \u0622\u062F\u0631\u0633 \u067E\u0648\u0634\u0647)
   // \u062E\u0627\u0644\u06CC \u0628\u06AF\u0630\u0627\u0631 \u2192 \u062F\u0631 \u0631\u06CC\u0634\u0647 \u062F\u0631\u0627\u06CC\u0648 \u0630\u062E\u06CC\u0631\u0647 \u0645\u06CC\u200C\u0634\u0648\u062F
@@ -77,13 +79,33 @@ function seenBefore_(key) {
   return false;
 }
 
-/** \u062A\u0648\u06A9\u0646 \u0627\u0632 CONFIG \u06CC\u0627 \u0627\u0632 Script Properties \u062E\u0648\u0627\u0646\u062F\u0647 \u0645\u06CC\u200C\u0634\u0648\u062F. */
-function token_() {
-  var t = CONFIG.BOT_TOKEN || PROPS.getProperty('BOT_TOKEN');
-  if (!t) {
-    throw new Error('BOT_TOKEN \u062A\u0646\u0638\u06CC\u0645 \u0646\u0634\u062F\u0647: \u062F\u0631 Script Properties \u0628\u0627 \u0646\u0627\u0645 BOT_TOKEN \u0630\u062E\u06CC\u0631\u0647 \u06A9\u0646.');
+/**
+ * \u062A\u0648\u06A9\u0646 \u0641\u0639\u0644\u06CC\u060C \u06CC\u0627 '' \u0627\u06AF\u0631 \u0647\u0646\u0648\u0632 \u062C\u0627\u06CC\u200C\u06AF\u0630\u0627\u0631\u06CC \u0646\u0634\u062F\u0647 \u0628\u0627\u0634\u062F.
+ * \u0627\u0648\u0644 CONFIG.BOT_TOKEN\u060C \u0628\u0639\u062F Script Properties. \u0645\u0642\u062F\u0627\u0631 \u0646\u0645\u0648\u0646\u0647 \u0646\u0627\u062F\u06CC\u062F\u0647 \u06AF\u0631\u0641\u062A\u0647 \u0645\u06CC\u200C\u0634\u0648\u062F.
+ */
+function currentToken_() {
+  var candidates = [CONFIG.BOT_TOKEN, PROPS.getProperty('BOT_TOKEN')];
+  for (var i = 0; i < candidates.length; i++) {
+    var t = String(candidates[i] || '').trim().replace(/^['"]+|['"]+$/g, '');
+    if (!t) continue;
+    if (/^(PUT|PASTE|YOUR|\u062A\u0648\u06A9\u0646)/i.test(t)) continue;   // placeholder
+    if (t.indexOf('...') !== -1) continue;             // 123456:AAH...
+    if (t.length < 20) continue;                       // \u062E\u06CC\u0644\u06CC \u06A9\u0648\u062A\u0627\u0647 \u2192 \u062A\u0648\u06A9\u0646 \u0646\u06CC\u0633\u062A
+    return t;
   }
-  return String(t).trim();
+  return '';
+}
+
+/** \u062A\u0648\u06A9\u0646 \u06CC\u0627 \u062E\u0637\u0627\u06CC \u0648\u0627\u0636\u062D. */
+function token_() {
+  var t = currentToken_();
+  if (!t) {
+    throw new Error(
+      '\u062A\u0648\u06A9\u0646 \u0631\u0628\u0627\u062A \u062A\u0646\u0638\u06CC\u0645 \u0646\u0634\u062F\u0647. \u062F\u0631 \u0628\u0627\u0644\u0627\u06CC \u06A9\u062F\u060C BOT_TOKEN \u0631\u0627 \u062C\u0627\u06CC\u06AF\u0632\u06CC\u0646 \u06A9\u0646 ' +
+      "\u0645\u062B\u0644\u0627\u064B BOT_TOKEN: '123456:AAH...'  (\u06CC\u0627 \u062F\u0631 Script Properties \u0628\u0627 \u0646\u0627\u0645 BOT_TOKEN \u0630\u062E\u06CC\u0631\u0647 \u06A9\u0646)"
+    );
+  }
+  return t;
 }
 
 // ---------------------------------------------------------------- \u0648\u0631\u0648\u062F\u06CC\u200C\u0647\u0627
@@ -118,49 +140,131 @@ function doPost(e) {
 }
 
 function doGet(e) {
-  var p = (e && e.parameter) || {};
-  if (CONFIG.WEBHOOK_SECRET && p.k !== CONFIG.WEBHOOK_SECRET) {
-    return textOut_('forbidden');
-  }
+  // \u0647\u06CC\u0686\u200C\u0648\u0642\u062A \u062E\u0637\u0627 \u067E\u0631\u062A \u0646\u0645\u06CC\u200C\u06A9\u0646\u06CC\u0645\u061B \u0647\u0645\u06CC\u0634\u0647 \u06CC\u06A9 \u0635\u0641\u062D\u0647 \u0645\u062A\u0646\u06CC \u0645\u06CC\u200C\u062F\u0647\u06CC\u0645 \u062A\u0627 \u00AB\u0635\u0641\u062D\u0647 \u0633\u0641\u06CC\u062F\u00BB \u0646\u0628\u06CC\u0646\u06CC\u0645.
+  try {
+    var p = (e && e.parameter) || {};
+    var action = String(p.action || 'ping').toLowerCase();
 
-  var action = p.action || 'ping';
-
-  if (action === 'setup') {
-    var me = tg_('getMe', {});
-    if (!me || !me.ok) {
-      return textOut_('\u274C \u062A\u0648\u06A9\u0646 \u0631\u0628\u0627\u062A \u062F\u0631\u0633\u062A \u0646\u06CC\u0633\u062A \u06CC\u0627 \u0633\u062A \u0646\u0634\u062F\u0647.\n' + JSON.stringify(me));
+    // 1) \u0633\u06A9\u0631\u062A
+    if (CONFIG.WEBHOOK_SECRET && p.k !== CONFIG.WEBHOOK_SECRET) {
+      return page_('\u26D4\uFE0F \u062F\u0633\u062A\u0631\u0633\u06CC \u0646\u062F\u0627\u0631\u06CC\u062F', [
+        '\u062F\u0631 \u0622\u062F\u0631\u0633\u060C \u0645\u0642\u062F\u0627\u0631 k \u0628\u0627\u06CC\u062F \u0628\u0631\u0627\u0628\u0631 WEBHOOK_SECRET \u0628\u0627\u0634\u062F.',
+        '\u062F\u0631\u0633\u062A: ' + deployUrl_() + '?k=YOUR_SECRET&action=setup',
+        'WEBHOOK_SECRET \u0641\u0639\u0644\u06CC: ' + (CONFIG.WEBHOOK_SECRET || '(\u062E\u0627\u0644\u06CC)')
+      ]);
     }
-    var url = ScriptApp.getService().getUrl() + '?k=' + encodeURIComponent(CONFIG.WEBHOOK_SECRET);
-    tg_('deleteWebhook', { drop_pending_updates: false });
-    var res = tg_('setWebhook', {
-      url: url,
-      allowed_updates: ['message', 'channel_post'],
-      max_connections: 1
-    });
-    return textOut_(
-      '\u2705 webhook \u0633\u062A \u0634\u062F\n\n' +
-      '\u0631\u0628\u0627\u062A: @' + ((me.result && me.result.username) || '?') + '\n' +
-      'webhook: ' + url + '\n' +
-      '\u0646\u062A\u06CC\u062C\u0647 \u062A\u0644\u06AF\u0631\u0627\u0645: ' + JSON.stringify(res) + '\n\n' +
-      '\u0627\u0644\u0627\u0646 \u062F\u0631 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0628\u0647 \u0631\u0628\u0627\u062A /start \u0628\u062F\u0647.'
-    );
-  }
 
-  if (action === 'delete') {
-    return textOut_(JSON.stringify(tg_('deleteWebhook', { drop_pending_updates: false }), null, 2));
-  }
+    // 2) \u062A\u0648\u06A9\u0646
+    if (!currentToken_()) {
+      return page_('\uD83D\uDD11 \u062A\u0648\u06A9\u0646 \u062A\u0644\u06AF\u0631\u0627\u0645 \u062A\u0646\u0638\u06CC\u0645 \u0646\u0634\u062F\u0647', [
+        '\u0627\u06CC\u0646 \u0627\u0633\u06A9\u0631\u06CC\u067E\u062A \u062C\u0627\u06CC \u062A\u0648\u06A9\u0646 \u0631\u0627 \u0627\u0632 \u062A\u0648 \u0646\u0645\u06CC\u200C\u067E\u0631\u0633\u062F\u061B \u0628\u0627\u06CC\u062F \u06CC\u06A9\u200C\u0628\u0627\u0631 \u062F\u0631 \u06A9\u062F \u0628\u06AF\u0630\u0627\u0631\u06CC:',
+        '',
+        "\u06F1) \u0628\u0627\u0644\u0627\u06CC \u0641\u0627\u06CC\u0644\u060C \u0627\u06CC\u0646 \u062E\u0637 \u0631\u0627 \u067E\u06CC\u062F\u0627 \u06A9\u0646:   BOT_TOKEN: 'PUT-YOUR-NEW-BOT-TOKEN-HERE'",
+        "\u06F2) \u062C\u0627\u06CC\u0634 \u0628\u0646\u0648\u06CC\u0633:                     BOT_TOKEN: '8621978100:AAH...'  (\u062A\u0648\u06A9\u0646 \u0648\u0627\u0642\u0639\u06CC \u0628\u06CC\u0646 \u062F\u0648 \u06A9\u0648\u062A\u06CC\u0634\u0646)",
+        '\u06F3) Ctrl+S \u0630\u062E\u06CC\u0631\u0647 \u06A9\u0646',
+        '\u06F4) Deploy \u2192 Manage deployments \u2192 \u270F\uFE0F \u2192 Version: New version \u2192 Deploy',
+        '\u06F5) \u0647\u0645\u06CC\u0646 \u0635\u0641\u062D\u0647 \u0631\u0627 \u0631\u0641\u0631\u0634 \u06A9\u0646',
+        '',
+        '\u0631\u0627\u0647 \u062F\u0648\u0645 (\u0628\u062F\u0648\u0646 \u062A\u063A\u06CC\u06CC\u0631 \u06A9\u062F): \u2699\uFE0F Project Settings \u2192 Script Properties \u2192',
+        'Add property \u2192 Name: BOT_TOKEN \u060C Value: \u062A\u0648\u06A9\u0646',
+        '',
+        '\u26D4\uFE0F \u0627\u06AF\u0631 \u062A\u0648\u06A9\u0646 \u0644\u0648 \u0631\u0641\u062A\u0647\u060C \u0627\u0648\u0644 \u062F\u0631 @BotFather \u2192 /mybots \u2192 API Token \u2192 Revoke \u062A\u0648\u06A9\u0646 \u062C\u062F\u06CC\u062F \u0628\u06AF\u06CC\u0631.'
+      ]);
+    }
 
-  if (action === 'info') {
-    var info = tg_('getWebhookInfo', {});
+    // 3) \u0627\u06A9\u0634\u0646\u200C\u0647\u0627
+    if (action === 'setup') {
+      var me = tg_('getMe', {});
+      if (!me || !me.ok) {
+        return page_('\u274C \u062A\u0648\u06A9\u0646 \u062F\u0631\u0633\u062A \u0646\u06CC\u0633\u062A', [
+          '\u062A\u0644\u06AF\u0631\u0627\u0645 \u0627\u06CC\u0646 \u062A\u0648\u06A9\u0646 \u0631\u0627 \u0642\u0628\u0648\u0644 \u0646\u06A9\u0631\u062F:',
+          JSON.stringify(me),
+          '',
+          '\u0627\u06AF\u0631 \u062A\u0648\u06A9\u0646 \u0631\u0627 Revoke \u06A9\u0631\u062F\u0647\u200C\u0627\u06CC\u060C \u0645\u0642\u062F\u0627\u0631 \u062C\u062F\u06CC\u062F \u0631\u0627 \u0628\u06AF\u0630\u0627\u0631 \u0648 New version \u062F\u06CC\u067E\u0644\u0648\u06CC \u06A9\u0646.',
+          '\u062A\u0648\u062C\u0647: \u0641\u0627\u0635\u0644\u0647 \u0627\u0636\u0627\u0641\u0647\u060C \u06A9\u0648\u062A\u06CC\u0634\u0646 \u0627\u0636\u0627\u0641\u0647 \u06CC\u0627 \u0646\u0642\u0644\u200C\u0642\u0648\u0644 \u0641\u0627\u0631\u0633\u06CC\u060C \u062A\u0648\u06A9\u0646 \u0631\u0627 \u062E\u0631\u0627\u0628 \u0645\u06CC\u200C\u06A9\u0646\u062F.'
+        ]);
+      }
+
+      var url = deployUrl_() + '?k=' + encodeURIComponent(CONFIG.WEBHOOK_SECRET);
+      tg_('deleteWebhook', { drop_pending_updates: false });
+      var res = tg_('setWebhook', {
+        url: url,
+        allowed_updates: ['message', 'channel_post'],
+        max_connections: 1
+      });
+
+      return page_('\u2705 webhook \u0633\u062A \u0634\u062F', [
+        '\u0631\u0628\u0627\u062A: @' + ((me.result && me.result.username) || '?'),
+        'webhook: ' + url,
+        '\u067E\u0627\u0633\u062E \u062A\u0644\u06AF\u0631\u0627\u0645: ' + JSON.stringify(res),
+        '',
+        '\u0627\u0644\u0627\u0646 \u062F\u0631 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0628\u0647 \u0631\u0628\u0627\u062A /start \u0628\u062F\u0647.',
+        '\u0627\u06AF\u0631 \u062C\u0648\u0627\u0628 \u0646\u062F\u0627\u062F\u060C \u0647\u0645\u06CC\u0646 \u0622\u062F\u0631\u0633 \u0631\u0627 \u0628\u0627 action=info \u0628\u0627\u0632 \u06A9\u0646.'
+      ]);
+    }
+
+    if (action === 'info') {
+      return page_('\uD83D\uDCCA \u0648\u0636\u0639\u06CC\u062A \u0631\u0628\u0627\u062A', [
+        'getMe: ' + JSON.stringify(tg_('getMe', {})),
+        '',
+        'webhookInfo: ' + JSON.stringify(tg_('getWebhookInfo', {}), null, 2)
+      ]);
+    }
+
+    if (action === 'delete') {
+      return page_('\uD83D\uDDD1 webhook \u062D\u0630\u0641 \u0634\u062F', [
+        JSON.stringify(tg_('deleteWebhook', { drop_pending_updates: false }))
+      ]);
+    }
+
+    // 4) ping / \u067E\u06CC\u0634\u200C\u0641\u0631\u0636: \u06AF\u0632\u0627\u0631\u0634 \u06A9\u0627\u0645\u0644 \u0648\u0636\u0639\u06CC\u062A
+    var lines = ['\u0622\u062F\u0631\u0633 \u0627\u06CC\u0646 \u0627\u0633\u06A9\u0631\u06CC\u067E\u062A: ' + deployUrl_(), ''];
+
     var me = tg_('getMe', {});
-    return textOut_('me: ' + JSON.stringify(me) + '\n\nwebhookInfo: ' + JSON.stringify(info, null, 2));
-  }
+    if (me && me.ok) {
+      lines.push('\u2705 \u062A\u0648\u06A9\u0646: \u062F\u0631\u0633\u062A \u2192 @' + ((me.result && me.result.username) || '?'));
+    } else {
+      lines.push('\u274C \u062A\u0648\u06A9\u0646: \u062A\u0644\u06AF\u0631\u0627\u0645 \u0642\u0628\u0648\u0644 \u0646\u06A9\u0631\u062F \u2192 ' + JSON.stringify(me));
+    }
 
-  return textOut_(
-    '\u0631\u0628\u0627\u062A \u0641\u0639\u0627\u0644 \u0627\u0633\u062A.\n' +
-    '\u0628\u0631\u0627\u06CC \u0633\u062A \u06A9\u0631\u062F\u0646 webhook: ?k=SECRET&action=setup\n' +
-    '\u0648\u0636\u0639\u06CC\u062A: ?k=SECRET&action=info'
-  );
+    try {
+      var folder = targetFolder_(null);
+      lines.push('\u2705 \u067E\u0648\u0634\u0647 \u0645\u0642\u0635\u062F: ' + folder.getName() + ' \u2192 ' + folder.getUrl());
+    } catch (ferr) {
+      lines.push('\u274C \u067E\u0648\u0634\u0647 \u0645\u0642\u0635\u062F: ' + ferr);
+    }
+
+    var info = tg_('getWebhookInfo', {});
+    lines.push('\u0648\u0636\u0639\u06CC\u062A webhook: ' + JSON.stringify(info));
+
+    lines.push('');
+    lines.push('\u0645\u0631\u062D\u0644\u0647 \u0628\u0639\u062F:');
+    lines.push('\u0627\u06AF\u0631 webhook \u0633\u062A \u0646\u0634\u062F\u0647 \u2192 ' + deployUrl_() + '?k=' + (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=setup');
+    lines.push('\u062F\u0631 \u062A\u0644\u06AF\u0631\u0627\u0645: /start \u0648 /id');
+
+    return page_('\uD83E\uDD16 \u0631\u0628\u0627\u062A \u062A\u0644\u06AF\u0631\u0627\u0645 \u2192 \u06AF\u0648\u06AF\u0644 \u062F\u0631\u0627\u06CC\u0648', lines);
+  } catch (err) {
+    return page_('\u274C \u062E\u0637\u0627', [
+      String(err),
+      '',
+      '\u0627\u06CC\u0646 \u0645\u062A\u0646 \u0631\u0627 \u0628\u0631\u0627\u06CC\u0645 \u0628\u0641\u0631\u0633\u062A \u062A\u0627 \u062F\u0642\u06CC\u0642 \u0628\u06AF\u0648\u06CC\u0645 \u0645\u0634\u06A9\u0644 \u06A9\u062C\u0627\u0633\u062A.'
+    ]);
+  }
+}
+
+/** \u0622\u062F\u0631\u0633 \u0647\u0645\u06CC\u0646 web app (\u0631\u0648\u06CC \u0646\u0633\u062E\u0647 \u062F\u06CC\u067E\u0644\u0648\u06CC\u200C\u0634\u062F\u0647). */
+function deployUrl_() {
+  try {
+    return ScriptApp.getService().getUrl() || '(\u0628\u0639\u062F \u0627\u0632 Deploy \u0645\u0634\u062E\u0635 \u0645\u06CC\u200C\u0634\u0648\u062F)';
+  } catch (e) {
+    return '(\u0628\u0639\u062F \u0627\u0632 Deploy \u0645\u0634\u062E\u0635 \u0645\u06CC\u200C\u0634\u0648\u062F)';
+  }
+}
+
+/** \u0635\u0641\u062D\u0647 \u0645\u062A\u0646\u06CC \u0633\u0627\u062F\u0647 (\u0628\u0647\u200C\u062C\u0627\u06CC \u0635\u0641\u062D\u0647 \u0633\u0641\u06CC\u062F). */
+function page_(title, lines) {
+  var body = '=== ' + title + ' ===\n\n' + (lines || []).join('\n');
+  return ContentService.createTextOutput(body).setMimeType(ContentService.MimeType.TEXT);
 }
 
 // ---------------------------------------------------------------- \u0628\u0631\u0631\u0633\u06CC \u0633\u0631\u06CC\u0639

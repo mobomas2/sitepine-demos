@@ -119,6 +119,7 @@ const sandbox = {
     },
     sleep: () => {},
   },
+  Logger: { log: () => {} },
   ScriptApp: { getService: () => ({ getUrl: () => 'https://script.google.com/macros/s/FAKE/exec' }) },
   ContentService: {
     MimeType: { TEXT: 'TEXT', JSON: 'JSON' },
@@ -159,7 +160,7 @@ const sandbox = {
   },
 };
 
-store.props.BOT_TOKEN = 'TEST:TOKEN'; // در تست، توکن از Script Properties
+store.props.BOT_TOKEN = '123456789:AAH_TEST_TOKEN_0123456789'; // در تست، توکن از Script Properties
 vm.createContext(sandbox);
 const target = process.argv[2] || 'Code.gs';
 const code = fs.readFileSync(path.join(__dirname, target), 'utf8');
@@ -190,6 +191,53 @@ function test(name, fn) { tests.push({ name, fn }); }
 test('webhook با سکرت غلط رد می‌شود', () => {
   const out = sandbox.doPost({ parameter: { k: 'wrong' }, postData: { contents: '{}' } });
   assert.strictEqual(out.getContent(), '{"ok":false,"error":"forbidden"}');
+});
+
+test('صفحه وب‌اپ هرگز سفید/خطا نیست (ping گزارش می‌دهد)', () => {
+  const out = sandbox.doGet({ parameter: { k: SECRET } });
+  const body = out.getContent();
+  assert.ok(body.includes('ربات تلگرام'), body);
+  assert.ok(body.includes('✅ توکن'), body);
+  assert.ok(body.includes('✅ پوشه مقصد'), body);
+});
+
+test('بدون k پیام «دسترسی ندارید» می‌دهد (نه صفحه سفید)', () => {
+  const body = sandbox.doGet({ parameter: {} }).getContent();
+  assert.ok(body.includes('دسترسی ندارید'), body);
+});
+
+test('توکن جای‌گذاری نشده → راهنمای واضح', () => {
+  const saved = store.props.BOT_TOKEN;
+  delete store.props.BOT_TOKEN;
+  try {
+    const body = sandbox.doGet({ parameter: { k: SECRET, action: 'setup' } }).getContent();
+    assert.ok(body.includes('توکن تلگرام تنظیم نشده'), body);
+    assert.ok(body.includes('BOT_TOKEN'), body);
+    assert.ok(body.includes('Script Properties'), body);
+  } finally {
+    store.props.BOT_TOKEN = saved;
+  }
+});
+
+test('توکن: placeholder نادیده گرفته و از Script Properties خوانده می‌شود', () => {
+  assert.strictEqual(sandbox.currentToken_(), '123456789:AAH_TEST_TOKEN_0123456789');
+  vm.runInContext("CONFIG.BOT_TOKEN = 'PUT-YOUR-NEW-BOT-TOKEN-HERE'", sandbox);
+  assert.strictEqual(sandbox.currentToken_(), '123456789:AAH_TEST_TOKEN_0123456789');
+  vm.runInContext("CONFIG.BOT_TOKEN = '8621978100:AAH_REAL_TOKEN_0123456789'", sandbox);
+  assert.strictEqual(sandbox.currentToken_(), '8621978100:AAH_REAL_TOKEN_0123456789');
+  vm.runInContext("CONFIG.BOT_TOKEN = 'PUT-YOUR-NEW-BOT-TOKEN-HERE'", sandbox);
+});
+
+test('توکن با فاصله/کوتیشن اضافه هم درست خوانده می‌شود', () => {
+  vm.runInContext("CONFIG.BOT_TOKEN = '  8621978100:AAH_REAL_TOKEN_0123456789  '", sandbox);
+  assert.strictEqual(sandbox.currentToken_(), '8621978100:AAH_REAL_TOKEN_0123456789');
+  vm.runInContext("CONFIG.BOT_TOKEN = 'PUT-YOUR-NEW-BOT-TOKEN-HERE'", sandbox);
+});
+
+test('checkSetup بدون خطا اجرا می‌شود', () => {
+  const report = sandbox.checkSetup();
+  assert.ok(report.includes('token OK'), report);
+  assert.ok(report.includes('folder OK'), report);
 });
 
 test('متن به سند گوگل تبدیل می‌شود', () => {

@@ -48,17 +48,28 @@
 
 **چک سریع:** خط اول باید `/**` باشد و خط آخر `}`. اگر خط اول چیزی مثل `[Code.gs](...)` یا متن دیگری بود، پاکش کن.
 
-### ۳. توکن و تنظیمات
+### ۳. توکن را جای‌گذاری کن (مهم‌ترین قدم)
 
-**⚙️ Project Settings** (آیکن چرخ‌دنده، ستون چپ) → پایین صفحه → **Script Properties** → **Add property**:
+اسکریپت از تو «نمی‌پرسد»؛ جای توکن **داخل خود کد** است. بالای فایل، این خط را پیدا کن (در `Code.ascii.gs` حدود **خط ۳۹**، در `Code.gs` حدود **خط ۲۳**):
 
-| Property | Value |
-|---|---|
-| `BOT_TOKEN` | توکن **جدید** ربات |
+```js
+  BOT_TOKEN: 'PUT-YOUR-NEW-BOT-TOKEN-HERE',
+```
 
-> چرا اینجا و نه داخل کد؟ چون Script Properties جدا از کد ذخیره می‌شود و امن‌تر است.
+فقط متن بین دو کوتیشن را با توکن **جدید** عوض کن:
 
-اگر خواستی پوشه مقصد، سکرت و بقیه چیزها را هم اینجا نگه داری، در بالای `Code.gs` بخش `CONFIG` را پر کن:
+```js
+  BOT_TOKEN: '8621978100:AAH...',
+```
+
+⚠️ نکته‌ها:
+- کوتیشن‌ها (`' '`) را نگه دار، فاصله اضافه نگذار.
+- توکن را از @BotFather گرفته باشی و **Revoke**شده نباشد.
+- بعد از تغییر، **Ctrl+S** بزن.
+
+**راه دوم (اگر نمی‌خواهی توکن داخل کد باشد):** ⚙️ Project Settings → **Script Properties** → **Add property** → Name: `BOT_TOKEN` ، Value: توکن. (کد اول `CONFIG` را می‌خواند و اگر آنجا مقدار نمونه بود، از Script Properties استفاده می‌کند.)
+
+بقیه تنظیمات هم در همان بخش `CONFIG` است:
 
 ```js
 FOLDER_ID: '',                       // آیدی پوشه مقصد؛ خالی = ریشه درایو
@@ -97,9 +108,29 @@ TIMEZONE: 'Asia/Tehran'
 webhook url → https://script.google.com/macros/s/.../exec
 ```
 
-### ۵. Webhook را ست کن
+### ۵. اول وضعیت را ببین، بعد webhook را ست کن
 
-در مرورگر این آدرس را باز کن (SECRET همان مقدار `WEBHOOK_SECRET` در `CONFIG` است):
+**۵.۱ — چک وضعیت:** این آدرس را باز کن (SECRET = همان `WEBHOOK_SECRET`):
+
+```
+<WEB_APP_URL>?k=YOUR_SECRET
+```
+
+باید یک صفحه **متنی** ببینی (نه صفحه سفید)، شبیه:
+
+```
+=== 🤖 ربات تلگرام → گوگل درایو ===
+
+آدرس این اسکریپت: https://script.google.com/macros/s/.../exec
+
+✅ توکن: درست → @T2GD2Tbot
+✅ پوشه مقصد: My Drive → https://drive.google.com/...
+وضعیت webhook: {"ok":true,...}
+```
+
+اگر نوشت «🔑 توکن تلگرام تنظیم نشده» یعنی قدم ۳ انجام نشده یا New version دیپلوی نکرده‌ای.
+
+**۵.۲ — ست کردن webhook:**
 
 ```
 <WEB_APP_URL>?k=YOUR_SECRET&action=setup
@@ -160,6 +191,7 @@ Deploy → **Manage deployments** → مداد ✏️ → Version: **New version
 | `Authorization required` در لاگ | مرحله ۴ را دوباره انجام بده و Allow کن |
 | `⚠️ پوشه مقصد پیدا نشد` | `FOLDER_ID` غلط است یا با این اکانت دسترسی ندارد |
 | `⚠️ سهمیه روزانه … پر شد` | فردا ادامه می‌دهد؛ یا حجم آپلود را کمتر کن |
+| **صفحه سفید** هنگام باز کردن آدرس | ۱) آدرس باید کامل باشد: `.../exec?k=YOUR_SECRET` (بدون `?k=` صفحه پیام «دسترسی ندارید» می‌دهد). ۲) مطمئن شو آدرس **Deployment** را باز می‌کنی نه آدرس ادیتور (`/edit`). ۳) در Manage deployments چک کن *Who has access = Anyone* و *Execute as = Me*. ۴) بعد از هر تغییر کد، **New version** دیپلوی کن. ۵) اگر باز سفید بود، از منوی توابع `checkSetup` را Run کن و متن Execution log را بفرست |
 | `SyntaxError: Invalid or unexpected token line: 1` | کد ناقص/آلوده کپی شده. Ctrl+A → Delete → کل [`Code.ascii.gs`](Code.ascii.gs) را بچسبان (بدون هیچ متن اضافه‌ای در خط اول) |
 | `Unexpected identifier` یا خطای عجیب در خطی که متن فارسی دارد | نسخه ASCII را استفاده کن؛ کاراکترهای راست‌به‌چپ در کپی/پیست خراب می‌شوند |
 | بعد از تغییر کد اثری ندید | باید **New version** در Manage deployments بزنی |
