@@ -48,7 +48,7 @@ var CONFIG = {
 };
 // ===========================================================================
 
-var CODE_VERSION = 'polling-2026-10-28';
+var CODE_VERSION = 'polling-2026-10-28b';
 var API = 'https://api.telegram.org/bot';
 var PROPS = PropertiesService.getScriptProperties();
 
@@ -337,6 +337,53 @@ function setupPollingNow() {
   return report;
 }
 
+/**
+ * ✅ گزارش کامل وضعیت، مخصوص اجرا از ادیتور (هیچ URL/sکرتی لازم نیست).
+ *    انتخاب کن: statusNow → Run → خروجی در Execution log
+ */
+function statusNow() {
+  var lines = [];
+  lines.push('=== گزارش وضعیت ربات ===');
+  lines.push('نسخه کد: ' + CODE_VERSION);
+  lines.push('توکن: ' + (currentToken_() ? 'تنظیم شده ✅' : 'تنظیم نشده ❌'));
+
+  var me = tg_('getMe', {});
+  lines.push('getMe: ' + (me && me.ok
+    ? '✅ @' + ((me.result && me.result.username) || '?')
+    : '❌ ' + JSON.stringify(me)));
+
+  try {
+    var folder = targetFolder_(null);
+    lines.push('پوشه مقصد: ✅ ' + folder.getName() + ' → ' + folder.getUrl());
+  } catch (ferr) {
+    lines.push('پوشه مقصد: ❌ ' + ferr);
+  }
+
+  lines.push('تریگرهای polling: ' + pollingTriggersCount_());
+  lines.push('offset فعلی: ' + (PROPS.getProperty('TG_OFFSET') || '(خالی)'));
+
+  var info = tg_('getWebhookInfo', {});
+  if (info && info.ok) {
+    var r = info.result || {};
+    lines.push('webhook url: ' + (r.url || '(حذف شده — خوب است برای حالت polling)'));
+    lines.push('pending_update_count: ' + (r.pending_update_count || 0));
+    lines.push('last_error_message: ' + (r.last_error_message || 'ندارد ✅'));
+    if (r.url && String(r.url).length > 0) {
+      lines.push('⚠️ توجه: webhook هنوز فعال است؛ در حالت polling باید حذف شود.');
+      lines.push('   راه: setupPollingNow را Run کن.');
+    }
+  } else {
+    lines.push('webhookInfo: ❌ ' + JSON.stringify(info));
+  }
+
+  var last = PROPS.getProperty('LAST_UPDATE');
+  lines.push('آخرین آپدیت دریافتی: ' + (last || '(هنوز هیچ آپدیتی نرسیده)'));
+
+  var report = lines.join('\n');
+  Logger.log(report);
+  return report;
+}
+
 /** خاموش کردن polling و برگشت به webhook (از ادیتور هم قابل اجراست). */
 function stopPollingNow() {
   var report = stopPolling_().join('\n');
@@ -424,7 +471,10 @@ function stopPolling_() {
  */
 function pollOnce() {
   var lock = LockService.getScriptLock();
-  if (!lock.tryLock(10000)) return 0;   // اجرای هم‌زمان جلوگیری
+  if (!lock.tryLock(10000)) {
+    Logger.log('pollOnce: اجرای دیگری در حال انجام است؛ این دور رد شد.');
+    return 0;   // اجرای هم‌زمان جلوگیری
+  }
 
   var processed = 0;
   try {
@@ -434,9 +484,11 @@ function pollOnce() {
 
     var res = tg_('getUpdates', payload);
     if (!res || !res.ok) {
+      Logger.log('pollOnce: getUpdates ناموفق → ' + JSON.stringify(res));
       if (res && res.error_code === 409) {
         // webhook هنوز فعال است
         tg_('deleteWebhook', { drop_pending_updates: false });
+        Logger.log('pollOnce: webhook فعال بود و حذف شد؛ دور بعد پردازش می‌شود.');
       }
       return 0;
     }
@@ -453,6 +505,9 @@ function pollOnce() {
     }
 
     if (updates.length) PROPS.setProperty('TG_OFFSET', String(offset));
+
+    Logger.log('pollOnce: ' + updates.length + ' پیام دریافت شد، ' + processed +
+               ' پیام پردازش شد. offset جدید: ' + offset);
   } finally {
     lock.releaseLock();
   }

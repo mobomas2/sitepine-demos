@@ -1,18 +1,20 @@
 /**
  * ================================================================
- *  TELEGRAM -> GOOGLE DRIVE  (ASCII-SAFE BUILD)   v polling-2026-10-28
+ *  TELEGRAM -> GOOGLE DRIVE  (ASCII-SAFE BUILD)
+ *  CODE_VERSION: polling-2026-10-28b
  *
- *  THIS FILE IS 100% PLAIN ASCII (Persian text is \uXXXX escaped),
+ *  This file is 100% plain ASCII (Persian text is \uXXXX escaped),
  *  so copy/paste can never break the syntax.
  *
- *  IF THE BOT IS SILENT (telegram says: 302 Found):
- *     In the editor choose the function  setupPollingNow  and press Run.
- *     That is all - no URL, no secret, no public access needed.
+ *  RUN FROM THE EDITOR (no URL / no secret needed):
+ *    statusNow()        -> full status report in the Execution log
+ *    setupPollingNow()  -> deletes webhook, installs 1-min trigger,
+ *                          processes pending messages right away
+ *    pollOnce()         -> one manual polling round (logs what it did)
+ *    stopPollingNow()   -> back to webhook mode
  *
- *  Normal (webhook) mode: <WEB_APP_URL>?k=SECRET&action=setup
- *  Debug:  &action=diag | &action=posttest | &action=replay
- *          &action=pollnow | &action=stoppolling
- *          &action=sendtest&chat=CHAT_ID
+ *  Webhook mode (if Google allows public web apps):
+ *    <WEB_APP_URL>?k=SECRET&action=setup
  *
  *  Generated from Code.gs - keep the two in sync.
  * ================================================================
@@ -67,7 +69,7 @@ var CONFIG = {
 };
 // ===========================================================================
 
-var CODE_VERSION = 'polling-2026-10-28';
+var CODE_VERSION = 'polling-2026-10-28b';
 var API = 'https://api.telegram.org/bot';
 var PROPS = PropertiesService.getScriptProperties();
 
@@ -356,6 +358,53 @@ function setupPollingNow() {
   return report;
 }
 
+/**
+ * \u2705 \u06AF\u0632\u0627\u0631\u0634 \u06A9\u0627\u0645\u0644 \u0648\u0636\u0639\u06CC\u062A\u060C \u0645\u062E\u0635\u0648\u0635 \u0627\u062C\u0631\u0627 \u0627\u0632 \u0627\u062F\u06CC\u062A\u0648\u0631 (\u0647\u06CC\u0686 URL/s\u06A9\u0631\u062A\u06CC \u0644\u0627\u0632\u0645 \u0646\u06CC\u0633\u062A).
+ *    \u0627\u0646\u062A\u062E\u0627\u0628 \u06A9\u0646: statusNow \u2192 Run \u2192 \u062E\u0631\u0648\u062C\u06CC \u062F\u0631 Execution log
+ */
+function statusNow() {
+  var lines = [];
+  lines.push('=== \u06AF\u0632\u0627\u0631\u0634 \u0648\u0636\u0639\u06CC\u062A \u0631\u0628\u0627\u062A ===');
+  lines.push('\u0646\u0633\u062E\u0647 \u06A9\u062F: ' + CODE_VERSION);
+  lines.push('\u062A\u0648\u06A9\u0646: ' + (currentToken_() ? '\u062A\u0646\u0638\u06CC\u0645 \u0634\u062F\u0647 \u2705' : '\u062A\u0646\u0638\u06CC\u0645 \u0646\u0634\u062F\u0647 \u274C'));
+
+  var me = tg_('getMe', {});
+  lines.push('getMe: ' + (me && me.ok
+    ? '\u2705 @' + ((me.result && me.result.username) || '?')
+    : '\u274C ' + JSON.stringify(me)));
+
+  try {
+    var folder = targetFolder_(null);
+    lines.push('\u067E\u0648\u0634\u0647 \u0645\u0642\u0635\u062F: \u2705 ' + folder.getName() + ' \u2192 ' + folder.getUrl());
+  } catch (ferr) {
+    lines.push('\u067E\u0648\u0634\u0647 \u0645\u0642\u0635\u062F: \u274C ' + ferr);
+  }
+
+  lines.push('\u062A\u0631\u06CC\u06AF\u0631\u0647\u0627\u06CC polling: ' + pollingTriggersCount_());
+  lines.push('offset \u0641\u0639\u0644\u06CC: ' + (PROPS.getProperty('TG_OFFSET') || '(\u062E\u0627\u0644\u06CC)'));
+
+  var info = tg_('getWebhookInfo', {});
+  if (info && info.ok) {
+    var r = info.result || {};
+    lines.push('webhook url: ' + (r.url || '(\u062D\u0630\u0641 \u0634\u062F\u0647 \u2014 \u062E\u0648\u0628 \u0627\u0633\u062A \u0628\u0631\u0627\u06CC \u062D\u0627\u0644\u062A polling)'));
+    lines.push('pending_update_count: ' + (r.pending_update_count || 0));
+    lines.push('last_error_message: ' + (r.last_error_message || '\u0646\u062F\u0627\u0631\u062F \u2705'));
+    if (r.url && String(r.url).length > 0) {
+      lines.push('\u26A0\uFE0F \u062A\u0648\u062C\u0647: webhook \u0647\u0646\u0648\u0632 \u0641\u0639\u0627\u0644 \u0627\u0633\u062A\u061B \u062F\u0631 \u062D\u0627\u0644\u062A polling \u0628\u0627\u06CC\u062F \u062D\u0630\u0641 \u0634\u0648\u062F.');
+      lines.push('   \u0631\u0627\u0647: setupPollingNow \u0631\u0627 Run \u06A9\u0646.');
+    }
+  } else {
+    lines.push('webhookInfo: \u274C ' + JSON.stringify(info));
+  }
+
+  var last = PROPS.getProperty('LAST_UPDATE');
+  lines.push('\u0622\u062E\u0631\u06CC\u0646 \u0622\u067E\u062F\u06CC\u062A \u062F\u0631\u06CC\u0627\u0641\u062A\u06CC: ' + (last || '(\u0647\u0646\u0648\u0632 \u0647\u06CC\u0686 \u0622\u067E\u062F\u06CC\u062A\u06CC \u0646\u0631\u0633\u06CC\u062F\u0647)'));
+
+  var report = lines.join('\n');
+  Logger.log(report);
+  return report;
+}
+
 /** \u062E\u0627\u0645\u0648\u0634 \u06A9\u0631\u062F\u0646 polling \u0648 \u0628\u0631\u06AF\u0634\u062A \u0628\u0647 webhook (\u0627\u0632 \u0627\u062F\u06CC\u062A\u0648\u0631 \u0647\u0645 \u0642\u0627\u0628\u0644 \u0627\u062C\u0631\u0627\u0633\u062A). */
 function stopPollingNow() {
   var report = stopPolling_().join('\n');
@@ -443,7 +492,10 @@ function stopPolling_() {
  */
 function pollOnce() {
   var lock = LockService.getScriptLock();
-  if (!lock.tryLock(10000)) return 0;   // \u0627\u062C\u0631\u0627\u06CC \u0647\u0645\u200C\u0632\u0645\u0627\u0646 \u062C\u0644\u0648\u06AF\u06CC\u0631\u06CC
+  if (!lock.tryLock(10000)) {
+    Logger.log('pollOnce: \u0627\u062C\u0631\u0627\u06CC \u062F\u06CC\u06AF\u0631\u06CC \u062F\u0631 \u062D\u0627\u0644 \u0627\u0646\u062C\u0627\u0645 \u0627\u0633\u062A\u061B \u0627\u06CC\u0646 \u062F\u0648\u0631 \u0631\u062F \u0634\u062F.');
+    return 0;   // \u0627\u062C\u0631\u0627\u06CC \u0647\u0645\u200C\u0632\u0645\u0627\u0646 \u062C\u0644\u0648\u06AF\u06CC\u0631\u06CC
+  }
 
   var processed = 0;
   try {
@@ -453,9 +505,11 @@ function pollOnce() {
 
     var res = tg_('getUpdates', payload);
     if (!res || !res.ok) {
+      Logger.log('pollOnce: getUpdates \u0646\u0627\u0645\u0648\u0641\u0642 \u2192 ' + JSON.stringify(res));
       if (res && res.error_code === 409) {
         // webhook \u0647\u0646\u0648\u0632 \u0641\u0639\u0627\u0644 \u0627\u0633\u062A
         tg_('deleteWebhook', { drop_pending_updates: false });
+        Logger.log('pollOnce: webhook \u0641\u0639\u0627\u0644 \u0628\u0648\u062F \u0648 \u062D\u0630\u0641 \u0634\u062F\u061B \u062F\u0648\u0631 \u0628\u0639\u062F \u067E\u0631\u062F\u0627\u0632\u0634 \u0645\u06CC\u200C\u0634\u0648\u062F.');
       }
       return 0;
     }
@@ -472,6 +526,9 @@ function pollOnce() {
     }
 
     if (updates.length) PROPS.setProperty('TG_OFFSET', String(offset));
+
+    Logger.log('pollOnce: ' + updates.length + ' \u067E\u06CC\u0627\u0645 \u062F\u0631\u06CC\u0627\u0641\u062A \u0634\u062F\u060C ' + processed +
+               ' \u067E\u06CC\u0627\u0645 \u067E\u0631\u062F\u0627\u0632\u0634 \u0634\u062F. offset \u062C\u062F\u06CC\u062F: ' + offset);
   } finally {
     lock.releaseLock();
   }

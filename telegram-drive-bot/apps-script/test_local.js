@@ -10,6 +10,7 @@ const assert = require('assert');
 
 // ---------------------------------------------------------------- mocks
 const store = { props: {}, files: [], folders: {}, sent: [], webhook: null, calls: [], pending: [], triggers: [] };
+const sandboxLogger = { _lines: [], log: (m) => { sandboxLogger._lines.push(String(m)); } };
 
 function makeBlob(name, mime, bytes) {
   let _name = name, _mime = mime, _bytes = bytes || 'x';
@@ -119,7 +120,7 @@ const sandbox = {
     },
     sleep: () => {},
   },
-  Logger: { log: () => {} },
+  Logger: sandboxLogger,
   ScriptApp: {
     getService: () => ({ getUrl: () => 'https://script.google.com/macros/s/FAKE/exec' }),
     getProjectTriggers: () => store.triggers.slice(),
@@ -532,6 +533,44 @@ test('setupPollingNow از داخل ادیتور کار می‌کند (بدون 
 test('صفحه ping در صورت خطای 302 پیشنهاد polling می‌دهد', () => {
   const body = sandbox.doGet({ parameter: { k: SECRET } }).getContent();
   assert.ok(body.includes('نسخه کد'), body);
+});
+
+test('statusNow همه‌چیز را در لاگ می‌نویسد (بدون URL)', () => {
+  sandboxLogger._lines = [];
+  const report = sandbox.statusNow();
+  assert.ok(report.includes('نسخه کد: polling-2026-10-28b'), report);
+  assert.ok(report.includes('✅ @T2GD2Tbot'), report);
+  assert.ok(report.includes('پوشه مقصد: ✅'), report);
+  assert.ok(report.includes('تریگرهای polling:'), report);
+  assert.ok(sandboxLogger._lines.length === 1, 'باید در Execution log نوشته شود');
+});
+
+test('pollOnce نتیجه را لاگ می‌کند', () => {
+  sandboxLogger._lines = [];
+  store.pending = [{ update_id: 9500, message: msgBase({ text: 'لاگ' }) }];
+  sandbox.pollOnce();
+  assert.ok(sandboxLogger._lines.join('\n').includes('1 پیام دریافت شد'), sandboxLogger._lines.join('|'));
+});
+
+test('pollOnce وقتی webhook فعال است خودش حذف می‌کند و لاگ می‌دهد', () => {
+  sandboxLogger._lines = [];
+  // شبیه‌سازی خطای 409
+  const realFetch = sandbox.UrlFetchApp.fetch;
+  let firstUpdateCall = true;
+  sandbox.UrlFetchApp.fetch = (url, opts) => {
+    if (/getUpdates$/.test(url) && firstUpdateCall) {
+      firstUpdateCall = false;
+      return { getResponseCode: () => 409, getContentText: () => JSON.stringify({ ok: false, error_code: 409, description: 'Conflict: webhook is active' }) };
+    }
+    return realFetch(url, opts);
+  };
+  try {
+    const n = sandbox.pollOnce();
+    assert.strictEqual(n, 0);
+    assert.ok(sandboxLogger._lines.join('\n').includes('webhook فعال بود و حذف شد'), sandboxLogger._lines.join('|'));
+  } finally {
+    sandbox.UrlFetchApp.fetch = realFetch;
+  }
 });
 
 let failed = 0;
