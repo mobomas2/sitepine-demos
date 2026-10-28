@@ -19,9 +19,10 @@ var BY_DATE    = true;          // true = subfolder 2026-10-28
 var TEXT_MODE  = 'doc';         // 'doc' = Google Doc, 'txt' = plain text
 var MAX_MB     = 19;
 var ALLOWED    = [];            // e.g. [123456789]; empty = everyone
-var VERSION    = 'single-1.0';
+var VERSION    = 'single-1.1';
 
-var API = 'https://api.telegram.org/bot' + BOT_TOKEN;
+var API      = 'https://api.telegram.org/bot' + BOT_TOKEN;
+var FILE_API = 'https://api.telegram.org/file/bot' + BOT_TOKEN;   // \u0645\u0633\u06CC\u0631 \u062F\u0627\u0646\u0644\u0648\u062F \u0641\u0627\u06CC\u0644
 
 
 // ================================================================
@@ -388,17 +389,42 @@ function mediaOf(msg, stamp) {
   return null;
 }
 
-function download(fileId) {
+/**
+ * \u0645\u0633\u06CC\u0631 \u0641\u0627\u06CC\u0644 \u0631\u0627 \u0627\u0632 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0645\u06CC\u200C\u06AF\u06CC\u0631\u062F \u0648 \u0622\u0646 \u0631\u0627 \u0628\u0647 URL \u06A9\u0627\u0645\u0644 \u062F\u0627\u0646\u0644\u0648\u062F \u062A\u0628\u062F\u06CC\u0644 \u0645\u06CC\u200C\u06A9\u0646\u062F.
+ * \u0646\u06A9\u062A\u0647 \u0645\u0647\u0645: \u0622\u062F\u0631\u0633 \u062F\u0631\u0633\u062A  /file/bot<TOKEN>/<file_path>  \u0627\u0633\u062A.
+ * \u0628\u062F\u0648\u0646 \u00ABfile/\u00BB \u062A\u0644\u06AF\u0631\u0627\u0645 404 \u0645\u06CC\u200C\u062F\u0647\u062F.
+ */
+function fileUrl(fileId) {
   var info = tg('getFile', { file_id: fileId });
-  if (!info || !info.ok) throw new Error('\u06AF\u0631\u0641\u062A\u0646 \u0641\u0627\u06CC\u0644 \u0627\u0632 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0634\u06A9\u0633\u062A \u062E\u0648\u0631\u062F');
-  var path = info.result.file_path;
-  if (!path) throw new Error('\u0641\u0627\u06CC\u0644 \u062F\u0631 \u062F\u0633\u062A\u0631\u0633 \u0646\u06CC\u0633\u062A (\u0628\u0627\u0644\u0627\u06CC \u06F2\u06F0MB\u061F)');
-
-  var res = UrlFetchApp.fetch(API + '/' + path, { muteHttpExceptions: true, followRedirects: true });
-  if (res.getResponseCode() !== 200) {
-    throw new Error('\u062F\u0627\u0646\u0644\u0648\u062F \u0627\u0632 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0646\u0627\u0645\u0648\u0641\u0642: HTTP ' + res.getResponseCode());
+  if (!info || !info.ok) {
+    throw new Error('\u06AF\u0631\u0641\u062A\u0646 \u0645\u0633\u06CC\u0631 \u0641\u0627\u06CC\u0644 \u0627\u0632 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0634\u06A9\u0633\u062A \u062E\u0648\u0631\u062F: ' + JSON.stringify(info));
   }
-  return res.getContent();   // byte[] \u2014 blob \u0631\u0627 \u062E\u0648\u062F\u0645\u0627\u0646 \u0628\u0627 MIME \u062A\u0645\u06CC\u0632 \u0645\u06CC\u200C\u0633\u0627\u0632\u06CC\u0645
+  var path = String(info.result.file_path || '').replace(/^\/+/, '');
+  if (!path) throw new Error('file_path \u0628\u0631\u0646\u06AF\u0634\u062A (\u0641\u0627\u06CC\u0644 \u0628\u0627\u0644\u0627\u06CC \u06F2\u06F0MB \u06CC\u0627 \u0645\u0646\u0642\u0636\u06CC \u0634\u062F\u0647\u061F)');
+  if (/^https?:\/\//i.test(path)) return path;          // \u0627\u06AF\u0631 \u062E\u0648\u062F\u0634 URL \u06A9\u0627\u0645\u0644 \u062F\u0627\u062F
+  if (path.indexOf('file/bot') === 0) return 'https://api.telegram.org/' + path;
+  return FILE_API + '/' + path;
+}
+
+function download(fileId) {
+  var url = fileUrl(fileId);
+  var res = UrlFetchApp.fetch(url, { muteHttpExceptions: true, followRedirects: true });
+
+  // \u0627\u06AF\u0631 404/400 \u06AF\u0631\u0641\u062A\u060C \u0645\u0633\u06CC\u0631 \u0645\u0645\u06A9\u0646 \u0627\u0633\u062A \u0645\u0646\u0642\u0636\u06CC \u0634\u062F\u0647 \u0628\u0627\u0634\u062F \u2192 \u06CC\u06A9\u200C\u0628\u0627\u0631 \u062F\u06CC\u06AF\u0631 \u0645\u0633\u06CC\u0631 \u062A\u0627\u0632\u0647 \u0628\u06AF\u06CC\u0631
+  if (res.getResponseCode() !== 200) {
+    Logger.log('\u062F\u0627\u0646\u0644\u0648\u062F \u062A\u0644\u0627\u0634 \u06F1 \u0646\u0627\u0645\u0648\u0641\u0642: HTTP ' + res.getResponseCode() + ' \u2192 ' + url);
+    url = fileUrl(fileId);
+    res = UrlFetchApp.fetch(url, { muteHttpExceptions: true, followRedirects: true });
+  }
+
+  if (res.getResponseCode() !== 200) {
+    throw new Error('\u062F\u0627\u0646\u0644\u0648\u062F \u0627\u0632 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0646\u0627\u0645\u0648\u0641\u0642: HTTP ' + res.getResponseCode() +
+      ' (\u0645\u0633\u06CC\u0631 \u0641\u0627\u06CC\u0644 \u0645\u0645\u06A9\u0646 \u0627\u0633\u062A \u0645\u0646\u0642\u0636\u06CC \u0634\u062F\u0647 \u0628\u0627\u0634\u062F\u061B \u067E\u06CC\u0627\u0645 \u0631\u0627 \u062F\u0648\u0628\u0627\u0631\u0647 \u0628\u0641\u0631\u0633\u062A)');
+  }
+
+  var bytes = res.getContent();
+  if (!bytes || !bytes.length) throw new Error('\u0641\u0627\u06CC\u0644 \u062E\u0627\u0644\u06CC \u0627\u0632 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0631\u0633\u06CC\u062F.');
+  return bytes;   // byte[] \u2014 blob \u0631\u0627 \u062E\u0648\u062F\u0645\u0627\u0646 \u0628\u0627 MIME \u062A\u0645\u06CC\u0632 \u0645\u06CC\u200C\u0633\u0627\u0632\u06CC\u0645
 }
 
 function rootFolder() {
