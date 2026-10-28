@@ -16,3 +16,4 @@ __pycache__/
 # نسخه شخصی با توکن داخل کد — هرگز commit نشود
 apps-script/Code.personal.gs
 apps-script/Code.minimal.gs
+apps-script/Code.single.gs
