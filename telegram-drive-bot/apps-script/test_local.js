@@ -9,7 +9,7 @@ const vm = require('vm');
 const assert = require('assert');
 
 // ---------------------------------------------------------------- mocks
-const store = { props: {}, files: [], folders: {}, sent: [], webhook: null };
+const store = { props: {}, files: [], folders: {}, sent: [], webhook: null, calls: [], pending: [] };
 
 function makeBlob(name, mime, bytes) {
   let _name = name, _mime = mime, _bytes = bytes || 'x';
@@ -147,11 +147,20 @@ const sandbox = {
       if (method === 'getMe') {
         return { getResponseCode: () => 200, getContentText: () => JSON.stringify({ ok: true, result: { username: 'T2GD2Tbot' } }) };
       }
+      if (method === 'getUpdates') {
+        store.calls.push({ method, payload: JSON.parse((opts && opts.payload) || '{}') });
+        const payload = JSON.parse((opts && opts.payload) || '{}');
+        const out = payload.offset ? [] : store.pending.slice();
+        if (payload.offset) store.pending.length = 0;
+        return { getResponseCode: () => 200, getContentText: () => JSON.stringify({ ok: true, result: out }) };
+      }
       if (method === 'setWebhook' || method === 'getWebhookInfo' || method === 'deleteWebhook') {
         store.webhook = { method, payload: JSON.parse((opts && opts.payload) || '{}') };
+        store.calls.push({ method, payload: store.webhook.payload });
         return { getResponseCode: () => 200, getContentText: () => JSON.stringify({ ok: true, result: true }) };
       }
       if (method === 'sendMessage') {
+        store.calls.push({ method, payload: JSON.parse(opts.payload) });
         store.sent.push(JSON.parse(opts.payload));
         return { getResponseCode: () => 200, getContentText: () => JSON.stringify({ ok: true, result: {} }) };
       }
@@ -346,6 +355,65 @@ test('action=setup وب‌هوک را ست می‌کند', () => {
   assert.ok(out.getContent().includes('webhook ست شد'));
   assert.strictEqual(store.webhook.method, 'setWebhook');
   assert.ok(store.webhook.payload.url.includes('?k=' + SECRET));
+});
+
+test('/ping جواب می‌دهد', () => {
+  post(msgBase({ text: '/ping' }));
+  assert.ok(store.sent[store.sent.length - 1].text.includes('pong'));
+});
+
+test('diag وضعیت کامل را نشان می‌دهد', () => {
+  const body = sandbox.doGet({ parameter: { k: SECRET, action: 'diag' } }).getContent();
+  assert.ok(body.includes('✅ توکن: درست'), body);
+  assert.ok(body.includes('webhook url'), body);
+  assert.ok(body.includes('آخرین آپدیت دریافتی'), body);
+});
+
+test('heartbeat بعد از آپدیت ذخیره می‌شود', () => {
+  post(msgBase({ text: '/ping' }));
+  assert.ok(store.props.LAST_UPDATE, 'LAST_UPDATE باید ثبت شود');
+  assert.ok(store.props.LAST_UPDATE.includes('update_id'));
+});
+
+test('replay پیام‌های معلق را پردازش و webhook را دوباره ست می‌کند', () => {
+  const beforeFiles = store.files.length;
+  const beforeSent = store.sent.length;
+  store.pending = [
+    { update_id: 5001, message: msgBase({ text: 'پیام معلق اول' }) },
+    { update_id: 5002, message: msgBase({ text: '/id' }) },
+  ];
+
+  const body = sandbox.doGet({ parameter: { k: SECRET, action: 'replay' } }).getContent();
+  assert.ok(body.includes('تعداد پیام معلق: 2'), body);
+  assert.ok(body.includes('پردازش‌شده: 2'), body);
+  assert.strictEqual(store.files.length, beforeFiles + 1, 'متن اول باید ذخیره شود');
+  assert.strictEqual(store.sent.length, beforeSent + 2, 'هر دو پیام باید جواب بگیرند');
+  assert.ok(store.calls.some((c) => c.method === 'setWebhook'), 'webhook باید دوباره ست شود');
+  assert.ok(store.calls.some((c) => c.method === 'getUpdates' && c.payload.offset === 5003));
+  assert.strictEqual(store.pending.length, 0);
+});
+
+test('replay با پیام معلقِ عکس، فایل را ذخیره می‌کند', () => {
+  const beforeFiles = store.files.length;
+  store.pending = [{
+    update_id: 5003,
+    message: msgBase({ photo: [{ file_id: 'pend', file_size: 100 }], caption: 'معلق' }),
+  }];
+  const body = sandbox.doGet({ parameter: { k: SECRET, action: 'replay' } }).getContent();
+  assert.ok(body.includes('پردازش‌شده: 1'), body);
+  assert.strictEqual(store.files.length, beforeFiles + 1);
+});
+
+test('sendtest بدون chat راهنما می‌دهد', () => {
+  const body = sandbox.doGet({ parameter: { k: SECRET, action: 'sendtest' } }).getContent();
+  assert.ok(body.includes('آیدی چت'), body);
+});
+
+test('sendtest با chat پیام می‌فرستد', () => {
+  const before = store.sent.length;
+  const body = sandbox.doGet({ parameter: { k: SECRET, action: 'sendtest', chat: '555' } }).getContent();
+  assert.ok(body.includes('ارسال تست موفق'), body);
+  assert.strictEqual(store.sent.length, before + 1);
 });
 
 let failed = 0;

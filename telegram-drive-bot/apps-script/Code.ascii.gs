@@ -8,8 +8,10 @@
  *  STEP 1: put your bot token below -> BOT_TOKEN: 'TOKEN'
  *  STEP 2: save (Ctrl+S), then Deploy -> Manage deployments ->
  *          pencil -> Version: New version -> Deploy
- *  STEP 3: open  <WEB_APP_URL>?k=YOUR_SECRET   to see a status page
- *          open  <WEB_APP_URL>?k=YOUR_SECRET&action=setup  to set webhook
+ *  STEP 3: open <WEB_APP_URL>?k=YOUR_SECRET&action=setup
+ *  DEBUG : open <WEB_APP_URL>?k=YOUR_SECRET&action=diag
+ *          open <WEB_APP_URL>?k=YOUR_SECRET&action=replay
+ *          open <WEB_APP_URL>?k=YOUR_SECRET&action=sendtest&chat=CHAT_ID
  *
  *  Generated from Code.gs - keep the two in sync.
  * ================================================================
@@ -120,23 +122,39 @@ function doPost(e) {
     }
 
     var update = JSON.parse(e.postData.contents);
-
-    // \u0627\u06AF\u0631 \u067E\u0627\u0633\u062E \u06A9\u0646\u062F \u0628\u0627\u0634\u062F\u060C \u062A\u0644\u06AF\u0631\u0627\u0645 \u0647\u0645\u0627\u0646 \u0622\u067E\u062F\u06CC\u062A \u0631\u0627 \u062F\u0648\u0628\u0627\u0631\u0647 \u0645\u06CC\u200C\u0641\u0631\u0633\u062A\u062F\u061B
-    // \u0628\u0627 \u0627\u06CC\u0646 \u06A9\u0644\u06CC\u062F \u0627\u0632 \u0630\u062E\u06CC\u0631\u0647 \u062F\u0648\u0628\u0627\u0631\u0647 \u0641\u0627\u06CC\u0644 \u062C\u0644\u0648\u06AF\u06CC\u0631\u06CC \u0645\u06CC\u200C\u06A9\u0646\u06CC\u0645.
-    if (update.update_id && seenBefore_('u' + update.update_id)) {
-      return jsonOut_({ ok: true, note: 'duplicate' });
-    }
-
-    var msg = update.message || update.channel_post;
-    if (!msg) return jsonOut_({ ok: true, note: 'ignored' });
-
-    // \u0627\u0632 \u067E\u0627\u0633\u062E \u0633\u0631\u06CC\u0639 \u0628\u0647 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0645\u0637\u0645\u0626\u0646 \u0645\u06CC\u200C\u0634\u0648\u06CC\u0645 (\u062A\u0627\u06CC\u0645\u200C\u0627\u0648\u062A \u06F6\u06F0 \u062B\u0627\u0646\u06CC\u0647\u200C\u0627\u06CC \u062A\u0644\u06AF\u0631\u0627\u0645)
-    handleMessage_(msg);
-    return jsonOut_({ ok: true });
+    var note = processUpdate_(update);
+    return jsonOut_({ ok: true, note: note });
   } catch (err) {
     console.error('doPost failed: ' + err + '\n' + (err.stack || ''));
     return jsonOut_({ ok: false, error: String(err) });
   }
+}
+
+/**
+ * \u06CC\u06A9 \u0622\u067E\u062F\u06CC\u062A \u062A\u0644\u06AF\u0631\u0627\u0645 \u0631\u0627 \u067E\u0631\u062F\u0627\u0632\u0634 \u0645\u06CC\u200C\u06A9\u0646\u062F (\u0647\u0645 \u0627\u0632 webhook\u060C \u0647\u0645 \u0627\u0632 action=replay).
+ * \u062E\u0631\u0648\u062C\u06CC: 'done' | 'duplicate' | 'ignored'
+ */
+function processUpdate_(update) {
+  // \u0631\u062F\u067E\u0627\u06CC \u0622\u062E\u0631\u06CC\u0646 \u0622\u067E\u062F\u06CC\u062A \u062F\u0631\u06CC\u0627\u0641\u062A\u06CC \u2014 \u0628\u0631\u0627\u06CC \u0639\u06CC\u0628\u200C\u06CC\u0627\u0628\u06CC (action=diag)
+  try {
+    PROPS.setProperty('LAST_UPDATE', JSON.stringify({
+      update_id: update.update_id || 0,
+      at: new Date().toISOString(),
+      has_message: !!(update.message || update.channel_post)
+    }));
+  } catch (ignore) {}
+
+  // \u0627\u06AF\u0631 \u067E\u0627\u0633\u062E \u06A9\u0646\u062F \u0628\u0627\u0634\u062F\u060C \u062A\u0644\u06AF\u0631\u0627\u0645 \u0647\u0645\u0627\u0646 \u0622\u067E\u062F\u06CC\u062A \u0631\u0627 \u062F\u0648\u0628\u0627\u0631\u0647 \u0645\u06CC\u200C\u0641\u0631\u0633\u062A\u062F\u061B
+  // \u0628\u0627 \u0627\u06CC\u0646 \u06A9\u0644\u06CC\u062F \u0627\u0632 \u0630\u062E\u06CC\u0631\u0647 \u062F\u0648\u0628\u0627\u0631\u0647 \u0641\u0627\u06CC\u0644 \u062C\u0644\u0648\u06AF\u06CC\u0631\u06CC \u0645\u06CC\u200C\u06A9\u0646\u06CC\u0645.
+  if (update.update_id && seenBefore_('u' + update.update_id)) {
+    return 'duplicate';
+  }
+
+  var msg = update.message || update.channel_post;
+  if (!msg) return 'ignored';
+
+  handleMessage_(msg);
+  return 'done';
 }
 
 function doGet(e) {
@@ -217,6 +235,30 @@ function doGet(e) {
       ]);
     }
 
+    if (action === 'diag' || action === 'info') {
+      return page_('\uD83E\uDE7A \u062A\u0634\u062E\u06CC\u0635 \u0648\u0636\u0639\u06CC\u062A', diagLines_());
+    }
+
+    if (action === 'replay') {
+      return page_('\u267B\uFE0F \u0628\u0627\u0632\u067E\u062E\u0634 \u067E\u06CC\u0627\u0645\u200C\u0647\u0627\u06CC \u0645\u0639\u0644\u0642', replayLines_(p));
+    }
+
+    if (action === 'sendtest') {
+      if (!p.chat) {
+        return page_('\uD83D\uDCE8 \u062A\u0633\u062A \u0627\u0631\u0633\u0627\u0644', [
+          '\u0627\u06CC\u0646 \u0622\u062F\u0631\u0633 \u0631\u0627 \u0628\u0627 \u0622\u06CC\u062F\u06CC \u0686\u062A \u0628\u0627\u0632 \u06A9\u0646:',
+          deployUrl_() + '?k=' + (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=sendtest&chat=123456789',
+          '',
+          '\u0622\u06CC\u062F\u06CC \u0686\u062A \u0631\u0627 \u0627\u0632 \u062F\u0627\u062E\u0644 \u062A\u0644\u06AF\u0631\u0627\u0645 (\u0628\u0627 \u0631\u0628\u0627\u062A @userinfobot) \u0628\u06AF\u06CC\u0631.'
+        ]);
+      }
+      var sent = tg_('sendMessage', { chat_id: p.chat, text: '\u2705 \u062A\u0633\u062A \u0645\u0648\u0641\u0642 \u0628\u0648\u062F \u2014 \u0631\u0628\u0627\u062A \u0645\u06CC\u200C\u062A\u0648\u0627\u0646\u062F \u067E\u06CC\u0627\u0645 \u0628\u0641\u0631\u0633\u062A\u062F.' });
+      return page_(sent && sent.ok ? '\u2705 \u0627\u0631\u0633\u0627\u0644 \u062A\u0633\u062A \u0645\u0648\u0641\u0642 \u0628\u0648\u062F' : '\u274C \u0627\u0631\u0633\u0627\u0644 \u062A\u0633\u062A \u0646\u0627\u0645\u0648\u0641\u0642 \u0628\u0648\u062F', [
+        'chat_id: ' + p.chat,
+        '\u067E\u0627\u0633\u062E \u062A\u0644\u06AF\u0631\u0627\u0645: ' + JSON.stringify(sent)
+      ]);
+    }
+
     // 4) ping / \u067E\u06CC\u0634\u200C\u0641\u0631\u0636: \u06AF\u0632\u0627\u0631\u0634 \u06A9\u0627\u0645\u0644 \u0648\u0636\u0639\u06CC\u062A
     var lines = ['\u0622\u062F\u0631\u0633 \u0627\u06CC\u0646 \u0627\u0633\u06A9\u0631\u06CC\u067E\u062A: ' + deployUrl_(), ''];
 
@@ -250,6 +292,125 @@ function doGet(e) {
       '\u0627\u06CC\u0646 \u0645\u062A\u0646 \u0631\u0627 \u0628\u0631\u0627\u06CC\u0645 \u0628\u0641\u0631\u0633\u062A \u062A\u0627 \u062F\u0642\u06CC\u0642 \u0628\u06AF\u0648\u06CC\u0645 \u0645\u0634\u06A9\u0644 \u06A9\u062C\u0627\u0633\u062A.'
     ]);
   }
+}
+
+/** \u062E\u0637\u0648\u0637 \u06AF\u0632\u0627\u0631\u0634 \u06A9\u0627\u0645\u0644 \u0648\u0636\u0639\u06CC\u062A (\u0627\u06A9\u0634\u0646 diag). */
+function diagLines_() {
+  var lines = [];
+  lines.push('\u0622\u062F\u0631\u0633 \u0627\u06CC\u0646 \u0627\u0633\u06A9\u0631\u06CC\u067E\u062A: ' + deployUrl_());
+  lines.push('');
+
+  // \u062A\u0648\u06A9\u0646
+  if (!currentToken_()) {
+    lines.push('\u274C \u062A\u0648\u06A9\u0646: \u062A\u0646\u0638\u06CC\u0645 \u0646\u0634\u062F\u0647 (\u0628\u0627\u0644\u0627\u06CC \u06A9\u062F BOT_TOKEN \u0631\u0627 \u067E\u0631 \u06A9\u0646)');
+  } else {
+    var me = tg_('getMe', {});
+    lines.push(me && me.ok
+      ? '\u2705 \u062A\u0648\u06A9\u0646: \u062F\u0631\u0633\u062A \u2192 @' + ((me.result && me.result.username) || '?')
+      : '\u274C \u062A\u0648\u06A9\u0646: \u062A\u0644\u06AF\u0631\u0627\u0645 \u0642\u0628\u0648\u0644 \u0646\u06A9\u0631\u062F \u2192 ' + JSON.stringify(me));
+  }
+
+  // \u067E\u0648\u0634\u0647
+  try {
+    var folder = targetFolder_(null);
+    lines.push('\u2705 \u067E\u0648\u0634\u0647 \u0645\u0642\u0635\u062F: ' + folder.getName() + ' \u2192 ' + folder.getUrl());
+  } catch (ferr) {
+    lines.push('\u274C \u067E\u0648\u0634\u0647 \u0645\u0642\u0635\u062F: ' + ferr);
+  }
+
+  // webhook
+  var info = tg_('getWebhookInfo', {});
+  lines.push('');
+  if (info && info.ok) {
+    var r = info.result || {};
+    lines.push('webhook url: ' + (r.url || '(\u0633\u062A \u0646\u0634\u062F\u0647!)'));
+    lines.push('pending_update_count: ' + (r.pending_update_count || 0));
+    if (r.last_error_message) {
+      lines.push('\u26D4\uFE0F last_error_message: ' + r.last_error_message + '  (\u062F\u0631 ' + (r.last_error_date || '?') + ')');
+    } else {
+      lines.push('last_error_message: \u0646\u062F\u0627\u0631\u062F \u2705');
+    }
+  } else {
+    lines.push('\u274C \u062E\u0648\u0627\u0646\u062F\u0646 \u0648\u0636\u0639\u06CC\u062A webhook \u0634\u06A9\u0633\u062A \u062E\u0648\u0631\u062F: ' + JSON.stringify(info));
+  }
+
+  // \u0622\u06CC\u0627 webhook \u0631\u0648\u06CC \u0647\u0645\u06CC\u0646 \u0633\u06A9\u0631\u062A \u0627\u0633\u062A\u061F
+  var expected = deployUrl_() + '?k=' + encodeURIComponent(CONFIG.WEBHOOK_SECRET);
+  if (info && info.ok && info.result && info.result.url) {
+    lines.push('');
+    lines.push(info.result.url === expected
+      ? '\u2705 \u0622\u062F\u0631\u0633 webhook \u0628\u0627 \u062A\u0646\u0638\u06CC\u0645\u0627\u062A \u0641\u0639\u0644\u06CC \u06CC\u06A9\u06CC \u0627\u0633\u062A'
+      : '\u26A0\uFE0F \u0622\u062F\u0631\u0633 webhook \u0628\u0627 \u062A\u0646\u0638\u06CC\u0645\u0627\u062A \u0641\u0639\u0644\u06CC \u06CC\u06A9\u06CC \u0646\u06CC\u0633\u062A. \u0627\u06CC\u0646 \u0631\u0627 \u0628\u0627\u0632 \u06A9\u0646: ' + expected + '&action=setup');
+  }
+
+  // heartbeat
+  var last = PROPS.getProperty('LAST_UPDATE');
+  lines.push('');
+  lines.push(last
+    ? '\uD83D\uDCE5 \u0622\u062E\u0631\u06CC\u0646 \u0622\u067E\u062F\u06CC\u062A \u062F\u0631\u06CC\u0627\u0641\u062A\u06CC: ' + last
+    : '\uD83D\uDCE5 \u0647\u0646\u0648\u0632 \u0647\u06CC\u0686 \u0622\u067E\u062F\u06CC\u062A\u06CC \u0627\u0632 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0646\u0631\u0633\u06CC\u062F\u0647 (\u06CC\u0639\u0646\u06CC webhook \u06CC\u0627 \u062F\u0633\u062A\u0631\u0633\u06CC Anyone \u0645\u0634\u06A9\u0644 \u062F\u0627\u0631\u062F)');
+
+  lines.push('');
+  lines.push('\u0627\u06AF\u0631 \u067E\u06CC\u0627\u0645\u200C\u0647\u0627\u06CC \u0645\u0639\u0644\u0642 \u062F\u0627\u0631\u06CC: ' + deployUrl_() + '?k=' +
+             (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=replay');
+  return lines;
+}
+
+/**
+ * \u067E\u06CC\u0627\u0645\u200C\u0647\u0627\u06CC\u06CC \u06A9\u0647 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0647\u0646\u0648\u0632 \u062A\u062D\u0648\u06CC\u0644 \u0646\u062F\u0627\u062F\u0647 \u0631\u0627 \u0645\u06CC\u200C\u06AF\u06CC\u0631\u062F\u060C \u067E\u0631\u062F\u0627\u0632\u0634 \u0645\u06CC\u200C\u06A9\u0646\u062F
+ * (\u0641\u0627\u06CC\u0644\u200C\u0647\u0627 \u0631\u0627 \u0630\u062E\u06CC\u0631\u0647 \u0645\u06CC\u200C\u06A9\u0646\u062F) \u0648 webhook \u0631\u0627 \u062F\u0648\u0628\u0627\u0631\u0647 \u0633\u062A \u0645\u06CC\u200C\u06A9\u0646\u062F.
+ */
+function replayLines_(p) {
+  var limit = Math.min(Number(p.limit) || 20, 100);
+  var lines = [];
+
+  tg_('deleteWebhook', { drop_pending_updates: false });
+  var res = tg_('getUpdates', {
+    timeout: 0,
+    limit: limit,
+    allowed_updates: ['message', 'channel_post']
+  });
+
+  if (!res || !res.ok) {
+    return ['\u274C getUpdates \u0634\u06A9\u0633\u062A \u062E\u0648\u0631\u062F: ' + JSON.stringify(res)];
+  }
+
+  var updates = res.result || [];
+  lines.push('\u062A\u0639\u062F\u0627\u062F \u067E\u06CC\u0627\u0645 \u0645\u0639\u0644\u0642: ' + updates.length);
+
+  var done = 0;
+  var lastId = 0;
+  for (var i = 0; i < updates.length; i++) {
+    var u = updates[i];
+    lastId = Math.max(lastId, Number(u.update_id) || 0);
+    try {
+      var r = processUpdate_(u);
+      lines.push('\u2022 update ' + u.update_id + ' \u2192 ' + r);
+      if (r === 'done') done++;
+    } catch (err) {
+      lines.push('\u26A0\uFE0F update ' + u.update_id + ' \u062E\u0637\u0627: ' + err);
+    }
+  }
+
+  // \u062A\u0623\u06CC\u06CC\u062F \u062F\u0631\u06CC\u0627\u0641\u062A (\u062A\u0627 \u062F\u0648\u0628\u0627\u0631\u0647 \u062A\u062D\u0648\u06CC\u0644 \u062F\u0627\u062F\u0647 \u0646\u0634\u0648\u0646\u062F)
+  if (lastId) {
+    tg_('getUpdates', { offset: lastId + 1, timeout: 0, limit: 1 });
+    lines.push('offset \u062A\u0623\u06CC\u06CC\u062F \u0634\u062F: ' + (lastId + 1));
+  }
+
+  // \u0633\u062A \u06A9\u0631\u062F\u0646 \u062F\u0648\u0628\u0627\u0631\u0647 webhook
+  var url = deployUrl_() + '?k=' + encodeURIComponent(CONFIG.WEBHOOK_SECRET);
+  var setRes = tg_('setWebhook', {
+    url: url,
+    allowed_updates: ['message', 'channel_post'],
+    max_connections: 1
+  });
+
+  lines.push('');
+  lines.push('\u067E\u0631\u062F\u0627\u0632\u0634\u200C\u0634\u062F\u0647: ' + done);
+  lines.push('webhook \u062F\u0648\u0628\u0627\u0631\u0647 \u0633\u062A \u0634\u062F: ' + JSON.stringify(setRes));
+  lines.push('url: ' + url);
+  return lines;
 }
 
 /** \u0622\u062F\u0631\u0633 \u0647\u0645\u06CC\u0646 web app (\u0631\u0648\u06CC \u0646\u0633\u062E\u0647 \u062F\u06CC\u067E\u0644\u0648\u06CC\u200C\u0634\u062F\u0647). */
@@ -357,6 +518,11 @@ function handleMessage_(msg) {
 function handleCommand_(msg, chatId, user) {
   var cmd = msg.text.split(/\s+/)[0].replace(/@.*$/, '').toLowerCase();
 
+  if (cmd === '/ping') {
+    sendMessage_(chatId, '\uD83C\uDFD3 pong \u2014 \u0631\u0628\u0627\u062A \u0632\u0646\u062F\u0647 \u0627\u0633\u062A.\n\u0686\u062A \u0622\u06CC\u062F\u06CC: <code>' + chatId + '</code>');
+    return;
+  }
+
   if (cmd === '/id') {
     sendMessage_(chatId, '\u0622\u06CC\u062F\u06CC \u06A9\u0627\u0631\u0628\u0631: <code>' + user.id + '</code>\n\u0622\u06CC\u062F\u06CC \u0686\u062A: <code>' + chatId + '</code>');
     return;
@@ -379,7 +545,7 @@ function handleCommand_(msg, chatId, user) {
       '\uD83D\uDCDD \u0645\u062A\u0646 (\u0633\u0646\u062F \u06AF\u0648\u06AF\u0644) \u00B7 \uD83D\uDDBC \u0639\u06A9\u0633 \u00B7 \uD83C\uDFAC \u0648\u06CC\u062F\u06CC\u0648 \u00B7 \uD83C\uDFB5 \u0645\u0648\u0632\u06CC\u06A9 \u00B7 \uD83C\uDFA4 \u0648\u06CC\u0633 \u00B7 \uD83D\uDCC4 \u0641\u0627\u06CC\u0644\n\n' +
       '\uD83C\uDD94 \u0622\u06CC\u062F\u06CC \u062A\u0648: <code>' + user.id + '</code>\n' +
       '\uD83E\uDD16 \u0631\u0628\u0627\u062A: @' + esc_(username) + '\n\n' +
-      '\u062F\u0633\u062A\u0648\u0631\u0647\u0627: /folder \u0644\u06CC\u0646\u06A9 \u067E\u0648\u0634\u0647 \u00B7 /id \u0622\u06CC\u062F\u06CC \u0645\u0646');
+      '\u062F\u0633\u062A\u0648\u0631\u0647\u0627: /folder \u0644\u06CC\u0646\u06A9 \u067E\u0648\u0634\u0647 \u00B7 /id \u0622\u06CC\u062F\u06CC \u0645\u0646 \u00B7 /ping \u062A\u0633\u062A');
     return;
   }
 

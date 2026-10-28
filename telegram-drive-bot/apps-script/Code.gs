@@ -104,23 +104,39 @@ function doPost(e) {
     }
 
     var update = JSON.parse(e.postData.contents);
-
-    // اگر پاسخ کند باشد، تلگرام همان آپدیت را دوباره می‌فرستد؛
-    // با این کلید از ذخیره دوباره فایل جلوگیری می‌کنیم.
-    if (update.update_id && seenBefore_('u' + update.update_id)) {
-      return jsonOut_({ ok: true, note: 'duplicate' });
-    }
-
-    var msg = update.message || update.channel_post;
-    if (!msg) return jsonOut_({ ok: true, note: 'ignored' });
-
-    // از پاسخ سریع به تلگرام مطمئن می‌شویم (تایم‌اوت ۶۰ ثانیه‌ای تلگرام)
-    handleMessage_(msg);
-    return jsonOut_({ ok: true });
+    var note = processUpdate_(update);
+    return jsonOut_({ ok: true, note: note });
   } catch (err) {
     console.error('doPost failed: ' + err + '\n' + (err.stack || ''));
     return jsonOut_({ ok: false, error: String(err) });
   }
+}
+
+/**
+ * یک آپدیت تلگرام را پردازش می‌کند (هم از webhook، هم از action=replay).
+ * خروجی: 'done' | 'duplicate' | 'ignored'
+ */
+function processUpdate_(update) {
+  // ردپای آخرین آپدیت دریافتی — برای عیب‌یابی (action=diag)
+  try {
+    PROPS.setProperty('LAST_UPDATE', JSON.stringify({
+      update_id: update.update_id || 0,
+      at: new Date().toISOString(),
+      has_message: !!(update.message || update.channel_post)
+    }));
+  } catch (ignore) {}
+
+  // اگر پاسخ کند باشد، تلگرام همان آپدیت را دوباره می‌فرستد؛
+  // با این کلید از ذخیره دوباره فایل جلوگیری می‌کنیم.
+  if (update.update_id && seenBefore_('u' + update.update_id)) {
+    return 'duplicate';
+  }
+
+  var msg = update.message || update.channel_post;
+  if (!msg) return 'ignored';
+
+  handleMessage_(msg);
+  return 'done';
 }
 
 function doGet(e) {
@@ -201,6 +217,30 @@ function doGet(e) {
       ]);
     }
 
+    if (action === 'diag' || action === 'info') {
+      return page_('🩺 تشخیص وضعیت', diagLines_());
+    }
+
+    if (action === 'replay') {
+      return page_('♻️ بازپخش پیام‌های معلق', replayLines_(p));
+    }
+
+    if (action === 'sendtest') {
+      if (!p.chat) {
+        return page_('📨 تست ارسال', [
+          'این آدرس را با آیدی چت باز کن:',
+          deployUrl_() + '?k=' + (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=sendtest&chat=123456789',
+          '',
+          'آیدی چت را از داخل تلگرام (با ربات @userinfobot) بگیر.'
+        ]);
+      }
+      var sent = tg_('sendMessage', { chat_id: p.chat, text: '✅ تست موفق بود — ربات می‌تواند پیام بفرستد.' });
+      return page_(sent && sent.ok ? '✅ ارسال تست موفق بود' : '❌ ارسال تست ناموفق بود', [
+        'chat_id: ' + p.chat,
+        'پاسخ تلگرام: ' + JSON.stringify(sent)
+      ]);
+    }
+
     // 4) ping / پیش‌فرض: گزارش کامل وضعیت
     var lines = ['آدرس این اسکریپت: ' + deployUrl_(), ''];
 
@@ -234,6 +274,125 @@ function doGet(e) {
       'این متن را برایم بفرست تا دقیق بگویم مشکل کجاست.'
     ]);
   }
+}
+
+/** خطوط گزارش کامل وضعیت (اکشن diag). */
+function diagLines_() {
+  var lines = [];
+  lines.push('آدرس این اسکریپت: ' + deployUrl_());
+  lines.push('');
+
+  // توکن
+  if (!currentToken_()) {
+    lines.push('❌ توکن: تنظیم نشده (بالای کد BOT_TOKEN را پر کن)');
+  } else {
+    var me = tg_('getMe', {});
+    lines.push(me && me.ok
+      ? '✅ توکن: درست → @' + ((me.result && me.result.username) || '?')
+      : '❌ توکن: تلگرام قبول نکرد → ' + JSON.stringify(me));
+  }
+
+  // پوشه
+  try {
+    var folder = targetFolder_(null);
+    lines.push('✅ پوشه مقصد: ' + folder.getName() + ' → ' + folder.getUrl());
+  } catch (ferr) {
+    lines.push('❌ پوشه مقصد: ' + ferr);
+  }
+
+  // webhook
+  var info = tg_('getWebhookInfo', {});
+  lines.push('');
+  if (info && info.ok) {
+    var r = info.result || {};
+    lines.push('webhook url: ' + (r.url || '(ست نشده!)'));
+    lines.push('pending_update_count: ' + (r.pending_update_count || 0));
+    if (r.last_error_message) {
+      lines.push('⛔️ last_error_message: ' + r.last_error_message + '  (در ' + (r.last_error_date || '?') + ')');
+    } else {
+      lines.push('last_error_message: ندارد ✅');
+    }
+  } else {
+    lines.push('❌ خواندن وضعیت webhook شکست خورد: ' + JSON.stringify(info));
+  }
+
+  // آیا webhook روی همین سکرت است؟
+  var expected = deployUrl_() + '?k=' + encodeURIComponent(CONFIG.WEBHOOK_SECRET);
+  if (info && info.ok && info.result && info.result.url) {
+    lines.push('');
+    lines.push(info.result.url === expected
+      ? '✅ آدرس webhook با تنظیمات فعلی یکی است'
+      : '⚠️ آدرس webhook با تنظیمات فعلی یکی نیست. این را باز کن: ' + expected + '&action=setup');
+  }
+
+  // heartbeat
+  var last = PROPS.getProperty('LAST_UPDATE');
+  lines.push('');
+  lines.push(last
+    ? '📥 آخرین آپدیت دریافتی: ' + last
+    : '📥 هنوز هیچ آپدیتی از تلگرام نرسیده (یعنی webhook یا دسترسی Anyone مشکل دارد)');
+
+  lines.push('');
+  lines.push('اگر پیام‌های معلق داری: ' + deployUrl_() + '?k=' +
+             (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=replay');
+  return lines;
+}
+
+/**
+ * پیام‌هایی که تلگرام هنوز تحویل نداده را می‌گیرد، پردازش می‌کند
+ * (فایل‌ها را ذخیره می‌کند) و webhook را دوباره ست می‌کند.
+ */
+function replayLines_(p) {
+  var limit = Math.min(Number(p.limit) || 20, 100);
+  var lines = [];
+
+  tg_('deleteWebhook', { drop_pending_updates: false });
+  var res = tg_('getUpdates', {
+    timeout: 0,
+    limit: limit,
+    allowed_updates: ['message', 'channel_post']
+  });
+
+  if (!res || !res.ok) {
+    return ['❌ getUpdates شکست خورد: ' + JSON.stringify(res)];
+  }
+
+  var updates = res.result || [];
+  lines.push('تعداد پیام معلق: ' + updates.length);
+
+  var done = 0;
+  var lastId = 0;
+  for (var i = 0; i < updates.length; i++) {
+    var u = updates[i];
+    lastId = Math.max(lastId, Number(u.update_id) || 0);
+    try {
+      var r = processUpdate_(u);
+      lines.push('• update ' + u.update_id + ' → ' + r);
+      if (r === 'done') done++;
+    } catch (err) {
+      lines.push('⚠️ update ' + u.update_id + ' خطا: ' + err);
+    }
+  }
+
+  // تأیید دریافت (تا دوباره تحویل داده نشوند)
+  if (lastId) {
+    tg_('getUpdates', { offset: lastId + 1, timeout: 0, limit: 1 });
+    lines.push('offset تأیید شد: ' + (lastId + 1));
+  }
+
+  // ست کردن دوباره webhook
+  var url = deployUrl_() + '?k=' + encodeURIComponent(CONFIG.WEBHOOK_SECRET);
+  var setRes = tg_('setWebhook', {
+    url: url,
+    allowed_updates: ['message', 'channel_post'],
+    max_connections: 1
+  });
+
+  lines.push('');
+  lines.push('پردازش‌شده: ' + done);
+  lines.push('webhook دوباره ست شد: ' + JSON.stringify(setRes));
+  lines.push('url: ' + url);
+  return lines;
 }
 
 /** آدرس همین web app (روی نسخه دیپلوی‌شده). */
@@ -341,6 +500,11 @@ function handleMessage_(msg) {
 function handleCommand_(msg, chatId, user) {
   var cmd = msg.text.split(/\s+/)[0].replace(/@.*$/, '').toLowerCase();
 
+  if (cmd === '/ping') {
+    sendMessage_(chatId, '🏓 pong — ربات زنده است.\nچت آیدی: <code>' + chatId + '</code>');
+    return;
+  }
+
   if (cmd === '/id') {
     sendMessage_(chatId, 'آیدی کاربر: <code>' + user.id + '</code>\nآیدی چت: <code>' + chatId + '</code>');
     return;
@@ -363,7 +527,7 @@ function handleCommand_(msg, chatId, user) {
       '📝 متن (سند گوگل) · 🖼 عکس · 🎬 ویدیو · 🎵 موزیک · 🎤 ویس · 📄 فایل\n\n' +
       '🆔 آیدی تو: <code>' + user.id + '</code>\n' +
       '🤖 ربات: @' + esc_(username) + '\n\n' +
-      'دستورها: /folder لینک پوشه · /id آیدی من');
+      'دستورها: /folder لینک پوشه · /id آیدی من · /ping تست');
     return;
   }
 
