@@ -18,7 +18,7 @@ var FOLDER_ID  = '';            // empty = My Drive root
 var BY_DATE    = true;          // true = subfolder 2026-10-28
 var TEXT_MODE  = 'doc';         // 'doc' = Google Doc, 'txt' = plain text
 var MAX_MB     = 19;
-var ALLOWED    = [];            // e.g. [123456789]; empty = everyone
+var ALLOWED    = [83885823];    // \u0641\u0642\u0637 \u0627\u06CC\u0646 \u0622\u06CC\u062F\u06CC\u200C\u0647\u0627\u06CC \u062A\u0644\u06AF\u0631\u0627\u0645\u06CC \u0645\u06CC\u200C\u062A\u0648\u0627\u0646\u0646\u062F \u0622\u067E\u0644\u0648\u062F \u06A9\u0646\u0646\u062F (\u062E\u0627\u0644\u06CC = \u0647\u0645\u0647)
 var VERSION    = 'single-1.1';
 
 var API      = 'https://api.telegram.org/bot' + BOT_TOKEN;
