@@ -4,6 +4,25 @@
 
 مخصوص ربات تو: **@T2GD2Tbot**
 
+> ## ⚠️ مهم: اگر در Google Cloud Console بن شده‌ای
+> اگر هنگام باز کردن Cloud Console پیام `Multiple Google services … unavailable` می‌بینی،
+> **این مسیر را دنبال نکن** (نیاز به OAuth client دارد). به‌جایش برو به:
+> **[`apps-script/README.md`](apps-script/README.md)** → همان ربات، همان امکانات، بدون Cloud Console،
+> بدون سرور و رایگان.
+>
+> و اگر توکن رباتت جایی لو رفته: همین حالا در @BotFather → `/mybots` → API Token → **Revoke**.
+
+---
+
+## دو مسیر
+
+| مسیر | چه وقت | نیازمندی |
+|---|---|---|
+| **A) Apps Script** — [`apps-script/`](apps-script/README.md) | وقتی Cloud Console بسته است (رایج برای اکانت‌های ایرانی) | فقط مرورگر |
+| **B) پایتون** (همین پوشه) | وقتی به Cloud Console دسترسی داری و VPS/سرور داری | OAuth client + سرور |
+
+ادامه این فایل مسیر B است.
+
 ---
 
 ## ⚡️ راه‌اندازی سریع (۵ دقیقه)
