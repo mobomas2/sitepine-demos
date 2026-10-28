@@ -14,6 +14,6 @@ __pycache__/
 .pytest_cache/
 
 # نسخه شخصی با توکن داخل کد — هرگز commit نشود
-apps-script/Code.personal.gs
-apps-script/Code.minimal.gs
-apps-script/Code.single.gs
+
+# نسخه‌های آماده با توکن داخل کد — هرگز commit نشوند (ریپو عمومی است)
+apps-script/ready/

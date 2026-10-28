@@ -33,7 +33,7 @@ const sandbox={console,JSON,Date,String,Number,Array,Object,RegExp,Error,Math,
 
    store.calls.push(m);
    return{getResponseCode:()=>200,getContentText:()=>JSON.stringify({ok:true})};}}};
-vm.createContext(sandbox);vm.runInContext(fs.readFileSync(require('path').join(__dirname,'Code.minimal.gs'),'utf8'),sandbox);
+vm.createContext(sandbox);vm.runInContext(fs.readFileSync(require('path').join(__dirname,'ready','Code.minimal.gs'),'utf8'),sandbox);
 let pass=0,fail=0;const t=(n,f)=>{try{f();console.log('ok   - '+n);pass++;}catch(e){console.log('FAIL - '+n+': '+e.message);fail++;}};
 t('START نصب تریگر + لاگ کامل', ()=>{
   log.length=0;

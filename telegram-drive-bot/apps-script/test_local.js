@@ -198,7 +198,7 @@ const sandbox = {
 store.props.BOT_TOKEN = '123456789:AAH_TEST_TOKEN_0123456789';
 sandbox.__selfPostStatus = 200; // در تست، توکن از Script Properties
 vm.createContext(sandbox);
-const target = process.argv[2] || 'Code.template.gs';
+const target = process.argv[2] || 'reference/Code.reference.gs';
 const code = fs.readFileSync(path.join(__dirname, target), 'utf8');
 console.log('# testing ' + target + '\n');
 vm.runInContext(code, sandbox);

@@ -1,9 +1,9 @@
 /**
  * #################################################################
  * #  THIS IS A TEMPLATE.  IT DOES **NOT** WORK AS-IS.               #
- * #  It contains:  BOT_TOKEN: 'PUT-YOUR-NEW-BOT-TOKEN-HERE'        #
+ * #  It contains:  BOT_TOKEN: ''        #
  * #                                                                #
- * #  => If you already have a ready build, use  Code.single.gs     #
+ * #  => USE THIS INSTEAD:   apps-script/ready/Code.single.gs        #
  * #     (single file, token already inside, just run START).       #
  * #                                                                #
  * #  This file is kept only as the reference/big version and for   #
@@ -53,7 +53,7 @@ var CONFIG = {
   //    BOT_TOKEN: '8621978100:AAH...',
   //    (\u06CC\u0627 \u0627\u06CC\u0646\u062C\u0627 \u0631\u0627 \u062E\u0627\u0644\u06CC \u0628\u06AF\u0630\u0627\u0631 \u0648 \u062F\u0631 Project Settings \u2699\uFE0F \u2192 Script Properties
   //     \u0628\u0627 \u0646\u0627\u0645 BOT_TOKEN \u0630\u062E\u06CC\u0631\u0647 \u06A9\u0646)
-  BOT_TOKEN: 'PUT-YOUR-NEW-BOT-TOKEN-HERE',
+  BOT_TOKEN: '',   // real build is in ../ready/Code.single.gs
 
   // \u0622\u06CC\u062F\u06CC \u067E\u0648\u0634\u0647 \u0645\u0642\u0635\u062F \u062F\u0631 \u06AF\u0648\u06AF\u0644 \u062F\u0631\u0627\u06CC\u0648 (\u0628\u0639\u062F \u0627\u0632 /folders/ \u062F\u0631 \u0622\u062F\u0631\u0633 \u067E\u0648\u0634\u0647)
   // \u062E\u0627\u0644\u06CC \u0628\u06AF\u0630\u0627\u0631 \u2192 \u062F\u0631 \u0631\u06CC\u0634\u0647 \u062F\u0631\u0627\u06CC\u0648 \u0630\u062E\u06CC\u0631\u0647 \u0645\u06CC\u200C\u0634\u0648\u062F
@@ -210,7 +210,7 @@ function doGet(e) {
       return page_('\uD83D\uDD11 \u062A\u0648\u06A9\u0646 \u062A\u0644\u06AF\u0631\u0627\u0645 \u062A\u0646\u0638\u06CC\u0645 \u0646\u0634\u062F\u0647', [
         '\u0627\u06CC\u0646 \u0627\u0633\u06A9\u0631\u06CC\u067E\u062A \u062C\u0627\u06CC \u062A\u0648\u06A9\u0646 \u0631\u0627 \u0627\u0632 \u062A\u0648 \u0646\u0645\u06CC\u200C\u067E\u0631\u0633\u062F\u061B \u0628\u0627\u06CC\u062F \u06CC\u06A9\u200C\u0628\u0627\u0631 \u062F\u0631 \u06A9\u062F \u0628\u06AF\u0630\u0627\u0631\u06CC:',
         '',
-        "\u06F1) \u0628\u0627\u0644\u0627\u06CC \u0641\u0627\u06CC\u0644\u060C \u0627\u06CC\u0646 \u062E\u0637 \u0631\u0627 \u067E\u06CC\u062F\u0627 \u06A9\u0646:   BOT_TOKEN: 'PUT-YOUR-NEW-BOT-TOKEN-HERE'",
+        "\u06F1) \u0628\u0627\u0644\u0627\u06CC \u0641\u0627\u06CC\u0644\u060C \u0627\u06CC\u0646 \u062E\u0637 \u0631\u0627 \u067E\u06CC\u062F\u0627 \u06A9\u0646:   BOT_TOKEN: ''",
         "\u06F2) \u062C\u0627\u06CC\u0634 \u0628\u0646\u0648\u06CC\u0633:                     BOT_TOKEN: '8621978100:AAH...'  (\u062A\u0648\u06A9\u0646 \u0648\u0627\u0642\u0639\u06CC \u0628\u06CC\u0646 \u062F\u0648 \u06A9\u0648\u062A\u06CC\u0634\u0646)",
         '\u06F3) Ctrl+S \u0630\u062E\u06CC\u0631\u0647 \u06A9\u0646',
         '\u06F4) Deploy \u2192 Manage deployments \u2192 \u270F\uFE0F \u2192 Version: New version \u2192 Deploy',

@@ -85,7 +85,7 @@ const sandbox = {
 };
 
 vm.createContext(sandbox);
-vm.runInContext(fs.readFileSync(path.join(__dirname, 'Code.single.gs'), 'utf8'), sandbox);
+vm.runInContext(fs.readFileSync(path.join(__dirname, 'ready', 'Code.single.gs'), 'utf8'), sandbox);
 
 // ---------------------------------------------------------------- helpers
 let uid = 1000;
