@@ -232,22 +232,89 @@ function upload(item, sub, caption) {
   if (item.size && item.size > MAX_MB * 1024 * 1024) {
     throw new Error('\u0641\u0627\u06CC\u0644 \u0628\u0632\u0631\u06AF\u200C\u062A\u0631 \u0627\u0632 ' + MAX_MB + ' \u0645\u06AF\u0627\u0628\u0627\u06CC\u062A \u0627\u0633\u062A (\u0633\u0642\u0641 \u062A\u0644\u06AF\u0631\u0627\u0645).');
   }
-  var blob = download(item.fileId, item.mime);
-  var file = targetFolder(sub).createFile(blob.setName(item.name));
+
+  var bytes = download(item.fileId);
+  var file = createFileSafe(targetFolder(sub), bytes, item.mime, item.name);
+
   if (caption) { try { file.setDescription(caption.slice(0, 1000)); } catch (ignore) {} }
   return file;
 }
 
+/**
+ * MIME \u0631\u0627 \u062A\u0645\u06CC\u0632 \u0645\u06CC\u200C\u06A9\u0646\u062F.
+ * DriveApp \u0628\u0627 \u0647\u0631 \u0645\u0642\u062F\u0627\u0631 \u0646\u0627\u0645\u0639\u062A\u0628\u0631 (\u062E\u0627\u0644\u06CC\u060C \u06CC\u0627 \u0686\u06CC\u0632\u06CC \u0645\u062B\u0644 \u00AB; charset=\u2026\u00BB \u06CC\u0627 \u0646\u0648\u0639 \u06AF\u0648\u06AF\u0644)
+ * \u062E\u0637\u0627\u06CC \u00ABInvalid argument: file.contentType\u00BB \u0645\u06CC\u200C\u062F\u0647\u062F.
+ */
+function safeMime(mime) {
+  var m = String(mime || '').split(';')[0].trim().toLowerCase();
+  if (!/^[a-z0-9][a-z0-9.+-]*\/[a-z0-9][a-z0-9.+-]*$/.test(m)) return 'application/octet-stream';
+  if (m.indexOf('vnd.google-apps') !== -1) return 'application/octet-stream';
+  return m;
+}
+
+/**
+ * \u0633\u0627\u062E\u062A \u0641\u0627\u06CC\u0644 \u0628\u0627 \u0686\u0646\u062F \u0645\u0633\u06CC\u0631 \u067E\u0634\u062A\u06CC\u0628\u0627\u0646:
+ *   \u06F1) \u0628\u0627 MIME \u0627\u0635\u0644\u06CC
+ *   \u06F2) \u0628\u0627 application/octet-stream
+ *   \u06F3) \u0628\u0627 octet-stream \u0648 \u067E\u0633\u0648\u0646\u062F .bin
+ * \u0627\u06CC\u0646\u200C\u0637\u0648\u0631 \u0647\u0631 \u0641\u0627\u06CC\u0644\u06CC (\u0639\u06A9\u0633 \u0627\u06CC\u0646\u0633\u062A\u0627\u06AF\u0631\u0627\u0645\u060C \u0648\u06CC\u062F\u06CC\u0648\u060C \u0633\u0646\u062F \u0639\u062C\u06CC\u0628) \u0630\u062E\u06CC\u0631\u0647 \u0645\u06CC\u200C\u0634\u0648\u062F.
+ */
+function createFileSafe(folder, bytes, mime, name) {
+  if (!bytes || !bytes.length) {
+    throw new Error('\u0641\u0627\u06CC\u0644 \u0627\u0632 \u062A\u0644\u06AF\u0631\u0627\u0645 \u062E\u0627\u0644\u06CC \u0631\u0633\u06CC\u062F (\u062F\u0648\u0628\u0627\u0631\u0647 \u0628\u0641\u0631\u0633\u062A).');
+  }
+  var fileName = cleanName(name);
+  var attempts = [
+    { mime: safeMime(mime), name: fileName },
+    { mime: 'application/octet-stream', name: fileName },
+    { mime: 'application/octet-stream', name: fileName.replace(/\.[^.]{0,6}$/, '') + '.bin' }
+  ];
+
+  var lastErr = null;
+  for (var i = 0; i < attempts.length; i++) {
+    try {
+      return folder.createFile(Utilities.newBlob(bytes, attempts[i].mime, attempts[i].name));
+    } catch (e) {
+      lastErr = e;
+      Logger.log('createFile \u062A\u0644\u0627\u0634 ' + (i + 1) + ' \u0634\u06A9\u0633\u062A \u062E\u0648\u0631\u062F (' + attempts[i].mime + '): ' + e);
+    }
+  }
+  throw new Error('\u0630\u062E\u06CC\u0631\u0647 \u0641\u0627\u06CC\u0644 \u0646\u0627\u0645\u0648\u0641\u0642 \u0628\u0648\u062F: ' + lastErr);
+}
+
 function saveText(text, stamp, sub, chatId) {
+  var folder = targetFolder(sub);
+  var name = 'note_' + stamp;
+
+  // \u06F1) \u0641\u0627\u06CC\u0644 \u0645\u062A\u0646\u06CC \u0633\u0627\u062F\u0647
+  if (TEXT_MODE === 'txt') {
+    try {
+      var txt = folder.createFile(name + '.txt', text, MimeType.PLAIN_TEXT);
+      return send(chatId, '\u2705 \u0630\u062E\u06CC\u0631\u0647 \u0634\u062F\n\uD83D\uDCDD <a href="' + txt.getUrl() + '">' +
+        esc(txt.getName()) + '</a>');
+    } catch (e) {
+      return send(chatId, '\u26A0\uFE0F ' + esc(e));
+    }
+  }
+
+  // \u06F2) \u0633\u0646\u062F \u06AF\u0648\u06AF\u0644 \u2014 \u0628\u0627\u06CC\u062F \u0628\u0627 DocumentApp \u0633\u0627\u062E\u062A\u0647 \u0634\u0648\u062F\u060C \u0646\u0647 createFile(\u2026, GOOGLE_DOCS)
   try {
-    var folder = targetFolder(sub);
-    var name = 'note_' + stamp;
-    var file = (TEXT_MODE === 'txt')
-      ? folder.createFile(name + '.txt', text, MimeType.PLAIN_TEXT)
-      : folder.createFile(name, text, MimeType.GOOGLE_DOCS);
-    send(chatId, '\u2705 \u0630\u062E\u06CC\u0631\u0647 \u0634\u062F\n\uD83D\uDCDD <a href="' + file.getUrl() + '">' + esc(file.getName()) + '</a>');
+    var doc = DocumentApp.create(name);
+    doc.getBody().setText(text);
+    doc.saveAndClose();
+    var file = DriveApp.getFileById(doc.getId());
+    file.moveTo(folder);
+    return send(chatId, '\u2705 \u0630\u062E\u06CC\u0631\u0647 \u0634\u062F\n\uD83D\uDCDD <a href="' + file.getUrl() + '">' +
+      esc(file.getName()) + '</a>');
   } catch (e) {
-    send(chatId, '\u26A0\uFE0F ' + esc(e));
+    // \u067E\u0634\u062A\u06CC\u0628\u0627\u0646: \u0641\u0627\u06CC\u0644 \u0645\u062A\u0646\u06CC \u0633\u0627\u062F\u0647
+    try {
+      var alt = folder.createFile(name + '.txt', text, MimeType.PLAIN_TEXT);
+      return send(chatId, '\u2705 \u0630\u062E\u06CC\u0631\u0647 \u0634\u062F (\u0628\u0647\u200C\u0635\u0648\u0631\u062A \u0641\u0627\u06CC\u0644 \u0645\u062A\u0646\u06CC)\n\uD83D\uDCDD <a href="' + alt.getUrl() +
+        '">' + esc(alt.getName()) + '</a>');
+    } catch (e2) {
+      return send(chatId, '\u26A0\uFE0F ' + esc(e));
+    }
   }
 }
 
@@ -321,14 +388,17 @@ function mediaOf(msg, stamp) {
   return null;
 }
 
-function download(fileId, mime) {
+function download(fileId) {
   var info = tg('getFile', { file_id: fileId });
   if (!info || !info.ok) throw new Error('\u06AF\u0631\u0641\u062A\u0646 \u0641\u0627\u06CC\u0644 \u0627\u0632 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0634\u06A9\u0633\u062A \u062E\u0648\u0631\u062F');
   var path = info.result.file_path;
   if (!path) throw new Error('\u0641\u0627\u06CC\u0644 \u062F\u0631 \u062F\u0633\u062A\u0631\u0633 \u0646\u06CC\u0633\u062A (\u0628\u0627\u0644\u0627\u06CC \u06F2\u06F0MB\u061F)');
+
   var res = UrlFetchApp.fetch(API + '/' + path, { muteHttpExceptions: true, followRedirects: true });
-  if (res.getResponseCode() !== 200) throw new Error('\u062F\u0627\u0646\u0644\u0648\u062F \u0627\u0632 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0646\u0627\u0645\u0648\u0641\u0642: HTTP ' + res.getResponseCode());
-  return res.getBlob().setContentType(mime || 'application/octet-stream');
+  if (res.getResponseCode() !== 200) {
+    throw new Error('\u062F\u0627\u0646\u0644\u0648\u062F \u0627\u0632 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0646\u0627\u0645\u0648\u0641\u0642: HTTP ' + res.getResponseCode());
+  }
+  return res.getContent();   // byte[] \u2014 blob \u0631\u0627 \u062E\u0648\u062F\u0645\u0627\u0646 \u0628\u0627 MIME \u062A\u0645\u06CC\u0632 \u0645\u06CC\u200C\u0633\u0627\u0632\u06CC\u0645
 }
 
 function rootFolder() {
@@ -383,6 +453,8 @@ function countTriggers() {
 }
 
 function now(fmt) { return Utilities.formatDate(new Date(), TIMEZONE, fmt); }
+
+function cleanName(n) { return clean(n); }
 
 function clean(n) {
   var s = String(n || '').replace(/[\\\/:*?"<>|\u0000-\u001f]/g, '_').replace(/^[ .]+/, '').trim();
