@@ -1,0 +1,22 @@
+{
+  "id": "./",
+  "name": "آرلا نیل | خدمات و آموزش ناخن",
+  "short_name": "آرلا نیل",
+  "description": "نمونه‌کارها و هماهنگی آرلا نیل؛ پس از بازدید نخست، قابل استفاده از حافظهٔ مرورگر.",
+  "lang": "fa-IR",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0b101c",
+  "theme_color": "#0b101c",
+  "icons": [
+    {
+      "src": "arella-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
