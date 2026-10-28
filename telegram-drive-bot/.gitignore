@@ -12,3 +12,6 @@ venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+
+# نسخه شخصی با توکن داخل کد — هرگز commit نشود
+apps-script/Code.personal.gs

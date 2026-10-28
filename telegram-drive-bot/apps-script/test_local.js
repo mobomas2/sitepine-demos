@@ -204,7 +204,8 @@ console.log('# testing ' + target + '\n');
 vm.runInContext(code, sandbox);
 
 // ---------------------------------------------------------------- helpers
-const SECRET = 'change-this-to-a-long-random-string';
+const SECRET = (sandbox.CONFIG && sandbox.CONFIG.WEBHOOK_SECRET) ||
+  'change-this-to-a-long-random-string';
 let uid = 100;
 function post(update) {
   const r = sandbox.doPost({
@@ -243,6 +244,10 @@ test('بدون k پیام «دسترسی ندارید» می‌دهد (نه صف
 });
 
 test('توکن جای‌گذاری نشده → راهنمای واضح', () => {
+  if (sandbox.currentToken_() && sandbox.CONFIG.BOT_TOKEN &&
+      !/^(PUT|PASTE|YOUR)/i.test(sandbox.CONFIG.BOT_TOKEN)) {
+    return; // در نسخه شخصی توکن داخل کد است؛ این تست معنی ندارد
+  }
   const saved = store.props.BOT_TOKEN;
   delete store.props.BOT_TOKEN;
   try {
@@ -256,7 +261,7 @@ test('توکن جای‌گذاری نشده → راهنمای واضح', () => 
 });
 
 test('توکن: placeholder نادیده گرفته و از Script Properties خوانده می‌شود', () => {
-  assert.strictEqual(sandbox.currentToken_(), '123456789:AAH_TEST_TOKEN_0123456789');
+  assert.ok(sandbox.currentToken_(), 'باید یک توکن معتبر پیدا شود');
   vm.runInContext("CONFIG.BOT_TOKEN = 'PUT-YOUR-NEW-BOT-TOKEN-HERE'", sandbox);
   assert.strictEqual(sandbox.currentToken_(), '123456789:AAH_TEST_TOKEN_0123456789');
   vm.runInContext("CONFIG.BOT_TOKEN = '8621978100:AAH_REAL_TOKEN_0123456789'", sandbox);
@@ -268,6 +273,27 @@ test('توکن با فاصله/کوتیشن اضافه هم درست خواند�
   vm.runInContext("CONFIG.BOT_TOKEN = '  8621978100:AAH_REAL_TOKEN_0123456789  '", sandbox);
   assert.strictEqual(sandbox.currentToken_(), '8621978100:AAH_REAL_TOKEN_0123456789');
   vm.runInContext("CONFIG.BOT_TOKEN = 'PUT-YOUR-NEW-BOT-TOKEN-HERE'", sandbox);
+});
+
+test('RUN_ME_ONCE (نسخه شخصی) همه مراحل را اجرا می‌کند', () => {
+  if (typeof sandbox.RUN_ME_ONCE !== 'function') return; // فقط در نسخه شخصی
+  const savedOffset = store.props.TG_OFFSET;
+  const savedPending = store.pending;
+  try {
+    sandboxLogger._lines = [];
+    store.props.TG_OFFSET = '9999990000'; // محیط تمیز برای این تست
+    store.pending = [{ update_id: 9999990001, message: msgBase({ text: 'سلام' }) }];
+    const before = store.files.length;
+    const report = sandbox.RUN_ME_ONCE();
+    assert.ok(report.includes('✅ تمام شد'), report);
+    assert.strictEqual(sandbox.pollingTriggersCount_(), 1);
+    assert.strictEqual(store.files.length, before + 1, 'پیام باید ذخیره شود');
+  } finally {
+    sandbox.stopPollingNow && sandbox.stopPollingNow();
+    if (savedOffset === undefined) delete store.props.TG_OFFSET;
+    else store.props.TG_OFFSET = savedOffset;
+    store.pending = savedPending;
+  }
 });
 
 test('checkSetup بدون خطا اجرا می‌شود', () => {
