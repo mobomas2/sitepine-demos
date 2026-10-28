@@ -1,0 +1,14 @@
+# اسرار — هرگز commit نشوند
+.env
+.env.*
+!.env.example
+client_secrets.json
+service_account.json
+token_debug.json
+
+# پایتون
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
