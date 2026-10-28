@@ -17,7 +17,7 @@ import sys
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent
-SRC = BASE / "Code.ascii.gs"
+SRC = BASE / "Code.template.gs"
 OUT = BASE / "Code.personal.gs"
 
 
@@ -25,14 +25,14 @@ def esc_update_token(text: str, token: str) -> str:
     """فقط خط واقعی CONFIG را عوض می‌کند (نه توضیحات بالای آن)."""
     old = "BOT_TOKEN: 'PUT-YOUR-NEW-BOT-TOKEN-HERE',"
     if old not in text:
-        raise SystemExit("خط جای‌نگهدار BOT_TOKEN در Code.ascii.gs پیدا نشد.")
+        raise SystemExit("خط جای‌نگهدار BOT_TOKEN در Code.template.gs پیدا نشد.")
     return text.replace(old, f"BOT_TOKEN: '{token}',", 1)
 
 
 def esc_update_secret(text: str, secret: str) -> str:
     old = "WEBHOOK_SECRET: 'change-this-to-a-long-random-string',"
     if old not in text:
-        raise SystemExit("خط جای‌نگهدار WEBHOOK_SECRET در Code.ascii.gs پیدا نشد.")
+        raise SystemExit("خط جای‌نگهدار WEBHOOK_SECRET در Code.template.gs پیدا نشد.")
     return text.replace(old, f"WEBHOOK_SECRET: '{secret}',", 1)
 
 

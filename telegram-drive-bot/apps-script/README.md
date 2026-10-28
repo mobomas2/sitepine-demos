@@ -12,7 +12,7 @@
 
 اسکریپت داخل خود گوگل اجرا می‌شود، با اجازه‌ی همان اکانتی که لاگین هستی، فایل را از تلگرام می‌گیرد و در درایو می‌گذارد.
 
-> **دو نسخه از همان کد:** [`Code.ascii.gs`](Code.ascii.gs) (کاملاً ASCII، برای paste بی‌دردسر) و [`Code.gs`](Code.gs) (با کامنت فارسی).
+> **دو نسخه از همان کد:** [`Code.template.gs`](Code.ascii.gs) (کاملاً ASCII، برای paste بی‌دردسر) و [`Code.gs`](Code.gs) (با کامنت فارسی).
 > اگر خطای `SyntaxError` گرفتی، نسخه ASCII را بچسبان — هر دو با ۱۲ تست یکسان تست شده‌اند.
 
 ---
@@ -26,6 +26,21 @@
 3. توکن جدید را فقط در Apps Script بگذار (مرحله ۳ پایین) — نه در چت، نه در گیت‌هاب
 
 > اگر قبلاً کسی با آن توکن webhook ست کرده باشد، با همین `action=setup` پایین بازنویسی می‌شود.
+
+---
+
+## 🧭 کدام فایل را استفاده کنم؟ (جواب کوتاه)
+
+| فایل | توکن داخلش هست؟ | برای چه کسی |
+|---|---|---|
+| **`Code.single.gs`** | ✅ **بله** | **تو** — فقط بچسبان و `START` را Run کن. **همین را استفاده کن.** |
+| `Code.minimal.gs` | ✅ بله | نسخهٔ کوچک‌تر با همان START/POLL |
+| `Code.personal.gs` | ✅ بله | نسخهٔ کامل با گزینه‌های بیشتر (webhook، replay، …) |
+| `Code.template.gs` | ❌ **نه** (جایش `PUT-YOUR-NEW-BOT-TOKEN-HERE` است) | فقط مرجع/تست — **این را کپی نکن** (کار نمی‌کند) |
+
+> 🔴 اگر فایلی که کپی می‌کنی خطِ `BOT_TOKEN: 'PUT-YOUR-NEW-BOT-TOKEN-HERE'` دارد، همان قالب است و هیچ‌وقت کار نمی‌کند. سه فایل اول توکن واقعی دارند (خط `var BOT_TOKEN = '8621978100:...'`).
+>
+> این سه فایل در `.gitignore` هستند، چون ریپو عمومی است و نباید توکن در گیت برود. برای دیدنشان در همین محیط، فایل را از پنل فایل‌ها باز کن (نه از GitHub).
 
 ---
 
@@ -82,7 +97,19 @@ var ALLOWED   = [];      // مثلاً [123456789] تا فقط خودت بتوا
 var TIMEZONE  = 'Asia/Tehran';
 ```
 
-تست‌ها: `node apps-script/test_single.js` → **14/14 passed** (شامل آلبوم، فایل بزرگ، حالت خصوصی، START/POLL/STATUS/STOP).
+تست‌ها (روی همین ماشین، چون فایل‌های شخصی در گیت نیستند):
+
+```bash
+node apps-script/test_single.js    # 14/14  ← نسخه‌ی Code.single.gs
+node apps-script/test_minimal.js   #  5/5   ← نسخه‌ی Code.minimal.gs
+node apps-script/test_local.js     # 41/41  ← نسخه‌ی Code.template.gs
+```
+
+اگر فایل شخصی پاک/بازسازی شد:
+
+```bash
+python apps-script/make_personal.py '8621978100:...' --secret tgdrive2026
+```
 
 ---
 
@@ -128,7 +155,7 @@ python apps-script/make_personal.py '8621978100:AAH...' --secret tgdrive2026
 
 | فایل | چه وقت |
 |---|---|
-| [`Code.ascii.gs`](Code.ascii.gs) | ✅ **پیشنهادی** — کاملاً ASCII؛ اگر خطای `SyntaxError` گرفتی از این استفاده کن (فارسی‌ها به `\uXXXX` تبدیل شده‌اند، خروجی ربات همچنان فارسی است) |
+| [`Code.template.gs`](Code.ascii.gs) | ✅ **پیشنهادی** — کاملاً ASCII؛ اگر خطای `SyntaxError` گرفتی از این استفاده کن (فارسی‌ها به `\uXXXX` تبدیل شده‌اند، خروجی ربات همچنان فارسی است) |
 | [`Code.gs`](Code.gs) | همان کد با کامنت‌های فارسی (خوش‌خوان‌تر) |
 
 بعد Ctrl+S بزن. اسم پروژه را مثلاً `Telegram→Drive` بگذار.
@@ -137,7 +164,7 @@ python apps-script/make_personal.py '8621978100:AAH...' --secret tgdrive2026
 
 ### ۳. توکن را جای‌گذاری کن (مهم‌ترین قدم)
 
-اسکریپت از تو «نمی‌پرسد»؛ جای توکن **داخل خود کد** است. بالای فایل، این خط را پیدا کن (در `Code.ascii.gs` حدود **خط ۳۹**، در `Code.gs` حدود **خط ۲۳**):
+اسکریپت از تو «نمی‌پرسد»؛ جای توکن **داخل خود کد** است. بالای فایل، این خط را پیدا کن (در `Code.template.gs` حدود **خط ۳۹**، در `Code.gs` حدود **خط ۲۳**):
 
 ```js
   BOT_TOKEN: 'PUT-YOUR-NEW-BOT-TOKEN-HERE',
@@ -414,7 +441,7 @@ Deploy → **Manage deployments** → مداد ✏️ → Version: **New version
 | `⚠️ پوشه مقصد پیدا نشد` | `FOLDER_ID` غلط است یا با این اکانت دسترسی ندارد |
 | `⚠️ سهمیه روزانه … پر شد` | فردا ادامه می‌دهد؛ یا حجم آپلود را کمتر کن |
 | **صفحه سفید** هنگام باز کردن آدرس | ۱) آدرس باید کامل باشد: `.../exec?k=YOUR_SECRET` (بدون `?k=` صفحه پیام «دسترسی ندارید» می‌دهد). ۲) مطمئن شو آدرس **Deployment** را باز می‌کنی نه آدرس ادیتور (`/edit`). ۳) در Manage deployments چک کن *Who has access = Anyone* و *Execute as = Me*. ۴) بعد از هر تغییر کد، **New version** دیپلوی کن. ۵) اگر باز سفید بود، از منوی توابع `checkSetup` را Run کن و متن Execution log را بفرست |
-| `SyntaxError: Invalid or unexpected token line: 1` | کد ناقص/آلوده کپی شده. Ctrl+A → Delete → کل [`Code.ascii.gs`](Code.ascii.gs) را بچسبان (بدون هیچ متن اضافه‌ای در خط اول) |
+| `SyntaxError: Invalid or unexpected token line: 1` | کد ناقص/آلوده کپی شده. Ctrl+A → Delete → کل [`Code.template.gs`](Code.ascii.gs) را بچسبان (بدون هیچ متن اضافه‌ای در خط اول) |
 | `Unexpected identifier` یا خطای عجیب در خطی که متن فارسی دارد | نسخه ASCII را استفاده کن؛ کاراکترهای راست‌به‌چپ در کپی/پیست خراب می‌شوند |
 | بعد از تغییر کد اثری ندید | باید **New version** در Manage deployments بزنی |
 | اجرا با `Exceeded maximum execution time` قطع شد | فایل خیلی بزرگ/کند بود؛ `MAX_UPLOAD_MB` را کمتر کن |

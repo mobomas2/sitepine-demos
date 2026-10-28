@@ -1,4 +1,16 @@
 /**
+ * #################################################################
+ * #  THIS IS A TEMPLATE.  IT DOES **NOT** WORK AS-IS.               #
+ * #  It contains:  BOT_TOKEN: 'PUT-YOUR-NEW-BOT-TOKEN-HERE'        #
+ * #                                                                #
+ * #  => If you already have a ready build, use  Code.single.gs     #
+ * #     (single file, token already inside, just run START).       #
+ * #                                                                #
+ * #  This file is kept only as the reference/big version and for   #
+ * #  the tests. It needs a real token before it can do anything.   #
+ * #################################################################
+ */
+/**
  * ================================================================
  *  TELEGRAM -> GOOGLE DRIVE  (ASCII-SAFE BUILD)
  *  CODE_VERSION: polling-2026-10-28b
