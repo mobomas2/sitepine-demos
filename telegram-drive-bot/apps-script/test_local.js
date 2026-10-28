@@ -9,7 +9,7 @@ const vm = require('vm');
 const assert = require('assert');
 
 // ---------------------------------------------------------------- mocks
-const store = { props: {}, files: [], folders: {}, sent: [], webhook: null, calls: [], pending: [] };
+const store = { props: {}, files: [], folders: {}, sent: [], webhook: null, calls: [], pending: [], triggers: [] };
 
 function makeBlob(name, mime, bytes) {
   let _name = name, _mime = mime, _bytes = bytes || 'x';
@@ -96,7 +96,7 @@ const sandbox = {
     return { getScriptCache: () => cache };
   })(),
   LockService: {
-    getScriptLock: () => ({ waitLock() {}, releaseLock() {} }),
+    getScriptLock: () => ({ waitLock() {}, tryLock: () => true, releaseLock() {} }),
   },
   DriveApp: {
     getFoldersByName: (n) => rootFolder.getFoldersByName(n),
@@ -120,7 +120,19 @@ const sandbox = {
     sleep: () => {},
   },
   Logger: { log: () => {} },
-  ScriptApp: { getService: () => ({ getUrl: () => 'https://script.google.com/macros/s/FAKE/exec' }) },
+  ScriptApp: {
+    getService: () => ({ getUrl: () => 'https://script.google.com/macros/s/FAKE/exec' }),
+    getProjectTriggers: () => store.triggers.slice(),
+    deleteTrigger: (t) => { const i = store.triggers.indexOf(t); if (i >= 0) store.triggers.splice(i, 1); },
+    newTrigger: (fn) => ({
+      timeBased() { return this; },
+      everyMinutes(m) {
+        const t = { fn, m, getHandlerFunction: () => fn };
+        store.triggers.push(t);
+        return { create() { return t; } };
+      },
+    }),
+  },
   ContentService: {
     MimeType: { TEXT: 'TEXT', JSON: 'JSON' },
     createTextOutput: (s) => ({ _s: s, setMimeType() { return this; }, getContent() { return this._s; } }),
@@ -156,10 +168,15 @@ const sandbox = {
         return { getResponseCode: () => 200, getContentText: () => JSON.stringify({ ok: true, result: { username: 'T2GD2Tbot' } }) };
       }
       if (method === 'getUpdates') {
-        store.calls.push({ method, payload: JSON.parse((opts && opts.payload) || '{}') });
         const payload = JSON.parse((opts && opts.payload) || '{}');
-        const out = payload.offset ? [] : store.pending.slice();
-        if (payload.offset) store.pending.length = 0;
+        store.calls.push({ method, payload });
+        if (payload.offset && payload.limit === 1) {
+          // تأیید offset
+          return { getResponseCode: () => 200, getContentText: () => JSON.stringify({ ok: true, result: [] }) };
+        }
+        const off = payload.offset || 0;
+        const out = store.pending.filter((u) => u.update_id >= off);
+        store.pending = store.pending.filter((u) => u.update_id < off);
         return { getResponseCode: () => 200, getContentText: () => JSON.stringify({ ok: true, result: out }) };
       }
       if (method === 'setWebhook' || method === 'getWebhookInfo' || method === 'deleteWebhook') {
@@ -444,6 +461,56 @@ test('sendtest با chat پیام می‌فرستد', () => {
   const body = sandbox.doGet({ parameter: { k: SECRET, action: 'sendtest', chat: '555' } }).getContent();
   assert.ok(body.includes('ارسال تست موفق'), body);
   assert.strictEqual(store.sent.length, before + 1);
+});
+
+test('startpolling: webhook حذف، تریگر نصب، پیام‌های معلق پردازش', () => {
+  const beforeFiles = store.files.length;
+  store.pending = [
+    { update_id: 9001, message: msgBase({ text: 'پیام اول' }) },
+    { update_id: 9002, message: msgBase({ photo: [{ file_id: 'x', file_size: 10 }] }) },
+  ];
+  const body = sandbox.doGet({ parameter: { k: SECRET, action: 'startpolling' } }).getContent();
+  assert.ok(body.includes('تریگر هر ۱ دقیقه نصب شد'), body);
+  assert.ok(store.calls.some((c) => c.method === 'deleteWebhook'), 'webhook باید حذف شود');
+  assert.strictEqual(sandbox.pollingTriggersCount_(), 1);
+  assert.strictEqual(store.files.length, beforeFiles + 2);
+  assert.strictEqual(store.pending.length, 0);
+  assert.strictEqual(store.props.TG_OFFSET, '9003');
+});
+
+test('pollOnce: پیام جدید را پردازش و offset را جلو می‌برد', () => {
+  store.pending = [{ update_id: 9010, message: msgBase({ text: 'بعدی' }) }];
+  const before = store.files.length;
+  const n = sandbox.pollOnce();
+  assert.strictEqual(n, 1);
+  assert.strictEqual(store.files.length, before + 1);
+  assert.strictEqual(store.props.TG_OFFSET, '9011');
+});
+
+test('pollOnce: پیام تکراری دوباره پردازش نمی‌شود', () => {
+  store.pending = [{ update_id: 9010, message: msgBase({ text: 'بعدی' }) }];
+  const before = store.files.length;
+  sandbox.pollOnce();
+  assert.strictEqual(store.files.length, before, 'نباید دوباره ذخیره شود');
+});
+
+test('stoppolling: تریگرها حذف و webhook دوباره ست می‌شود', () => {
+  const body = sandbox.doGet({ parameter: { k: SECRET, action: 'stoppolling' } }).getContent();
+  assert.ok(body.includes('تریگرهای حذف‌شده: 1'), body);
+  assert.strictEqual(sandbox.pollingTriggersCount_(), 0);
+  assert.ok(store.calls.some((c) => c.method === 'setWebhook'));
+});
+
+test('pollnow یک اجرا انجام می‌دهد و گزارش می‌دهد', () => {
+  store.pending = [{ update_id: 9020, message: msgBase({ text: '/ping' }) }];
+  const body = sandbox.doGet({ parameter: { k: SECRET, action: 'pollnow' } }).getContent();
+  assert.ok(body.includes('یک اجرای Polling انجام شد'), body);
+  assert.strictEqual(store.props.TG_OFFSET, '9021');
+});
+
+test('diag در صورت خطای 302 پیشنهاد polling می‌دهد', () => {
+  const body = sandbox.doGet({ parameter: { k: SECRET, action: 'diag' } }).getContent();
+  assert.ok(body.includes('حالت Polling'), body);
 });
 
 let failed = 0;

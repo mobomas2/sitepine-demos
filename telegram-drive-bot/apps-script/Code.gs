@@ -241,6 +241,19 @@ function doGet(e) {
       ]);
     }
 
+    if (action === 'startpolling') {
+      return page_('🔄 حالت Polling روشن شد', startPolling_());
+    }
+
+    if (action === 'stoppolling') {
+      return page_('⏹ حالت Polling خاموش شد', stopPolling_());
+    }
+
+    if (action === 'pollnow') {
+      pollOnce();
+      return page_('🔄 یک اجرای Polling انجام شد', diagLines_());
+    }
+
     if (action === 'posttest') {
       return page_('📮 تست POST از بیرون', postTestLines_());
     }
@@ -278,6 +291,121 @@ function doGet(e) {
       'این متن را برایم بفرست تا دقیق بگویم مشکل کجاست.'
     ]);
   }
+}
+
+// ============================ حالت Polling ============================
+/**
+ * اگر گوگل اجازه ندهد web app عمومی باشد (پاسخ 302 به تلگرام)،
+ * ربات را می‌توان بدون webhook هم چرخاند: هر ۱ دقیقه خود Apps Script
+ * از تلگرام می‌پرسد «پیام جدیدی داری؟». برای این کار به دسترسی عمومی
+ * هیچ نیازی نیست.
+ */
+
+/** نصب تریگر هر ۱ دقیقه برای pollOnce. */
+function installPolling_() {
+  var triggers = ScriptApp.getProjectTriggers();
+  for (var i = 0; i < triggers.length; i++) {
+    if (triggers[i].getHandlerFunction() === 'pollOnce') {
+      ScriptApp.deleteTrigger(triggers[i]);
+    }
+  }
+  ScriptApp.newTrigger('pollOnce').timeBased().everyMinutes(1).create();
+}
+
+/** حذف تریگرهای polling. */
+function removePolling_() {
+  var triggers = ScriptApp.getProjectTriggers();
+  var removed = 0;
+  for (var i = 0; i < triggers.length; i++) {
+    if (triggers[i].getHandlerFunction() === 'pollOnce') {
+      ScriptApp.deleteTrigger(triggers[i]);
+      removed++;
+    }
+  }
+  return removed;
+}
+
+function pollingTriggersCount_() {
+  var triggers = ScriptApp.getProjectTriggers();
+  var n = 0;
+  for (var i = 0; i < triggers.length; i++) {
+    if (triggers[i].getHandlerFunction() === 'pollOnce') n++;
+  }
+  return n;
+}
+
+function startPolling_() {
+  var lines = [];
+
+  // در حالت polling نباید webhook فعال باشد (وگرنه getUpdates خطای 409 می‌دهد)
+  var del = tg_('deleteWebhook', { drop_pending_updates: false });
+  lines.push('webhook حذف شد: ' + JSON.stringify(del));
+
+  installPolling_();
+  lines.push('✅ تریگر هر ۱ دقیقه نصب شد.');
+
+  // یک اجرای فوری تا منتظر دقیقه بعد نمانیم
+  var processed = pollOnce();
+  lines.push('اجرای فوری: ' + processed + ' پیام پردازش شد.');
+
+  lines.push('');
+  lines.push('از این به بعد هر ۱ دقیقه پیام‌های جدید خودکار پردازش می‌شوند');
+  lines.push('(حداکثر ~۱ دقیقه تأخیر). برای تست: ' + deployUrl_() + '?k=' +
+             (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=pollnow');
+  lines.push('برای برگشت به حالت webhook: ' + deployUrl_() + '?k=' +
+             (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=stoppolling');
+  return lines;
+}
+
+function stopPolling_() {
+  var removed = removePolling_();
+  var res = tg_('setWebhook', {
+    url: deployUrl_() + '?k=' + encodeURIComponent(CONFIG.WEBHOOK_SECRET),
+    allowed_updates: ['message', 'channel_post'],
+    max_connections: 1
+  });
+  return ['تریگرهای حذف‌شده: ' + removed, 'webhook دوباره ست شد: ' + JSON.stringify(res)];
+}
+
+/**
+ * یک بار getUpdates می‌زند و همه پیام‌های جدید را پردازش می‌کند.
+ * offset در Script Properties نگه داشته می‌شود.
+ */
+function pollOnce() {
+  var lock = LockService.getScriptLock();
+  if (!lock.tryLock(10000)) return 0;   // اجرای هم‌زمان جلوگیری
+
+  var processed = 0;
+  try {
+    var offset = Number(PROPS.getProperty('TG_OFFSET') || 0);
+    var payload = { timeout: 0, limit: 20, allowed_updates: ['message', 'channel_post'] };
+    if (offset) payload.offset = offset;
+
+    var res = tg_('getUpdates', payload);
+    if (!res || !res.ok) {
+      if (res && res.error_code === 409) {
+        // webhook هنوز فعال است
+        tg_('deleteWebhook', { drop_pending_updates: false });
+      }
+      return 0;
+    }
+
+    var updates = res.result || [];
+    for (var i = 0; i < updates.length; i++) {
+      var u = updates[i];
+      try {
+        if (processUpdate_(u) === 'done') processed++;
+      } catch (err) {
+        console.error('poll processUpdate: ' + err);
+      }
+      offset = Math.max(offset, Number(u.update_id) + 1);
+    }
+
+    if (updates.length) PROPS.setProperty('TG_OFFSET', String(offset));
+  } finally {
+    lock.releaseLock();
+  }
+  return processed;
 }
 
 /**
@@ -370,6 +498,12 @@ function diagLines_() {
     lines.push('pending_update_count: ' + (r.pending_update_count || 0));
     if (r.last_error_message) {
       lines.push('⛔️ last_error_message: ' + r.last_error_message + '  (در ' + (r.last_error_date || '?') + ')');
+      if (String(r.last_error_message).indexOf('302') !== -1) {
+        lines.push('   ↗ گوگل به تلگرام ریدایرکت می‌دهد (دسترسی عمومی web app بسته است).');
+        lines.push('   دو راه: (۱) Who has access = Anyone در Manage deployments');
+        lines.push('   یا (۲) همین حالا حالت Polling را روشن کن:');
+        lines.push('   ' + deployUrl_() + '?k=' + (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=startpolling');
+      }
     } else {
       lines.push('last_error_message: ندارد ✅');
     }
@@ -385,6 +519,15 @@ function diagLines_() {
       ? '✅ آدرس webhook با تنظیمات فعلی یکی است'
       : '⚠️ آدرس webhook با تنظیمات فعلی یکی نیست. این را باز کن: ' + expected + '&action=setup');
   }
+
+  // حالت polling
+  var pcount = pollingTriggersCount_();
+  lines.push('');
+  lines.push(pcount
+    ? '🔄 حالت Polling فعال است (' + pcount + ' تریگر هر ۱ دقیقه) → webhook لازم نیست'
+    : 'حالت Polling فعال نیست (ربات به webhook تکیه دارد)');
+  var off = PROPS.getProperty('TG_OFFSET');
+  if (off) lines.push('آخرین offset پردازش‌شده: ' + off);
 
   // heartbeat
   var last = PROPS.getProperty('LAST_UPDATE');

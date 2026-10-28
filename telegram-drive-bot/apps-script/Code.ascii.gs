@@ -6,11 +6,13 @@
  *  problem can break the syntax. The bot still answers in Persian.
  *
  *  STEP 1: put your bot token below -> BOT_TOKEN: 'TOKEN'
- *  STEP 2: save (Ctrl+S), then Deploy -> Manage deployments ->
- *          pencil -> Execute as: Me / Who has access: Anyone ->
- *          Version: New version -> Deploy
- *  STEP 3: open <WEB_APP_URL>?k=YOUR_SECRET&action=setup
+ *  STEP 2: save (Ctrl+S), Deploy -> Manage deployments ->
+ *          pencil -> Version: New version -> Deploy
+ *  STEP 3 (webhook mode): <WEB_APP_URL>?k=SECRET&action=setup
+ *  OR     (polling mode - if Google answers 302): run installPolling
+ *          from the editor, or open ?k=SECRET&action=startpolling
  *  DEBUG : &action=diag | &action=posttest | &action=replay
+ *          &action=pollnow | &action=stoppolling
  *          &action=sendtest&chat=CHAT_ID
  *
  *  Generated from Code.gs - keep the two in sync.
@@ -259,6 +261,19 @@ function doGet(e) {
       ]);
     }
 
+    if (action === 'startpolling') {
+      return page_('\uD83D\uDD04 \u062D\u0627\u0644\u062A Polling \u0631\u0648\u0634\u0646 \u0634\u062F', startPolling_());
+    }
+
+    if (action === 'stoppolling') {
+      return page_('\u23F9 \u062D\u0627\u0644\u062A Polling \u062E\u0627\u0645\u0648\u0634 \u0634\u062F', stopPolling_());
+    }
+
+    if (action === 'pollnow') {
+      pollOnce();
+      return page_('\uD83D\uDD04 \u06CC\u06A9 \u0627\u062C\u0631\u0627\u06CC Polling \u0627\u0646\u062C\u0627\u0645 \u0634\u062F', diagLines_());
+    }
+
     if (action === 'posttest') {
       return page_('\uD83D\uDCEE \u062A\u0633\u062A POST \u0627\u0632 \u0628\u06CC\u0631\u0648\u0646', postTestLines_());
     }
@@ -296,6 +311,121 @@ function doGet(e) {
       '\u0627\u06CC\u0646 \u0645\u062A\u0646 \u0631\u0627 \u0628\u0631\u0627\u06CC\u0645 \u0628\u0641\u0631\u0633\u062A \u062A\u0627 \u062F\u0642\u06CC\u0642 \u0628\u06AF\u0648\u06CC\u0645 \u0645\u0634\u06A9\u0644 \u06A9\u062C\u0627\u0633\u062A.'
     ]);
   }
+}
+
+// ============================ \u062D\u0627\u0644\u062A Polling ============================
+/**
+ * \u0627\u06AF\u0631 \u06AF\u0648\u06AF\u0644 \u0627\u062C\u0627\u0632\u0647 \u0646\u062F\u0647\u062F web app \u0639\u0645\u0648\u0645\u06CC \u0628\u0627\u0634\u062F (\u067E\u0627\u0633\u062E 302 \u0628\u0647 \u062A\u0644\u06AF\u0631\u0627\u0645)\u060C
+ * \u0631\u0628\u0627\u062A \u0631\u0627 \u0645\u06CC\u200C\u062A\u0648\u0627\u0646 \u0628\u062F\u0648\u0646 webhook \u0647\u0645 \u0686\u0631\u062E\u0627\u0646\u062F: \u0647\u0631 \u06F1 \u062F\u0642\u06CC\u0642\u0647 \u062E\u0648\u062F Apps Script
+ * \u0627\u0632 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0645\u06CC\u200C\u067E\u0631\u0633\u062F \u00AB\u067E\u06CC\u0627\u0645 \u062C\u062F\u06CC\u062F\u06CC \u062F\u0627\u0631\u06CC\u061F\u00BB. \u0628\u0631\u0627\u06CC \u0627\u06CC\u0646 \u06A9\u0627\u0631 \u0628\u0647 \u062F\u0633\u062A\u0631\u0633\u06CC \u0639\u0645\u0648\u0645\u06CC
+ * \u0647\u06CC\u0686 \u0646\u06CC\u0627\u0632\u06CC \u0646\u06CC\u0633\u062A.
+ */
+
+/** \u0646\u0635\u0628 \u062A\u0631\u06CC\u06AF\u0631 \u0647\u0631 \u06F1 \u062F\u0642\u06CC\u0642\u0647 \u0628\u0631\u0627\u06CC pollOnce. */
+function installPolling_() {
+  var triggers = ScriptApp.getProjectTriggers();
+  for (var i = 0; i < triggers.length; i++) {
+    if (triggers[i].getHandlerFunction() === 'pollOnce') {
+      ScriptApp.deleteTrigger(triggers[i]);
+    }
+  }
+  ScriptApp.newTrigger('pollOnce').timeBased().everyMinutes(1).create();
+}
+
+/** \u062D\u0630\u0641 \u062A\u0631\u06CC\u06AF\u0631\u0647\u0627\u06CC polling. */
+function removePolling_() {
+  var triggers = ScriptApp.getProjectTriggers();
+  var removed = 0;
+  for (var i = 0; i < triggers.length; i++) {
+    if (triggers[i].getHandlerFunction() === 'pollOnce') {
+      ScriptApp.deleteTrigger(triggers[i]);
+      removed++;
+    }
+  }
+  return removed;
+}
+
+function pollingTriggersCount_() {
+  var triggers = ScriptApp.getProjectTriggers();
+  var n = 0;
+  for (var i = 0; i < triggers.length; i++) {
+    if (triggers[i].getHandlerFunction() === 'pollOnce') n++;
+  }
+  return n;
+}
+
+function startPolling_() {
+  var lines = [];
+
+  // \u062F\u0631 \u062D\u0627\u0644\u062A polling \u0646\u0628\u0627\u06CC\u062F webhook \u0641\u0639\u0627\u0644 \u0628\u0627\u0634\u062F (\u0648\u06AF\u0631\u0646\u0647 getUpdates \u062E\u0637\u0627\u06CC 409 \u0645\u06CC\u200C\u062F\u0647\u062F)
+  var del = tg_('deleteWebhook', { drop_pending_updates: false });
+  lines.push('webhook \u062D\u0630\u0641 \u0634\u062F: ' + JSON.stringify(del));
+
+  installPolling_();
+  lines.push('\u2705 \u062A\u0631\u06CC\u06AF\u0631 \u0647\u0631 \u06F1 \u062F\u0642\u06CC\u0642\u0647 \u0646\u0635\u0628 \u0634\u062F.');
+
+  // \u06CC\u06A9 \u0627\u062C\u0631\u0627\u06CC \u0641\u0648\u0631\u06CC \u062A\u0627 \u0645\u0646\u062A\u0638\u0631 \u062F\u0642\u06CC\u0642\u0647 \u0628\u0639\u062F \u0646\u0645\u0627\u0646\u06CC\u0645
+  var processed = pollOnce();
+  lines.push('\u0627\u062C\u0631\u0627\u06CC \u0641\u0648\u0631\u06CC: ' + processed + ' \u067E\u06CC\u0627\u0645 \u067E\u0631\u062F\u0627\u0632\u0634 \u0634\u062F.');
+
+  lines.push('');
+  lines.push('\u0627\u0632 \u0627\u06CC\u0646 \u0628\u0647 \u0628\u0639\u062F \u0647\u0631 \u06F1 \u062F\u0642\u06CC\u0642\u0647 \u067E\u06CC\u0627\u0645\u200C\u0647\u0627\u06CC \u062C\u062F\u06CC\u062F \u062E\u0648\u062F\u06A9\u0627\u0631 \u067E\u0631\u062F\u0627\u0632\u0634 \u0645\u06CC\u200C\u0634\u0648\u0646\u062F');
+  lines.push('(\u062D\u062F\u0627\u06A9\u062B\u0631 ~\u06F1 \u062F\u0642\u06CC\u0642\u0647 \u062A\u0623\u062E\u06CC\u0631). \u0628\u0631\u0627\u06CC \u062A\u0633\u062A: ' + deployUrl_() + '?k=' +
+             (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=pollnow');
+  lines.push('\u0628\u0631\u0627\u06CC \u0628\u0631\u06AF\u0634\u062A \u0628\u0647 \u062D\u0627\u0644\u062A webhook: ' + deployUrl_() + '?k=' +
+             (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=stoppolling');
+  return lines;
+}
+
+function stopPolling_() {
+  var removed = removePolling_();
+  var res = tg_('setWebhook', {
+    url: deployUrl_() + '?k=' + encodeURIComponent(CONFIG.WEBHOOK_SECRET),
+    allowed_updates: ['message', 'channel_post'],
+    max_connections: 1
+  });
+  return ['\u062A\u0631\u06CC\u06AF\u0631\u0647\u0627\u06CC \u062D\u0630\u0641\u200C\u0634\u062F\u0647: ' + removed, 'webhook \u062F\u0648\u0628\u0627\u0631\u0647 \u0633\u062A \u0634\u062F: ' + JSON.stringify(res)];
+}
+
+/**
+ * \u06CC\u06A9 \u0628\u0627\u0631 getUpdates \u0645\u06CC\u200C\u0632\u0646\u062F \u0648 \u0647\u0645\u0647 \u067E\u06CC\u0627\u0645\u200C\u0647\u0627\u06CC \u062C\u062F\u06CC\u062F \u0631\u0627 \u067E\u0631\u062F\u0627\u0632\u0634 \u0645\u06CC\u200C\u06A9\u0646\u062F.
+ * offset \u062F\u0631 Script Properties \u0646\u06AF\u0647 \u062F\u0627\u0634\u062A\u0647 \u0645\u06CC\u200C\u0634\u0648\u062F.
+ */
+function pollOnce() {
+  var lock = LockService.getScriptLock();
+  if (!lock.tryLock(10000)) return 0;   // \u0627\u062C\u0631\u0627\u06CC \u0647\u0645\u200C\u0632\u0645\u0627\u0646 \u062C\u0644\u0648\u06AF\u06CC\u0631\u06CC
+
+  var processed = 0;
+  try {
+    var offset = Number(PROPS.getProperty('TG_OFFSET') || 0);
+    var payload = { timeout: 0, limit: 20, allowed_updates: ['message', 'channel_post'] };
+    if (offset) payload.offset = offset;
+
+    var res = tg_('getUpdates', payload);
+    if (!res || !res.ok) {
+      if (res && res.error_code === 409) {
+        // webhook \u0647\u0646\u0648\u0632 \u0641\u0639\u0627\u0644 \u0627\u0633\u062A
+        tg_('deleteWebhook', { drop_pending_updates: false });
+      }
+      return 0;
+    }
+
+    var updates = res.result || [];
+    for (var i = 0; i < updates.length; i++) {
+      var u = updates[i];
+      try {
+        if (processUpdate_(u) === 'done') processed++;
+      } catch (err) {
+        console.error('poll processUpdate: ' + err);
+      }
+      offset = Math.max(offset, Number(u.update_id) + 1);
+    }
+
+    if (updates.length) PROPS.setProperty('TG_OFFSET', String(offset));
+  } finally {
+    lock.releaseLock();
+  }
+  return processed;
 }
 
 /**
@@ -388,6 +518,12 @@ function diagLines_() {
     lines.push('pending_update_count: ' + (r.pending_update_count || 0));
     if (r.last_error_message) {
       lines.push('\u26D4\uFE0F last_error_message: ' + r.last_error_message + '  (\u062F\u0631 ' + (r.last_error_date || '?') + ')');
+      if (String(r.last_error_message).indexOf('302') !== -1) {
+        lines.push('   \u2197 \u06AF\u0648\u06AF\u0644 \u0628\u0647 \u062A\u0644\u06AF\u0631\u0627\u0645 \u0631\u06CC\u062F\u0627\u06CC\u0631\u06A9\u062A \u0645\u06CC\u200C\u062F\u0647\u062F (\u062F\u0633\u062A\u0631\u0633\u06CC \u0639\u0645\u0648\u0645\u06CC web app \u0628\u0633\u062A\u0647 \u0627\u0633\u062A).');
+        lines.push('   \u062F\u0648 \u0631\u0627\u0647: (\u06F1) Who has access = Anyone \u062F\u0631 Manage deployments');
+        lines.push('   \u06CC\u0627 (\u06F2) \u0647\u0645\u06CC\u0646 \u062D\u0627\u0644\u0627 \u062D\u0627\u0644\u062A Polling \u0631\u0627 \u0631\u0648\u0634\u0646 \u06A9\u0646:');
+        lines.push('   ' + deployUrl_() + '?k=' + (CONFIG.WEBHOOK_SECRET || 'YOUR_SECRET') + '&action=startpolling');
+      }
     } else {
       lines.push('last_error_message: \u0646\u062F\u0627\u0631\u062F \u2705');
     }
@@ -403,6 +539,15 @@ function diagLines_() {
       ? '\u2705 \u0622\u062F\u0631\u0633 webhook \u0628\u0627 \u062A\u0646\u0638\u06CC\u0645\u0627\u062A \u0641\u0639\u0644\u06CC \u06CC\u06A9\u06CC \u0627\u0633\u062A'
       : '\u26A0\uFE0F \u0622\u062F\u0631\u0633 webhook \u0628\u0627 \u062A\u0646\u0638\u06CC\u0645\u0627\u062A \u0641\u0639\u0644\u06CC \u06CC\u06A9\u06CC \u0646\u06CC\u0633\u062A. \u0627\u06CC\u0646 \u0631\u0627 \u0628\u0627\u0632 \u06A9\u0646: ' + expected + '&action=setup');
   }
+
+  // \u062D\u0627\u0644\u062A polling
+  var pcount = pollingTriggersCount_();
+  lines.push('');
+  lines.push(pcount
+    ? '\uD83D\uDD04 \u062D\u0627\u0644\u062A Polling \u0641\u0639\u0627\u0644 \u0627\u0633\u062A (' + pcount + ' \u062A\u0631\u06CC\u06AF\u0631 \u0647\u0631 \u06F1 \u062F\u0642\u06CC\u0642\u0647) \u2192 webhook \u0644\u0627\u0632\u0645 \u0646\u06CC\u0633\u062A'
+    : '\u062D\u0627\u0644\u062A Polling \u0641\u0639\u0627\u0644 \u0646\u06CC\u0633\u062A (\u0631\u0628\u0627\u062A \u0628\u0647 webhook \u062A\u06A9\u06CC\u0647 \u062F\u0627\u0631\u062F)');
+  var off = PROPS.getProperty('TG_OFFSET');
+  if (off) lines.push('\u0622\u062E\u0631\u06CC\u0646 offset \u067E\u0631\u062F\u0627\u0632\u0634\u200C\u0634\u062F\u0647: ' + off);
 
   // heartbeat
   var last = PROPS.getProperty('LAST_UPDATE');
