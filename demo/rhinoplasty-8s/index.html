@@ -77,6 +77,8 @@ h1 em{font-style:italic;color:var(--amber-hi);display:block}
 .brief-body pre{margin:0 0 12px;padding:13px 14px;max-height:210px;overflow:auto;white-space:pre-wrap;border:1px solid var(--line-2);border-radius:6px;background:rgba(0,0,0,.25);color:#b3aa9d;font:10.5px/1.75 ui-monospace,SFMono-Regular,Menlo,monospace;scrollbar-width:thin}
 .brief-body pre::selection{background:var(--amber)}
 .btn.copy{height:30px;font-size:9px}
+a.btn{text-decoration:none}
+a.btn.on,a.btn:hover{background:rgba(240,180,106,.13);border-color:rgba(240,180,106,.5);color:var(--amber-hi)}
 
 /* ---------- stage ---------- */
 .col-stage{display:flex;flex-direction:column;gap:14px;justify-self:center;width:100%;max-width:520px}
@@ -181,6 +183,7 @@ kbd{font:9px/1 ui-monospace,Menlo,monospace;padding:3px 5px;border:1px solid rgb
       <li data-start="7"><span class="t">00:07</span><span class="b">Settle<small>Camera comes to rest on the final frame.</small></span></li>
     </ol>
 
+    <p class="note"><b>Render</b> — the 8-second master (1080×1920, 30 fps, H.264 + AAC) is in <code>video/rhinoplasty-8s-9x16.mp4</code>; the browser preview below is drawn live from the same code.</p>
     <p class="note"><b>Score</b> — generated live in the browser: three-chord ambient pad, a shimmer swell through the tip work, resolving on a warm C-major add9. Instrumental, no samples.</p>
 
     <details class="brief">
@@ -235,6 +238,10 @@ Audio: cinematic ambient score; shimmer swells at the tip refinement, resolves t
           <span class="lbl">Loop</span>
         </button>
         <span class="time"><span id="timeNow">0.00</span><small> / 8.00 s</small></span>
+        <a class="btn" id="mp4Btn" href="video/rhinoplasty-8s-9x16.mp4" download="rhinoplasty-8s-9x16.mp4" title="Download the rendered MP4 (1080×1920, 8s, with score)" aria-label="Download the rendered MP4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="13" height="14" rx="2"/><path d="M15.5 10.5 21 7.5v9l-5.5-3z"/></svg>
+          <span class="lbl">MP4</span>
+        </a>
         <button class="btn" id="grabBtn" type="button" aria-label="Save current frame as PNG" title="Save current frame as PNG">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
         </button>

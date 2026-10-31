@@ -5,7 +5,11 @@ nasal framework from the supplied start plate resolves into the natural result i
 the end plate. Everything is drawn on a canvas from the two provided stills — no
 video file, no external libraries, no network requests beyond the two JPEGs.
 
-`index.html` · `img/start.jpg` · `img/end.jpg`
+`index.html` · `img/start.jpg` · `img/end.jpg` · `video/rhinoplasty-8s-9x16.mp4`
+
+**Rendered master** — `video/rhinoplasty-8s-9x16.mp4`: 1080×1920, 30 fps, 8.0 s,
+H.264 high / yuv420p / CRF 20, AAC 192 kbps stereo, faststart. Built by rendering
+240 frames from the same canvas code and mixing the same score offline.
 
 ## Beat sheet (as implemented)
 
