@@ -1,3 +1,6 @@
 # Local AI tooling; keep MCP credentials/config and skill files out of the public site/repository.
 .claude/
 .mcp.json
+
+# Client project files: keep out of the public demo site
+molood-docs/
