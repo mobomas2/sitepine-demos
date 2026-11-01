@@ -236,7 +236,7 @@ function buildText(){
     const emp = g.items.filter(it => !state[it.id]?.v);
     L.push("■ " + g.title + "  (کل " + g.items.length + " | می‌خواهم " + yes.length + " | با تغییر " + chg.length + " | نمی‌خواهم " + no.length + " | بی‌پاسخ " + emp.length + ")");
     if (yes.length) L.push("  می‌خواهم: " + yes.map(x => x.t).join(" / "));
-    if (chg.length) chg.forEach(x => L.push("  با تغییر: " + x.t + (state[x.id].n ? " ← " + state[x.id].n : "")));
+    if (chg.length) chg.forEach(x => { const n = (state[x.id] && state[x.id].n) || ""; L.push("  با تغییر: " + x.t + (n ? " ← " + n : " ← بدون توضیح")); });
     if (no.length) L.push("  نمی‌خواهم: " + no.map(x => x.t).join(" / "));
     L.push("");
   });
@@ -257,7 +257,7 @@ function openResult(){
     body += `<h3>${esc(g.title)}</h3>`;
     body += `<div style="font-size:12.5px;color:#6b7480">می‌خواهم ${fa(yes.length)} · با تغییر ${fa(chg.length)} · نمی‌خواهم ${fa(no.length)}</div>`;
     if (yes.length) body += `<ul>${yes.map(x => `<li>${esc(x.t)}</li>`).join("")}</ul>`;
-    if (chg.length) body += `<ul>${chg.map(x => `<li><b>${esc(x.t)}</b> — ${esc(state[x.id].n || "بدون توضیح")}</li>`).join("")}</ul>`;
+    if (chg.length) body += `<ul>${chg.map(x => `<li><b>${esc(x.t)}</b> — ${esc((state[x.id] && state[x.id].n) || "بدون توضیح")}</li>`).join("")}</ul>`;
   });
   body += `<h3>متن آمادهٔ ارسال</h3><pre id="txtOut">${esc(txt)}</pre>`;
   document.getElementById("resBody").innerHTML = body;
