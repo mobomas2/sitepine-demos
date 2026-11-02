@@ -19,13 +19,28 @@ var BY_DATE    = true;          // true = subfolder 2026-10-28
 var TEXT_MODE  = 'doc';         // 'doc' = Google Doc, 'txt' = plain text
 var MAX_MB     = 19;
 var ALLOWED    = [83885823];    // \u0641\u0642\u0637 \u0627\u06CC\u0646 \u0622\u06CC\u062F\u06CC\u200C\u0647\u0627\u06CC \u062A\u0644\u06AF\u0631\u0627\u0645\u06CC \u0645\u06CC\u200C\u062A\u0648\u0627\u0646\u0646\u062F \u0622\u067E\u0644\u0648\u062F \u06A9\u0646\u0646\u062F (\u062E\u0627\u0644\u06CC = \u0647\u0645\u0647)
-var VERSION    = 'single-1.2';
+var VERSION    = 'single-2.0';
 
 // --- \u062a\u0631\u06cc\u06af\u0631 Muse.ai ---
 // \u0634\u0645\u0627\u0631\u0647 \u0648\u0627\u062a\u0633\u0627\u067e \u0627\u06cc\u062c\u0646\u062a Muse (\u0628\u06cc\u0646\u200c\u0627\u0644\u0645\u0644\u0644\u06cc\u060c \u0628\u062f\u0648\u0646 + \u0648 \u0628\u062f\u0648\u0646 \u0635\u0641\u0631). \u062e\u0627\u0644\u06cc = \u062e\u0648\u062f\u0650 \u0648\u0627\u062a\u0633\u0627\u067e \u0645\u06cc\u200c\u067e\u0631\u0633\u062f \u0628\u0647 \u06a9\u062f\u0627\u0645 \u0686\u062a
 var MUSE_WA    = '';
 // \u0627\u06af\u0631 \u0628\u0631\u0627\u06cc Muse \u0627\u06cc\u0645\u06cc\u0644 \u0645\u06cc\u200c\u0641\u0631\u0633\u062a\u06cc\u060c \u0622\u062f\u0631\u0633\u0634 \u0631\u0627 \u0627\u06cc\u0646\u062c\u0627 \u0628\u06af\u0630\u0627\u0631. \u062e\u0627\u0644\u06cc = \u062f\u06a9\u0645\u0647\u0654 \u0627\u06cc\u0645\u06cc\u0644 \u0646\u0645\u0627\u06cc\u0634 \u062f\u0627\u062f\u0647 \u0646\u0645\u06cc\u200c\u0634\u0648\u062f
 var MUSE_EMAIL = '';
+// \u0627\u06AF\u0631 \u0645\u06CC\u200C\u062E\u0648\u0627\u0647\u06CC \u0628\u062F\u0648\u0646 \u0647\u06CC\u0686 \u0644\u0645\u0633\u06CC \u062E\u0648\u062F\u06A9\u0627\u0631 \u0628\u0647 Muse \u0628\u0631\u0648\u062F\u060C \u06CC\u06A9\u06CC \u0627\u0632 \u0627\u06CC\u0646 \u062F\u0648 \u0631\u0627 \u067E\u0631 \u06A9\u0646:
+var MUSE_AUTO       = true;   // \u0627\u0631\u0633\u0627\u0644 \u062E\u0648\u062F\u06A9\u0627\u0631 \u0628\u0639\u062F \u0627\u0632 \u0647\u0631 \u0630\u062E\u06CC\u0631\u0647
+var MUSE_WEBHOOK    = '';     // \u0622\u062F\u0631\u0633 \u0648\u0628\u0647\u0648\u06A9 (WAHA / \u0647\u0631 \u06AF\u06CC\u062A\u200C\u0648\u06CC \u0648\u0627\u062A\u0633\u0627\u067E) \u2014 JSON \u0628\u0627 \u06A9\u0644\u06CC\u062F\u0647\u0627\u06CC text/url/title
+
+// --- \u0627\u06CC\u0646\u0633\u062A\u0627\u06AF\u0631\u0627\u0645 \u2192 \u062F\u0631\u0627\u06CC\u0648  (\u0628\u062F\u0648\u0646 \u0633\u0631\u0648\u0631) ---
+// \u0644\u06CC\u0646\u06A9 \u0631\u06CC\u0644 \u0631\u0627 \u06A9\u0647 \u0628\u0631\u0627\u06CC \u0631\u0628\u0627\u062A \u0628\u0641\u0631\u0633\u062A\u06CC\u060C \u0631\u0628\u0627\u062A \u062E\u0648\u062F\u0634 \u0628\u0627 API \u00AB\u06A9\u0628\u0627\u0644\u062A\u00BB \u062F\u0627\u0646\u0644\u0648\u062F \u0645\u06CC\u200C\u06A9\u0646\u062F \u0648 \u062F\u0631 \u062F\u0631\u0627\u06CC\u0648 \u0645\u06CC\u200C\u06AF\u0630\u0627\u0631\u062F.
+// \u0647\u0631 \u0646\u0645\u0648\u0646\u0647\u200C\u0627\u06CC \u06A9\u0647 \u062C\u0648\u0627\u0628 \u0646\u062F\u0627\u062F\u060C \u0628\u0639\u062F\u06CC \u0627\u0645\u062A\u062D\u0627\u0646 \u0645\u06CC\u200C\u0634\u0648\u062F. \u0628\u0627 /igtest \u0628\u0647\u062A\u0631\u06CC\u0646 \u0631\u0627 \u067E\u06CC\u062F\u0627 \u06A9\u0646 \u0648 \u0627\u0648\u0644 \u0644\u06CC\u0633\u062A \u0628\u06AF\u0630\u0627\u0631.
+var IG_ON   = true;
+var IG_APIS = [
+  'https://cobalt-api.kwiatekmiki.com',
+  'https://cobalt-api.ayo.tf',
+  'https://cobaltapi.cjs.nz',
+  'https://api.cobalt.tacohitbox.com',
+  'https://cobalt-api.luver.pw'
+];
 var MUSE_ON    = true;          // \u062f\u06a9\u0645\u0647\u0654 \xab\u0627\u0631\u0633\u0627\u0644 \u0628\u0647 Muse\xbb \u0632\u06cc\u0631 \u0647\u0631 \u0641\u0627\u06cc\u0644
 
 
@@ -193,6 +208,7 @@ function handleOne(msg) {
   var stamp = now('yyyy-MM-dd_HH-mm-ss');
   var sub = BY_DATE ? now('yyyy-MM-dd') : null;
 
+  if (msg.text && isInstagram(msg.text)) return saveInstagram(firstUrl(msg.text), chatId);
   if (msg.text) return saveText(msg.text, stamp, sub, chatId);
 
   var item = mediaOf(msg, stamp);
@@ -200,8 +216,15 @@ function handleOne(msg) {
 
   try {
     var file = upload(item, sub, msg.caption);
+    try {
+      var pr2 = PropertiesService.getScriptProperties();
+      pr2.setProperty('LAST_FILE', file.getUrl());
+      pr2.setProperty('LAST_TITLE', file.getName());
+    } catch (ignore3) {}
+    var muse2 = musePush(file.getUrl(), file.getName());
     send(chatId, '\u2705 \u0630\u062E\u06CC\u0631\u0647 \u0634\u062F\n' + icon(item.kind) +
-      ' <a href="' + file.getUrl() + '">' + esc(file.getName()) + '</a>',
+      ' <a href="' + file.getUrl() + '">' + esc(file.getName()) + '</a>' +
+      (muse2 ? '\n\uD83E\uDD16 Muse: ' + esc(muse2) : ''),
       museButtons(file.getUrl(), file.getName()));
   } catch (e) {
     send(chatId, '\u26A0\uFE0F ' + esc(e));
@@ -334,6 +357,34 @@ function saveText(text, stamp, sub, chatId) {
 function command(msg, chatId) {
   var cmd = msg.text.split(/\s+/)[0].replace(/@.*$/, '').toLowerCase();
 
+  if (!allowed(msg.from && msg.from.id) && cmd !== '/id') {
+    return send(chatId, '\u26D4\uFE0F \u0627\u06CC\u0646 \u0631\u0628\u0627\u062A \u062E\u0635\u0648\u0635\u06CC \u0627\u0633\u062A. <code>' + (msg.from && msg.from.id) + '</code>');
+  }
+
+  if (cmd === '/ig') return saveInstagram(firstUrl(msg.text), chatId);
+
+  if (cmd === '/igtest') {
+    var lk = firstUrl(msg.text) || firstUrl(PropertiesService.getScriptProperties().getProperty('LAST_IG') || '');
+    if (!lk) return send(chatId, '\u06CC\u06A9 \u0644\u06CC\u0646\u06A9 \u0631\u06CC\u0644 \u0628\u062F\u0647:\n<code>/igtest https://www.instagram.com/reel/XXX/</code>');
+    var out = [];
+    for (var ii = 0; ii < IG_APIS.length; ii++) {
+      try {
+        var got = igTryOne(IG_APIS[ii], lk);
+        out.push((got.length ? '\u2705 ' : '\u274C ') + IG_APIS[ii] + (got.length ? '  (' + got.length + ')' : ''));
+      } catch (e) {
+        out.push('\u274C ' + IG_APIS[ii] + ' \u2014 ' + esc(String(e).slice(0, 50)));
+      }
+    }
+    return send(chatId, '\u0646\u062A\u06CC\u062C\u0647\u0654 \u062A\u0633\u062A \u0646\u0645\u0648\u0646\u0647\u200C\u0647\u0627:\n' + out.join('\n'));
+  }
+
+  if (cmd === '/muse') {
+    var p = PropertiesService.getScriptProperties();
+    var u = p.getProperty('LAST_FILE');
+    if (!u) return send(chatId, '\u0686\u06CC\u0632\u06CC \u0630\u062E\u06CC\u0631\u0647 \u0646\u0634\u062F\u0647. \u0627\u0648\u0644 \u06CC\u06A9 \u0641\u0627\u06CC\u0644 \u06CC\u0627 \u0631\u06CC\u0644 \u0628\u0641\u0631\u0633\u062A.');
+    return send(chatId, '\uD83E\uDD16 ' + esc(musePush(u, p.getProperty('LAST_TITLE') || '')));
+  }
+
   if (cmd === '/ping') return send(chatId, '\uD83C\uDFD3 pong \u2014 \u0631\u0628\u0627\u062A \u0632\u0646\u062F\u0647 \u0627\u0633\u062A.');
   if (cmd === '/id') return send(chatId,
     '\u0622\u06CC\u062F\u06CC \u0686\u062A: <code>' + chatId + '</code>\n\u0622\u06CC\u062F\u06CC \u062A\u0648: <code>' + (msg.from && msg.from.id) + '</code>');
@@ -354,9 +405,10 @@ function command(msg, chatId) {
       '\uD83D\uDDBC \u0686\u0646\u062F \u0639\u06A9\u0633 \u0628\u0627 \u0647\u0645 (\u0622\u0644\u0628\u0648\u0645) \u0647\u0645 \u067E\u0634\u062A\u06CC\u0628\u0627\u0646\u06CC \u0645\u06CC\u200C\u0634\u0648\u062F.\n\n' +
       '\uD83C\uDD94 \u0622\u06CC\u062F\u06CC \u062A\u0648: <code>' + (msg.from && msg.from.id) + '</code>\n' +
       '\uD83E\uDD16 \u0631\u0628\u0627\u062A: @' + esc(uname) + '\n\n' +
-      '\uD83D\uDCF7 \u0627\u06cc\u0646\u0633\u062a\u0627\u06af\u0631\u0627\u0645: \u0641\u0627\u06cc\u0644 \u0631\u0627 \u0627\u0632 \u0631\u0628\u0627\u062a \u062f\u0627\u0646\u0644\u0648\u062f\u0631 \u062f\u0631 \u062a\u0644\u06af\u0631\u0627\u0645 \u0628\u06af\u06cc\u0631 \u0648 \u0647\u0645\u06cc\u0646\u200c\u062c\u0627 \u0628\u0631\u0627\u06cc \u0645\u0646 \u0641\u0648\u0631\u0648\u0627\u0631\u062f \u06a9\u0646.\n' +
+      '\uD83D\uDCF7 \u0644\u06CC\u0646\u06A9 \u0631\u06CC\u0644/\u067E\u0633\u062A \u0627\u06CC\u0646\u0633\u062A\u0627\u06AF\u0631\u0627\u0645 \u0631\u0627 \u0647\u0645\u06CC\u0646\u200C\u062C\u0627 \u0628\u0641\u0631\u0633\u062A\u061B \u062E\u0648\u062F\u0645 \u062F\u0627\u0646\u0644\u0648\u062F \u0645\u06CC\u200C\u06A9\u0646\u0645\u060C \u062F\u0631 \u062F\u0631\u0627\u06CC\u0648 \u0645\u06CC\u200C\u06AF\u0630\u0627\u0631\u0645 \u0648 \u0628\u0647 Muse \u0645\u06CC\u200C\u062F\u0647\u0645.\n' +
+      '\uD83D\uDCE4 \u06CC\u0627 \u0641\u0627\u06CC\u0644 \u0622\u0645\u0627\u062F\u0647 \u0631\u0627 \u0627\u0632 \u0631\u0628\u0627\u062A \u062F\u0627\u0646\u0644\u0648\u062F\u0631 \u0641\u0648\u0631\u0648\u0627\u0631\u062F \u06A9\u0646.\n' +
       '\uD83E\uDD16 \u0628\u0639\u062f \u0627\u0632 \u0630\u062e\u06cc\u0631\u0647\u060c \u062f\u06a9\u0645\u0647\u0654 \xab\u0627\u0631\u0633\u0627\u0644 \u0628\u0647 Muse\xbb \u0631\u0627 \u0628\u0632\u0646.\n\n' +
-      '\u062F\u0633\u062A\u0648\u0631\u0647\u0627: /folder \u00B7 /id \u00B7 /ping');
+      '\u062F\u0633\u062A\u0648\u0631\u0647\u0627: /folder \u00B7 /id \u00B7 /ping \u00B7 /igtest \u00B7 /muse');
   }
 
   return send(chatId, '\u062F\u0633\u062A\u0648\u0631 \u0646\u0627\u0634\u0646\u0627\u062E\u062A\u0647. \u0628\u0646\u0648\u06CC\u0633 /help');
@@ -472,6 +524,167 @@ function send(chatId, html, markup) {
   };
   if (markup && markup.length) payload.reply_markup = { inline_keyboard: markup };
   return tg('sendMessage', payload);
+}
+
+// ================================================================
+//  \u0627\u06CC\u0646\u0633\u062A\u0627\u06AF\u0631\u0627\u0645 \u2192 \u062F\u0631\u0627\u06CC\u0648  (\u0628\u062F\u0648\u0646 \u0633\u0631\u0648\u0631\u060C \u0628\u0627 \u0646\u0645\u0648\u0646\u0647\u200C\u0647\u0627\u06CC \u0639\u0645\u0648\u0645\u06CC cobalt)
+// ================================================================
+function isInstagram(t) {
+  return /(?:instagram\.com|instagr\.am)\/(?:reel|reels|p|tv)\//i.test(String(t || ''));
+}
+
+function firstUrl(t) {
+  var m = String(t || '').match(/https?:\/\/[^\s<>"']+/i);
+  return m ? m[0] : '';
+}
+
+/** \u06CC\u06A9 \u0646\u0645\u0648\u0646\u0647 \u0631\u0627 \u0627\u0645\u062A\u062D\u0627\u0646 \u0645\u06CC\u200C\u06A9\u0646\u062F\u061B \u0644\u06CC\u0633\u062A URL \u0641\u0627\u06CC\u0644\u200C\u0647\u0627 \u0631\u0627 \u0628\u0631\u0645\u06CC\u200C\u06AF\u0631\u062F\u0627\u0646\u062F (\u062E\u0627\u0644\u06CC = \u062C\u0648\u0627\u0628 \u0646\u062F\u0627\u062F). */
+function igTryOne(host, link) {
+  var base = String(host || '').replace(/\/+$/, '');
+  var tries = [
+    { url: base + '/',         body: { url: link, videoQuality: '720', downloadMode: 'auto', filenameStyle: 'basic' } },
+    { url: base + '/api/json', body: { url: link, vQuality: '720' } }
+  ];
+  var last = '';
+  for (var i = 0; i < tries.length; i++) {
+    var res = UrlFetchApp.fetch(tries[i].url, {
+      method: 'post', contentType: 'application/json',
+      headers: { 'Accept': 'application/json' },
+      payload: JSON.stringify(tries[i].body),
+      muteHttpExceptions: true, followRedirects: true
+    });
+    var code = res.getResponseCode();
+    if (code === 404) { last = 'HTTP 404'; continue; }
+    var data = null;
+    try { data = JSON.parse(res.getContentText()); } catch (e) { data = null; }
+    if (!data) { last = 'HTTP ' + code; break; }
+    var urls = igPickUrls(data);
+    if (urls.length) return urls;
+    last = (data.status || ('HTTP ' + code)) + (data.error && data.error.code ? ' ' + data.error.code : '');
+    break;
+  }
+  throw new Error(last || 'no answer');
+}
+
+function igPickUrls(data) {
+  var urls = [], i;
+  if (data.status === 'picker' && data.picker && data.picker.length) {
+    for (i = 0; i < data.picker.length; i++) if (data.picker[i] && data.picker[i].url) urls.push(data.picker[i].url);
+    return urls;
+  }
+  if (data.url) urls.push(data.url);
+  return urls;
+}
+
+/** \u0627\u0632 \u0644\u06CC\u0633\u062A \u0646\u0645\u0648\u0646\u0647\u200C\u0647\u0627 \u0627\u0648\u0644\u06CC\u0646 \u062C\u0648\u0627\u0628 \u062F\u0631\u0633\u062A \u0631\u0627 \u0645\u06CC\u200C\u06AF\u06CC\u0631\u062F. */
+function igResolve(link) {
+  var errs = [];
+  for (var i = 0; i < IG_APIS.length; i++) {
+    try {
+      var urls = igTryOne(IG_APIS[i], link);
+      if (urls.length) return { urls: urls, host: IG_APIS[i] };
+    } catch (e) {
+      errs.push(String(IG_APIS[i]).replace(/^https?:\/\//, '') + ': ' + e);
+    }
+  }
+  throw new Error('\u0647\u06CC\u0686 \u0646\u0645\u0648\u0646\u0647\u200C\u0627\u06CC \u062C\u0648\u0627\u0628 \u0646\u062F\u0627\u062F' + (errs.length ? ' (' + errs.slice(0, 3).join(' | ') + ')' : ''));
+}
+
+function igDownload(url) {
+  var res = UrlFetchApp.fetch(url, {
+    muteHttpExceptions: true, followRedirects: true,
+    headers: { 'User-Agent': 'Mozilla/5.0' }
+  });
+  if (res.getResponseCode() !== 200) throw new Error('\u062F\u0627\u0646\u0644\u0648\u062F \u0641\u0627\u06CC\u0644 \u0646\u0627\u0645\u0648\u0641\u0642: HTTP ' + res.getResponseCode());
+  var bytes = res.getContent();
+  if (!bytes || !bytes.length) throw new Error('\u0641\u0627\u06CC\u0644 \u062E\u0627\u0644\u06CC \u0628\u0648\u062F.');
+  if (bytes.length > MAX_MB * 1024 * 1024) throw new Error('\u0641\u0627\u06CC\u0644 \u0628\u0632\u0631\u06AF\u200C\u062A\u0631 \u0627\u0632 ' + MAX_MB + ' \u0645\u06AF\u0627\u0628\u0627\u06CC\u062A \u0627\u0633\u062A.');
+  var h = {};
+  try { h = res.getHeaders() || {}; } catch (e) { h = {}; }
+  var ct = String(h['Content-Type'] || h['content-type'] || '').split(';')[0].trim();
+  return { bytes: bytes, mime: ct || 'application/octet-stream' };
+}
+
+function extOf(mime) {
+  var m = safeMime(mime);
+  if (m === 'video/mp4') return '.mp4';
+  if (m === 'video/quicktime') return '.mov';
+  if (m === 'image/jpeg') return '.jpg';
+  if (m === 'image/png') return '.png';
+  if (m === 'image/webp') return '.webp';
+  if (m === 'audio/mpeg') return '.mp3';
+  return '.bin';
+}
+
+/** \u06A9\u0644 \u0645\u0633\u06CC\u0631 \u062E\u0648\u062F\u06A9\u0627\u0631: \u0644\u06CC\u0646\u06A9 \u0627\u06CC\u0646\u0633\u062A\u0627\u06AF\u0631\u0627\u0645 \u2192 \u062F\u0627\u0646\u0644\u0648\u062F \u2192 \u062F\u0631\u0627\u06CC\u0648 \u2192 \u0644\u06CC\u0646\u06A9 \u2192 Muse */
+function saveInstagram(link, chatId) {
+  if (!IG_ON) return send(chatId, '\u26A0\uFE0F \u0628\u062E\u0634 \u0627\u06CC\u0646\u0633\u062A\u0627\u06AF\u0631\u0627\u0645 \u062E\u0627\u0645\u0648\u0634 \u0627\u0633\u062A (IG_ON).');
+  if (!link) return send(chatId, '\u0644\u06CC\u0646\u06A9 \u067E\u06CC\u062F\u0627 \u0646\u0634\u062F. \u06CC\u06A9 \u0644\u06CC\u0646\u06A9 \u0631\u06CC\u0644 \u0628\u0641\u0631\u0633\u062A.');
+
+  send(chatId, '\u23F3 \u062F\u0627\u0631\u0645 \u0631\u06CC\u0644 \u0631\u0627 \u0645\u06CC\u200C\u06AF\u06CC\u0631\u0645\u2026\n' + esc(link));
+
+  var found;
+  try { found = igResolve(link); }
+  catch (e) {
+    return send(chatId, '\u26A0\uFE0F ' + esc(e) + '\n' +
+      '\u0631\u0627\u0647 \u062F\u0648\u0645: \u0641\u0627\u06CC\u0644 \u0631\u0627 \u0627\u0632 \u0631\u0628\u0627\u062A \u062F\u0627\u0646\u0644\u0648\u062F\u0631 \u0628\u06AF\u06CC\u0631 \u0648 \u0647\u0645\u06CC\u0646\u200C\u062C\u0627 \u0641\u0648\u0631\u0648\u0627\u0631\u062F \u06A9\u0646.');
+  }
+
+  var stamp  = now('yyyy-MM-dd_HH-mm-ss');
+  var folder = targetFolder(BY_DATE ? now('yyyy-MM-dd') : null);
+  var lines = [], ok = 0, lastUrl = '', lastTitle = '';
+
+  for (var i = 0; i < found.urls.length; i++) {
+    try {
+      var got  = igDownload(found.urls[i]);
+      var name = 'ig_' + stamp + (found.urls.length > 1 ? '_' + (i + 1) : '') + extOf(got.mime);
+      var file = createFileSafe(folder, got.bytes, got.mime, name);
+      try { file.setDescription(link); } catch (ignore) {}
+      ok++;
+      lastUrl = file.getUrl();
+      lastTitle = file.getName();
+      lines.push('\u2022 <a href="' + file.getUrl() + '">' + esc(file.getName()) + '</a>');
+    } catch (e) {
+      lines.push('\u26A0\uFE0F ' + esc(e));
+    }
+  }
+
+  if (!ok) return send(chatId, lines.join('\n') || '\u0630\u062E\u06CC\u0631\u0647 \u0646\u0634\u062F.');
+
+  try {
+    var pr = PropertiesService.getScriptProperties();
+    pr.setProperty('LAST_FILE', lastUrl);
+    pr.setProperty('LAST_TITLE', lastTitle);
+    pr.setProperty('LAST_IG', link);
+  } catch (ignore2) {}
+
+  var muse = musePush(lastUrl, lastTitle);
+  send(chatId,
+    '\u2705 \u0630\u062E\u06CC\u0631\u0647 \u0634\u062F (' + ok + ')\n' + lines.join('\n') + (muse ? '\n\uD83E\uDD16 Muse: ' + esc(muse) : ''),
+    museButtons(lastUrl, lastTitle));
+}
+
+/** \u0627\u0631\u0633\u0627\u0644 \u062E\u0648\u062F\u06A9\u0627\u0631 \u0644\u06CC\u0646\u06A9 \u0628\u0647 Muse: \u0648\u0628\u0647\u0648\u06A9 \u0648/\u06CC\u0627 \u0627\u06CC\u0645\u06CC\u0644 */
+function musePush(fileUrl, title) {
+  if (!MUSE_AUTO) return '';
+  var text = (title ? title + '\n' : '') + fileUrl;
+  var done = [];
+  if (MUSE_WEBHOOK) {
+    try {
+      var res = UrlFetchApp.fetch(MUSE_WEBHOOK, {
+        method: 'post', contentType: 'application/json', muteHttpExceptions: true,
+        payload: JSON.stringify({ text: text, url: fileUrl, title: title || '' })
+      });
+      done.push('webhook ' + res.getResponseCode());
+    } catch (e) { done.push('webhook \u2717'); }
+  }
+  if (MUSE_EMAIL) {
+    try {
+      MailApp.sendEmail({ to: MUSE_EMAIL, subject: title || 'video', body: text });
+      done.push('email \u2713');
+    } catch (e) { done.push('email \u2717'); }
+  }
+  return done.join(' \u00B7 ');
 }
 
 /**
