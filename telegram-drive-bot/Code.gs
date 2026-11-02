@@ -19,7 +19,15 @@ var BY_DATE    = true;          // true = subfolder 2026-10-28
 var TEXT_MODE  = 'doc';         // 'doc' = Google Doc, 'txt' = plain text
 var MAX_MB     = 19;
 var ALLOWED    = [83885823];    // \u0641\u0642\u0637 \u0627\u06CC\u0646 \u0622\u06CC\u062F\u06CC\u200C\u0647\u0627\u06CC \u062A\u0644\u06AF\u0631\u0627\u0645\u06CC \u0645\u06CC\u200C\u062A\u0648\u0627\u0646\u0646\u062F \u0622\u067E\u0644\u0648\u062F \u06A9\u0646\u0646\u062F (\u062E\u0627\u0644\u06CC = \u0647\u0645\u0647)
-var VERSION    = 'single-1.1';
+var VERSION    = 'single-1.2';
+
+// --- \u062a\u0631\u06cc\u06af\u0631 Muse.ai ---
+// \u0634\u0645\u0627\u0631\u0647 \u0648\u0627\u062a\u0633\u0627\u067e \u0627\u06cc\u062c\u0646\u062a Muse (\u0628\u06cc\u0646\u200c\u0627\u0644\u0645\u0644\u0644\u06cc\u060c \u0628\u062f\u0648\u0646 + \u0648 \u0628\u062f\u0648\u0646 \u0635\u0641\u0631). \u062e\u0627\u0644\u06cc = \u062e\u0648\u062f\u0650 \u0648\u0627\u062a\u0633\u0627\u067e \u0645\u06cc\u200c\u067e\u0631\u0633\u062f \u0628\u0647 \u06a9\u062f\u0627\u0645 \u0686\u062a
+var MUSE_WA    = '';
+// \u0627\u06af\u0631 \u0628\u0631\u0627\u06cc Muse \u0627\u06cc\u0645\u06cc\u0644 \u0645\u06cc\u200c\u0641\u0631\u0633\u062a\u06cc\u060c \u0622\u062f\u0631\u0633\u0634 \u0631\u0627 \u0627\u06cc\u0646\u062c\u0627 \u0628\u06af\u0630\u0627\u0631. \u062e\u0627\u0644\u06cc = \u062f\u06a9\u0645\u0647\u0654 \u0627\u06cc\u0645\u06cc\u0644 \u0646\u0645\u0627\u06cc\u0634 \u062f\u0627\u062f\u0647 \u0646\u0645\u06cc\u200c\u0634\u0648\u062f
+var MUSE_EMAIL = '';
+var MUSE_ON    = true;          // \u062f\u06a9\u0645\u0647\u0654 \xab\u0627\u0631\u0633\u0627\u0644 \u0628\u0647 Muse\xbb \u0632\u06cc\u0631 \u0647\u0631 \u0641\u0627\u06cc\u0644
+
 
 var API      = 'https://api.telegram.org/bot' + BOT_TOKEN;
 var FILE_API = 'https://api.telegram.org/file/bot' + BOT_TOKEN;   // \u0645\u0633\u06CC\u0631 \u062F\u0627\u0646\u0644\u0648\u062F \u0641\u0627\u06CC\u0644
@@ -193,7 +201,8 @@ function handleOne(msg) {
   try {
     var file = upload(item, sub, msg.caption);
     send(chatId, '\u2705 \u0630\u062E\u06CC\u0631\u0647 \u0634\u062F\n' + icon(item.kind) +
-      ' <a href="' + file.getUrl() + '">' + esc(file.getName()) + '</a>');
+      ' <a href="' + file.getUrl() + '">' + esc(file.getName()) + '</a>',
+      museButtons(file.getUrl(), file.getName()));
   } catch (e) {
     send(chatId, '\u26A0\uFE0F ' + esc(e));
   }
@@ -211,7 +220,7 @@ function handleAlbum(items) {
   var stamp = now('yyyy-MM-dd_HH-mm-ss');
   var sub = BY_DATE ? now('yyyy-MM-dd') : null;
   var caption = items[0].caption || '';
-  var lines = [], ok = 0;
+  var lines = [], ok = 0, lastUrl = '', lastTitle = '';
 
   for (var i = 0; i < items.length; i++) {
     var item = mediaOf(items[i], stamp + '_' + (i + 1));
@@ -219,6 +228,8 @@ function handleAlbum(items) {
     try {
       var file = upload(item, sub, items[i].caption || caption);
       ok++;
+      lastUrl = file.getUrl();
+      lastTitle = file.getName();
       lines.push('\u2022 <a href="' + file.getUrl() + '">' + esc(file.getName()) + '</a>');
     } catch (e) {
       lines.push('\u26A0\uFE0F ' + esc(e));
@@ -226,7 +237,8 @@ function handleAlbum(items) {
   }
 
   var header = ok ? '\u2705 ' + ok + ' \u0641\u0627\u06CC\u0644 \u0630\u062E\u06CC\u0631\u0647 \u0634\u062F' : '\u26A0\uFE0F \u0630\u062E\u06CC\u0631\u0647 \u0646\u0634\u062F';
-  send(chatId, header + '\n\n' + lines.join('\n'));
+  send(chatId, header + '\n\n' + lines.join('\n'),
+    lastUrl ? museButtons(lastUrl, lastTitle) : null);
 }
 
 function upload(item, sub, caption) {
@@ -342,6 +354,8 @@ function command(msg, chatId) {
       '\uD83D\uDDBC \u0686\u0646\u062F \u0639\u06A9\u0633 \u0628\u0627 \u0647\u0645 (\u0622\u0644\u0628\u0648\u0645) \u0647\u0645 \u067E\u0634\u062A\u06CC\u0628\u0627\u0646\u06CC \u0645\u06CC\u200C\u0634\u0648\u062F.\n\n' +
       '\uD83C\uDD94 \u0622\u06CC\u062F\u06CC \u062A\u0648: <code>' + (msg.from && msg.from.id) + '</code>\n' +
       '\uD83E\uDD16 \u0631\u0628\u0627\u062A: @' + esc(uname) + '\n\n' +
+      '\uD83D\uDCF7 \u0627\u06cc\u0646\u0633\u062a\u0627\u06af\u0631\u0627\u0645: \u0641\u0627\u06cc\u0644 \u0631\u0627 \u0627\u0632 \u0631\u0628\u0627\u062a \u062f\u0627\u0646\u0644\u0648\u062f\u0631 \u062f\u0631 \u062a\u0644\u06af\u0631\u0627\u0645 \u0628\u06af\u06cc\u0631 \u0648 \u0647\u0645\u06cc\u0646\u200c\u062c\u0627 \u0628\u0631\u0627\u06cc \u0645\u0646 \u0641\u0648\u0631\u0648\u0627\u0631\u062f \u06a9\u0646.\n' +
+      '\uD83E\uDD16 \u0628\u0639\u062f \u0627\u0632 \u0630\u062e\u06cc\u0631\u0647\u060c \u062f\u06a9\u0645\u0647\u0654 \xab\u0627\u0631\u0633\u0627\u0644 \u0628\u0647 Muse\xbb \u0631\u0627 \u0628\u0632\u0646.\n\n' +
       '\u062F\u0633\u062A\u0648\u0631\u0647\u0627: /folder \u00B7 /id \u00B7 /ping');
   }
 
@@ -452,10 +466,33 @@ function tg(method, payload) {
   return body;
 }
 
-function send(chatId, html) {
-  return tg('sendMessage', {
+function send(chatId, html, markup) {
+  var payload = {
     chat_id: chatId, text: html, parse_mode: 'HTML', disable_web_page_preview: true
-  });
+  };
+  if (markup && markup.length) payload.reply_markup = { inline_keyboard: markup };
+  return tg('sendMessage', payload);
+}
+
+/**
+ * \u062f\u06a9\u0645\u0647\u0654 \xab\u0627\u0631\u0633\u0627\u0644 \u0628\u0647 Muse\xbb.
+ * Muse.ai API \u0639\u0645\u0648\u0645\u06cc \u0646\u062f\u0627\u0631\u062f\u060c \u067e\u0633 \u0644\u06cc\u0646\u06a9 \u0631\u0627 \u0628\u0627 \u06cc\u06a9 \u0644\u0645\u0633 \u0628\u0647 \u0648\u0627\u062a\u0633\u0627\u067e \u0645\u06cc\u200c\u0628\u0631\u06cc\u0645:
+ *   wa.me/?text=...   -> \u062e\u0648\u062f \u0648\u0627\u062a\u0633\u0627\u067e \u0645\u06cc\u200c\u067e\u0631\u0633\u062f \u0628\u0647 \u06a9\u062f\u0627\u0645 \u0686\u062a\u061b \u0627\u06cc\u062c\u0646\u062a Muse \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646
+ *   MUSE_WA \u067e\u0631 \u0628\u0627\u0634\u062f      -> \u0645\u0633\u062a\u0642\u06cc\u0645 \u0686\u062a \u0647\u0645\u0627\u0646 \u0634\u0645\u0627\u0631\u0647
+ */
+function museButtons(fileUrl, title) {
+  if (!MUSE_ON) return null;
+  var text = (title ? title + '\n' : '') + fileUrl;
+  var enc  = encodeURIComponent(text);
+  var wa   = MUSE_WA
+    ? 'https://wa.me/' + String(MUSE_WA).replace(/[^0-9]/g, '') + '?text=' + enc
+    : 'https://wa.me/?text=' + enc;
+  var row = [{ text: '\uD83E\uDD16 \u0627\u0631\u0633\u0627\u0644 \u0628\u0647 Muse', url: wa }];
+  if (MUSE_EMAIL) {
+    row.push({ text: '\u2709\uFE0F \u0627\u06cc\u0645\u06cc\u0644', url: 'mailto:' + MUSE_EMAIL +
+      '?subject=' + encodeURIComponent(title || 'video') + '&body=' + enc });
+  }
+  return [row];
 }
 
 function remember(msg) {
