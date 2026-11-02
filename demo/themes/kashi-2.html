@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>کاشی ۲ — تجربهٔ سینمایی | مولودزاده ۲۰۲۶</title>
+<meta name="description" content="نسخهٔ سینمایی سایت دفتر وکالت مولودزاده — هدر سه‌بعدی، گره‌چینی زنده و اسکرول روایی.">
+<meta name="theme-color" content="#080B0A">
+<link rel="stylesheet" href="assets/base.css">
+<style>
+:root{
+  --ink:#070A09; --ink2:#0C1211; --teal:#0A3B36; --teal-2:#12534B;
+  --gold:#D8A24A; --gold-soft:#E9C88F; --bone:#F4EEE2; --muted:#8E9288;
+  --line:rgba(244,238,226,.14); --pad:clamp(18px,4.6vw,72px);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+html{scroll-behavior:auto}
+body{background:var(--ink);color:var(--bone);font-family:'Vazirmatn',Tahoma,sans-serif;font-weight:300;line-height:1.8;overflow-x:hidden}
+.mono{font-family:'JBMono',monospace}
+.wrap{max-width:1440px;margin-inline:auto;padding-inline:var(--pad)}
+.nastaliq{font-family:'Gulzar',serif;line-height:2.3}
+
+/* progress + chrome */
+.progress{position:fixed;inset-inline:0;top:0;height:2px;z-index:120;background:rgba(244,238,226,.08)}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),#7FD9C6);transform-origin:right;transform:scaleX(1)}
+.counter{position:fixed;z-index:110;bottom:22px;inset-inline-start:22px;font-family:'JBMono',monospace;font-size:10px;letter-spacing:.2em;color:rgba(244,238,226,.45);mix-blend-mode:difference}
+.counter b{color:var(--bone);font-weight:400}
+
+/* nav */
+header{position:fixed;inset-inline:0;top:0;z-index:100;transition:background .6s var(--ease),backdrop-filter .6s,border-color .6s}
+header.solid{background:rgba(7,10,9,.72);backdrop-filter:blur(18px) saturate(1.3);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;height:88px;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:600;font-size:16px;letter-spacing:-.01em}
+.brand svg{width:26px;height:26px;fill:none;stroke:var(--gold);stroke-width:1}
+.navlinks{display:flex;gap:26px;font-size:12.5px;color:rgba(244,238,226,.7)}
+.navlinks a{position:relative;transition:.3s}
+.navlinks a::after{content:"";position:absolute;inset-inline:0;bottom:-6px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:.45s var(--ease)}
+.navlinks a:hover{color:var(--bone)}
+.navlinks a:hover::after{transform:scaleX(1)}
+.nav-cta{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;padding:11px 20px;border-radius:99px;border:1px solid rgba(216,162,74,.5);color:var(--gold-soft);transition:.4s var(--ease)}
+.nav-cta:hover{background:var(--gold);color:#0B0B0B;border-color:var(--gold)}
+
+/* ── HERO ─────────────────────────────────────────── */
+.hero{position:relative;height:210vh}
+.pin{position:sticky;top:0;height:100vh;overflow:hidden}
+#gl{position:absolute;inset:0;width:100%;height:100%;display:block;background:
+  radial-gradient(70% 60% at 70% 25%,#17564C 0%,transparent 60%),
+  radial-gradient(60% 60% at 20% 80%,#3a2a12 0%,transparent 65%),
+  linear-gradient(175deg,#0A1512,#070A09 70%)}
+.veil{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 40%,transparent 35%,rgba(7,10,9,.75) 100%),
+             linear-gradient(180deg,rgba(7,10,9,.55),transparent 30%,transparent 60%,rgba(7,10,9,.9))}
+.hero-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;perspective:1200px;transform-style:preserve-3d}
+.hero-copy{will-change:transform;transform-style:preserve-3d}
+.kicker{display:flex;align-items:center;gap:14px;font-family:'JBMono',monospace;font-size:10px;letter-spacing:.3em;color:var(--gold-soft);margin-bottom:clamp(18px,3vw,34px);opacity:.9}
+.kicker i{width:46px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);display:block}
+h1{font-size:clamp(44px,9.4vw,168px);font-weight:500;line-height:.94;letter-spacing:-.045em;margin:0}
+h1 .ln{display:block;transform-style:preserve-3d;will-change:transform,opacity}
+h1 .ln:nth-child(2){padding-inline-start:clamp(0px,5vw,90px)}
+h1 em{font-family:'Gulzar',serif;font-style:normal;color:transparent;
+  background:linear-gradient(100deg,#F6E3BE,var(--gold) 45%,#B4762D 100%);-webkit-background-clip:text;background-clip:text;
+  padding-inline-end:.08em}
+.hero-sub{display:flex;align-items:flex-end;gap:clamp(20px,4vw,60px);margin-top:clamp(24px,3.4vw,44px);flex-wrap:wrap}
+.hero-sub p{max-width:42ch;font-size:clamp(13px,1.35vw,16px);color:rgba(244,238,226,.72);line-height:2.05}
+.hero-cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:99px;font-size:13px;font-weight:500;
+  transition:transform .35s var(--ease),background .35s,color .35s,border-color .35s;will-change:transform}
+.btn-solid{background:var(--gold);color:#0A0B0A}
+.btn-solid:hover{background:#F0C579}
+.btn-ghost{border:1px solid rgba(244,238,226,.28);color:var(--bone)}
+.btn-ghost:hover{border-color:var(--bone);background:rgba(244,238,226,.06)}
+.scrollcue{position:absolute;bottom:clamp(18px,3vh,34px);inset-inline-start:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;
+  font-family:'JBMono',monospace;font-size:9px;letter-spacing:.28em;color:rgba(244,238,226,.45)}
+.scrollcue i{width:1px;height:46px;background:linear-gradient(180deg,rgba(244,238,226,.5),transparent);position:relative;overflow:hidden}
+.scrollcue i::after{content:"";position:absolute;inset-inline:0;top:-40%;height:40%;background:var(--gold);animation:drop 2.4s var(--ease) infinite}
+@keyframes drop{0%{top:-40%}60%,100%{top:110%}}
+.hero-meta{position:absolute;bottom:clamp(20px,4vh,44px);inset-inline-end:var(--pad);text-align:left;font-family:'JBMono',monospace;font-size:9px;line-height:2.2;letter-spacing:.18em;color:rgba(244,238,226,.4)}
+.hero-meta b{color:var(--bone);font-weight:400}
+
+/* ── ACT II: light paper ──────────────────────────── */
+.paper{background:var(--bone);color:#12100D;position:relative;z-index:3}
+.paper ::selection{background:rgba(216,162,74,.4)}
+.act{display:flex;align-items:center;gap:14px;padding-top:clamp(46px,7vw,86px);font-family:'JBMono',monospace;font-size:10px;letter-spacing:.28em;color:#9A8A6E}
+.act i{width:34px;height:1px;background:#C9B48C;display:block}
+
+/* years */
+.years{height:175vh;position:relative}
+.years .pin2{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden}
+.bignum{position:relative;font-size:clamp(120px,26vw,340px);font-weight:600;line-height:.8;letter-spacing:-.06em;color:#0E3A34;
+  display:flex;align-items:baseline;gap:.1em;direction:ltr}
+.bignum .dig{display:inline-block;transform:translateY(110%)}
+.bignum .unit{font-size:.16em;font-family:'Vazirmatn';font-weight:400;color:#9A8A6E;letter-spacing:0;direction:rtl}
+.years .cap{position:absolute;inset-inline:var(--pad);bottom:14vh;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  font-size:12.5px;color:#5C5546;max-width:520px;margin-inline:auto;right:0;left:0}
+.years .cap p{max-width:34ch}
+.years .ring{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.years .ring svg{width:min(78vmin,720px);height:auto;stroke:#0E3A34;fill:none;stroke-width:.7;opacity:.35}
+.years .ring path{stroke-dasharray:1400;stroke-dashoffset:1400}
+
+/* quote */
+.quote{padding-block:clamp(70px,11vw,150px);position:relative}
+.quote .wrap{max-width:1180px}
+.quote p{font-size:clamp(24px,4.2vw,58px);font-weight:300;line-height:1.42;letter-spacing:-.03em;color:#191712}
+.quote p .w{display:inline-block;opacity:.14;transition:opacity .5s linear}
+.quote p .w.on{opacity:1}
+.quote .sig{font-family:'Gulzar',serif;font-size:clamp(20px,2.4vw,30px);color:#A9803A;margin-top:28px}
+.quote .sub{display:flex;gap:40px;margin-top:44px;flex-wrap:wrap;font-size:12.5px;color:#6B6353;max-width:70ch}
+
+/* services rail */
+.rail-sec{position:relative;background:#0B1413;color:var(--bone);height:330vh}
+.rail-pin{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.rail-head{padding-inline:var(--pad);display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:clamp(20px,3vw,38px);flex-wrap:wrap}
+.rail-head h2{font-size:clamp(26px,4vw,50px);font-weight:500;letter-spacing:-.035em;line-height:1.15}
+.rail-head h2 em{font-family:'Gulzar',serif;font-style:normal;color:var(--gold)}
+.rail-head .hint{font-family:'JBMono',monospace;font-size:9px;letter-spacing:.24em;color:rgba(244,238,226,.4);padding-bottom:10px}
+.rail{display:flex;gap:clamp(12px,1.6vw,22px);padding-inline:var(--pad);will-change:transform}
+.card{flex:0 0 clamp(260px,34vw,420px);height:clamp(320px,52vh,440px);border:1px solid rgba(244,238,226,.14);border-radius:20px;
+  padding:clamp(20px,2.4vw,32px);display:flex;flex-direction:column;position:relative;overflow:hidden;isolation:isolate;
+  background:linear-gradient(165deg,rgba(244,238,226,.06),rgba(244,238,226,.015));transition:transform .6s var(--ease),border-color .6s}
+.card:hover{transform:translateY(-6px);border-color:rgba(216,162,74,.55)}
+.card::before{content:"";position:absolute;width:70%;aspect-ratio:1;border-radius:50%;inset-inline-start:-20%;top:-30%;
+  background:radial-gradient(circle,rgba(216,162,74,.22),transparent 65%);filter:blur(20px);z-index:-1;transition:.8s var(--ease)}
+.card:hover::before{transform:scale(1.25)}
+.card .n{font-family:'JBMono',monospace;font-size:10px;letter-spacing:.22em;color:var(--gold)}
+.card .glyph{position:absolute;inset-inline-end:22px;top:18px;font-family:'Fraunces',serif;font-style:italic;font-size:64px;opacity:.1;line-height:1}
+.card h3{margin-top:auto;font-size:clamp(19px,2.2vw,27px);font-weight:500;letter-spacing:-.02em;line-height:1.4}
+.card p{font-size:12.5px;color:rgba(244,238,226,.6);line-height:1.95;margin-top:10px}
+.card .more{margin-top:18px;display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--gold-soft);opacity:0;transform:translateY(8px);transition:.5s var(--ease)}
+.card:hover .more{opacity:1;transform:none}
+
+/* archive */
+.archive{background:var(--bone);color:#12100D;padding-block:clamp(70px,10vw,130px)}
+.arch-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:clamp(26px,4vw,50px);flex-wrap:wrap}
+.arch-head h2{font-size:clamp(26px,3.8vw,48px);font-weight:500;letter-spacing:-.035em}
+.arch-head h2 em{font-family:'Gulzar',serif;font-style:normal;color:#A9803A}
+.arch-head p{font-size:12.5px;color:#6B6353;max-width:36ch}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.4vw,18px)}
+.acard{border:1px solid rgba(18,16,13,.16);border-radius:14px;padding:22px;min-height:230px;display:flex;flex-direction:column;
+  background:#FBF7EE;transition:transform .5s var(--ease),box-shadow .5s var(--ease),background .5s}
+.acard:hover{transform:translateY(-6px);box-shadow:0 30px 50px -34px rgba(14,58,52,.55);background:#fff}
+.acard .cat{font-family:'JBMono',monospace;font-size:9px;letter-spacing:.2em;color:#A9803A}
+.acard h3{font-size:14.5px;font-weight:500;line-height:1.85;margin-top:auto}
+.acard .meta{display:flex;justify-content:space-between;font-size:10.5px;color:#8B8271;margin-top:14px;padding-top:12px;border-top:1px solid rgba(18,16,13,.1)}
+
+/* finale */
+.finale{background:radial-gradient(80% 60% at 50% 0%,#123F38 0%,#0A1512 45%,#070A09 100%);padding-block:clamp(80px,12vw,160px);position:relative;overflow:hidden}
+.finale::before{content:"";position:absolute;inset:0;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cg fill='none' stroke='%23D8A24A' stroke-opacity='.13'%3E%3Cpath d='M90 10 120 40 90 70 60 40Z'/%3E%3Cpath d='M20 90 50 60 80 90 50 120Z'/%3E%3Cpath d='M100 90 130 60 160 90 130 120Z'/%3E%3Cpath d='M90 110 120 140 90 170 60 140Z'/%3E%3C/g%3E%3C/svg%3E")}
+.finale .wrap{position:relative;z-index:2}
+.finale h2{font-size:clamp(30px,6vw,86px);font-weight:500;line-height:1.06;letter-spacing:-.045em;max-width:20ch}
+.finale h2 em{font-family:'Gulzar',serif;font-style:normal;color:var(--gold)}
+.finale .sub{margin-top:22px;max-width:44ch;font-size:13.5px;color:rgba(244,238,226,.65);line-height:2.05}
+.contacts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:clamp(34px,5vw,60px);background:rgba(244,238,226,.14);border:1px solid rgba(244,238,226,.14);border-radius:16px;overflow:hidden}
+.contacts a{background:#0A1211;padding:clamp(18px,2.4vw,28px);display:flex;flex-direction:column;gap:8px;transition:.4s var(--ease)}
+.contacts a:hover{background:#0F211E}
+.contacts small{font-family:'JBMono',monospace;font-size:9px;letter-spacing:.22em;color:var(--gold)}
+.contacts span{font-size:14px}
+footer{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;padding-block:30px;margin-top:clamp(40px,6vw,80px);
+  border-top:1px solid rgba(244,238,226,.12);font-size:10.5px;color:rgba(244,238,226,.4);font-family:'JBMono',monospace;letter-spacing:.14em}
+
+/* reveal */
+[data-rise]{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+[data-rise].in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  [data-rise]{opacity:1!important;transform:none!important}
+  .scrollcue i::after{animation:none}
+}
+
+@media(max-width:1000px){
+  .navlinks{display:none}
+  .grid{grid-template-columns:1fr 1fr}
+  .contacts{grid-template-columns:1fr}
+  .hero{height:190vh}
+  h1{font-size:clamp(40px,11vw,96px)}
+  .hero-meta{display:none}
+  .rail-sec{height:300vh}
+  .rail-head .hint{display:none}
+}
+@media(max-width:640px){
+  .grid{grid-template-columns:1fr}
+  .card{flex:0 0 78vw}
+  .years .cap{bottom:8vh}
+}
+</style>
+</head>
+<body>
+<div class="progress"><i id="bar"></i></div>
+<div class="counter"><b id="secNum">۰۱</b> / ۰۵</div>
+
+<header id="hd"><div class="wrap"><nav>
+  <div class="brand">
+    <svg viewBox="0 0 40 40"><path d="M20 3 27 10 20 17 13 10Z"/><path d="M20 23 27 30 20 37 13 30Z"/><path d="M3 20 10 13 17 20 10 27Z"/><path d="M23 20 30 13 37 20 30 27Z"/><circle cx="20" cy="20" r="3"/></svg>
+    مولودزاده
+  </div>
+  <div class="navlinks"><a href="#hero">خانه</a><a href="#rail">خدمات</a><a href="#quote">نگاه</a><a href="#archive">مقالات</a><a href="#contact">تماس</a></div>
+  <a class="nav-cta" href="#contact">مشاورهٔ وکالت <span>↗</span></a>
+</nav></div></header>
+
+<!-- ══════════ ACT I — HERO ══════════ -->
+<section class="hero" id="hero">
+  <div class="pin">
+    <canvas id="gl"></canvas>
+    <div class="veil"></div>
+    <div class="hero-inner wrap" id="heroInner">
+      <div class="hero-copy" id="heroCopy">
+        <div class="kicker"><i></i> وکیل پایهٔ یک دادگستری · تهران / دبی · از ۱۳۸۵</div>
+        <h1>
+          <span class="ln" id="ln1">وکالت،</span>
+          <span class="ln" id="ln2">هندسهٔ <em>اعتماد</em></span>
+        </h1>
+        <div class="hero-sub">
+          <p>بیست سال کار پیوسته در پرونده‌های حقوقی، کیفری، خانواده و املاک؛ از دادگاه‌های تهران تا معاملات و شرکت‌های امارات.</p>
+          <div class="hero-cta">
+            <a class="btn btn-solid magnet" href="#contact">گفت‌وگو با دفتر</a>
+            <a class="btn btn-ghost" href="#rail">حوزه‌های تخصصی</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scrollcue"><i></i>SCROLL</div>
+    <div class="hero-meta"><b>۲۰۲۶</b><br>REBRAND<br>VOL. 02</div>
+  </div>
+</section>
+
+<!-- ══════════ ACT II — YEARS ══════════ -->
+<div class="paper">
+  <section class="years" id="years">
+    <div class="pin2">
+      <div class="ring">
+        <svg viewBox="0 0 400 400" aria-hidden="true">
+          <circle cx="200" cy="200" r="190" id="ringA"/>
+          <path d="M200 30 260 90 200 150 140 90Z" id="ringB"/>
+          <path d="M200 250 260 310 200 370 140 310Z" id="ringC"/>
+          <path d="M30 200 90 140 150 200 90 260Z" id="ringD"/>
+          <path d="M250 200 310 140 370 200 310 260Z" id="ringE"/>
+        </svg>
+      </div>
+      <div class="bignum"><span class="dig" id="num">۰</span><span class="unit">سال وکالت پیوسته</span></div>
+      <div class="cap" dir="ltr" style="direction:rtl">
+        <p>بیست سال پرونده، بیست سال سند خواندن. تجربه‌ای که در جلسهٔ اول خودش را نشان می‌دهد: در پیش‌بینی نتیجه، در برآورد هزینه، در انتخاب مسیر.</p>
+        <p class="mono" style="font-size:10px;letter-spacing:.2em;color:#9A8A6E">EST. 2006 — TEHRAN / DUBAI</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ QUOTE ══════════ -->
+  <section class="quote" id="quote">
+    <div class="wrap">
+      <div class="act" data-rise><i></i>۰۲ — نگاه ما</div>
+      <p id="quoteText" style="margin-top:clamp(24px,4vw,46px)">وکالت خوب پیش از دادگاه شروع می‌شود؛ با خواندن درستِ سندی که هنوز امضا نشده است.</p>
+      <div class="sig" data-rise>مولودزاده</div>
+      <div class="sub" data-rise>
+        <p>هر پرونده با خواندن دقیق اسناد شروع می‌شود، با یک نقشهٔ روشن ادامه پیدا می‌کند و با گزارش شفافِ هزینه و ریسک پیش می‌رود.</p>
+        <p>اگر مسیر به نتیجه نرسد، همان اوایل گفته می‌شود — نه ماه‌ها بعد.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ ACT III — RAIL ══════════ -->
+<section class="rail-sec" id="rail">
+  <div class="rail-pin">
+    <div class="rail-head">
+      <div>
+        <div class="act" style="color:rgba(244,238,226,.45);padding-top:0"><i style="background:var(--gold)"></i>۰۳ — حوزه‌ها</div>
+        <h2 style="margin-top:16px">شش حوزه، <em>یک معیار</em></h2>
+      </div>
+      <div class="hint">SCROLL →</div>
+    </div>
+    <div class="rail" id="railTrack">
+      <div class="card"><div class="glyph">§</div><span class="n">01 / CIVIL</span><h3>حقوقی و قراردادها</h3><p>تنظیم، بازبینی و اجرای قرارداد؛ دعاوی پیمانکاری، مطالبات و الزام به ایفای تعهد.</p><div class="more">بیشتر <span>←</span></div></div>
+      <div class="card"><div class="glyph">⚖</div><span class="n">02 / CRIMINAL</span><h3>کیفری</h3><p>دفاع در دادسرا و دادگاه؛ کلاهبرداری، چک، اسناد و جرایم اقتصادی.</p><div class="more">بیشتر <span>←</span></div></div>
+      <div class="card"><div class="glyph">☾</div><span class="n">03 / FAMILY</span><h3>خانواده</h3><p>مهریه، نفقه، حضانت، طلاق توافقی و ارث — با کمترین آسیب به روابط.</p><div class="more">بیشتر <span>←</span></div></div>
+      <div class="card"><div class="glyph">◫</div><span class="n">04 / PROPERTY</span><h3>ملک و شهرداری</h3><p>پایان‌کار، مادهٔ ۱۰۰، سرقفلی و دعاوی ثبتی.</p><div class="more">بیشتر <span>←</span></div></div>
+      <div class="card"><div class="glyph">◎</div><span class="n">05 / CORPORATE</span><h3>شرکت و برند</h3><p>ثبت شرکت، تغییرات، مجوزها و ثبت علامت تجاری.</p><div class="more">بیشتر <span>←</span></div></div>
+      <div class="card"><div class="glyph">✈</div><span class="n">06 / UAE</span><h3>امارات و بین‌الملل</h3><p>ثبت شرکت در دبی، اقامت، و رویه‌های تجاری فرامرزی.</p><div class="more">بیشتر <span>←</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ACT IV — ARCHIVE ══════════ -->
+<section class="archive" id="archive">
+  <div class="wrap">
+    <div class="act" data-rise><i></i>۰۴ — آرشیو حقوقی</div>
+    <div class="arch-head" style="margin-top:18px">
+      <h2 data-rise>پاسخ‌هایی از <em>پرسش‌های واقعی</em></h2>
+      <p data-rise>۱۵۸ مقاله و ۳۰۰ پاسخ حقوقی، بر پایهٔ پرونده‌های واقعی — نه ترجمه و نه کپی.</p>
+    </div>
+    <div class="grid">
+      <a class="acard" href="#" data-rise><span class="cat">خانواده</span><h3>آیا قانون به شوهر اجازه می‌دهد مانع تحصیل زن شود؟</h3><span class="meta"><span>۴ دقیقه</span><span>↗</span></span></a>
+      <a class="acard" href="#" data-rise><span class="cat">کیفری</span><h3>دفاع مشروع چیست و مرز آن کجاست؟</h3><span class="meta"><span>۶ دقیقه</span><span>↗</span></span></a>
+      <a class="acard" href="#" data-rise><span class="cat">ملک</span><h3>نیم‌عشر دولتی چیست و چه زمانی مطالبه می‌شود؟</h3><span class="meta"><span>۵ دقیقه</span><span>↗</span></span></a>
+      <a class="acard" href="#" data-rise><span class="cat">امارات</span><h3>شرایط ثبت شرکت در دبی برای ایرانیان</h3><span class="meta"><span>۹ دقیقه</span><span>↗</span></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ACT V — CONTACT ══════════ -->
+<section class="finale" id="contact">
+  <div class="wrap">
+    <div class="act" style="color:rgba(244,238,226,.45)" data-rise><i style="background:var(--gold)"></i>۰۵ — تماس</div>
+    <h2 style="margin-top:20px" data-rise>پرونده‌تان <em>منتظر</em><br>نماند.</h2>
+    <p class="sub" data-rise>یک پیام کوتاه کافی است تا مسیر و هزینه روشن شود. در اولین فرصت کاری پاسخ می‌دهیم.</p>
+    <div class="contacts" data-rise>
+      <a href="tel:+989127334842"><small>MOBILE</small><span>۰۹۱۲ ۷۳۳ ۴۸۴۲</span></a>
+      <a href="#"><small>WHATSAPP</small><span>+۹۷۱ ۵۰ ۲۴۷ ۹۱۴۲</span></a>
+      <a href="#"><small>EMAIL</small><span>ایمیل دفتر</span></a>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px" data-rise>
+      <a class="btn btn-solid magnet" href="#">رزرو جلسهٔ مشاوره</a>
+      <a class="btn btn-ghost" href="#hero">بازگشت به بالا</a>
+    </div>
+    <footer>
+      <span>© ۲۰۲۶ دفتر وکالت مولودزاده</span>
+      <span>KASHI 02 — CINEMATIC</span>
+      <span>پیش‌نمایش طراحی · محتوا و شماره‌ها موقت</span>
+    </footer>
+  </div>
+</section>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = s => document.querySelector(s);
+  const clamp = (v,a=0,b=1) => Math.min(b,Math.max(a,v));
+  const lerp = (a,b,t) => a+(b-a)*t;
+
+  /* ---------- scroll state ---------- */
+  let sy = scrollY, syL = scrollY, mx = .5, my = .5, mxL = .5, myL = .5;
+  const hd = $('#hd'), bar = $('#bar'), secNum = $('#secNum');
+  const hero = $('#hero'), heroCopy = $('#heroCopy'), ln1 = $('#ln1'), ln2 = $('#ln2');
+  const years = $('#years'), num = $('#num');
+  const railSec = $('#rail'), track = $('#railTrack');
+  const quote = $('#quote'), qt = $('#quoteText');
+  const heroInner = $('#heroInner'), magnets = [...document.querySelectorAll('.magnet')];
+
+  /* words for quote reveal */
+  if (qt) {
+    qt.innerHTML = qt.textContent.trim().split(/\s+/).map(w => `<span class="w">${w}</span>`).join(' ');
+  }
+  const words = qt ? [...qt.querySelectorAll('.w')] : [];
+
+  /* ---------- WebGL ---------- */
+  const canvas = $('#gl');
+  let gl, prog, uni = {}, raf, t0 = performance.now(), visible = true;
+
+  const VS = `attribute vec2 p; void main(){ gl_Position = vec4(p,0.,1.); }`;
+  const FS = `
+  precision mediump float;
+  uniform vec2 u_res; uniform float u_t; uniform vec2 u_m; uniform float u_s;
+  float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453123); }
+  float noise(vec2 p){
+    vec2 i=floor(p), f=fract(p); f=f*f*(3.0-2.0*f);
+    float a=hash(i), b=hash(i+vec2(1.,0.)), c=hash(i+vec2(0.,1.)), d=hash(i+vec2(1.,1.));
+    return mix(mix(a,b,f.x), mix(c,d,f.x), f.y);
+  }
+  float fbm(vec2 p){
+    float v=0.0, a=0.5;
+    for(int i=0;i<4;i++){ v+=a*noise(p); p*=2.03; a*=0.5; }
+    return v;
+  }
+  void main(){
+    vec2 res = u_res;
+    vec2 uv = gl_FragCoord.xy / res;
+    vec2 p = (gl_FragCoord.xy - 0.5*res) / res.y;
+    vec2 m = (u_m - 0.5) * 0.6;
+    p += m * 0.18;
+    float t = u_t * 0.055;
+    float zoom = 1.0 + u_s * 0.55;
+    p *= zoom;
+
+    float n1 = fbm(p*1.5 + vec2(t, -t*0.6));
+    float n2 = fbm(p*2.6 - vec2(t*0.7, t*0.35) + n1*0.6);
+
+    vec3 ink  = vec3(0.027,0.039,0.035);
+    vec3 teal = vec3(0.043,0.247,0.212);
+    vec3 gold = vec3(0.847,0.635,0.290);
+
+    vec3 col = mix(ink, teal, smoothstep(0.22,0.95,n1 + n2*0.35));
+    col = mix(col, gold, pow(smoothstep(0.62,1.0,n2), 2.0) * 0.42);
+
+    float d = length(p * vec2(0.78,1.0));
+    col *= 1.0 - 0.62*smoothstep(0.35,1.25,d);
+    col += gold * 0.10 * exp(-d*3.2);
+
+    /* girih star lattice */
+    float a = atan(p.y, p.x);
+    float r = length(p);
+    float star = pow(abs(cos(a*6.0)), 2.0);
+    float q1 = r*2.3 + star*0.34 - u_s*1.4 + t*0.5;
+    float b1 = abs(fract(q1) - 0.5);
+    float line1 = 1.0 - smoothstep(0.004, 0.022, b1);
+    float star2 = pow(abs(cos(a*6.0 + 0.5236)), 2.0);
+    float q2 = r*1.55 + star2*0.22 + u_s*0.8 - t*0.32;
+    float b2 = abs(fract(q2) - 0.5);
+    float line2 = 1.0 - smoothstep(0.004, 0.018, b2);
+    float fade = smoothstep(1.25, 0.12, r);
+    col += gold * (line1*0.34 + line2*0.16) * fade;
+
+    /* grain + vignette */
+    col += (hash(gl_FragCoord.xy + u_t*60.0) - 0.5) * 0.035;
+    col *= 1.0 - 0.18*smoothstep(0.2,1.0,length(uv-0.5));
+    col *= 1.0 - u_s*0.35;
+
+    gl_FragColor = vec4(col, 1.0);
+  }`;
+
+  function initGL(){
+    if (reduce) return false;
+    gl = canvas.getContext('webgl', {antialias:false, alpha:false, powerPreference:'high-performance'});
+    if (!gl) return false;
+    const sh = (type, src) => {
+      const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) { console.warn(gl.getShaderInfoLog(s)); return null; }
+      return s;
+    };
+    const v = sh(gl.VERTEX_SHADER, VS), f = sh(gl.FRAGMENT_SHADER, FS);
+    if (!v || !f) return false;
+    prog = gl.createProgram(); gl.attachShader(prog, v); gl.attachShader(prog, f); gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { console.warn(gl.getProgramInfoLog(prog)); return false; }
+    gl.useProgram(prog);
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(prog, 'p');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    uni.res = gl.getUniformLocation(prog, 'u_res');
+    uni.t = gl.getUniformLocation(prog, 'u_t');
+    uni.m = gl.getUniformLocation(prog, 'u_m');
+    uni.s = gl.getUniformLocation(prog, 'u_s');
+    resize();
+    return true;
+  }
+  function resize(){
+    if (!gl) return;
+    const dpr = Math.min(devicePixelRatio || 1, 1.6);
+    const w = Math.round(innerWidth * dpr), h = Math.round(innerHeight * dpr);
+    if (canvas.width !== w || canvas.height !== h){ canvas.width = w; canvas.height = h; }
+    gl.viewport(0, 0, w, h);
+  }
+  const hasGL = initGL();
+
+  /* ---------- helpers ---------- */
+  function progOf(el){
+    const r = el.getBoundingClientRect();
+    const total = el.offsetHeight - innerHeight;
+    if (total <= 0) return 0;
+    return clamp(-r.top / total);
+  }
+  /* progress for normal (non-pinned) sections: 0 when entering, 1 when leaving */
+  function progIn(el){
+    const r = el.getBoundingClientRect();
+    return clamp((innerHeight - r.top) / (innerHeight + r.height));
+  }
+
+  /* ---------- main loop ---------- */
+  function frame(){
+    sy = scrollY;
+    syL = lerp(syL, sy, 0.12);
+    mxL = lerp(mxL, mx, 0.06);
+    myL = lerp(myL, my, 0.06);
+
+    const docH = document.documentElement.scrollHeight - innerHeight;
+    const gp = clamp(syL / (docH || 1));
+    bar.style.width = (gp*100).toFixed(2)+'%';
+    hd.classList.toggle('solid', syL > innerHeight*0.6);
+
+    /* hero parallax + escape */
+    const hp = progOf(hero);
+    if (heroCopy){
+      heroCopy.style.transform =
+        `translate3d(${(mxL-.5)*-22}px, ${(myL-.5)*-16}px, 0) rotateX(${(myL-.5)*7}deg) rotateY(${(mxL-.5)*-9}deg)`;
+      heroCopy.style.opacity = String(1 - clamp(hp*1.5));
+    }
+    if (ln1) ln1.style.transform = `translate3d(0,0,${40 + hp*260}px)`;
+    if (ln2) ln2.style.transform = `translate3d(${hp*90}px,0,${120 + hp*420}px)`;
+    heroInner.style.transform = `translateY(${-hp*60}px)`;
+
+    /* years */
+    const yp = progOf(years || document.body);
+    if (num && years){
+      const val = Math.round(20 * clamp(yp/0.55));
+      const fa = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+      num.textContent = String(val).split('').map(d => fa[+d]).join('') || '۰';
+      num.style.transform = `translateY(${(1-clamp(yp/0.3))*60}px)`;
+      num.style.opacity = String(clamp(yp/0.25));
+      const ringPaths = document.querySelectorAll('.years .ring path, .years .ring circle');
+      ringPaths.forEach((p,i) => {
+        p.style.strokeDashoffset = String(1400 * (1 - clamp((yp-0.1-i*0.04)/0.7)));
+      });
+    }
+
+    /* rail: horizontal scroll driven by vertical */
+    if (railSec && track){
+      const rp = progOf(railSec);
+      const over = Math.max(0, track.scrollWidth - innerWidth + 24);
+      track.style.transform = `translate3d(${(rp * over).toFixed(1)}px,0,0)`;
+    }
+
+    /* quote word reveal */
+    if (words.length && quote){
+      const qp = progIn(quote);
+      const k = Math.floor(clamp((qp-0.05)/0.55) * words.length);
+      for (let i=0;i<words.length;i++) words[i].classList.toggle('on', i<k);
+    }
+
+    /* section counter */
+    const spans = [['hero','۰۱'],['years','۰۲'],['rail','۰۳'],['archive','۰۴'],['contact','۰۵']];
+    let active = '۰۱';
+    for (const [id,n] of spans){
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < innerHeight*0.55) active = n;
+    }
+    secNum.textContent = active;
+
+    /* shader */
+    if (hasGL && visible){
+      gl.uniform2f(uni.res, canvas.width, canvas.height);
+      gl.uniform1f(uni.t, (performance.now()-t0)/1000);
+      gl.uniform2f(uni.m, mxL, 1-myL);
+      gl.uniform1f(uni.s, progOf(hero));
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    }
+    raf = requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  /* ---------- events ---------- */
+  addEventListener('resize', resize, {passive:true});
+  addEventListener('pointermove', e => { mx = e.clientX/innerWidth; my = e.clientY/innerHeight; }, {passive:true});
+  addEventListener('scroll', () => { sy = scrollY; }, {passive:true});
+  document.addEventListener('visibilitychange', () => { visible = !document.hidden; });
+
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold:.15});
+  document.querySelectorAll('[data-rise]').forEach((el,i) => { el.style.transitionDelay = (i%4)*90+'ms'; io.observe(el); });
+
+  /* magnetic buttons */
+  if (!reduce && matchMedia('(pointer:fine)').matches){
+    magnets.forEach(b => {
+      b.addEventListener('pointermove', e => {
+        const r = b.getBoundingClientRect();
+        const dx = e.clientX - (r.left + r.width/2), dy = e.clientY - (r.top + r.height/2);
+        b.style.transform = `translate(${dx*0.22}px, ${dy*0.3}px)`;
+      });
+      b.addEventListener('pointerleave', () => { b.style.transform = ''; });
+    });
+  }
+})();
+</script>
+</body>
+</html>
