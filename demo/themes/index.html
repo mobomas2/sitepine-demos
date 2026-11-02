@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>پنج طرح — مولودزاده ۲۰۲۶</title>
+<meta name="description" content="پنج طرح طراحی برای سایت جدید دفتر وکالت مولودزاده — پیش‌نمایش لایو.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/base.css">
+<style>
+:root{--bg:#0A0A0B;--fg:#F2EEE6;--dim:#8C887F;--amber:#D8A45C;--line:rgba(242,238,230,.13);--pad:clamp(18px,4.4vw,56px)}
+body{background:var(--bg);color:var(--fg);font-family:'Vazirmatn',Tahoma,sans-serif;font-weight:300;line-height:1.8}
+.wrap{max-width:1460px;margin-inline:auto;padding-inline:var(--pad)}
+.mono{font-family:'JBMono',monospace}
+header{padding-top:clamp(40px,7vw,86px);padding-bottom:clamp(26px,4vw,44px);border-bottom:1px solid var(--line)}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:clamp(30px,5vw,56px)}
+.topline .mono{font-size:9.5px;letter-spacing:.24em;color:var(--dim)}
+.topline b{color:var(--amber);font-weight:400}
+h1{font-size:clamp(34px,6.4vw,86px);font-weight:600;line-height:1.06;letter-spacing:-.05em;max-width:18ch}
+h1 em{font-family:'Fraunces',serif;font-style:italic;font-weight:300;color:var(--amber);letter-spacing:-.02em}
+.hnote{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(20px,4vw,60px);align-items:end;margin-top:clamp(26px,4vw,44px)}
+.hnote p{font-size:clamp(12.5px,1.4vw,15px);color:#B8B3A9;line-height:2.05;max-width:56ch}
+.hnote .meta{display:grid;gap:8px;font-size:11.5px;color:var(--dim);border-inline-start:1px solid var(--line);padding-inline-start:18px}
+.hnote .meta b{color:var(--fg);font-weight:500}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,34px);padding-block:clamp(30px,5vw,60px)}
+.card{display:flex;flex-direction:column;border:1px solid var(--line);overflow:hidden;background:#111112;transition:.5s cubic-bezier(.16,1,.3,1);position:relative}
+.card:hover{transform:translateY(-6px);border-color:rgba(216,164,92,.55);box-shadow:0 40px 80px -50px rgba(0,0,0,1)}
+.card.big{grid-column:span 2}
+.shot{position:relative;overflow:hidden;background:#0d0d0e;border-bottom:1px solid var(--line);aspect-ratio:16/10;min-height:220px}
+.card.big .shot{aspect-ratio:21/9;min-height:320px}
+.shot iframe{width:1500px;height:938px;border:0;pointer-events:none;position:absolute;top:0;right:0;transform-origin:top right;transform:scale(.34);filter:saturate(1.02)}
+.card.big .shot iframe{width:1900px;height:814px;transform:scale(.4)}
+.shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,10,11,.55));pointer-events:none}
+.shot .view{position:absolute;z-index:3;bottom:14px;left:14px;background:rgba(255,255,255,.94);color:#0A0A0B;border-radius:99px;padding:9px 18px;font-size:11.5px;font-weight:600;display:flex;gap:8px;align-items:center;transition:.35s;opacity:0;transform:translateY(6px)}
+.card:hover .view{opacity:1;transform:none}
+.shot .num{position:absolute;z-index:3;top:12px;right:14px;font-family:'Fraunces',serif;font-style:italic;font-size:clamp(22px,2.6vw,34px);color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.6);opacity:.85}
+.body{padding:clamp(18px,2.2vw,26px);display:flex;flex-direction:column;gap:12px}
+.body .row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+.body h2{font-size:clamp(18px,2.2vw,26px);font-weight:600;letter-spacing:-.03em}
+.body .en{font-family:'JBMono',monospace;font-size:9px;letter-spacing:.22em;color:var(--amber)}
+.body p{font-size:12.5px;color:#A9A49B;line-height:2;max-width:60ch}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.tags span{font-family:'JBMono',monospace;font-size:8.5px;letter-spacing:.14em;border:1px solid var(--line);border-radius:99px;padding:4px 9px;color:#C9C4BA}
+.sw{display:flex;gap:4px;margin-inline-start:auto}
+.sw i{width:16px;height:16px;border-radius:3px;display:block;border:1px solid rgba(255,255,255,.12)}
+.note{display:flex;gap:14px;align-items:start;border:1px solid var(--line);border-radius:12px;padding:18px 20px;font-size:12px;color:#A9A49B;line-height:2}
+.note b{color:var(--fg);font-weight:600;display:block;margin-bottom:4px;font-size:12.5px}
+footer{border-top:1px solid var(--line);padding-block:30px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:10.5px;color:var(--dim);font-family:'JBMono',monospace;letter-spacing:.14em}
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}.card.big{grid-column:span 1}.card.big .shot{aspect-ratio:16/10;min-height:220px}
+  .hnote{grid-template-columns:1fr}.hnote .meta{border-inline-start:0;border-top:1px solid var(--line);padding-inline-start:0;padding-top:14px}
+  .shot iframe{transform:scale(.22)}.card.big .shot iframe{width:1500px;height:938px;transform:scale(.22)}
+}
+</style>
+</head>
+<body>
+<div class="grain" style="opacity:.07"></div>
+<div class="wrap">
+  <header>
+    <div class="topline">
+      <span class="mono">MOULOUDZADEH LAW — REBRAND <b>2026</b></span>
+      <span class="mono">۵ / ۵ CONCEPTS · LIVE PREVIEW</span>
+    </div>
+    <h1>پنج مسیر برای یک<br><em>هویتِ</em> تازه.</h1>
+    <div class="hnote">
+      <p>پنج کارگردانی هنری متفاوت برای سایت جدید. همه با فونت فارسی واقعی، راست‌به‌چپ درست و کد سبک — بدون قالب آماده. هر کارت را باز کنید و در موبایل هم ببینید.</p>
+      <div class="meta"><span><b>مشتری:</b> خانم مولودزاده — وکیل پایهٔ یک</span><span><b>پلتفرم نهایی:</b> WordPress · قالب بلوکی اختصاصی</span><span><b>وضعیت:</b> پیش‌نمایش طراحی، محتوا موقت</span></div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <a class="card big" href="marble.html">
+      <div class="shot"><span class="num">۰۱</span><span class="view">مشاهدهٔ لایو ←</span><iframe src="marble.html" loading="lazy" scrolling="no" tabindex="-1" title="مرمر"></iframe></div>
+      <div class="body">
+        <div class="row"><h2>مرمر — لوکسِ تحریریه‌ای</h2><span class="en">EDITORIAL LUXURY</span></div>
+        <p>کاغذ استخوانی، جوهر مشکی، حروف سریف برای اعداد. چیدمان نامتقارن و خطوط مویی؛ حسی شبیه مجلهٔ حقوقی بین‌المللی. مناسب‌ترین گزینه برای پرونده‌های بزرگ و مراجعان خارج از ایران.</p>
+        <div class="row" style="align-items:center"><div class="tags"><span>VAZIRMATN 800</span><span>FRAUNCES</span><span>RTL EDITORIAL</span></div><div class="sw"><i style="background:#EDE8DE"></i><i style="background:#16130F"></i><i style="background:#96703F"></i></div></div>
+      </div>
+    </a>
+
+    <a class="card" href="nocturne.html">
+      <div class="shot"><span class="num">۰۲</span><span class="view">مشاهدهٔ لایو ←</span><iframe src="nocturne.html" loading="lazy" scrolling="no" tabindex="-1" title="شبانه"></iframe></div>
+      <div class="body">
+        <div class="row"><h2>شبانه — شیشه و نور</h2><span class="en">AURORA GLASS</span></div>
+        <p>پس‌زمینهٔ تیره با هالهٔ نوری متحرک، کارت‌های شیشه‌ای و تایپوگرافی گرادیانی. مدرن‌ترین حس را می‌دهد و در موبایل هم سبک می‌ماند.</p>
+        <div class="row" style="align-items:center"><div class="tags"><span>GLASSMORPHISM</span><span>BENTO</span><span>PARALLAX</span></div><div class="sw"><i style="background:#06070E"></i><i style="background:#5B49FF"></i><i style="background:#16D3C2"></i></div></div>
+      </div>
+    </a>
+
+    <a class="card" href="bento.html">
+      <div class="shot"><span class="num">۰۳</span><span class="view">مشاهدهٔ لایو ←</span><iframe src="bento.html" loading="lazy" scrolling="no" tabindex="-1" title="شبکه"></iframe></div>
+      <div class="body">
+        <div class="row"><h2>شبکه — ساختارِ جسور</h2><span class="en">NEO-BRUTALIST BENTO</span></div>
+        <p>خطوط دو پیکسلی، سایهٔ سخت، رنگ لیمویی و بلوک‌های بنتو. شبیه استودیوی طراحی ۲۰۲۶ است؛ انرژی دارد و مرزها را جدی نمی‌گیرد.</p>
+        <div class="row" style="align-items:center"><div class="tags"><span>BENTO</span><span>MONO LABELS</span><span>HARD SHADOW</span></div><div class="sw"><i style="background:#F2F1EC"></i><i style="background:#0C0C0D"></i><i style="background:#CFF94A"></i></div></div>
+      </div>
+    </a>
+
+    <a class="card" href="cinema.html">
+      <div class="shot"><span class="num">۰۴</span><span class="view">مشاهدهٔ لایو ←</span><iframe src="cinema.html" loading="lazy" scrolling="no" tabindex="-1" title="سینما"></iframe></div>
+      <div class="body">
+        <div class="row"><h2>سینما — نور و سکوت</h2><span class="en">CINEMATIC DARK</span></div>
+        <p>قاب تمام‌صفحه، گرین فیلم، نور کهربایی و تیتر با خط دور. سنگین و باوقار؛ مناسب دفتری که می‌خواهد «پروندهٔ مهم» را تداعی کند.</p>
+        <div class="row" style="align-items:center"><div class="tags"><span>FULL-BLEED</span><span>GRAIN</span><span>H-SCROLL</span></div><div class="sw"><i style="background:#080809"></i><i style="background:#E8A94F"></i><i style="background:#F4EEE3"></i></div></div>
+      </div>
+    </a>
+
+    <a class="card big" href="kashi.html">
+      <div class="shot"><span class="num">۰۵</span><span class="view">مشاهدهٔ لایو ←</span><iframe src="kashi.html" loading="lazy" scrolling="no" tabindex="-1" title="کاشی"></iframe></div>
+      <div class="body">
+        <div class="row"><h2>کاشی — هندسهٔ ایرانی</h2><span class="en">PERSIAN GEOMETRIC MODERNE</span></div>
+        <p>الگوی گره‌چینی، قوس‌های کارت‌ها، خط نستعلیق در امضا و پالت سبزآبی–زعفرانی. هویت ایرانی را مدرن ترجمه می‌کند، بدون فولکلور و بدون تزئین اضافه.</p>
+        <div class="row" style="align-items:center"><div class="tags"><span>GIRIH SVG</span><span>GULZAR NASTALIQ</span><span>ARCH CARDS</span></div><div class="sw"><i style="background:#F6F1E7"></i><i style="background:#0E3B3A"></i><i style="background:#C1812C"></i></div></div>
+      </div>
+    </a>
+  </div>
+
+  <div class="note" style="margin-bottom:clamp(30px,4vw,50px)">
+    <div><b>نکتهٔ مهم</b>این‌ها پیش‌نمایش طراحی‌اند، نه قالب آماده. طرحی که انتخاب شود، به‌صورت قالب بلوکی وردپرس ساخته می‌شود تا خودِ ایشان بتوانند متن و عکس را تغییر دهند. محتوای فارسی از آرشیو واقعی سایت (۱۵۸ مقاله و ۳۰۰ پرسش) نمونه‌برداری شده و شماره‌ها موقت‌اند.</div>
+  </div>
+
+  <footer>
+    <span>© 2026 · PREVIEW ONLY</span>
+    <span>NEXT: PICK ONE → BUILD BLOCK THEME</span>
+    <span>محتوای فارسی واقعی · بدون قالب آماده</span>
+  </footer>
+</div>
+</body>
+</html>
