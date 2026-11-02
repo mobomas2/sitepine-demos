@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>۰۱ مرمر — مولودزاده ۲۰۲۶</title>
+<meta name="description" content="پیش‌نمایش سبک «مرمر» برای سایت وکیل مولودزاده — طراحی تحریریه‌ای لوکس.">
+<link rel="stylesheet" href="assets/base.css">
+<style>
+:root{--bone:#EDE8DE;--ink:#16130F;--muted:#6E665A;--bronze:#96703F;--line:rgba(22,19,15,.14);--pad:clamp(20px,5vw,72px)}
+body{background:var(--bone);color:var(--ink);font-family:'Vazirmatn',Tahoma,sans-serif;font-weight:300;line-height:1.75;
+  background-image:radial-gradient(120% 80% at 85% -10%,#F7F4EC 0%,transparent 55%),radial-gradient(90% 60% at 0% 100%,#E7DFCF 0%,transparent 60%)}
+.wrap{max-width:1420px;margin-inline:auto;padding-inline:var(--pad)}
+.serif{font-family:'Fraunces',serif}
+.mono{font-family:'JBMono',monospace}
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px) saturate(1.2);background:rgba(237,232,222,.72);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:82px}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand b{font-weight:800;font-size:19px;letter-spacing:-.01em}
+.brand span{font-family:'JBMono',monospace;font-size:9.5px;letter-spacing:.2em;color:var(--muted)}
+.navlinks{display:flex;gap:26px;font-size:13.5px;color:#3B342B}
+.navlinks a{position:relative;padding-block:4px}
+.navlinks a::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:right;transition:.4s cubic-bezier(.16,1,.3,1)}
+.navlinks a:hover::after{transform:scaleX(1)}
+.cta{border:1px solid var(--ink);border-radius:99px;padding:11px 22px;font-size:13px;display:flex;gap:8px;align-items:center;transition:.35s}
+.cta:hover{background:var(--ink);color:var(--bone)}
+.cta i{width:5px;height:5px;border-radius:50%;background:var(--bronze)}
+.hero{padding-top:clamp(48px,7vw,96px);padding-bottom:clamp(40px,6vw,80px);display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,72px);align-items:end}
+.kicker{display:flex;align-items:center;gap:12px;color:var(--muted);margin-bottom:26px}
+.kicker .dash{width:44px;height:1px;background:var(--bronze)}
+h1{font-size:clamp(38px,6.4vw,84px);font-weight:800;line-height:1.16;letter-spacing:-.025em}
+h1 em{font-family:'Fraunces',serif;font-style:italic;font-weight:300;letter-spacing:-.01em}
+h1 .thin{font-weight:200}
+.lede{max-width:44ch;margin-top:26px;font-size:clamp(14px,1.5vw,17px);color:#3E372E;line-height:1.95}
+.hero-actions{display:flex;align-items:center;gap:18px;margin-top:36px;flex-wrap:wrap}
+.btn-solid{background:var(--ink);color:var(--bone);padding:16px 30px;border-radius:99px;font-size:14px;display:inline-flex;gap:10px;align-items:center;transition:.4s}
+.btn-solid:hover{background:var(--bronze);transform:translateY(-2px)}
+.btn-ghost{font-size:13.5px;border-bottom:1px solid var(--line);padding-bottom:5px;color:#3E372E}
+.btn-ghost:hover{border-color:var(--ink)}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#1B1712;isolation:isolate}
+.portrait::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 60% 22%,#C9A578 0%,transparent 62%),radial-gradient(70% 60% at 30% 85%,#4A3A27 0%,transparent 70%),linear-gradient(168deg,#2A2118,#0E0C09)}
+.portrait::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),inset 0 -120px 140px -60px rgba(0,0,0,.8)}
+.portrait .arc{position:absolute;inset:8%;border-radius:50%;border:1px solid rgba(237,232,222,.16)}
+.portrait .arc:nth-child(2){inset:20%;border-color:rgba(237,232,222,.1)}
+.portrait .cap{position:absolute;inset-inline:18px;bottom:16px;display:flex;justify-content:space-between;align-items:end;color:#EDE8DE;font-family:'JBMono',monospace;font-size:9px;letter-spacing:.16em;opacity:.72;line-height:1.9}
+.portrait .mono-sign{position:absolute;top:16px;right:18px;font-family:'Fraunces',serif;font-style:italic;color:#EDE8DE;font-size:22px;opacity:.8}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:clamp(36px,5vw,64px)}
+.stats div{padding:30px 0 32px;border-inline-start:1px solid var(--line);padding-inline:clamp(14px,2.2vw,30px)}
+.stats div:first-child{border:0;padding-inline-start:0}
+.stats b{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(30px,4vw,52px);line-height:1;letter-spacing:-.02em;display:block}
+.stats span{display:block;margin-top:12px;font-size:12px;color:var(--muted)}
+section{padding-block:clamp(56px,8vw,110px)}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:clamp(30px,4vw,52px)}
+.sec-head h2{font-size:clamp(24px,3.2vw,40px);font-weight:700;letter-spacing:-.02em}
+.sec-head .idx{font-family:'JBMono',monospace;font-size:11px;color:var(--bronze);letter-spacing:.2em;display:block;margin-bottom:14px}
+.sec-head p{max-width:38ch;font-size:13.5px;color:var(--muted);text-align:left;padding-bottom:6px}
+.rows{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:64px 1fr auto;gap:20px;align-items:center;padding:clamp(18px,2.4vw,26px) 18px;border-bottom:1px solid var(--line);transition:.45s cubic-bezier(.16,1,.3,1);cursor:pointer}
+.row .n{font-family:'JBMono',monospace;font-size:11px;color:var(--bronze);letter-spacing:.1em}
+.row h3{font-size:clamp(17px,2vw,23px);font-weight:600;letter-spacing:-.01em}
+.row p{font-size:12.5px;color:var(--muted);margin-top:5px;transition:.45s}
+.row .ar{transition:.45s;opacity:.4}
+.row:hover{background:var(--ink);color:var(--bone);padding-inline:26px}
+.row:hover p{color:rgba(237,232,222,.65)}
+.row:hover .ar{opacity:1;transform:translateX(-6px)}
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,80px);align-items:start}
+.quote{font-size:clamp(20px,2.6vw,32px);line-height:1.55;font-weight:200;letter-spacing:-.015em}
+.quote::before{content:"«";color:var(--bronze);font-family:'Fraunces',serif}
+.quote::after{content:"»";color:var(--bronze);font-family:'Fraunces',serif}
+.about p{font-size:14.5px;color:#453D33;line-height:2.05;margin-bottom:18px}
+.about .sig{margin-top:26px;font-family:'Gulzar',serif;font-size:26px;color:var(--bronze)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px)}
+.card{border:1px solid var(--line);background:rgba(255,255,255,.28);padding:26px 24px 30px;display:flex;flex-direction:column;gap:16px;transition:.45s cubic-bezier(.16,1,.3,1);min-height:250px}
+.card:hover{transform:translateY(-5px);background:#F7F4EC;box-shadow:0 24px 50px -30px rgba(22,19,15,.5)}
+.card .tag{font-family:'JBMono',monospace;font-size:9.5px;letter-spacing:.18em;color:var(--bronze)}
+.card h3{font-size:15.5px;font-weight:500;line-height:1.8}
+.card .meta{margin-top:auto;font-size:11.5px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(24px,4vw,56px);border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line);padding:20px 0}
+.faq summary{list-style:none;cursor:pointer;font-size:14.5px;display:flex;gap:14px;align-items:start;font-weight:500}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"+";font-family:'JBMono',monospace;color:var(--bronze);font-size:15px;line-height:1.7}
+.faq details[open] summary::before{content:"−"}
+.faq p{font-size:13px;color:var(--muted);line-height:2;padding:10px 30px 0 0}
+.contact{background:var(--ink);color:var(--bone);border-radius:4px;padding:clamp(32px,5vw,64px);display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.contact::after{content:"";position:absolute;width:620px;height:620px;border-radius:50%;left:-160px;top:-260px;background:radial-gradient(circle,rgba(150,112,63,.45),transparent 62%)}
+.contact h2{font-size:clamp(24px,3.4vw,42px);font-weight:700;letter-spacing:-.02em;line-height:1.35;position:relative}
+.contact h2 em{font-family:'Fraunces',serif;font-style:italic;font-weight:300;color:#D9BC8C}
+.contact .ways{display:grid;gap:14px;position:relative;font-size:13.5px}
+.contact .ways a{display:flex;justify-content:space-between;border-bottom:1px solid rgba(237,232,222,.18);padding-bottom:12px;transition:.3s}
+.contact .ways a:hover{border-color:#D9BC8C;color:#D9BC8C}
+.contact .ways small{color:rgba(237,232,222,.5);font-family:'JBMono',monospace;font-size:9.5px;letter-spacing:.14em}
+footer{padding-block:36px;display:flex;justify-content:space-between;gap:20px;font-size:11.5px;color:var(--muted);border-top:1px solid var(--line);margin-top:clamp(40px,6vw,80px);flex-wrap:wrap}
+@media(max-width:980px){
+  .hero{grid-template-columns:1fr}.portrait{aspect-ratio:5/4;max-height:52vh}
+  .stats{grid-template-columns:1fr 1fr}.stats div:nth-child(3){border-inline-start:0;padding-inline-start:0}
+  .about{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.faq{grid-template-columns:1fr}
+  .contact{grid-template-columns:1fr}.navlinks{display:none}.row{grid-template-columns:40px 1fr auto}
+  .sec-head{flex-direction:column;align-items:start}.sec-head p{text-align:right}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="demo-tag" style="color:#16130F">Marble · 01</div>
+
+<header><div class="wrap"><nav>
+  <div class="brand"><b>مولودزاده</b><span>LAW · 2006—2026</span></div>
+  <div class="navlinks"><a href="#">خانه</a><a href="#services">خدمات</a><a href="#articles">مقالات</a><a href="#about">دربارهٔ من</a><a href="#contact">تماس</a></div>
+  <a class="cta" href="#contact"><i></i>مشاورهٔ وکالت</a>
+</nav></div></header>
+
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <div class="kicker eyebrow"><span class="dash"></span>وکیل پایهٔ یک دادگستری · تهران / دبی</div>
+      <h1><span class="thin">وکالت، با</span> دقتی<br>که <em>لایقِ</em> پروندهٔ<br>شماست.</h1>
+      <p class="lede">بیست سال کار پیوسته در پرونده‌های حقوقی، کیفری، خانواده و املاک؛ از دادگاه‌های تهران تا معاملات و شرکت‌های امارات.</p>
+      <div class="hero-actions">
+        <a class="btn-solid" href="#contact">گفت‌وگو با وکیل <span style="font-family:'JBMono'">→</span></a>
+        <a class="btn-ghost" href="#services">خدمات تخصصی</a>
+      </div>
+    </div>
+    <div class="portrait" data-rv>
+      <div class="arc"></div><div class="arc"></div>
+      <div class="mono-sign">M.</div>
+      <div class="cap"><span>جایگاه عکس پرتره<br>عکس جدید خانم مولودزاده</span><span>EST. 2006</span></div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div data-rv><b class="serif">۲۰</b><span>سال تجربهٔ پیوسته</span></div>
+    <div data-rv data-d="1"><b class="serif">۱۵۸</b><span>مقالهٔ تخصصی منتشرشده</span></div>
+    <div data-rv data-d="2"><b class="serif">۳۰۰</b><span>پرسش حقوقی پاسخ‌داده‌شده</span></div>
+    <div data-rv data-d="3"><b class="serif">۲</b><span>حوزهٔ قضایی: ایران و امارات</span></div>
+  </div>
+
+  <section id="services">
+    <div class="sec-head" data-rv>
+      <div><span class="idx">۰۱ / SERVICES</span><h2>شش حوزه، یک نگاه.</h2></div>
+      <p>هر پرونده فایل مستقل، زمان‌بندی روشن و گزارش مرحله‌به‌مرحله دارد.</p>
+    </div>
+    <div class="rows" data-rv>
+      <div class="row"><span class="n">01</span><div><h3>حقوقی و قراردادها</h3><p>تنظیم، بازبینی و اجرای قرارداد؛ دعاوی پیمانکاری و مطالبات</p></div><span class="ar">←</span></div>
+      <div class="row"><span class="n">02</span><div><h3>کیفری</h3><p>دفاع در دادسرا و دادگاه؛ کلاهبرداری، سرقت، چک و اسناد</p></div><span class="ar">←</span></div>
+      <div class="row"><span class="n">03</span><div><h3>خانواده</h3><p>مهریه، نفقه، حضانت، طلاق توافقی و ارث</p></div><span class="ar">←</span></div>
+      <div class="row"><span class="n">04</span><div><h3>ملک و شهرداری</h3><p>پایان‌کار، مادهٔ ۱۰۰، سرقفلی و دعاوی ثبتی</p></div><span class="ar">←</span></div>
+      <div class="row"><span class="n">05</span><div><h3>شرکت و برند</h3><p>ثبت شرکت، تغییرات، مجوزها و ثبت علامت تجاری</p></div><span class="ar">←</span></div>
+      <div class="row"><span class="n">06</span><div><h3>امارات و بین‌الملل</h3><p>ثبت شرکت در دبی، اقامت، و رویه‌های تجاری فرامرزی</p></div><span class="ar">←</span></div>
+    </div>
+  </section>
+
+  <section id="about" style="padding-top:0">
+    <div class="about">
+      <div data-rv><p class="quote">وکالت خوب، پیش از دادگاه شروع می‌شود؛ با خواندن درستِ سندی که هنوز امضا نشده.</p></div>
+      <div data-rv data-d="1">
+        <p>بیست سال است که پرونده‌ها را از نزدیک می‌خوانم. باور دارم مشتری باید بداند دقیقاً کجای مسیر ایستاده؛ به همین دلیل هر جلسه با یک گزارش کوتاه و روشن تمام می‌شود.</p>
+        <p>کار ما روی سه چیز ساده بنا شده: صداقت در پیش‌بینی نتیجه، شفافیت در هزینه، و پاسخ‌گویی در تمام مسیر پرونده.</p>
+        <div class="sig">مولودزاده</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="articles" style="padding-top:0">
+    <div class="sec-head" data-rv>
+      <div><span class="idx">۰۲ / JOURNAL</span><h2>از آرشیو حقوقی</h2></div>
+      <p>پاسخ‌های کوتاه و کاربردی به پرسش‌هایی که هر هفته تکرار می‌شوند.</p>
+    </div>
+    <div class="grid3">
+      <a class="card" data-rv href="#"><span class="tag">خانواده</span><h3>آیا قانون به شوهر اجازه می‌دهد مانع تحصیل زن شود؟</h3><span class="meta"><span>۴ دقیقه</span><span class="mono">↗</span></span></a>
+      <a class="card" data-rv data-d="1" href="#"><span class="tag">کیفری</span><h3>دفاع مشروع چیست و چه شرایطی دارد؟</h3><span class="meta"><span>۶ دقیقه</span><span class="mono">↗</span></span></a>
+      <a class="card" data-rv data-d="2" href="#"><span class="tag">ملک</span><h3>نیم‌عشر دولتی چیست و چه زمانی مطالبه می‌شود؟</h3><span class="meta"><span>۵ دقیقه</span><span class="mono">↗</span></span></a>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sec-head" data-rv>
+      <div><span class="idx">۰۳ / QUESTIONS</span><h2>پرسش‌های پرتکرار</h2></div>
+    </div>
+    <div class="faq">
+      <details data-rv><summary>آیا مشاورهٔ اولیه هزینه دارد؟</summary><p>جلسهٔ کوتاه ارزیابی پرونده رایگان است؛ اگر کار به پذیرش وکالت برسد، هزینه پیش از شروع به‌صورت کتبی اعلام می‌شود.</p></details>
+      <details data-rv><summary>پروندهٔ من چند ماه طول می‌کشد؟</summary><p>بستگی به نوع دعوا و شعبه دارد. در جلسهٔ اول بازهٔ واقع‌بینانه اعلام می‌شود، نه وعدهٔ خوش‌بینانه.</p></details>
+      <details data-rv><summary>برای پرونده‌های امارات هم وکالت می‌کنید؟</summary><p>امور شرکتی و قراردادی در امارات انجام می‌شود؛ دعاوی نیازمند وکیل محلی با همکاری دفتر مقیم دبی پیگیری می‌شود.</p></details>
+      <details data-rv><summary>امکان مشاورهٔ غیرحضوری هست؟</summary><p>بله، از طریق واتساپ یا تماس تصویری. اسناد را می‌توانید پیش از جلسه ارسال کنید.</p></details>
+    </div>
+  </section>
+
+  <section id="contact" style="padding-top:0">
+    <div class="contact" data-rv>
+      <div>
+        <h2>پرونده‌تان را<br><em>امروز</em> روشن کنیم.</h2>
+        <p style="margin-top:18px;font-size:13.5px;color:rgba(237,232,222,.7);max-width:40ch">یک پیام کوتاه بفرستید؛ در اولین فرصت کاری پاسخ می‌دهیم.</p>
+      </div>
+      <div class="ways">
+        <a href="#"><span>۰۹۱۲ ۷۳۳ ۴۸۴۲</span><small>MOBILE</small></a>
+        <a href="#"><span>+۹۷۱ ۵۰ ۲۴۷ ۹۱۴۲</span><small>WHATSAPP</small></a>
+        <a href="#"><span>ایمیل دفتر</span><small>EMAIL</small></a>
+        <a href="#" style="border:0"><span>تهران، ونک، خیابان گاندی</span><small>OFFICE</small></a>
+      </div>
+    </div>
+    <footer>
+      <span>© ۲۰۲۶ دفتر وکالت مولودزاده</span>
+      <span class="mono">PREVIEW 01 — MARBLE</span>
+      <span>پیش‌نمایش طراحی · محتوا و شماره‌ها موقت</span>
+    </footer>
+  </section>
+</div>
+
+<div class="switch"><span>سبک:</span><b>۰۱ مرمر</b><a href="nocturne.html">۰۲ شبانه</a><a href="bento.html">۰۳ شبکه</a><a href="cinema.html">۰۴ سینما</a><a href="kashi.html">۰۵ کاشی</a></div>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('[data-rv]').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
