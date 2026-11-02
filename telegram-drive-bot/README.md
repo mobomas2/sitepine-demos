@@ -69,3 +69,60 @@ var MUSE_AUTO    = true;    // ارسال خودکار بعد از هر ذخیر
 ## جایگزین بدون نمونهٔ عمومی
 
 اگر نمونهٔ قابل‌اتکا خواستی: یک نمونهٔ cobalt خودت را روی Railway/Fly با Docker بالا بیار و آدرسش را اول `IG_APIS` بگذار. یا یک ورکر کوچک با `yt-dlp` روی سرور/رزبری‌پای که فایل را به درایو بفرستد.
+
+---
+
+## نمونهٔ cobalt خودت (پایدار، بدون بلاک شدن)
+
+نمونه‌های عمومی ممکن است بخوابند یا محدودیت نرخ بدهند. یک نمونهٔ خصوصی مال خودت بساز و آدرسش را **اول** `IG_APIS` بگذار.
+
+### گزینهٔ ۱ — Railway (بدون سرور، ~۱۰ دقیقه)
+
+1. در [railway.app](https://railway.app) با گیت‌هاب وارد شو (پلن Hobby حدود ۵ دلار در ماه).
+2. **New Project → Deploy from a Docker Image** → این تصویر را بگذار:
+   `ghcr.io/imputnet/cobalt:11`
+3. در سرویس → **Settings → Networking → Generate Domain** و پورت را `9000` بگذار.
+   آدرسی مثل `https://cobalt-xxxx.up.railway.app` می‌گیری.
+4. در تب **Variables** این را اضافه کن (اسلش آخر مهم است):
+   `API_URL = https://cobalt-xxxx.up.railway.app/`
+5. Redeploy کن.
+6. تست: مرورگر را باز کن روی `https://cobalt-xxxx.up.railway.app/api/serverInfo` — باید JSON با `"cobalt"` ببینی.
+7. در `Code.gs`:
+   ```js
+   var IG_APIS = [
+     'https://cobalt-xxxx.up.railway.app',   // ← نمونهٔ خودت، اول
+     'https://cobalt-api.kwiatekmiki.com'    // بقیه به‌عنوان پشتیبان
+   ];
+   ```
+8. در تلگرام: `/igtest https://www.instagram.com/reel/XXX/` → باید جلوی آدرس خودت ✅ ببینی.
+
+> اگر خواستی نمونه را قفل کنی (که کسی جز تو استفاده نکند)، در [این راهنما](https://github.com/imputnet/cobalt/blob/main/docs/protect-an-instance.md) `keys.json` بساز، با `API_KEY_URL` به آن اشاره کن و `API_AUTH_REQUIRED=1` بگذار. بعد در `Code.gs`:
+> ```js
+> var IG_API_KEY = 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee';
+> ```
+> ربات خودش هدر `Authorization: Api-Key …` را می‌فرستد.
+
+### گزینهٔ ۲ — VPS / رزبری‌پای (Docker)
+
+```bash
+mkdir -p ~/cobalt && cd ~/cobalt
+cat > docker-compose.yml <<'YML'
+services:
+  cobalt:
+    image: ghcr.io/imputnet/cobalt:11
+    init: true
+    read_only: true
+    restart: unless-stopped
+    ports:
+      - "9000:9000/tcp"
+    environment:
+      API_URL: "https://cobalt.example.com/"   # دامنه/آی‌پی خودت
+YML
+docker compose up -d
+```
+
+پشت nginx/HTTPS بگذار و همان آدرس را اول `IG_APIS` قرار بده.
+
+### چرا ورکر `yt-dlp` را پیشنهاد نمی‌کنم؟
+
+ورکر فقط برای دو حالت لازم است: فایل‌های بزرگ‌تر از ۲۰ مگابایت (سقف Bot API) یا وقتی هیچ نمونهٔ cobalt در دسترس نیست. آن هم به یک ماشین همیشه‌روشن نیاز دارد. تا وقتی نمونهٔ cobalt خودت را داری، لازم نیست.

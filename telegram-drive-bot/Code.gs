@@ -34,6 +34,8 @@ var MUSE_WEBHOOK    = '';     // \u0622\u062F\u0631\u0633 \u0648\u0628\u0647\u06
 // \u0644\u06CC\u0646\u06A9 \u0631\u06CC\u0644 \u0631\u0627 \u06A9\u0647 \u0628\u0631\u0627\u06CC \u0631\u0628\u0627\u062A \u0628\u0641\u0631\u0633\u062A\u06CC\u060C \u0631\u0628\u0627\u062A \u062E\u0648\u062F\u0634 \u0628\u0627 API \u00AB\u06A9\u0628\u0627\u0644\u062A\u00BB \u062F\u0627\u0646\u0644\u0648\u062F \u0645\u06CC\u200C\u06A9\u0646\u062F \u0648 \u062F\u0631 \u062F\u0631\u0627\u06CC\u0648 \u0645\u06CC\u200C\u06AF\u0630\u0627\u0631\u062F.
 // \u0647\u0631 \u0646\u0645\u0648\u0646\u0647\u200C\u0627\u06CC \u06A9\u0647 \u062C\u0648\u0627\u0628 \u0646\u062F\u0627\u062F\u060C \u0628\u0639\u062F\u06CC \u0627\u0645\u062A\u062D\u0627\u0646 \u0645\u06CC\u200C\u0634\u0648\u062F. \u0628\u0627 /igtest \u0628\u0647\u062A\u0631\u06CC\u0646 \u0631\u0627 \u067E\u06CC\u062F\u0627 \u06A9\u0646 \u0648 \u0627\u0648\u0644 \u0644\u06CC\u0633\u062A \u0628\u06AF\u0630\u0627\u0631.
 var IG_ON   = true;
+// \u0627\u06AF\u0631 \u0646\u0645\u0648\u0646\u0647\u0654 \u062E\u0648\u062F\u062A (Railway/VPS) \u06A9\u0644\u06CC\u062F API \u062F\u0627\u0631\u062F\u060C \u06A9\u0644\u06CC\u062F \u0631\u0627 \u0627\u06CC\u0646\u062C\u0627 \u0628\u06AF\u0630\u0627\u0631\u061B \u0648\u06AF\u0631\u0646\u0647 \u062E\u0627\u0644\u06CC \u0628\u0645\u0627\u0646\u062F
+var IG_API_KEY = '';
 var IG_APIS = [
   'https://cobalt-api.kwiatekmiki.com',
   'https://cobalt-api.ayo.tf',
@@ -547,9 +549,11 @@ function igTryOne(host, link) {
   ];
   var last = '';
   for (var i = 0; i < tries.length; i++) {
+    var hdrs = { 'Accept': 'application/json' };
+    if (IG_API_KEY) hdrs['Authorization'] = 'Api-Key ' + IG_API_KEY;
     var res = UrlFetchApp.fetch(tries[i].url, {
       method: 'post', contentType: 'application/json',
-      headers: { 'Accept': 'application/json' },
+      headers: hdrs,
       payload: JSON.stringify(tries[i].body),
       muteHttpExceptions: true, followRedirects: true
     });
