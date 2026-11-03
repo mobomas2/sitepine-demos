@@ -167,10 +167,11 @@ html[lang="en"] .hero-name{font-family:"Fraunces","Markazi Text",serif;font-weig
   .hero-brandline{letter-spacing:.26em;text-indent:.26em}
   .hero-slogan{flex-direction:column;gap:.15rem}
   .hero-slogan::before,.hero-slogan::after{display:none}
-  .brand{flex:none}
+  .brand{flex:none;min-height:44px}
   .brand>span{white-space:nowrap;font-size:.85rem;letter-spacing:.08em}
   header{padding-inline:.8rem}
-  .btn-sm{padding:.5rem .9rem}
+  .btn-sm{padding:.5rem .9rem;min-height:44px}
+  .lang-btn button{min-height:44px;padding:.42rem 1rem}
 }
 
 /* ---------- sections ---------- */
@@ -734,9 +735,6 @@ html[lang="fa"] .np-sub{font-size:.95rem;font-weight:600;letter-spacing:0;text-i
     <div class="hero-brandline" aria-hidden="true">DXB HOUSES</div>
     <p class="hero-slogan"><span data-fa="شعار من ساده است:" data-en="My promise is simple:">شعار من ساده است:</span> <em dir="ltr">“I built trust”</em></p>
     <p class="hero-sub" data-fa="مشاور باتجربه ملک در دبی با بیش از ۱۰ سال تجربه؛ معرفی پروژه‌های ارزشمند و انحصاری و همراهی در مسیر ویزای طلایی امارات." data-en="A seasoned Dubai property advisor with over 10 years of experience — introducing valuable, exclusive projects and guiding you on the UAE Golden Visa path.">مشاور باتجربه ملک در دبی با بیش از ۱۰ سال تجربه؛ معرفی پروژه‌های ارزشمند و انحصاری و همراهی در مسیر ویزای طلایی امارات.</p>
-    <div class="hero-ctas">
-      <a class="btn btn-gold" href="https://wa.me/message/5WMJWQABDHGPD1" target="_blank" rel="noopener" data-fa="مشاوره در واتساپ" data-en="WhatsApp Consultation">مشاوره در واتساپ</a>
-    </div>
     <div class="hero-stats" role="list">
       <div class="hstat" role="listitem"><b><span class="count" data-count="10">10</span><i>+</i></b><span data-fa="سال تجربه در بازار ملک دبی" data-en="Years of experience in Dubai">سال تجربه در بازار ملک دبی</span></div>
       <div class="hstat" role="listitem"><b><span class="count" data-count="20.5" data-dec="1">20.5</span><i>K</i></b><span data-fa="دنبال‌کننده اینستاگرام" data-en="Instagram followers">دنبال‌کننده اینستاگرام</span></div>
@@ -1184,7 +1182,6 @@ var k="1.1.14";function w(r,t,e){return Math.max(r,Math.min(t,e))}function _(r,t
        .from(".hero-brandline", { y:34, letterSpacing:"0.7em", duration:1 }, "-=.65")
        .from(".hero-slogan", { y:24, duration:.7 }, "-=.6")
        .from(".hero-sub", { y:24, duration:.7 }, "-=.55")
-       .from(".hero-ctas", { y:24, duration:.7 }, "-=.55")
        .from(".hero-stats", { y:34, duration:.8 }, "-=.5");
 
   /* hero parallax engine: every layer carries data-speed (scroll) + data-depth (mouse).
