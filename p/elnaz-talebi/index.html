@@ -16,7 +16,7 @@
   --navy:#0A1E33; --navy2:#10283F;
   --gold:#B98F22; --gold2:#D9B64A; --goldsoft:#F1E5C3;
   --line:rgba(12,34,51,.12);
-  --veil:rgba(250,247,240,.90); --veil2:rgba(250,247,240,.82);
+  --veil:rgba(250,247,240,.88); --veil2:rgba(250,247,240,.72);
   --shadow:0 18px 44px rgba(10,30,51,.14);
   --r-lg:22px; --r-md:16px;
 }
@@ -25,7 +25,7 @@
     --bg:#081826; --bg2:#0B2136; --card:#0E2A42;
     --ink:#F2ECDC; --ink2:#C4CFd8; --ink2:#C4CFD8; --muted:#93A5B3;
     --line:rgba(242,236,220,.14);
-    --veil:rgba(8,24,38,.90); --veil2:rgba(8,24,38,.84);
+    --veil:rgba(8,24,38,.88); --veil2:rgba(8,24,38,.74);
     --shadow:0 18px 44px rgba(0,0,0,.45);
   }
 }
@@ -47,7 +47,11 @@ h1,h2,h3{line-height:1.35; margin:0}
 
 /* ---------- fixed video stage ---------- */
 .stage{position:fixed; inset:0; z-index:-3; overflow:clip; background:var(--navy)}
-.stage video{width:100%; height:100%; object-fit:cover; object-position:center}
+.stage video{
+  position:absolute; top:0; left:0; width:100%; height:170%;
+  object-fit:cover; object-position:center;
+  will-change:transform;
+}
 .stage .veil{position:absolute; inset:0; background:linear-gradient(180deg,var(--veil) 0%,var(--veil2) 46%,var(--veil) 100%)}
 .stage .veil::after{content:""; position:absolute; inset:0; background:radial-gradient(90% 60% at 50% 0%, transparent 40%, var(--veil) 100%)}
 
@@ -254,6 +258,67 @@ nav.main a:hover{color:var(--ink); background:var(--bg2)}
 @media (max-width:1020px){ .proj-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (max-width:620px){ .proj-grid{grid-template-columns:minmax(0,1fr)} .proj .ph{aspect-ratio:4/5} }
 
+/* ---------- mortgage calculator ---------- */
+.calc-card{
+  display:grid; grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  background:color-mix(in srgb, var(--card) 94%, transparent);
+  border:1px solid var(--line); border-radius:28px; overflow:clip; box-shadow:var(--shadow);
+}
+.calc-form{padding:38px 34px}
+.calc-field{margin-bottom:28px}
+.calc-field:last-child{margin-bottom:0}
+.calc-field label{display:block; font-weight:800; font-size:16px; margin-bottom:10px}
+.calc-ctl{display:flex; align-items:center; gap:14px}
+.calc-ctl input[type="range"]{
+  flex:1; min-width:0; height:44px; accent-color:var(--gold); cursor:pointer; margin:0;
+}
+.calc-num{
+  flex:none; width:158px; display:flex; align-items:center; gap:6px;
+  border:1px solid var(--line); border-radius:12px; background:var(--bg);
+  padding:0 12px; min-height:48px;
+}
+.calc-num input{
+  flex:1; min-width:0; width:100%; border:0; background:transparent; color:var(--ink);
+  font:inherit; font-size:16px; font-weight:700; outline:none; padding:10px 0;
+  direction:ltr; text-align:left; -moz-appearance:textfield; appearance:textfield;
+}
+.calc-num input::-webkit-outer-spin-button,
+.calc-num input::-webkit-inner-spin-button{-webkit-appearance:none; margin:0}
+.calc-num .unit{font-size:13px; color:var(--muted); font-weight:700; white-space:nowrap}
+.calc-res{
+  background:var(--navy); color:#F5EFD9; padding:38px 34px;
+  display:flex; flex-direction:column; justify-content:center; gap:6px;
+  position:relative; overflow:clip;
+}
+.calc-res::before{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(70% 90% at 50% -10%, rgba(217,182,74,.26), transparent 65%);
+}
+.calc-res > *{position:relative}
+.calc-row{
+  display:flex; align-items:baseline; justify-content:space-between; gap:14px;
+  padding:13px 0; border-bottom:1px dashed rgba(245,239,217,.22);
+}
+.calc-row .k{font-size:15px; color:rgba(245,239,217,.85)}
+.calc-row .v{font-weight:800; font-size:19px; white-space:nowrap; direction:ltr; unicode-bidi:embed}
+.calc-row .v small{font-size:13px; font-weight:700; color:var(--gold2)}
+.calc-big{padding:18px 0 4px}
+.calc-big .k{font-size:15.5px; color:var(--gold2); font-weight:800}
+.calc-big .amt{
+  font-size:clamp(38px,4.6vw,52px); font-weight:900; line-height:1.25; margin-top:4px;
+  direction:ltr; unicode-bidi:embed; text-align:right;
+}
+.calc-big .amt small{font-size:18px; font-weight:800; color:var(--gold2)}
+.calc-note{font-size:13px; color:rgba(245,239,217,.62); margin:14px 0 0; line-height:1.8}
+@media (max-width:860px){
+  .calc-card{grid-template-columns:minmax(0,1fr)}
+  .calc-form{padding:30px 22px}
+  .calc-res{padding:30px 22px}
+}
+@media (max-width:480px){
+  .calc-num{width:132px}
+}
+
 /* ---------- honor ---------- */
 .honor{background:linear-gradient(180deg, transparent, color-mix(in srgb, var(--bg2) 72%, transparent), transparent)}
 .honor-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:52px; align-items:center}
@@ -287,6 +352,12 @@ nav.main a:hover{color:var(--ink); background:var(--bg2)}
 .ig-line a{color:var(--gold2); font-weight:700; text-decoration:none}
 footer{padding:34px 0 110px; text-align:center; color:var(--muted); font-size:13.5px}
 footer .lat{font-size:12px; letter-spacing:.18em}
+.foot-wa{
+  display:inline-flex; align-items:center; gap:9px; margin-top:14px;
+  color:#1FA855; font-weight:800; text-decoration:none;
+  min-height:44px; padding:8px 14px; border-radius:99px;
+}
+.foot-wa:hover{background:rgba(31,168,85,.08)}
 
 /* floating whatsapp */
 .wa-float{
@@ -322,6 +393,7 @@ footer .lat{font-size:12px; letter-spacing:.18em}
       <a href="#about" data-fa="درباره من" data-en="About">درباره من</a>
       <a href="#services" data-fa="خدمات" data-en="Services">خدمات</a>
       <a href="#projects" data-fa="پروژه‌ها" data-en="Projects">پروژه‌ها</a>
+      <a href="#calculator" data-fa="محاسبه‌گر اقساط" data-en="Mortgage Calculator">محاسبه‌گر اقساط</a>
       <a href="#honor" data-fa="افتخارها" data-en="Recognition">افتخارها</a>
       <a href="#contact" data-fa="تماس" data-en="Contact">تماس</a>
     </nav>
@@ -330,7 +402,7 @@ footer .lat{font-size:12px; letter-spacing:.18em}
       <button type="button" id="btnEn">EN</button>
     </div>
     <a class="wa-head" href="https://wa.me/971568660146" target="_blank" rel="noopener">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.2c-.3.8-1.7 1.6-2.3 1.6-.6.1-1.4.2-4.6-1-3.9-1.6-6.4-5.5-6.6-5.8-.2-.3-1.6-2.1-1.6-4s.9-2.8 1.3-3.2c.3-.4.7-.5 1-.5h.7c.2 0 .5 0 .8.6l1 2.4c.1.2.1.4 0 .6l-.5.7-.5.6c-.2.2-.3.4-.1.7.2.3.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.7.3.2.5.1.7-.1l1.1-1.3c.2-.3.4-.2.7-.1l2.4 1.1c.3.2.5.3.6.4 0 .1 0 .7-.2 1.2Z"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.199 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.82 11.82 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.9 11.9 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 0 0-3.48-8.413Z"/></svg>
       <span data-fa="واتس‌اپ" data-en="WhatsApp">واتس‌اپ</span>
     </a>
   </div>
@@ -359,7 +431,7 @@ footer .lat{font-size:12px; letter-spacing:.18em}
         </div>
         <div class="cta-row">
           <a class="btn btn-wa" href="https://wa.me/971568660146" target="_blank" rel="noopener">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.2c-.3.8-1.7 1.6-2.3 1.6-.6.1-1.4.2-4.6-1-3.9-1.6-6.4-5.5-6.6-5.8-.2-.3-1.6-2.1-1.6-4s.9-2.8 1.3-3.2c.3-.4.7-.5 1-.5h.7c.2 0 .5 0 .8.6l1 2.4c.1.2.1.4 0 .6l-.5.7-.5.6c-.2.2-.3.4-.1.7.2.3.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.7.3.2.5.1.7-.1l1.1-1.3c.2-.3.4-.2.7-.1l2.4 1.1c.3.2.5.3.6.4 0 .1 0 .7-.2 1.2Z"/></svg>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.199 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.82 11.82 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.9 11.9 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 0 0-3.48-8.413Z"/></svg>
             <span data-fa="مشاوره در واتس‌اپ" data-en="Chat on WhatsApp">مشاوره در واتس‌اپ</span>
           </a>
           <a class="btn btn-call" href="tel:+971568660146">
@@ -574,6 +646,78 @@ footer .lat{font-size:12px; letter-spacing:.18em}
     </div>
   </section>
 
+  <!-- MORTGAGE CALCULATOR -->
+  <section id="calculator">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="tag" data-fa="محاسبه‌گر اقساط" data-en="Mortgage calculator">محاسبه‌گر اقساط</span>
+        <h2 data-fa="قسط ماهانه‌تان را همین حالا حساب کنید" data-en="Work out your monthly payment, right now">قسط ماهانه‌تان را همین حالا حساب کنید</h2>
+        <p data-fa="قیمت ملک و شرایط دلخواهتان را وارد کنید؛ مبلغ وام و قسط ماهانه را همان لحظه برایتان حساب می‌کنم تا با عدد روشن تصمیم بگیرید."
+           data-en="Enter the property price and the terms you have in mind — I'll work out the loan amount and the monthly payment on the spot, so you decide with clear numbers.">قیمت ملک و شرایط دلخواهتان را وارد کنید؛ مبلغ وام و قسط ماهانه را همان لحظه برایتان حساب می‌کنم تا با عدد روشن تصمیم بگیرید.</p>
+      </div>
+      <div class="calc-card rv">
+        <div class="calc-form">
+          <div class="calc-field">
+            <label for="calcPriceNum"><span data-fa="قیمت ملک" data-en="Property price">قیمت ملک</span></label>
+            <div class="calc-ctl">
+              <input type="range" id="calcPrice" min="300000" max="20000000" step="10000" value="2000000" aria-hidden="true" tabindex="-1" />
+              <div class="calc-num">
+                <input type="number" id="calcPriceNum" min="0" step="10000" value="2000000" inputmode="numeric" />
+                <span class="unit" data-fa="درهم" data-en="AED">درهم</span>
+              </div>
+            </div>
+          </div>
+          <div class="calc-field">
+            <label for="calcDownNum"><span data-fa="پیش‌پرداخت" data-en="Down payment">پیش‌پرداخت</span></label>
+            <div class="calc-ctl">
+              <input type="range" id="calcDown" min="0" max="90" step="1" value="25" aria-hidden="true" tabindex="-1" />
+              <div class="calc-num">
+                <input type="number" id="calcDownNum" min="0" max="100" step="1" value="25" inputmode="decimal" />
+                <span class="unit">%</span>
+              </div>
+            </div>
+          </div>
+          <div class="calc-field">
+            <label for="calcRateNum"><span data-fa="نرخ بهره سالانه" data-en="Annual interest rate">نرخ بهره سالانه</span></label>
+            <div class="calc-ctl">
+              <input type="range" id="calcRate" min="0" max="12" step="0.05" value="4.5" aria-hidden="true" tabindex="-1" />
+              <div class="calc-num">
+                <input type="number" id="calcRateNum" min="0" max="30" step="0.05" value="4.5" inputmode="decimal" />
+                <span class="unit">%</span>
+              </div>
+            </div>
+          </div>
+          <div class="calc-field">
+            <label for="calcYearsNum"><span data-fa="مدت بازپرداخت" data-en="Loan term">مدت بازپرداخت</span></label>
+            <div class="calc-ctl">
+              <input type="range" id="calcYears" min="1" max="30" step="1" value="25" aria-hidden="true" tabindex="-1" />
+              <div class="calc-num">
+                <input type="number" id="calcYearsNum" min="1" max="40" step="1" value="25" inputmode="numeric" />
+                <span class="unit" data-fa="سال" data-en="yrs">سال</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="calc-res" aria-live="polite">
+          <div class="calc-row">
+            <span class="k" data-fa="مبلغ پیش‌پرداخت" data-en="Down payment">مبلغ پیش‌پرداخت</span>
+            <span class="v"><span id="calcDownOut">0</span> <small data-fa="درهم" data-en="AED">درهم</small></span>
+          </div>
+          <div class="calc-row">
+            <span class="k" data-fa="مبلغ وام" data-en="Loan amount">مبلغ وام</span>
+            <span class="v"><span id="calcLoanOut">0</span> <small data-fa="درهم" data-en="AED">درهم</small></span>
+          </div>
+          <div class="calc-big">
+            <div class="k" data-fa="قسط ماهانه شما" data-en="Your monthly payment">قسط ماهانه شما</div>
+            <div class="amt"><span id="calcPayOut">0</span> <small data-fa="درهم" data-en="AED">درهم</small></div>
+          </div>
+          <p class="calc-note" data-fa="این عددها یک برآورد اولیه‌اند؛ شرایط نهایی وام را بانک و وضعیت پرونده‌تان مشخص می‌کند. برای عدد دقیقِ ملک موردنظرتان، در واتس‌اپ پیام بدهید تا خودم برایتان حساب کنم."
+             data-en="These figures are an initial estimate; the bank and your file set the final terms. For exact numbers on a specific property, message me on WhatsApp and I'll run them for you personally.">این عددها یک برآورد اولیه‌اند؛ شرایط نهایی وام را بانک و وضعیت پرونده‌تان مشخص می‌کند. برای عدد دقیقِ ملک موردنظرتان، در واتس‌اپ پیام بدهید تا خودم برایتان حساب کنم.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- HONOR -->
   <section id="honor" class="honor">
     <div class="wrap honor-grid">
@@ -607,7 +751,7 @@ footer .lat{font-size:12px; letter-spacing:.18em}
            data-en="For advice on buying, selling or investing in Dubai, message me right now. I reply personally — short, transparent and with no obligation.">برای مشاوره خرید، فروش یا سرمایه‌گذاری در دبی، همین حالا پیام بدهید. خودم جواب می‌دهم — کوتاه، شفاف و بدون هیچ تعهدی.</p>
         <div class="cta-row">
           <a class="btn btn-wa" href="https://wa.me/971568660146" target="_blank" rel="noopener">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.2c-.3.8-1.7 1.6-2.3 1.6-.6.1-1.4.2-4.6-1-3.9-1.6-6.4-5.5-6.6-5.8-.2-.3-1.6-2.1-1.6-4s.9-2.8 1.3-3.2c.3-.4.7-.5 1-.5h.7c.2 0 .5 0 .8.6l1 2.4c.1.2.1.4 0 .6l-.5.7-.5.6c-.2.2-.3.4-.1.7.2.3.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.7.3.2.5.1.7-.1l1.1-1.3c.2-.3.4-.2.7-.1l2.4 1.1c.3.2.5.3.6.4 0 .1 0 .7-.2 1.2Z"/></svg>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.199 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.82 11.82 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.9 11.9 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 0 0-3.48-8.413Z"/></svg>
             <span data-fa="پیام در واتس‌اپ" data-en="Message on WhatsApp">پیام در واتس‌اپ</span>
           </a>
           <a class="btn btn-ghost" href="tel:+971568660146">
@@ -631,12 +775,18 @@ footer .lat{font-size:12px; letter-spacing:.18em}
       <div class="lat" style="margin-top:8px">DUBAI · UNITED ARAB EMIRATES</div>
       <div style="margin-top:10px; font-size:12px" data-fa="ویدیوی پس‌زمینه: Mikhail Nilov از Pexels — عکس‌ها: صفحه اینستاگرام الناز طالبی"
            data-en="Background video: Mikhail Nilov via Pexels — Photos: Elnaz Talebi's Instagram">ویدیوی پس‌زمینه: Mikhail Nilov از Pexels — عکس‌ها: صفحه اینستاگرام الناز طالبی</div>
+      <div>
+        <a class="foot-wa" href="https://wa.me/971568660146" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.199 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.82 11.82 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.9 11.9 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 0 0-3.48-8.413Z"/></svg>
+          <span class="tel-num" dir="ltr">+971 56 866 0146</span>
+        </a>
+      </div>
     </div>
   </footer>
 </main>
 
 <a class="wa-float" href="https://wa.me/971568660146" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.2c-.3.8-1.7 1.6-2.3 1.6-.6.1-1.4.2-4.6-1-3.9-1.6-6.4-5.5-6.6-5.8-.2-.3-1.6-2.1-1.6-4s.9-2.8 1.3-3.2c.3-.4.7-.5 1-.5h.7c.2 0 .5 0 .8.6l1 2.4c.1.2.1.4 0 .6l-.5.7-.5.6c-.2.2-.3.4-.1.7.2.3.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.7.3.2.5.1.7-.1l1.1-1.3c.2-.3.4-.2.7-.1l2.4 1.1c.3.2.5.3.6.4 0 .1 0 .7-.2 1.2Z"/></svg>
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.199 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.82 11.82 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.9 11.9 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 0 0-3.48-8.413Z"/></svg>
 </a>
 
 <script>
@@ -732,6 +882,62 @@ footer .lat{font-size:12px; letter-spacing:.18em}
     rvEls.forEach(function(el){ el.classList.add('in'); });
   }
 
+  /* --- mortgage calculator (live) --- */
+  function fmtNum(n){
+    if (!isFinite(n) || isNaN(n)) n = 0;
+    return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+  var calcPairs = [
+    ['calcPrice','calcPriceNum'], ['calcDown','calcDownNum'],
+    ['calcRate','calcRateNum'], ['calcYears','calcYearsNum']
+  ];
+  function calcNum(id){
+    var el = document.getElementById(id);
+    var v = el ? parseFloat(el.value) : NaN;
+    return isNaN(v) ? 0 : v;
+  }
+  function runCalc(){
+    var price = Math.max(0, calcNum('calcPriceNum'));
+    var downPct = Math.min(100, Math.max(0, calcNum('calcDownNum')));
+    var rate = Math.max(0, calcNum('calcRateNum'));
+    var years = Math.max(0, calcNum('calcYearsNum'));
+    var downAmt = price * downPct / 100;
+    var loan = Math.max(0, price - downAmt);
+    var r = rate / 100 / 12, n = Math.round(years * 12), pay = 0;
+    if (loan > 0 && n > 0){
+      if (r > 0){
+        var f = Math.pow(1 + r, n);
+        pay = loan * r * f / (f - 1);
+      } else { pay = loan / n; }
+    }
+    document.getElementById('calcDownOut').textContent = fmtNum(downAmt);
+    document.getElementById('calcLoanOut').textContent = fmtNum(loan);
+    document.getElementById('calcPayOut').textContent = fmtNum(pay);
+  }
+  calcPairs.forEach(function(pair){
+    var range = document.getElementById(pair[0]);
+    var num = document.getElementById(pair[1]);
+    if (!range || !num) return;
+    range.addEventListener('input', function(){ num.value = range.value; runCalc(); });
+    num.addEventListener('input', function(){
+      var v = parseFloat(num.value);
+      if (!isNaN(v)) range.value = v;
+      runCalc();
+    });
+    num.addEventListener('change', function(){
+      var v = parseFloat(num.value);
+      if (isNaN(v)){ num.value = range.value; }
+      else {
+        var min = parseFloat(range.min), max = parseFloat(range.max);
+        if (pair[0] === 'calcPrice'){ min = 0; max = 100000000; }
+        v = Math.min(max, Math.max(min, v));
+        num.value = v; range.value = Math.min(parseFloat(range.max), Math.max(parseFloat(range.min), v));
+      }
+      runCalc();
+    });
+  });
+  runCalc();
+
   /* --- continuous parallax (vertical only) --- */
   var plxEls = Array.prototype.slice.call(document.querySelectorAll('[data-plx]'));
   var ticking = false;
@@ -739,6 +945,15 @@ footer .lat{font-size:12px; letter-spacing:.18em}
     ticking = false;
     if (reduceMotion.matches) return;
     var vh = window.innerHeight;
+    /* long video parallax: the fixed stage video (170% of viewport height)
+       travels slowly across the FULL page scroll, top-aligned at the top of
+       the page and bottom-aligned at the very end of the scroll. */
+    if (vid){
+      var doc = document.documentElement;
+      var maxScroll = Math.max(1, doc.scrollHeight - vh);
+      var prog = Math.min(1, Math.max(0, (window.scrollY || doc.scrollTop || 0) / maxScroll));
+      vid.style.transform = 'translate3d(0,' + (-prog * 41.18).toFixed(3) + '%,0)';
+    }
     plxEls.forEach(function(el){
       var host = el.parentElement.getBoundingClientRect();
       if (host.bottom < -200 || host.top > vh + 200) return;
