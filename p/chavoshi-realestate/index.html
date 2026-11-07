@@ -198,6 +198,114 @@ footer{border-top:1px solid var(--line);padding:26px 0 34px;margin-top:40px}
 }
 @media (max-width:560px){ .offers-grid{grid-template-columns:1fr} .offer .ph{aspect-ratio:4/3.4} }
 @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+
+/* ===== scroll-reactive Dubai motifs (added) ===== */
+.sky-slot{line-height:0;margin-bottom:20px}
+.sky-slot.in-card{margin-bottom:22px;position:relative}
+.skl{display:block;width:100%;height:auto}
+.skl .bld{fill-opacity:0;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.35s cubic-bezier(.65,0,.3,1),fill-opacity .9s ease .55s}
+.skl.on .bld{stroke-dashoffset:0;fill-opacity:1}
+.skl .farl{fill-opacity:0;transition:fill-opacity 1.1s ease .25s}
+.skl.on .farl{fill-opacity:.3}
+.skl .win{opacity:0;transition:opacity .45s ease}
+.skl.on .win{opacity:.95}
+.skl .base{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1s ease .15s}
+.skl.on .base{stroke-dashoffset:0}
+
+/* in-flow progress tower */
+.tprog{display:flex;align-items:center;gap:20px;margin-top:46px;background:var(--cream);border:1.5px dashed var(--gold);border-radius:18px;padding:16px 22px}
+.tprog .tsvg{height:96px;width:auto;flex:none}
+.tprog .tt{flex:1;min-width:170px}
+.tprog .tt b{display:block;font-size:17px;font-weight:800;line-height:1.7}
+.tprog .tt span{font-size:13.5px;color:var(--ink-soft)}
+.tprog .tpct{font-size:30px;font-weight:900;color:var(--gold-deep);white-space:nowrap;line-height:1}
+.roster .tprog{background:rgba(244,237,220,.05);color:#F4EDDC}
+.roster .tprog .tt span{color:#B9C6D4}
+.roster .tprog .tpct{color:var(--gold2)}
+.tsvg .fl{opacity:0;transform:translateY(9px);transition:opacity .5s ease,transform .5s ease}
+.tprog.on .fl{opacity:1;transform:none}
+.tsvg .crane{stroke:var(--ink-soft);fill:none;stroke-width:2.4;stroke-linecap:round}
+.tsvg .crane rect{fill:var(--ink-soft);stroke:none}
+.tsvg .hook{transform-box:fill-box;transform-origin:50% 0;animation:tswing 3.4s ease-in-out infinite alternate}
+@keyframes tswing{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+.tsvg .fkey{transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .6s cubic-bezier(.34,1.56,.64,1) .55s}
+.tprog.on .fkey{transform:scale(1)}
+
+/* two-layer parallax skyline dividers */
+.skydiv{position:relative;height:94px;overflow:hidden;background:var(--paper);line-height:0}
+.skydiv.on-dark{background:var(--navy)}
+.skydiv .ly{position:absolute;inset-inline:0;width:100%;will-change:transform}
+.skydiv .ly.far{height:120px;bottom:-16px;opacity:.15}
+.skydiv.on-dark .ly.far{opacity:.09}
+.skydiv .ly.near{height:118px;bottom:-20px}
+.divider{position:relative}
+.divider .ly.far{position:absolute;inset-inline:0;bottom:-6px;width:100%;height:104px;opacity:.14;will-change:transform}
+
+/* per-offer payment plan bars */
+.plan{margin:2px 0 14px}
+.plan-track{display:flex;align-items:center;gap:8px}
+.plan-segs{display:flex;gap:3px;flex:1;height:14px}
+.pseg{border-radius:5px;position:relative}
+.pseg.gold{background:linear-gradient(135deg,var(--gold2),var(--gold));width:0;transition:width 1.05s cubic-bezier(.6,0,.3,1) .15s}
+.plan.on .pseg.gold{width:var(--w)}
+.pseg.rest{flex:1;background:color-mix(in srgb,var(--gold) 22%, transparent)}
+.pseg.rest.ticks{background-image:repeating-linear-gradient(to left,rgba(18,40,63,.28) 0 1px,transparent 1px 9px)}
+.pseg.goldf{background:linear-gradient(135deg,var(--gold2),var(--gold));width:0;transition:width 1.05s ease .3s}
+.plan.on .pseg.goldf{width:50%}
+.pseg.striped{width:50%;background:repeating-linear-gradient(45deg,rgba(18,52,83,.28) 0 6px,rgba(18,52,83,.07) 6px 12px)}
+.pseg.yr{flex:1;background:#D9CBA6;overflow:hidden}
+.pseg.yr::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--gold2),var(--gold));opacity:0;transition:opacity .55s ease}
+.plan.on .pseg.yr::after{opacity:1}
+.ptick{flex:1;border-radius:4px;background:#D9CBA6;transition:background-color .4s ease}
+.plan.on .ptick{background:var(--gold)}
+.plan-key{flex:none;width:25px;height:25px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),var(--gold));display:grid;place-items:center;box-shadow:0 6px 14px -4px rgba(154,123,63,.7);transform:scale(0);transition:transform .55s cubic-bezier(.34,1.56,.64,1) 1.05s}
+.plan.on .plan-key{transform:scale(1)}
+.plan-key svg{width:15px;height:15px}
+.plan-lbls{display:flex;justify-content:space-between;gap:10px;margin-top:7px;font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+
+/* calculator payment timeline */
+.paybar{grid-column:1/-1;background:rgba(244,237,220,.05);border:1px solid rgba(230,205,143,.3);border-radius:18px;padding:20px 22px;position:relative}
+.paybar-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-weight:800;font-size:15px;margin-bottom:14px}
+.paybar-top span:last-child{color:var(--gold2)}
+.paybar-track{display:flex;align-items:center}
+.paybar-segs{flex:1;display:flex;border-radius:99px;overflow:hidden;background:rgba(244,237,220,.07);height:26px}
+.pb-down{background:linear-gradient(135deg,var(--gold2),var(--gold));transition:width .45s ease;min-width:0}
+.pb-rest{flex:1;background-color:rgba(230,205,143,.14);background-image:repeating-linear-gradient(to left,rgba(244,237,220,.4) 0 1.5px,transparent 1.5px var(--tick,2%))}
+.pb-key{flex:none;width:34px;height:34px;margin-inline-start:10px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),var(--gold));display:grid;place-items:center;box-shadow:0 8px 18px -6px rgba(0,0,0,.5);transform:scale(0);transition:transform .55s cubic-bezier(.34,1.56,.64,1) .3s}
+.paybar.on .pb-key{transform:scale(1)}
+.pb-key svg{width:19px;height:19px}
+.paybar-lbls{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:11px;font-size:13.5px;color:#C7D3DF}
+
+/* steps tower cross-section */
+.xtower{margin-top:42px;background:var(--cream);border:1px solid var(--line);border-radius:20px;padding:20px 14px 10px;color:var(--ink-soft)}
+.xtower svg{width:100%;height:auto;display:block}
+.xtower text{font-family:"Vazirmatn",Tahoma,sans-serif}
+.xtower .segfill{fill-opacity:.07;transition:fill-opacity .55s ease}
+.xtower .xseg.lit .segfill{fill-opacity:1}
+.xtower .xcirc{fill:#0C2743;transition:fill .45s ease}
+.xtower .xseg.lit .xcirc{fill:#9A7B3F}
+.xtower .xnum{fill:#E6CD8F;font-weight:800}
+.xtower .xlab{fill:var(--ink-soft)}
+
+/* sunset finale */
+.finale{margin-top:60px;line-height:0}
+.finale svg{width:100%;height:auto;display:block}
+.finale .fwin{transition:opacity .35s ease}
+
+@media (max-width:560px){
+  .tprog{gap:14px;padding:14px 16px}
+  .tprog .tsvg{height:78px}
+  .tprog .tpct{font-size:24px}
+  .skydiv{height:64px}
+  .skydiv .ly.near{height:86px;bottom:-14px}
+  .skydiv .ly.far{height:86px}
+  .paybar{padding:16px}
+  .plan-lbls{font-size:11.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  .tsvg .hook{animation:none}
+  .skl .bld,.skl .win,.skl .base,.skl .farl,.pseg.gold,.pseg.goldf,.plan-key,.pb-key,.tsvg .fl,.tsvg .fkey,.xtower .segfill{transition:none}
+}
 </style>
 </head>
 <body>
@@ -604,6 +712,353 @@ footer{border-top:1px solid var(--line);padding:26px 0 34px;margin-top:40px}
         scrollTrigger: { trigger: el, start: "top 90%" } });
     });
   }
+})();
+</script>
+<script>
+/* ===== Scroll-reactive Dubai motifs: generated inline (no CDN dependency).
+   Elements render in their final state when JS/reduced-motion says so;
+   animations use transform/opacity/SVG stroke-draw only. ===== */
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var faNum = function(n){ return Math.round(n).toLocaleString("fa-IR"); };
+  var faDigit = function(n){ return String(n).replace(/\d/g, function(d){ return "۰۱۲۳۴۵۶۷۸۹"[+d]; }); };
+  var clamp = function(v,a,b){ return v<a?a:(v>b?b:v); };
+  var vh = function(){ return window.innerHeight; };
+  var uid = 0;
+  function RNG(seed){ return function(){ seed = (seed * 16807) % 2147483647; return seed / 2147483647; }; }
+
+  /* ---------- skyline generator ---------- */
+  function bRect(x,w,top,base){ return "M"+x+" "+base+" V"+top+" H"+(x+w)+" V"+base+" Z"; }
+  function bTri(x,w,top,base){ var cx=x+w/2; return "M"+x+" "+base+" L"+(cx-5)+" "+top+" H"+(cx+5)+" L"+(x+w)+" "+base+" Z"; }
+  function bSail(x,w,top,base){ return "M"+x+" "+base+" L"+(x+7)+" "+top+" C"+(x+w*0.95)+" "+(top+26)+","+(x+w*0.8)+" "+(base-34)+","+(x+w)+" "+base+" Z"; }
+  function bBurj(cx,top,base){ var sh = top + (base-top)*0.45; return "M"+(cx-16)+" "+base+" L"+(cx-8)+" "+sh+" L"+(cx-3.5)+" "+(top+26)+" L"+(cx-1.4)+" "+top+" H"+(cx+1.4)+" L"+(cx+3.5)+" "+(top+26)+" L"+(cx+8)+" "+sh+" L"+(cx+16)+" "+base+" Z"; }
+  function bFrame(x,w,top,base){ var iw=w*0.5, ih=(base-top)*0.6, ix=x+(w-iw)/2, iy=base-ih; return "M"+x+" "+base+" V"+top+" H"+(x+w)+" V"+base+" H"+(ix+iw)+" V"+iy+" H"+ix+" V"+base+" Z"; }
+  function bDome(x,w,top,base){ var cx=x+w/2; return "M"+x+" "+base+" V"+(top+18)+" Q"+cx+" "+(top-16)+" "+(x+w)+" "+(top+18)+" V"+base+" Z"; }
+  var FB=178, TB=66;
+  function fullBlds(){ return [
+    {p:bRect(24,50,86,FB), z:[[28,92,42,78]]},{p:bRect(88,38,64,FB), z:[[92,70,30,100]]},
+    {p:bTri(150,52,44,FB), z:[[170,58,12,112]]},{p:bTri(214,52,52,FB), z:[[234,66,12,104]]},
+    {p:bSail(292,66,34,FB), z:[[300,46,10,122]]},{p:bRect(382,56,78,FB), z:[[388,84,44,86]]},
+    {p:bFrame(462,92,40,FB), z:[[468,48,13,122],[517,48,13,122]]},{p:bRect(584,42,96,FB), z:[[590,102,30,68]]},
+    {p:bBurj(712,6,FB), z:[[706,42,12,128]]},{p:bRect(756,48,60,FB), z:[[762,66,36,104]]},
+    {p:bRect(824,54,72,FB), z:[[830,78,42,92]]},{p:bDome(902,66,66,FB), z:[[922,84,26,84]]},
+    {p:bRect(992,44,88,FB), z:[[998,94,32,76]]},{p:bTri(1062,50,50,FB), z:[[1081,64,12,106]]},
+    {p:bRect(1136,56,70,FB), z:[[1142,76,44,94]]},{p:bRect(1216,40,56,FB), z:[[1222,62,28,108]]},
+    {p:bRect(1276,62,92,FB), z:[[1282,98,50,72]]},{p:bRect(1358,48,74,FB), z:[[1364,80,36,90]]}
+  ];}
+  function thinBlds(){ return [
+    {p:bRect(20,44,30,TB), z:[[24,35,36,26]]},{p:bRect(78,34,22,TB), z:[[82,27,26,34]]},
+    {p:bRect(140,48,36,TB), z:[[145,41,38,20]]},{p:bTri(214,44,14,TB), z:[[232,22,8,38]]},
+    {p:bRect(286,38,28,TB), z:[[290,33,30,28]]},{p:bBurj(470,2,TB), z:[[465,16,10,44]]},
+    {p:bRect(540,50,32,TB), z:[[545,37,40,24]]},{p:bFrame(620,74,18,TB), z:[[625,24,10,36],[653,24,10,36]]},
+    {p:bRect(724,40,26,TB), z:[[728,31,32,30]]},{p:bSail(792,52,12,TB), z:[[799,20,9,40]]},
+    {p:bRect(872,46,34,TB), z:[[877,39,36,22]]},{p:bTri(946,44,16,TB), z:[[963,24,8,36]]},
+    {p:bRect(1018,38,24,TB), z:[[1022,29,30,32]]},{p:bDome(1084,56,20,TB), z:[[1102,30,20,30]]},
+    {p:bRect(1168,48,30,TB), z:[[1173,35,38,26]]},{p:bRect(1240,36,22,TB), z:[[1244,27,28,34]]},
+    {p:bRect(1300,54,36,TB), z:[[1305,41,44,20]]},{p:bRect(1372,42,28,TB), z:[[1376,33,34,28]]}
+  ];}
+  function farBlds(base){
+    var spec=[[50,46,.55],[170,36,.42],[310,52,.65],[500,40,.5],[648,34,.72],[880,48,.58],[1030,38,.45],[1210,54,.62],[1348,42,.52]];
+    return spec.map(function(b){ var h=Math.round(base*b[2]); return '<path d="'+bRect(b[0],b[1],base-h,base)+'"/>'; }).join("");
+  }
+  function skyline(o){
+    uid++;
+    var dark = o.theme === "dark";
+    var full = o.variant === "full";
+    var blds = full ? fullBlds() : thinBlds();
+    var base = full ? FB : TB;
+    var gid = "skg" + uid;
+    var rnd = RNG(1000 + uid * 37);
+    var paths = "", wins = "", wi = 0;
+    blds.forEach(function(b){
+      paths += '<path class="bld" pathLength="1" d="' + b.p + '"/>';
+      b.z.forEach(function(z){
+        for (var x = z[0]; x < z[0] + z[2] - 3; x += 9){
+          for (var y = z[1]; y < z[1] + z[3] - 5; y += 12){
+            if (rnd() > 0.45){
+              wins += '<rect class="win" x="' + x + '" y="' + y + '" width="4" height="6" rx="1" style="transition-delay:' + (450 + (wi * 53) % 1500) + 'ms"/>';
+              wi++;
+            }
+          }
+        }
+      });
+    });
+    var far = o.far ? '<g class="farl" fill="' + (dark ? "#E6CD8F" : "#123453") + '">' + farBlds(base) + '</g>' : "";
+    return '<svg class="skl anim ' + (o.cls || "") + '" viewBox="0 0 1440 ' + base + '" preserveAspectRatio="' + (o.par || "xMidYMax meet") + '" aria-hidden="true">'
+      + '<defs><linearGradient id="' + gid + '" x1="0" y1="0" x2="0" y2="1">'
+      + (dark ? '<stop offset="0" stop-color="#1D4E79"/><stop offset="1" stop-color="#0A2440"/>' : '<stop offset="0" stop-color="#2A5A86"/><stop offset="1" stop-color="#0C2743"/>')
+      + '</linearGradient></defs>' + far
+      + '<g fill="url(#' + gid + ')" stroke="' + (dark ? "#E6CD8F" : "#0C2743") + '" stroke-width="1.6">' + paths + '</g>'
+      + '<g fill="#E6CD8F">' + wins + '</g>'
+      + '<path class="base" pathLength="1" d="M0 ' + (base - 1) + ' H1440" stroke="#C6A15B" stroke-width="2" fill="none"/>'
+      + '</svg>';
+  }
+  function addSlot(target, html, cls, before){
+    if (!target) return;
+    var d = document.createElement("div");
+    d.className = "sky-slot " + (cls || "");
+    d.innerHTML = html;
+    if (before) target.parentNode.insertBefore(d, target);
+    else target.insertBefore(d, target.firstChild);
+  }
+
+  /* 1) Section-header skylines */
+  addSlot(document.querySelector("#why .shead"), skyline({ variant: "thin", theme: "light" }), "", true);
+  addSlot(document.querySelector("#offers .shead"), skyline({ variant: "full", theme: "light", far: true }), "", true);
+  addSlot(document.querySelector(".calc"), skyline({ variant: "thin", theme: "dark" }), "in-card", false);
+  addSlot(document.querySelector("#steps .shead"), skyline({ variant: "thin", theme: "light" }), "", true);
+  addSlot(document.querySelector("#roster .shead"), skyline({ variant: "full", theme: "dark", far: true }), "", true);
+  addSlot(document.querySelector("#contact .shead"), skyline({ variant: "thin", theme: "light" }), "", true);
+
+  /* 2) In-flow progress tower (one floor per section) */
+  function towerSVG(filled, total, final){
+    uid++;
+    var gid = "tg" + uid, step = 21.5, fh = 19, ground = 204, fx = 26, fw = 80;
+    var s = '<svg class="tsvg" viewBox="0 0 132 216" aria-hidden="true"><defs><linearGradient id="' + gid + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E6CD8F"/><stop offset="1" stop-color="#C6A15B"/></linearGradient></defs>';
+    for (var i = 0; i < total; i++){
+      var y = ground - (i + 1) * step + 2.5;
+      if (i < filled){
+        s += '<g class="fl" style="transition-delay:' + (i * 140) + 'ms"><rect x="' + fx + '" y="' + y + '" width="' + fw + '" height="' + fh + '" rx="2.5" fill="url(#' + gid + ')" stroke="#9A7B3F" stroke-width="1"/>';
+        for (var wx = 0; wx < 3; wx++) s += '<rect x="' + (fx + 12 + wx * 24) + '" y="' + (y + 6) + '" width="7" height="8" rx="1.5" fill="#23180A" opacity=".5"/>';
+        s += '</g>';
+      } else {
+        s += '<rect x="' + fx + '" y="' + y + '" width="' + fw + '" height="' + fh + '" rx="2.5" fill="none" stroke="#8AA0B4" stroke-width="1.2" stroke-dasharray="4 3" opacity=".6"/>';
+      }
+    }
+    var topF = ground - filled * step + 2.5;
+    if (final){
+      s += '<g class="fkey"><circle cx="66" cy="' + (topF - 17) + '" r="14.5" fill="url(#' + gid + ')" stroke="#9A7B3F" stroke-width="1.2"/><g transform="translate(66 ' + (topF - 17) + ')" fill="none" stroke="#23180A" stroke-width="2.3" stroke-linecap="round"><circle cx="-5.5" cy="0" r="4.6"/><path d="M-1 0 H11 M7 0 v4.4 M11 0 v6"/></g></g>';
+    } else {
+      s += '<g class="crane"><path d="M114 ' + topF + ' V' + (topF - 44) + '"/><path d="M60 ' + (topF - 44) + ' H129"/><path d="M114 ' + (topF - 56) + ' V' + (topF - 44) + '"/><path d="M114 ' + (topF - 56) + ' L62 ' + (topF - 44) + ' M114 ' + (topF - 56) + ' L127 ' + (topF - 44) + '"/><rect x="121" y="' + (topF - 42) + '" width="9" height="10"/></g>'
+        + '<g class="hook"><path d="M84 ' + (topF - 44) + ' V' + (topF - 24) + '" style="stroke:var(--ink-soft)" stroke-width="2" fill="none"/><rect x="78.5" y="' + (topF - 24) + '" width="11" height="8" rx="1.5" fill="#9A7B3F"/></g>';
+    }
+    s += '<path d="M4 206 H128" stroke="#C6A15B" stroke-width="2.5" stroke-linecap="round"/></svg>';
+    return s;
+  }
+  function addTower(sectionId, filled, total, sub, final, beforeEl){
+    var wrap = document.querySelector(sectionId + " .wrap");
+    if (!wrap) return;
+    var d = document.createElement("div");
+    d.innerHTML = '<div class="tprog anim' + (final ? " final" : "") + '">' + towerSVG(filled, total, final)
+      + '<div class="tt"><b>برج خریدتان، طبقه‌به‌طبقه بالا می‌رود</b><span>' + sub + '</span></div>'
+      + '<div class="tpct">' + faDigit(filled) + ' / ' + faDigit(total) + '</div></div>';
+    if (beforeEl) wrap.insertBefore(d.firstChild, beforeEl);
+    else wrap.appendChild(d.firstChild);
+  }
+  addTower("#why", 2, 8, "طبقهٔ ۲ از ۸ — اعتبار و سابقه را دیدید");
+  addTower("#offers", 3, 8, "طبقهٔ ۳ از ۸ — آفرهای فعلی را بررسی کردید");
+  addTower("#calc", 4, 8, "طبقهٔ ۴ از ۸ — قسط ماهانه‌تان مشخص شد");
+  addTower("#steps", 5, 8, "طبقهٔ ۵ از ۸ — مسیر تا تحویل کلید روشن شد");
+  addTower("#roster", 6, 8, "طبقهٔ ۶ از ۸ — سازنده‌های همکار را شناختید");
+  /* Tower 7 — end of the video band, before contact. The band has no .wrap,
+     so the same in-flow .tprog block gets its own .wrap holder right after it. */
+  (function(){
+    var band = document.getElementById("band");
+    if (!band) return;
+    var holder = document.createElement("div");
+    holder.className = "wrap";
+    holder.style.paddingBottom = "36px";
+    var d = document.createElement("div");
+    d.innerHTML = '<div class="tprog anim">' + towerSVG(7, 8, false)
+      + '<div class="tt"><b>برج خریدتان، طبقه‌به‌طبقه بالا می‌رود</b><span>طبقهٔ ۷ از ۸ — ویلاها و خانهٔ آینده‌تان را دیدید</span></div>'
+      + '<div class="tpct">' + faDigit(7) + ' / ' + faDigit(8) + '</div></div>';
+    holder.appendChild(d.firstChild);
+    band.parentNode.insertBefore(holder, band.nextSibling);
+  })();
+  addTower("#contact", 8, 8, "طبقهٔ ۸ از ۸ — برج کامل شد؛ کلید خانه دست شماست", true, document.querySelector("#contact footer"));
+
+  /* 6) Two-layer parallax skyline dividers */
+  var plx = [];
+  function regPlx(box, far, near, fr, nr){ if (box) plx.push({ box: box, far: far, near: near, fr: fr, nr: nr }); }
+  function makeDivider(dark){
+    var d = document.createElement("div");
+    d.className = "skydiv" + (dark ? " on-dark" : "");
+    d.innerHTML = '<svg class="ly far" viewBox="0 0 1440 66" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g fill="' + (dark ? "#E6CD8F" : "#123453") + '">' + farBlds(66) + '</g></svg>'
+      + skyline({ variant: "thin", theme: dark ? "dark" : "light", cls: "ly near", par: "xMidYMax slice" });
+    return d;
+  }
+  function dividerBefore(id, dark){
+    var s = document.getElementById(id);
+    if (!s) return;
+    var d = makeDivider(dark);
+    s.parentNode.insertBefore(d, s);
+    regPlx(d, d.querySelector(".ly.far"), d.querySelector(".ly.near"), 6, 13);
+  }
+  dividerBefore("calc", false);
+  dividerBefore("steps", false);
+  dividerBefore("roster", false);
+  dividerBefore("band", true);
+  dividerBefore("contact", false);
+  var od = document.querySelector(".divider");
+  if (od){
+    od.insertAdjacentHTML("afterbegin", '<svg class="ly far" viewBox="0 0 1440 90" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g fill="#123453">' + farBlds(90) + '</g></svg>');
+    regPlx(od, od.querySelector(".ly.far"), null, 7, 0);
+  }
+
+  /* 5) Per-offer payment plan bars (numbers taken from each card's own text) */
+  var KEYSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="#23180A" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="14" r="4.6"/><path d="M11.4 10.6 20 2m-3.4 3.4L19 7.8m-5.4.6 2 2"/></svg>';
+  function segGold(w){ return '<div class="pseg gold" style="--w:' + w + '%"></div>'; }
+  var REST = '<div class="pseg rest"></div>';
+  var RESTT = '<div class="pseg rest ticks"></div>';
+  function yrSegs(){ var s = ""; for (var i = 0; i < 4; i++) s += '<div class="pseg yr" style="transition-delay:' + (200 + i * 220) + 'ms"></div>'; return s; }
+  function tickSegs(){ var s = ""; for (var i = 0; i < 12; i++) s += '<span class="ptick" style="transition-delay:' + (150 + i * 90) + 'ms"></span>'; return s; }
+  var PLANS = [
+    { segs: segGold(20) + REST, r: "پیش‌پرداخت ۲۰٪", l: "تحویل فوری" },
+    { segs: REST + segGold(50), r: "تا تحویل", l: "۵۰٪ اقساط بعد از تحویل" },
+    { segs: yrSegs(), r: "شروع سکونت", l: "۴ سال اقساط" },
+    { segs: '<div class="pseg striped"></div><div class="pseg goldf"></div>', r: "دورهٔ ساخت", l: "اقساط بعد از تحویل" },
+    { segs: tickSegs(), r: "ماهی ۱٪", l: "تا تحویل" },
+    { segs: segGold(5) + RESTT, r: "پیش‌پرداخت ۵٪", l: "۹۵٪ طی ۹۵ ماه" }
+  ];
+  document.querySelectorAll(".offer").forEach(function(card, i){
+    var c = PLANS[i];
+    if (!c) return;
+    var bd = card.querySelector(".bd"), btn = card.querySelector(".btn");
+    if (!bd || !btn) return;
+    var d = document.createElement("div");
+    d.innerHTML = '<div class="plan anim"><div class="plan-track"><div class="plan-segs">' + c.segs + '</div><div class="plan-key">' + KEYSVG + '</div></div><div class="plan-lbls"><span>' + c.r + '</span><span>' + c.l + '</span></div></div>';
+    bd.insertBefore(d.firstChild, btn);
+  });
+
+  /* 4) Calculator payment timeline (reads the same sliders; calc math untouched) */
+  var PRICE = 665000;
+  var downR = document.getElementById("downRange"), monR = document.getElementById("monthsRange");
+  var calcGrid = document.querySelector(".calc-grid"), fine = document.querySelector(".calc .fine");
+  var pbDown, pbRest, pbDownLbl, pbRestLbl;
+  if (downR && monR && calcGrid && fine){
+    var pb = document.createElement("div");
+    pb.innerHTML = '<div class="paybar anim"><div class="paybar-top"><span>نقشهٔ پرداخت شما روی خط زمان</span><span>مجموع: ' + faNum(PRICE) + ' درهم</span></div>'
+      + '<div class="paybar-track"><div class="paybar-segs"><div class="pb-down" id="pbDown"></div><div class="pb-rest" id="pbRest"></div></div><div class="pb-key">' + KEYSVG + '</div></div>'
+      + '<div class="paybar-lbls"><span id="pbDownLbl"></span><span id="pbRestLbl"></span></div></div>';
+    calcGrid.insertBefore(pb.firstChild, fine);
+    pbDown = document.getElementById("pbDown"); pbRest = document.getElementById("pbRest");
+    pbDownLbl = document.getElementById("pbDownLbl"); pbRestLbl = document.getElementById("pbRestLbl");
+    var updPay = function(){
+      var dp = +downR.value, m = +monR.value;
+      var down = PRICE * dp / 100, rest = PRICE - down;
+      pbDown.style.width = dp + "%";
+      pbRest.style.setProperty("--tick", (100 / m) + "%");
+      pbDownLbl.textContent = "پیش‌پرداخت: " + faNum(down) + " درهم (" + faNum(dp) + "٪)";
+      pbRestLbl.textContent = "اقساط: " + faNum(rest) + " درهم در " + faNum(m) + " قسط";
+    };
+    downR.addEventListener("input", updPay);
+    monR.addEventListener("input", updPay);
+    updPay();
+  }
+
+  /* 3) Steps: tower cross-section with a travelling handover key */
+  var xtowerEl = null, xsegs = [], xkey = null, xprog = null;
+  var stepsRow = document.getElementById("stepsRow");
+  if (stepsRow){
+    var XW = 216, XG = 12, XX0 = 36, segs = "";
+    for (var si = 1; si <= 5; si++){
+      var sx = XX0 + (5 - si) * (XW + XG), cx = sx + XW / 2;
+      segs += '<g class="xseg" data-i="' + si + '">'
+        + '<rect class="segfill" x="' + sx + '" y="62" width="' + XW + '" height="88" rx="7" fill="url(#xg1)"/>'
+        + '<rect x="' + sx + '" y="62" width="' + XW + '" height="88" rx="7" fill="none" stroke="#345A78" stroke-width="1.5"/>'
+        + '<g fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55">'
+        + '<rect x="' + (sx + 16) + '" y="78" width="36" height="26"/><rect x="' + (sx + XW - 52) + '" y="78" width="36" height="26"/>'
+        + '<rect x="' + (cx - 15) + '" y="116" width="30" height="34"/><rect x="' + (sx + XW - 72) + '" y="50" width="26" height="12"/></g>'
+        + '<circle class="xcirc" cx="' + cx + '" cy="30" r="13"/>'
+        + '<text class="xnum" x="' + cx + '" y="36" text-anchor="middle" font-size="14">' + faDigit(si) + '</text>'
+        + '<text class="xlab" x="' + cx + '" y="170" text-anchor="middle" font-size="13.5">مرحلهٔ ' + faDigit(si) + '</text></g>';
+    }
+    xtowerEl = document.createElement("div");
+    xtowerEl.className = "xtower";
+    xtowerEl.innerHTML = '<svg viewBox="0 0 1200 178" aria-hidden="true"><defs><linearGradient id="xg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E6CD8F"/><stop offset="1" stop-color="#C6A15B"/></linearGradient></defs>'
+      + '<path d="M1180 30 H20" stroke="#8AA0B4" stroke-width="2" stroke-dasharray="6 6" fill="none"/>'
+      + '<path id="xprog" pathLength="1" d="M1180 30 H20" stroke="#C6A15B" stroke-width="3.5" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/>'
+      + segs
+      + '<g id="xkey"><circle cx="0" cy="30" r="15" fill="#C6A15B" opacity=".22"/><g transform="translate(0 30)" fill="none" stroke="#9A7B3F" stroke-width="3" stroke-linecap="round"><circle cx="11" cy="0" r="8" fill="#FBF8F1"/><path d="M3 0 H-20 M-12 0 v7 M-18 0 v9"/></g></g></svg>';
+    stepsRow.parentNode.insertBefore(xtowerEl, stepsRow.nextSibling);
+    xsegs = Array.prototype.slice.call(xtowerEl.querySelectorAll(".xseg"));
+    xkey = xtowerEl.querySelector("#xkey");
+    xprog = xtowerEl.querySelector("#xprog");
+  }
+  function stepsUpd(){
+    if (!xtowerEl) return;
+    var sec = document.getElementById("steps");
+    if (!sec) return;
+    var r = sec.getBoundingClientRect();
+    var p = reduced ? 1 : clamp((vh() * 0.85 - r.top) / (r.height * 0.9 + vh() * 0.2), 0, 1);
+    var lit = Math.round(p * 5);
+    xsegs.forEach(function(g){ g.classList.toggle("lit", +g.getAttribute("data-i") <= lit); });
+    if (xkey) xkey.setAttribute("transform", "translate(" + (1170 - p * 1140) + ",0)");
+    if (xprog) xprog.style.strokeDashoffset = String(1 - p);
+  }
+
+  /* 7) Sunset finale: sun descends into a crescent, windows light progressively */
+  var fin = null, fSun = null, fShade = null, fStars = null, fWins = [];
+  var contactSec = document.getElementById("contact");
+  if (contactSec){
+    var frnd = RNG(99), stars = "", fw = "";
+    for (var st = 0; st < 26; st++) stars += '<circle cx="' + Math.round(frnd() * 1420 + 10) + '" cy="' + Math.round(frnd() * 140 + 8) + '" r="' + (frnd() * 1.1 + 1).toFixed(1) + '"/>';
+    fullBlds().forEach(function(b){
+      b.z.forEach(function(z){
+        for (var x = z[0]; x < z[0] + z[2] - 3; x += 10){
+          for (var y = z[1]; y < z[1] + z[3] - 5; y += 13){
+            if (frnd() > 0.5) fw += '<rect class="fwin" data-th="' + (frnd() * 0.85).toFixed(2) + '" x="' + x + '" y="' + y + '" width="4" height="6" rx="1" opacity=".07"/>';
+          }
+        }
+      });
+    });
+    var pathsOnly = fullBlds().map(function(b){ return '<path d="' + b.p + '"/>'; }).join("");
+    fin = document.createElement("div");
+    fin.className = "finale";
+    fin.innerHTML = '<svg viewBox="0 0 1440 330" preserveAspectRatio="xMidYMax slice" aria-hidden="true">'
+      + '<defs><linearGradient id="finSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#081C30"/><stop offset=".52" stop-color="#123453"/><stop offset=".8" stop-color="#8A6A34"/><stop offset="1" stop-color="#C6A15B"/></linearGradient>'
+      + '<radialGradient id="finSun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#F6E3B2"/><stop offset=".7" stop-color="#E6CD8F"/><stop offset="1" stop-color="#C6A15B"/></radialGradient></defs>'
+      + '<rect width="1440" height="330" fill="url(#finSky)"/>'
+      + '<g class="fstars" fill="#F4EDDC" opacity="0">' + stars + '</g>'
+      + '<g class="fsun"><circle cx="720" cy="98" r="50" fill="url(#finSun)"/><circle class="fshade" cx="764" cy="90" r="45" fill="#123453" opacity="0"/></g>'
+      + '<g transform="translate(0 148) scale(1 .98)" fill="#16406B" opacity=".55">' + pathsOnly + '</g>'
+      + '<rect x="0" y="312" width="1440" height="18" fill="#0D2C4C"/>'
+      + '<g transform="translate(-30 176) scale(1.04 .86)"><g fill="#081C30">' + pathsOnly + '</g><g fill="#E6CD8F">' + fw + '</g></g>'
+      + '<rect x="0" y="327" width="1440" height="3" fill="#C6A15B"/></svg>';
+    contactSec.appendChild(fin);
+    fSun = fin.querySelector(".fsun");
+    fShade = fin.querySelector(".fshade");
+    fStars = fin.querySelector(".fstars");
+    fWins = Array.prototype.slice.call(fin.querySelectorAll(".fwin"));
+  }
+  function finaleUpd(){
+    if (!fin) return;
+    var r = fin.getBoundingClientRect();
+    if (r.bottom < -200 || r.top > vh() * 1.2) return;
+    var p = reduced ? 1 : clamp((vh() * 0.98 - r.top) / (vh() * 0.6), 0, 1);
+    if (fSun) fSun.setAttribute("transform", "translate(0," + (p * 118) + ")");
+    if (fShade){ fShade.setAttribute("cx", String(764 - 38 * p)); fShade.setAttribute("opacity", (p * 0.95).toFixed(2)); }
+    if (fStars) fStars.setAttribute("opacity", (p * 0.85).toFixed(2));
+    for (var i = 0; i < fWins.length; i++) fWins[i].style.opacity = (p > +fWins[i].getAttribute("data-th")) ? ".95" : ".07";
+  }
+
+  /* parallax divider layers: far moves slower than near */
+  function plxUpd(){
+    if (reduced) return;
+    for (var i = 0; i < plx.length; i++){
+      var o = plx[i], r = o.box.getBoundingClientRect();
+      if (r.bottom < -60 || r.top > vh() + 60) continue;
+      var p = clamp((vh() - r.top) / (vh() + r.height), 0, 1), c = (p - 0.5) * 2;
+      if (o.far) o.far.style.transform = "translate3d(0," + (c * o.fr).toFixed(1) + "px,0)";
+      if (o.near) o.near.style.transform = "translate3d(0," + (c * o.nr).toFixed(1) + "px,0)";
+    }
+  }
+
+  /* reveal-on-enter for all generated .anim elements */
+  var io = ("IntersectionObserver" in window && !reduced) ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add("on"); io.unobserve(e.target); } });
+  }, { threshold: 0.22 }) : null;
+  document.querySelectorAll(".anim").forEach(function(el){ if (io) io.observe(el); else el.classList.add("on"); });
+
+  /* single rAF-throttled scroll pass (transform/opacity only) */
+  var ticking = false;
+  function updAll(){ stepsUpd(); finaleUpd(); plxUpd(); ticking = false; }
+  function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(updAll); } }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  window.addEventListener("load", updAll);
+  updAll();
 })();
 </script>
 </body>
