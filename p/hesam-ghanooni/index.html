@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>حسام قانونی — کاتالوگ پروژه‌های دبی</title>
 <meta name="description" content="کاتالوگ پروژه‌های منتخب دبی با حسام قانونی — فیلتر، مقایسه و استعلام مستقیم در واتساپ.">
+<!-- build v2026-11-10.2: per-project calculator embedded on project pages; unique build marker for cache freshness -->
+<meta name="build-version" content="2026-11-10.2">
 <style>
 :root{
   --navy:#0B2440; --navy2:#122F52; --navy3:#071A30; --yellow:#FFC800; --yellow2:#FFE066;
@@ -207,6 +209,8 @@ table.cmp .phcell .ph.noimg{aspect-ratio:4/3;border-radius:12px}
 .calc-out .m{font-size:26px;font-weight:800;color:var(--navy);margin-top:4px}
 .calc-out .s{margin-top:7px;color:var(--ink2);font-size:14px}
 .calc .btn-wa{width:100%;margin-top:14px}
+.calc-mini{max-width:none;margin:18px 0 0}
+.calc-mini #calcMonthly{font-size:24px}
 
 /* Footer */
 .sitefoot{background:var(--navy);color:#DCE6F0;margin-top:44px}
@@ -554,10 +558,8 @@ function visible(p){
 
 /* ---------- shared blocks ---------- */
 function srcNote(p){
-  var s;
-  if(p.sourceKind==='highlight'||p.sourceKind==='mixed'||p.sourceConf) s='شرایط طبق اعلام پیج — تأیید نهایی با حسام قانونی. منبع: '+p.source;
-  else s='منبع: '+p.source;
-  return '<div class="srcnote'+((p.sourceConf||p.sourceKind!=='feed')?' warn':'')+'">'+esc(s)+'</div>';
+  /* source-attribution line removed from all UI by owner order 2026-11-10 (source data stays in projects.json only) */
+  return '';
 }
 function phHTML(p,cls){
   if(p.img) return '<div class="ph '+(cls||'')+'"><img src="'+p.img+'" alt="'+esc(p.name)+'" loading="lazy">'+(p.urgency?'<span class="badge-urg">'+esc(p.urgency)+'</span>':'')+'</div>';
@@ -648,6 +650,7 @@ function openProject(id){
     +'<div class="proj-info"><h2 class="latin" style="text-align:right">'+esc(p.name)+'</h2>'
     +(p.nameFa?'<div class="meta" style="font-size:15px;color:var(--ink2);margin-top:4px">'+esc(p.nameFa)+'</div>':'')
     +'<div class="kv">'+kv+'</div>'
+    +(p.priceMin?calcBlockHTML(p):'')
     +(p.conflict?'<div class="conflictbox">⚠ '+esc(p.conflict)+'</div>':'')
     +srcNote(p)
     +'<div class="proj-actions">'
@@ -659,6 +662,7 @@ function openProject(id){
     +(p.priceMin?'<button type="button" class="btn-ghost" data-calc="'+p.id+'">محاسبه اقساط این پروژه</button>':'')
     +'</div></div></div>';
   document.getElementById('projBody').innerHTML=h;
+  initPcalc();
   show('view-project');
 }
 
@@ -709,6 +713,55 @@ function renderCompare(){
 
 /* ---------- calculator ---------- */
 var calcProject=null;
+/* per-project defaults: down-payment % from the project's own plan; 48 months default term */
+function calcDpFor(p){
+  var dp=10;
+  if(p&&p.planKeys&&p.planKeys.indexOf('1090')>=0)dp=10;
+  if(p&&p.id==='sobha-sanctuary')dp=2;
+  if(p&&p.planKeys&&p.planKeys.indexOf('5050')>=0)dp=50;
+  return dp;
+}
+/* calculator block embedded on the project page itself — always pre-filled, no extra tap needed */
+function calcBlockHTML(p){
+  var dp=calcDpFor(p), mo=48, base=p.priceMin;
+  var dpSum=Math.round(base*dp/100), monthly=Math.round((base-dpSum)/mo);
+  return '<div class="calc calc-mini" data-pcalc="'+p.id+'">'
+    +'<h3>ماشین‌حساب اقساط</h3>'
+    +'<p class="srcnote">برای پروژه '+esc(p.name)+' — مبلغ مبنا از قیمت علنی خود پروژه پر شده است؛ درصد پیش‌پرداخت از پلن همان پروژه.</p>'
+    +'<label>مبلغ مبنا (درهم)</label>'
+    +'<input type="text" inputmode="numeric" data-cbase value="'+base+'">'
+    +'<label>پیش‌پرداخت — <span class="num" data-cdpval>'+dp+'</span>٪</label>'
+    +'<input type="range" data-cdp min="0" max="90" step="1" value="'+dp+'">'
+    +'<input type="text" inputmode="numeric" class="dpnum num" data-cdpnum value="'+dp+'" aria-label="درصد پیش‌پرداخت">'
+    +'<label>مدت بازپرداخت (ماه) — <span class="num" data-cmoval>'+mo+'</span></label>'
+    +'<input type="range" data-cmo min="6" max="120" step="1" value="'+mo+'">'
+    +'<div class="calc-out"><div class="t">قسط ماهانه (تقریبی)</div>'
+    +'<div class="m num" data-cmonthly>'+fmt(monthly)+' درهم</div>'
+    +'<div class="s">جمع پیش‌پرداخت: <b class="num" data-cdpsum>'+fmt(dpSum)+' درهم</b></div></div>'
+    +'<a class="btn-wa" data-cwa target="_blank" rel="noopener">'+waSvg+'ارسال این محاسبه برای حسام</a>'
+    +'</div>';
+}
+function pcalcRun(box){
+  var p=byId(box.dataset.pcalc); if(!p)return;
+  var base=parseNum(box.querySelector('[data-cbase]').value);
+  var dp=Number(box.querySelector('[data-cdp]').value)||0;
+  var mo=Number(box.querySelector('[data-cmo]').value)||48;
+  box.querySelector('[data-cdpval]').textContent=dp;
+  box.querySelector('[data-cmoval]').textContent=mo;
+  var dpSum=Math.round(base*dp/100), monthly=mo?Math.round((base-dpSum)/mo):0;
+  box.querySelector('[data-cmonthly]').textContent=base?fmt(monthly)+' درهم':'—';
+  box.querySelector('[data-cdpsum]').textContent=base?fmt(dpSum)+' درهم':'—';
+  box.querySelector('[data-cwa]').href=waLink('سلام آقای قانونی، با محاسبه‌گر کاتالوگ حساب کردم: مبلغ مبنا '+fmt(base)+' درهم، پیش‌پرداخت '+dp+'٪ ('+fmt(dpSum)+' درهم)، قسط ماهانه حدود '+fmt(monthly)+' درهم در '+mo+' ماه — برای پروژه '+p.name+'. شرایط دقیقش رو برام می‌فرستید؟');
+}
+function initPcalc(){
+  document.querySelectorAll('[data-pcalc]').forEach(function(box){
+    box.querySelector('[data-cbase]').addEventListener('input',function(){pcalcRun(box);});
+    box.querySelector('[data-cdpnum]').addEventListener('input',function(){var dv=parseNum(box.querySelector('[data-cdpnum]').value); if(dv>90)dv=90; box.querySelector('[data-cdp]').value=dv; pcalcRun(box);});
+    box.querySelector('[data-cdp]').addEventListener('input',function(){box.querySelector('[data-cdpnum]').value=box.querySelector('[data-cdp]').value; pcalcRun(box);});
+    box.querySelector('[data-cmo]').addEventListener('input',function(){pcalcRun(box);});
+    pcalcRun(box);
+  });
+}
 /* text inputs keep Persian/Arabic digits (type=number discards them) — normalize to Latin digits before parsing */
 function parseNum(v){
   if(v==null)return 0;
@@ -720,10 +773,7 @@ function openCalc(p){
   document.getElementById('calcFor').textContent=p?('برای پروژه '+p.name+' — مبلغ مبنا از قیمت علنی خود پروژه پر شده است؛ درصد پیش‌پرداخت از پلن همان پروژه.'):'مبلغ مبنا را خودتان وارد کنید.';
   var base=document.getElementById('calcBase');
   base.value=(p&&p.priceMin)?p.priceMin:'';
-  var dp=10;
-  if(p&&p.planKeys.indexOf('1090')>=0)dp=10;
-  if(p&&p.id==='sobha-sanctuary')dp=2;
-  if(p&&p.planKeys.indexOf('5050')>=0)dp=50;
+  var dp=calcDpFor(p);
   document.getElementById('calcDp').value=dp; document.getElementById('calcDpNum').value=dp;
   document.getElementById('calcWa').innerHTML=waSvg+'ارسال این محاسبه برای حسام';
   calcRun();
@@ -835,7 +885,7 @@ function applyHashSel(){
 }
 window.addEventListener('hashchange',applyHashSel);
 
-fetch('projects.json').then(function(r){return r.json();}).then(function(d){
+fetch('projects.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(d){
   P=d.projects; AVATAR=d.meta.avatar;
   ['loaderAv','headAv','footAv'].forEach(function(id){document.getElementById(id).src=AVATAR;});
   sel=new Set([...sel].filter(function(id){return byId(id);}));
