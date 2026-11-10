@@ -199,7 +199,7 @@ table.cmp .phcell .ph.noimg{aspect-ratio:4/3;border-radius:12px}
 .calc .srcnote{margin-top:4px;padding-top:0}
 .sl-head .srcnote{margin-top:6px;padding-top:0}
 .calc label{font-size:14px;font-weight:700;color:var(--navy);display:block;margin:16px 0 7px}
-.calc input[type=number]{width:100%;height:50px;border:1px solid var(--line);border-radius:12px;padding:0 14px;font-family:inherit;font-size:17px;background:#fff;color:var(--ink)}
+.calc input[type=number],.calc input[type=text]{width:100%;height:50px;border:1px solid var(--line);border-radius:12px;padding:0 14px;font-family:inherit;font-size:17px;background:#fff;color:var(--ink)}
 .calc input[type=range]{width:100%;min-height:40px;accent-color:var(--navy)}
 .calc .dpnum{width:90px!important;height:44px!important;margin-top:6px}
 .calc-out{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:18px;text-align:center}
@@ -400,10 +400,10 @@ table.cmp .phcell .ph.noimg{aspect-ratio:4/3;border-radius:12px}
       <h3>ماشین‌حساب اقساط</h3>
       <p class="srcnote" id="calcFor"></p>
       <label for="calcBase">مبلغ مبنا (درهم)</label>
-      <input type="number" id="calcBase" inputmode="numeric" placeholder="مثلاً 2000000" min="0">
+      <input type="text" id="calcBase" inputmode="numeric" placeholder="مثلاً 2000000">
       <label>پیش‌پرداخت — <span id="calcDpVal" class="num">10</span>٪</label>
       <input type="range" id="calcDp" min="0" max="90" step="1" value="10">
-      <input type="number" class="dpnum num" id="calcDpNum" min="0" max="90" value="10" aria-label="درصد پیش‌پرداخت">
+      <input type="text" inputmode="numeric" class="dpnum num" id="calcDpNum" value="10" aria-label="درصد پیش‌پرداخت">
       <label>مدت بازپرداخت (ماه) — <span id="calcMoVal" class="num">48</span></label>
       <input type="range" id="calcMo" min="6" max="120" step="1" value="48">
       <div class="calc-out">
@@ -519,8 +519,8 @@ function groupsHTML(){
   h+='<div class="fgroup"><h4>نوع ملک</h4><div class="fchips">'+TYPES.map(function(t){return chipHTML('types',t[0],t[1]);}).join('')+'</div></div>';
   h+='<div class="fgroup"><h4>پلن پرداخت</h4><div class="fchips">'+PLANS.map(function(pl){return chipHTML('plans',pl[0],pl[1]);}).join('')+'</div></div>';
   h+='<div class="fgroup"><h4>سازنده</h4><div class="fchips">'+devs.map(function(d){return '<button type="button" class="fchip latin'+(F.devs.has(d)?' on':'')+'" data-fset="devs" data-fval="'+esc(d)+'">'+esc(d)+'</button>';}).join('')+'</div></div>';
-  h+='<div class="fgroup"><h4>حداکثر ورود (درهم)</h4><div class="frow"><input type="number" class="num" data-fnum="entry" placeholder="مثلاً 50000" value="'+(F.entry||'')+'"><span>فقط پروژه‌های با ورود علنی</span></div></div>';
-  h+='<div class="fgroup"><h4>بازه قیمت کل (درهم)</h4><div class="frow"><input type="number" class="num" data-fnum="pmin" placeholder="از" value="'+(F.pmin||'')+'"><input type="number" class="num" data-fnum="pmax" placeholder="تا" value="'+(F.pmax||'')+'"></div></div>';
+  h+='<div class="fgroup"><h4>حداکثر ورود (درهم)</h4><div class="frow"><input type="text" inputmode="numeric" class="num" data-fnum="entry" placeholder="مثلاً 50000" value="'+(F.entry||'')+'"><span>فقط پروژه‌های با ورود علنی</span></div></div>';
+  h+='<div class="fgroup"><h4>بازه قیمت کل (درهم)</h4><div class="frow"><input type="text" inputmode="numeric" class="num" data-fnum="pmin" placeholder="از" value="'+(F.pmin||'')+'"><input type="text" inputmode="numeric" class="num" data-fnum="pmax" placeholder="تا" value="'+(F.pmax||'')+'"></div></div>';
   return h;
 }
 function buildFilterUI(){
@@ -538,11 +538,11 @@ function visible(p){
   if(F.plans.size && ![...F.plans].some(function(k){return p.planKeys.indexOf(k)>=0;})) return false;
   if(F.devs.size && !(p.dev&&F.devs.has(p.dev))) return false;
   if(F.qtype!=='all' && p.type!==F.qtype) return false;
-  if(F.entry!==''){ if(!(p.entryNum!=null && p.entryNum<=Number(F.entry))) return false; }
+  if(F.entry!==''){ if(!(p.entryNum!=null && p.entryNum<=parseNum(F.entry))) return false; }
   if(F.pmin!==''||F.pmax!==''){
     if(p.priceMin==null) return 'group';
-    if(F.pmin!==''&&p.priceMax!=null&&p.priceMax<Number(F.pmin)) return false;
-    if(F.pmax!==''&&p.priceMin>Number(F.pmax)) return false;
+    if(F.pmin!==''&&p.priceMax!=null&&p.priceMax<parseNum(F.pmin)) return false;
+    if(F.pmax!==''&&p.priceMin>parseNum(F.pmax)) return false;
   }
   if(F.q.trim()){
     var q=F.q.trim().toLowerCase();
@@ -709,6 +709,12 @@ function renderCompare(){
 
 /* ---------- calculator ---------- */
 var calcProject=null;
+/* text inputs keep Persian/Arabic digits (type=number discards them) — normalize to Latin digits before parsing */
+function parseNum(v){
+  if(v==null)return 0;
+  var s=String(v).replace(/[۰-۹]/g,function(c){return '۰۱۲۳۴۵۶۷۸۹'.indexOf(c);}).replace(/[٠-٩]/g,function(c){return '٠١٢٣٤٥٦٧٨٩'.indexOf(c);}).replace(/[^0-9]/g,'');
+  return s?Number(s):0;
+}
 function openCalc(p){
   calcProject=p||null;
   document.getElementById('calcFor').textContent=p?('برای پروژه '+p.name+' — مبلغ مبنا از قیمت علنی خود پروژه پر شده است؛ درصد پیش‌پرداخت از پلن همان پروژه.'):'مبلغ مبنا را خودتان وارد کنید.';
@@ -724,7 +730,7 @@ function openCalc(p){
   show('view-calc');
 }
 function calcRun(){
-  var base=Number(document.getElementById('calcBase').value)||0;
+  var base=parseNum(document.getElementById('calcBase').value);
   var dp=Number(document.getElementById('calcDp').value)||0;
   var mo=Number(document.getElementById('calcMo').value)||48;
   document.getElementById('calcDpVal').textContent=dp;
@@ -805,7 +811,7 @@ document.getElementById('copyLink').addEventListener('click',function(){
 document.getElementById('printBtn').addEventListener('click',function(){window.print();});
 document.getElementById('slClear').addEventListener('click',function(){sel.clear();saveSets();renderShortlist();render();});
 ['calcBase','calcDpNum'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){
-  if(id==='calcDpNum')document.getElementById('calcDp').value=document.getElementById('calcDpNum').value||0;
+  if(id==='calcDpNum'){var dv=parseNum(document.getElementById('calcDpNum').value); if(dv>90)dv=90; document.getElementById('calcDp').value=dv;}
   calcRun();
 });});
 ['calcDp','calcMo'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){
