@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>حسام قانونی — کاتالوگ پروژه‌های دبی</title>
 <meta name="description" content="کاتالوگ پروژه‌های منتخب دبی با حسام قانونی — فیلتر، مقایسه و استعلام مستقیم در واتساپ.">
-<!-- build v2026-11-10.2: per-project calculator embedded on project pages; unique build marker for cache freshness -->
-<meta name="build-version" content="2026-11-10.2">
+<!-- build v2026-11-10.3: per-project calculator embedded on project pages; unique build marker for cache freshness -->
+<meta name="build-version" content="2026-11-10.3">
 <style>
 :root{
   --navy:#0B2440; --navy2:#122F52; --navy3:#071A30; --yellow:#FFC800; --yellow2:#FFE066;
@@ -509,7 +509,7 @@ function toast(t){var el=document.getElementById('toast');el.textContent=t;el.st
 /* ---------- filter groups definition ---------- */
 var AREAS=[['dubai-hills','دبی هیلز'],['nedalshba','ندالشبا و میدان'],['dubai-islands','جزایر دبی'],['jumeirah','جمیرا – لامر'],['maritime','ماریتایم سیتی'],['marjan','جزیره المرجان'],['dubailand','دبی‌لند'],['other','سایر مناطق']];
 var TYPES=[['apartment','آپارتمان'],['villa','ویلا'],['townhouse','تاون‌هاوس'],['penthouse','پنت‌هاوس']];
-var PLANS=[['5050','۵۰/۵۰'],['1090','۱۰/۹۰'],['2080','۲۰/۸۰'],['posthandover','پس از تحویل'],['longterm','اقساط بلندمدت']];
+var PLANS=[['5050','۵۰/۵۰'],['1090','۱۰/۹۰'],['2080','۲۰/۸۰'],['7030','۷۰/۳۰'],['posthandover','پس از تحویل'],['longterm','اقساط بلندمدت']];
 var BEDSV=[['1','۱'],['2','۲'],['3','۳'],['4','۴'],['5','۵ به بالا']];
 function chipHTML(setName,val,label){
   var on=F[setName].has(val);
@@ -718,6 +718,7 @@ function calcDpFor(p){
   var dp=10;
   if(p&&p.planKeys&&p.planKeys.indexOf('1090')>=0)dp=10;
   if(p&&p.id==='sobha-sanctuary')dp=2;
+  if(p&&p.id==='passo-by-beyond')dp=5;
   if(p&&p.planKeys&&p.planKeys.indexOf('5050')>=0)dp=50;
   return dp;
 }
