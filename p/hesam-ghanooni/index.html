@@ -3,596 +3,847 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>کاتالوگ پروژه‌های حسام قانونی — @dubai_hesam</title>
-<meta name="description" content="کاتالوگ آنلاین پروژه‌های معتبر دبی — حسام قانونی، کارشناس رسمی امور ملکی دبی، RERA 96131">
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<title>حسام قانونی — کاتالوگ پروژه‌های دبی</title>
+<meta name="description" content="کاتالوگ پروژه‌های منتخب دبی با حسام قانونی — فیلتر، مقایسه و استعلام مستقیم در واتساپ.">
 <style>
-:root{--navy:#0B2440;--yellow:#FFC800;--bg:#FFFFFF;--bg2:#F4F7FA;--ink2:#5A6B7E;--line:#E3EAF1;--wa:#128C4B;--red:#B3261E}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Vazirmatn',Tahoma,sans-serif;background:var(--bg);color:var(--navy);font-size:16px;line-height:1.7;-webkit-tap-highlight-color:transparent}
-button{font-family:inherit;cursor:pointer;border:none;background:none}
-a{color:inherit;text-decoration:none}
-.num{font-variant-numeric:tabular-nums;letter-spacing:.2px}
-.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
-@media(min-width:900px){.wrap{padding:0 24px}}
+:root{
+  --navy:#0B2440; --navy2:#122F52; --navy3:#071A30; --yellow:#FFC800; --yellow2:#FFE066;
+  --bg:#FFFFFF; --bg2:#F4F7FA; --ink:#14232F; --ink2:#5A6B7E; --line:#E6ECF2;
+  --wa:#128C4B; --waD:#0B5C31; --danger:#B3261E; --dangerBg:#FDECEA;
+  --sh:0 10px 34px rgba(11,36,64,.10); --sh2:0 4px 16px rgba(11,36,64,.07);
+  --rad:22px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:'Vazirmatn',Tahoma,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:104px;line-height:1.55}
+img{display:block}
+button{font-family:inherit}
+.num{font-variant-numeric:tabular-nums;letter-spacing:.1px}
+.latin{direction:ltr;unicode-bidi:isolate}
+.wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
 
-/* header */
-header{background:var(--navy);color:#fff}
-.hrow{display:flex;align-items:center;gap:12px;padding:12px 16px;max-width:1200px;margin:0 auto}
-@media(min-width:900px){.hrow{padding:14px 24px}}
-.hrow img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--yellow)}
-.hname{font-size:18px;font-weight:700;line-height:1.3}
-.hhandle{font-size:13px;color:rgba(255,255,255,.7)}
-.hwa{margin-inline-start:auto;background:var(--wa);color:#fff;font-weight:700;font-size:15px;border-radius:12px;padding:0 16px;min-height:44px;display:inline-flex;align-items:center;gap:8px}
-.demo-note{background:#FFF6D6;color:var(--navy);font-size:13px;text-align:center;padding:6px 12px;border-bottom:1px solid var(--line)}
+/* ============ Loader (v2 locked) ============ */
+#loader{position:fixed;inset:0;z-index:80;background:linear-gradient(165deg,#14335C 0%,var(--navy) 52%,var(--navy3) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transition:opacity .55s ease;overflow:hidden}
+#loader::before{content:'';position:absolute;left:50%;top:33%;width:470px;height:470px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,200,0,.15) 0%,rgba(255,200,0,.05) 45%,transparent 68%);opacity:0;animation:haloIn 1.2s ease .05s forwards}
+@keyframes haloIn{to{opacity:1}}
+#loader.hide{opacity:0;pointer-events:none}
+#loader .ringwrap{position:relative;width:196px;height:196px;animation:pop .85s cubic-bezier(.22,.9,.3,1.15) .05s both}
+@keyframes pop{from{opacity:0;transform:scale(.84)}to{opacity:1;transform:scale(1)}}
+#loader .ringwrap svg{position:absolute;inset:0}
+#loader .ringMain{transform:rotate(-90deg)}
+#loader .ringMain circle{fill:none;stroke-width:3}
+#loader .ring-track{stroke:rgba(255,255,255,.13)}
+#loader .ring-prog{stroke:url(#goldGrad);stroke-linecap:round;stroke-dasharray:308;stroke-dashoffset:308;animation:fill 1.45s cubic-bezier(.4,0,.2,1) .1s forwards}
+@keyframes fill{to{stroke-dashoffset:0}}
+#loader .ringSpin{animation:spin 7s linear infinite}
+#loader .ringSpin circle{fill:none;stroke:rgba(255,255,255,.20);stroke-width:1.5;stroke-dasharray:3 7;stroke-linecap:round}
+@keyframes spin{to{transform:rotate(360deg)}}
+#loader .avatar{position:absolute;inset:24px;border-radius:50%;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.38)}
+#loader .avatar img{width:100%;height:100%;object-fit:cover}
+#loader h1{position:relative;font-size:25px;font-weight:700;margin-top:28px;background:linear-gradient(100deg,#fff 42%,#FFE9A8 50%,#fff 58%);background-size:230% 100%;background-position:105% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:rise .7s ease .3s both,shine 1.5s ease .45s forwards}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shine{to{background-position:-105% 0}}
+#loader .handle{position:relative;color:rgba(255,255,255,.55);font-size:14px;margin-top:6px;animation:rise .7s ease .48s both}
+#loader .bar{position:relative;width:150px;height:3px;border-radius:99px;background:rgba(255,255,255,.13);margin-top:32px;overflow:hidden;animation:rise .7s ease .58s both}
+#loader .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--yellow),var(--yellow2));border-radius:99px;box-shadow:0 0 10px rgba(255,200,0,.65);animation:bar 1.45s cubic-bezier(.4,0,.2,1) .1s forwards}
+@keyframes bar{to{width:100%}}
 
-/* offer bar */
-.offerbar{background:var(--yellow);color:var(--navy)}
-.offerbar .wrap{display:flex;align-items:center;gap:10px;padding:9px 16px;font-weight:700;font-size:15px}
-.offerbar button{font-weight:800;text-decoration:underline;font-size:15px;color:var(--navy);min-height:44px}
+/* ============ Header ============ */
+.sitehead{background:linear-gradient(180deg,#fff, #FBFDFE);border-bottom:1px solid var(--line)}
+.headrow{display:flex;align-items:center;gap:14px;padding:20px 0 14px}
+.headrow .avatar{width:58px;height:58px;border-radius:50%;overflow:hidden;flex:0 0 auto;border:2px solid var(--yellow);box-shadow:var(--sh2)}
+.headrow .avatar img{width:100%;height:100%;object-fit:cover}
+.headrow .who h1{font-size:21px;font-weight:800;color:var(--navy);line-height:1.25}
+.headrow .who .sub{font-size:13.5px;color:var(--ink2);margin-top:1px}
+.headrow .who .sub .latin{font-size:13px}
+.head-wa{margin-inline-start:auto;display:none;align-items:center;gap:8px;height:46px;padding:0 20px;border-radius:13px;background:var(--wa);color:#fff;font-size:15px;font-weight:700;text-decoration:none;box-shadow:var(--sh2)}
+.head-wa svg{width:19px;height:19px;fill:#fff}
+.offerline{padding:0 0 14px;font-size:13.5px;color:var(--ink2);text-align:center}
+.offerline b{color:var(--navy)}
+.desksearch{display:none}
 
-/* filters */
-.filterbar{position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 4px 16px rgba(11,36,64,.10)}
-.frow{display:flex;gap:8px;align-items:center;padding:10px 16px;max-width:1200px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
-.frow::-webkit-scrollbar{display:none}
-.chip{flex:0 0 auto;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:999px;font-size:14px;font-weight:500;color:var(--navy);background:#fff;display:inline-flex;align-items:center;gap:6px}
-.chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-.chip.offer{background:var(--yellow);border-color:var(--yellow);font-weight:700}
-.fbtn{flex:0 0 auto;min-height:44px;padding:0 16px;border-radius:999px;background:var(--bg2);border:1px solid var(--line);font-weight:700;font-size:14px;display:inline-flex;align-items:center;gap:6px}
-.fcount{background:var(--navy);color:#fff;border-radius:50%;min-width:20px;height:20px;font-size:12px;display:inline-flex;align-items:center;justify-content:center;padding:0 5px}
-.countline{max-width:1200px;margin:0 auto;padding:10px 16px 0;font-size:14px;color:var(--ink2)}
-@media(min-width:900px){.countline{padding:14px 24px 0}}
+/* ============ Filter bar (mobile) ============ */
+.filterbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.filterbar .wrap{display:flex;align-items:center;gap:8px;padding:12px 20px;overflow-x:auto;scrollbar-width:none}
+.filterbar .wrap::-webkit-scrollbar{display:none}
+.fbtn{display:inline-flex;align-items:center;gap:7px;height:44px;padding:0 18px;border:1px solid var(--line);border-radius:99px;background:#fff;font-size:15px;font-weight:700;color:var(--navy);cursor:pointer;flex:0 0 auto}
+.fbtn svg{width:17px;height:17px;stroke:var(--navy);fill:none;stroke-width:2;stroke-linecap:round}
+.fbtn .cnt{background:var(--yellow);color:var(--navy);border-radius:99px;font-size:12px;font-weight:800;padding:1px 8px}
+.chip{height:44px;padding:0 18px;border:1px solid transparent;border-radius:99px;background:var(--bg2);font-size:15px;font-weight:500;color:var(--ink2);cursor:pointer;flex:0 0 auto}
+.chip.on{background:var(--navy);color:#fff;font-weight:700}
 
-/* grid + cards */
-.grid{display:grid;grid-template-columns:1fr;gap:16px;padding:12px 0 28px}
-@media(min-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.grid{grid-template-columns:repeat(3,1fr);gap:20px}}
-.card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 2px 12px rgba(11,36,64,.08);display:flex;flex-direction:column;position:relative}
-.card.cmp-on{outline:3px solid var(--yellow);outline-offset:-1px}
-.card .ph{position:relative;aspect-ratio:4/3;background:linear-gradient(135deg,#0B2440,#1D4E79);overflow:hidden}
-.card .ph img{width:100%;height:100%;object-fit:cover;display:block}
-.card .ph .phname{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:19px;text-align:center;padding:16px;direction:ltr}
-.badge-urg{position:absolute;top:10px;inset-inline-start:10px;background:var(--yellow);color:var(--navy);font-weight:700;font-size:13px;border-radius:8px;padding:3px 10px}
-.picks{position:absolute;top:8px;inset-inline-end:8px;display:flex;gap:8px}
-.pick{min-width:44px;height:44px;padding:0 10px;border-radius:999px;background:rgba(255,255,255,.94);border:1px solid var(--line);font-size:13px;font-weight:700;color:var(--navy);display:inline-flex;align-items:center;gap:5px}
-.pick.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-.cbody{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
-.pname{font-size:18px;font-weight:700;direction:ltr;text-align:end;line-height:1.4}
-.pdev{font-size:13px;color:var(--ink2);font-weight:500}
-.pmeta{font-size:14px;color:var(--ink2);font-weight:500}
-.price{font-size:21px;font-weight:800;line-height:1.5}
-.entry{display:inline-block;background:var(--yellow);color:var(--navy);font-weight:700;font-size:14px;border-radius:8px;padding:3px 10px}
-.planchip{display:inline-block;background:var(--bg2);border:1px solid var(--line);color:var(--navy);font-size:13px;font-weight:500;border-radius:999px;padding:3px 12px}
-.srcnote{font-size:12.5px;color:var(--ink2);line-height:1.6}
-.srcnote.warn{color:var(--red);font-weight:500}
-.wabtn{margin-top:auto;background:var(--wa);color:#fff;font-weight:700;font-size:16px;border-radius:12px;min-height:48px;display:flex;align-items:center;justify-content:center;gap:8px;width:100%}
-.detbtn{background:#fff;border:1.5px solid var(--navy);color:var(--navy);font-weight:700;font-size:15px;border-radius:12px;min-height:48px;width:100%}
-.grouphead{grid-column:1/-1;font-size:19px;font-weight:800;margin-top:10px;border-bottom:2px solid var(--yellow);padding-bottom:6px}
+/* ============ Layout / grid ============ */
+.layout{display:block}
+.sidefilters{display:none}
+.grid{display:flex;flex-direction:column;gap:26px;padding:18px 0 10px}
+.resline{font-size:14px;color:var(--ink2);text-align:center;padding:4px 0 0}
+.resline b{color:var(--navy)}
+.askgroup{margin-top:10px}
+.askgroup h3{font-size:16px;font-weight:800;color:var(--navy);padding:8px 2px 0;border-top:1px dashed var(--line);margin-top:6px;padding-top:16px}
 
-/* sheet */
-.sheet-wrap{position:fixed;inset:0;z-index:80;display:none}
-.sheet-wrap.open{display:block}
-.sheet-bg{position:absolute;inset:0;background:rgba(11,36,64,.5)}
-.sheet{position:absolute;left:0;right:0;bottom:0;max-height:88vh;overflow:auto;background:#fff;border-radius:20px 20px 0 0;padding:18px 16px 24px}
-@media(min-width:900px){.sheet{left:50%;right:auto;transform:translateX(-50%);width:560px;bottom:24px;border-radius:20px}}
-.sheet h3{font-size:19px;font-weight:800;margin-bottom:12px}
-.fgroup{margin-bottom:18px}
-.fgroup h4{font-size:15px;font-weight:700;margin-bottom:8px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-input[type=number],input[type=text]{font-family:inherit;font-size:16px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-height:48px;width:100%;color:var(--navy);background:#fff}
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.sheet .apply{position:sticky;bottom:0;background:var(--navy);color:#fff;font-weight:700;font-size:16px;border-radius:12px;min-height:52px;width:100%;margin-top:6px}
-.clearall{color:var(--red);font-weight:700;font-size:14px;min-height:44px}
-.x{position:absolute;top:10px;inset-inline-end:12px;width:44px;height:44px;font-size:22px;color:var(--ink2)}
+/* ============ Card ============ */
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;box-shadow:var(--sh2);display:flex;flex-direction:column;transition:transform .25s ease, box-shadow .25s ease}
+.card .ph{aspect-ratio:4/3;overflow:hidden;background:var(--bg2);cursor:pointer;position:relative}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.ph.noimg{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(160deg,#123a63,var(--navy))}
+.ph.noimg .noimg-av{width:84px;height:84px;border-radius:50%;object-fit:cover;border:2px solid var(--yellow)}
+.ph.noimg .noimg-name{font-size:18px;font-weight:800;color:#fff;letter-spacing:.5px;text-align:center;padding:0 16px}
+.badge-urg{position:absolute;top:12px;inset-inline-start:12px;background:var(--yellow);color:var(--navy);font-size:12.5px;font-weight:800;border-radius:99px;padding:4px 11px;box-shadow:var(--sh2)}
+.card .body{padding:17px 18px 19px;display:flex;flex-direction:column;flex:1}
+.card h2{font-size:18.5px;font-weight:800;color:var(--navy);line-height:1.35;cursor:pointer}
+.card .pdev{font-size:13px;color:var(--ink2);margin-top:2px}
+.card .meta{font-size:13.5px;color:var(--ink2);margin-top:6px}
+.price-row{display:flex;align-items:center;gap:9px;margin-top:13px;flex-wrap:wrap}
+.price{font-size:23px;font-weight:800;color:var(--navy)}
+.entrybadge{display:inline-block;background:var(--yellow);color:var(--navy);font-size:14.5px;font-weight:800;border-radius:10px;padding:6px 11px}
+.planchip{display:inline-block;background:var(--bg2);color:var(--ink2);font-size:12.5px;font-weight:500;border-radius:99px;padding:5px 11px}
+.askline{font-size:15.5px;font-weight:700;color:var(--navy);margin-top:13px}
+.srcnote{font-size:12px;color:var(--ink2);margin-top:auto;padding-top:12px}
+.srcnote.warn{color:var(--danger);font-weight:600}
+.actions{display:flex;gap:9px;margin-top:14px;flex-wrap:wrap}
+.btn-wa{flex:1 1 150px;min-height:50px;border:none;border-radius:13px;background:var(--wa);color:#fff;font-size:15.5px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;text-decoration:none;padding:10px 14px}
+.btn-wa svg{width:19px;height:19px;fill:#fff;flex:0 0 auto}
+.btn-add{min-height:50px;padding:10px 16px;border-radius:13px;border:1.5px solid var(--navy);background:#fff;color:var(--navy);font-size:14.5px;font-weight:700;cursor:pointer;white-space:nowrap}
+.btn-add.added{background:var(--navy);color:#fff}
+.btn-cmp{min-height:50px;padding:10px 14px;border-radius:13px;border:1.5px solid var(--line);background:#fff;color:var(--ink2);font-size:14.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+.btn-cmp.added{border-color:var(--yellow);background:#FFF8DC;color:var(--navy);font-weight:700}
+.btn-det{width:100%;min-height:46px;margin-top:9px;border-radius:13px;border:1px solid var(--line);background:var(--bg2);color:var(--navy);font-size:14.5px;font-weight:700;cursor:pointer}
 
-/* views */
+/* ============ Empty state ============ */
+.empty{background:var(--bg2);border:1px dashed var(--line);border-radius:var(--rad);padding:34px 22px;text-align:center}
+.empty h3{font-size:17px;font-weight:800;color:var(--navy)}
+.empty p{font-size:14px;color:var(--ink2);margin:8px 0 16px}
+.empty .btn-wa{flex:none;display:inline-flex}
+
+/* ============ List bar / compare bar ============ */
+.listbar{position:fixed;right:0;left:0;bottom:0;z-index:40;background:#fff;border-top:1px solid var(--line);box-shadow:0 -8px 28px rgba(11,36,64,.10);padding:12px 20px calc(12px + env(safe-area-inset-bottom))}
+.listbar .wrap{display:flex;align-items:center;gap:12px;padding:0}
+.listbar .lbl{font-size:15.5px;font-weight:800;color:var(--navy);white-space:nowrap}
+.listbar .cmpgo{height:52px;padding:0 16px;border-radius:14px;border:1.5px solid var(--navy);background:#fff;color:var(--navy);font-size:14.5px;font-weight:700;cursor:pointer;white-space:nowrap}
+.listbar .send{flex:1;height:52px;border:none;border-radius:14px;background:var(--wa);color:#fff;font-size:16.5px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer}
+.listbar .send svg{width:20px;height:20px;fill:#fff}
+
+/* ============ Filter sheet (mobile) + shared groups ============ */
+.sheetwrap{position:fixed;inset:0;z-index:60;visibility:hidden}
+.sheetwrap.open{visibility:visible}
+.scrim{position:absolute;inset:0;background:rgba(7,20,36,.48);opacity:0;transition:opacity .35s ease}
+.sheetwrap.open .scrim{opacity:1}
+.sheet{position:absolute;left:0;right:0;bottom:0;max-height:88vh;overflow-y:auto;background:#fff;border-radius:26px 26px 0 0;padding:8px 20px calc(16px + env(safe-area-inset-bottom));transform:translateY(103%);transition:transform .42s cubic-bezier(.32,.9,.35,1);box-shadow:0 -18px 50px rgba(7,20,36,.25)}
+.sheetwrap.open .sheet{transform:translateY(0)}
+.grab{width:44px;height:4.5px;border-radius:99px;background:var(--line);margin:4px auto}
+.sheet-head{display:flex;align-items:center;justify-content:space-between;padding:4px 0 0}
+.sheet-head h3{font-size:18px;font-weight:800;color:var(--navy)}
+.sheet-x{width:38px;height:38px;border:none;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.sheet-x svg{width:15px;height:15px;stroke:var(--navy);stroke-width:2.2;fill:none;stroke-linecap:round}
+.fgroup{padding:12px 0 4px;border-top:1px solid var(--line);margin-top:10px}
+.fgroup:first-of-type{border-top:none;margin-top:2px}
+.fgroup h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:9px}
+.fchips{display:flex;flex-wrap:wrap;gap:7px}
+.fchip{min-height:38px;padding:5px 14px;border-radius:99px;border:1px solid var(--line);background:#fff;font-size:13.5px;font-weight:500;color:var(--ink2);cursor:pointer}
+.fchip.on{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.frow{display:flex;gap:8px;align-items:center}
+.frow input{flex:1;min-width:0;height:44px;border:1px solid var(--line);border-radius:11px;padding:0 12px;font-family:inherit;font-size:15px;color:var(--ink);background:#fff}
+.frow span{font-size:13px;color:var(--ink2);white-space:nowrap}
+.sheet-foot{display:flex;gap:10px;margin-top:16px;position:sticky;bottom:0;background:#fff;padding:12px 0 2px;border-top:1px solid var(--line)}
+.btn-apply{flex:1;height:52px;border:none;border-radius:14px;background:var(--navy);color:#fff;font-size:16px;font-weight:800;cursor:pointer}
+.btn-clear{height:52px;padding:0 22px;border-radius:14px;border:1.5px solid var(--line);background:#fff;color:var(--ink2);font-size:15px;font-weight:700;cursor:pointer}
+
+/* ============ Views ============ */
 .view{display:none}
 .view.on{display:block}
-.backbtn{min-height:44px;font-weight:700;font-size:15px;color:var(--navy);display:inline-flex;align-items:center;gap:6px;margin:10px 0}
-.gal{border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,#0B2440,#1D4E79);position:relative}
-.gal img{width:100%;height:100%;object-fit:cover}
-.gal .phname{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:22px;direction:ltr;text-align:center;padding:20px}
-.pgrid{display:grid;grid-template-columns:1fr;gap:20px;padding-bottom:28px}
-@media(min-width:900px){.pgrid{grid-template-columns:3fr 2fr;align-items:start}}
-.bigprice{font-size:27px;font-weight:800}
-.kv{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
-.kv b{font-weight:700}
-.kv span{color:var(--ink2)}
-.actstack{display:flex;flex-direction:column;gap:10px;margin-top:16px}
-.actbar{position:sticky;bottom:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:10px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 -4px 16px rgba(11,36,64,.08)}
-.actbar .pr{font-weight:800;font-size:17px}
-.actbar .wabtn{margin:0;flex:1;width:auto}
-@media(min-width:900px){.actbar{display:none}}
+.backbtn{display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 16px;border:1px solid var(--line);border-radius:99px;background:#fff;font-size:14.5px;font-weight:700;color:var(--navy);cursor:pointer;margin:16px 0 4px}
+.backbtn svg{width:15px;height:15px;stroke:var(--navy);fill:none;stroke-width:2.2;stroke-linecap:round}
 
-/* compare */
-.cmpwrap{overflow-x:auto;padding-bottom:24px}
-table.cmp{border-collapse:collapse;min-width:100%}
-table.cmp th,table.cmp td{border:1px solid var(--line);padding:10px 12px;font-size:14.5px;text-align:right;vertical-align:top;min-width:150px}
-table.cmp th:first-child,table.cmp td:first-child{position:sticky;right:0;background:var(--bg2);font-weight:700;min-width:96px;z-index:2}
-table.cmp tr:nth-child(even) td{background:#FBFDFE}
-table.cmp img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px}
-table.cmp .wabtn{min-height:44px;font-size:14px}
+/* Project page */
+.proj-hero{border-radius:var(--rad);overflow:hidden;border:1px solid var(--line);margin-top:12px}
+.proj-hero img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.proj-hero .ph.noimg{aspect-ratio:4/3}
+.proj-info{padding:20px 2px 0}
+.proj-info h2{font-size:23px;font-weight:800;color:var(--navy);line-height:1.35}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.kv .cell{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.kv .k{font-size:12px;color:var(--ink2);font-weight:600}
+.kv .v{font-size:15.5px;font-weight:700;color:var(--navy);margin-top:3px}
+.kv .cell.wide{grid-column:1/-1}
+.conflictbox{background:var(--dangerBg);border:1px solid #F3C2BE;border-radius:14px;padding:13px 15px;margin-top:16px;font-size:14px;color:var(--danger);font-weight:600}
+.proj-actions{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.proj-actions .row{display:flex;gap:9px;flex-wrap:wrap}
+.btn-navy{min-height:50px;padding:10px 18px;border-radius:13px;border:none;background:var(--navy);color:#fff;font-size:15px;font-weight:700;cursor:pointer;flex:1 1 150px}
+.btn-ghost{min-height:50px;padding:10px 16px;border-radius:13px;border:1.5px solid var(--line);background:#fff;color:var(--navy);font-size:14.5px;font-weight:700;cursor:pointer}
 
-/* calc */
-.calc{max-width:640px;margin:0 auto;background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:20px 16px}
-.calc h3{font-size:19px;font-weight:800;margin-bottom:12px}
-.calc label{font-size:14px;font-weight:700;display:block;margin:12px 0 6px}
-.calc input[type=range]{width:100%;min-height:44px;accent-color:var(--navy)}
-.calc-out{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:16px;text-align:center}
-.calc-out .m{font-size:25px;font-weight:800}
+/* Shortlist */
+.sl-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.sl-head h2{font-size:21px;font-weight:800;color:var(--navy)}
+.sl-tools{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0 4px}
+.sl-tools button,.sl-tools a{min-height:46px;padding:9px 16px;border-radius:12px;font-size:14.5px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.sl-tools .b1{background:var(--navy);color:#fff;border:none}
+.sl-tools .b2{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+.sl-tools .b3{background:var(--bg2);color:var(--ink2);border:1px solid var(--line)}
+.rm-x{position:absolute;top:10px;inset-inline-end:10px;width:34px;height:34px;border:none;border-radius:50%;background:rgba(11,36,64,.78);color:#fff;font-size:16px;cursor:pointer;z-index:2}
 
-/* selbar */
-.selbar{position:sticky;bottom:0;z-index:35;background:var(--navy);color:#fff;display:none}
-.selbar.on{display:block}
-.selbar .in{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 16px;min-height:56px}
-.selbar button{background:var(--yellow);color:var(--navy);font-weight:800;border-radius:12px;min-height:44px;padding:0 18px;font-size:15px}
+/* Compare */
+.cmpwrap{overflow-x:auto;margin-top:14px;border:1px solid var(--line);border-radius:18px;background:#fff}
+table.cmp{border-collapse:collapse;width:100%;min-width:560px}
+table.cmp th,table.cmp td{border-bottom:1px solid var(--line);padding:13px 14px;font-size:14px;text-align:right;vertical-align:top}
+table.cmp th{background:var(--bg2);color:var(--navy);font-weight:800;width:110px}
+table.cmp td{color:var(--ink)}
+table.cmp .phcell img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px}
+table.cmp .phcell .ph.noimg{aspect-ratio:4/3;border-radius:12px}
+.cmp-actions{display:flex;gap:9px;margin-top:14px;flex-wrap:wrap}
 
-/* shortlist */
-.outrow{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 24px}
-.outrow .b1{background:var(--navy);color:#fff;font-weight:700;border-radius:12px;min-height:48px;padding:0 18px;font-size:15px}
-.outrow .b2{background:#fff;border:1.5px solid var(--navy);color:var(--navy);font-weight:700;border-radius:12px;min-height:48px;padding:0 18px;font-size:15px}
+/* Calc */
+.calc{max-width:680px;margin:16px auto 0;background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:22px 18px}
+.calc h3{font-size:19px;font-weight:800;color:var(--navy)}
+.calc .srcnote{margin-top:4px;padding-top:0}
+.calc label{font-size:14px;font-weight:700;color:var(--navy);display:block;margin:16px 0 7px}
+.calc input[type=number]{width:100%;height:50px;border:1px solid var(--line);border-radius:12px;padding:0 14px;font-family:inherit;font-size:17px;background:#fff;color:var(--ink)}
+.calc input[type=range]{width:100%;min-height:40px;accent-color:var(--navy)}
+.calc .dpnum{width:90px!important;height:44px!important;margin-top:6px}
+.calc-out{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:18px;text-align:center}
+.calc-out .t{font-size:13px;color:var(--ink2);font-weight:600}
+.calc-out .m{font-size:26px;font-weight:800;color:var(--navy);margin-top:4px}
+.calc-out .s{margin-top:7px;color:var(--ink2);font-size:14px}
+.calc .btn-wa{width:100%;margin-top:14px}
 
-/* admin */
-.admbox{border:1.5px dashed var(--yellow);background:#FFFDF2;border-radius:16px;padding:16px;margin:18px 0}
-.admbox h3{font-size:17px;font-weight:800;margin-bottom:6px}
-.admbox table{width:100%;border-collapse:collapse;font-size:14px}
-.admbox td,.admbox th{border-bottom:1px solid var(--line);padding:8px 6px;text-align:right}
-.switch{min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:999px;font-weight:700;font-size:13px;background:#fff}
-.switch.on{background:var(--navy);color:#fff}
-.stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
-.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 16px;text-align:center}
-.stat b{font-size:21px;font-weight:800;display:block}
+/* Footer */
+.sitefoot{background:var(--navy);color:#DCE6F0;margin-top:44px}
+.sitefoot .wrap{padding:30px 20px 34px}
+.foot-grid{display:flex;flex-direction:column;gap:22px}
+.foot-brand{display:flex;align-items:center;gap:12px}
+.foot-brand .avatar{width:52px;height:52px;border-radius:50%;overflow:hidden;border:2px solid var(--yellow);flex:0 0 auto}
+.foot-brand .avatar img{width:100%;height:100%;object-fit:cover}
+.foot-brand h3{color:#fff;font-size:18px;font-weight:800}
+.foot-brand .sub{font-size:13px;color:#9FB4C8}
+.sitefoot h4{color:#fff;font-size:15px;font-weight:800;margin-bottom:10px}
+.sitefoot p,.sitefoot li{font-size:13.5px;color:#B9CBDC;line-height:1.9}
+.sitefoot ul{list-style:none}
+.sitefoot a{color:#fff;text-decoration:none;font-weight:600}
+.foot-wa{display:inline-flex;align-items:center;gap:8px;background:var(--wa);color:#fff!important;padding:11px 18px;border-radius:12px;font-size:14.5px}
+.foot-wa svg{width:18px;height:18px;fill:#fff}
+.foot-base{border-top:1px solid rgba(255,255,255,.14);margin-top:24px;padding-top:16px;font-size:12.5px;color:#8FA6BC;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between}
 
-footer{background:var(--navy);color:#fff;margin-top:8px}
-.fin{max-width:1200px;margin:0 auto;padding:22px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-.fin img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--yellow)}
-.fin .trust{font-size:14px;color:rgba(255,255,255,.85)}
-.fin a.walink{margin-inline-start:auto;background:var(--wa);color:#fff;font-weight:700;border-radius:12px;padding:0 18px;min-height:48px;display:inline-flex;align-items:center}
-.empty{padding:40px 16px;text-align:center}
-.empty h3{font-size:20px;font-weight:800;margin-bottom:8px}
-.empty p{color:var(--ink2);margin-bottom:16px}
-.skel{border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.skel .a{aspect-ratio:4/3;background:var(--bg2);animation:pl 1.2s infinite alternate}
-.skel .b{height:16px;background:var(--bg2);margin:12px;border-radius:6px;animation:pl 1.2s infinite alternate}
-@keyframes pl{from{opacity:.6}to{opacity:1}}
-.toast{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:14px;font-weight:700;border-radius:999px;padding:10px 20px;z-index:90;display:none;box-shadow:0 6px 20px rgba(0,0,0,.25)}
-@media print{
- header,.filterbar,.offerbar,.selbar,.actbar,.demo-note,.frow,.outrow,.admbox,.picks,.toast{display:none!important}
- .view{display:none!important}
- #view-shortlist{display:block!important}
- .card{break-inside:avoid;box-shadow:none}
- body{font-size:13px}
- .printhead{display:block!important}
+/* Toast */
+#toast{position:fixed;bottom:118px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:14px;font-weight:600;padding:11px 20px;border-radius:99px;z-index:70;display:none;box-shadow:var(--sh);white-space:nowrap}
+
+.printhead{display:none}
+
+/* ============ Tablet ============ */
+@media (min-width:640px){
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+  .grid .card{height:100%}
+  .resline{grid-column:1/-1}
+  .empty{grid-column:1/-1}
+  .askgroup{grid-column:1/-1}
 }
-.printhead{display:none;border-bottom:3px solid var(--navy);padding-bottom:10px;margin-bottom:14px}
+
+/* ============ Desktop — separate professional layout ============ */
+@media (min-width:1024px){
+  body{padding-bottom:110px}
+  .headrow{padding:26px 0 18px;gap:16px}
+  .headrow .avatar{width:64px;height:64px}
+  .headrow .who h1{font-size:25px}
+  .head-wa{display:inline-flex}
+  .offerline{text-align:start;padding-bottom:18px;font-size:14px}
+  .desksearch{display:flex;align-items:center;gap:10px;margin-inline-start:26px;flex:1;max-width:430px}
+  .desksearch input{flex:1;height:46px;border:1px solid var(--line);border-radius:13px;padding:0 15px;font-family:inherit;font-size:14.5px;background:var(--bg2);color:var(--ink)}
+  .filterbar{display:none}
+  .layout{display:grid;grid-template-columns:288px 1fr;gap:30px;align-items:start;padding-top:22px}
+  .sidefilters{display:block;position:sticky;top:22px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px 18px 16px;box-shadow:var(--sh2);max-height:calc(100vh - 44px);overflow-y:auto}
+  .sidefilters h3{font-size:17px;font-weight:800;color:var(--navy);padding-bottom:6px}
+  .sidefilters .fgroup:first-of-type{margin-top:4px}
+  .sidefilters .sheet-foot{position:static;border-top:1px solid var(--line);margin-top:16px}
+  .grid{grid-template-columns:repeat(3,1fr);gap:24px;padding:0}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--sh)}
+  .card:hover .ph img{transform:scale(1.045)}
+  .proj-layout{display:grid;grid-template-columns:1.25fr 1fr;gap:30px;align-items:start;padding-top:14px}
+  .proj-hero{margin-top:0;position:sticky;top:22px}
+  .proj-hero img{aspect-ratio:4/3}
+  .proj-info{padding:4px 0 0}
+  .proj-info h2{font-size:27px}
+  .foot-grid{flex-direction:row;gap:44px}
+  .foot-grid>div{flex:1}
+  .foot-grid .foot-brand-col{flex:1.3}
+  #toast{bottom:120px}
+}
+@media (min-width:1400px){
+  .grid{grid-template-columns:repeat(4,1fr)}
+}
+
+/* ============ Print: shortlist ============ */
+@media print{
+  #loader,.filterbar,.listbar,.sitefoot,.backbtn,.sl-tools,.actions,.btn-det,.rm-x,.sidefilters,#toast{display:none!important}
+  body{padding-bottom:0}
+  .view{display:none!important}
+  #view-shortlist{display:block!important}
+  .printhead{display:block!important;border-bottom:3px solid var(--navy);padding-bottom:12px;margin-bottom:16px}
+  .printhead h2{font-size:20px;color:var(--navy)}
+  .printhead p{font-size:13px;color:var(--ink2)}
+  .grid{display:block}
+  .card{break-inside:avoid;margin-bottom:16px;box-shadow:none}
+}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="hrow">
-    <img src="data:image/jpeg;base64,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" alt="حسام قانونی">
-    <div>
-      <div class="hname">حسام قانونی</div>
-      <div class="hhandle"><span dir="ltr">@dubai_hesam</span> — کاتالوگ پروژه‌های دبی</div>
+<!-- ======= Loader (v2) ======= -->
+<div id="loader" aria-hidden="true">
+  <div class="ringwrap">
+    <svg class="ringSpin" viewBox="0 0 112 112" aria-hidden="true"><circle cx="56" cy="56" r="45.5"></circle></svg>
+    <svg class="ringMain" viewBox="0 0 112 112" aria-hidden="true">
+      <defs><linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FFC800"></stop><stop offset="55%" stop-color="#FFE066"></stop><stop offset="100%" stop-color="#FF9E2C"></stop>
+      </linearGradient></defs>
+      <circle class="ring-track" cx="56" cy="56" r="49"></circle>
+      <circle class="ring-prog" cx="56" cy="56" r="49"></circle>
+    </svg>
+    <div class="avatar"><img id="loaderAv" alt="حسام قانونی"></div>
+  </div>
+  <h1>حسام قانونی</h1>
+  <div class="handle latin">@dubai_hesam</div>
+  <div class="bar"><i></i></div>
+</div>
+
+<!-- ======= Header ======= -->
+<header class="sitehead">
+  <div class="wrap">
+    <div class="headrow">
+      <div class="avatar"><img id="headAv" alt="حسام قانونی"></div>
+      <div class="who">
+        <h1>حسام قانونی</h1>
+        <div class="sub">مشاور رسمی املاک و سرمایه‌گذاری در دبی · <span class="latin">@dubai_hesam</span></div>
+      </div>
+      <div class="desksearch">
+        <input type="search" id="qDesk" placeholder="جستجوی پروژه یا منطقه…" aria-label="جستجو">
+      </div>
+      <a class="head-wa" id="headWa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.8l.6-.7c.1-.2 0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3z"/></svg>گفت‌وگو در واتساپ</a>
     </div>
-    <a class="hwa" id="headWa" target="_blank" rel="noopener">واتساپ حسام</a>
+    <p class="offerline">آفر این هفته: ورود به <b>PALACE B</b> فقط با <b class="num">40,000</b> درهم — برای جزئیات روی کارت پروژه بزنید.</p>
   </div>
 </header>
-<div class="demo-note">نسخه نمایشی کاتالوگ — قیمت و شرایط هر پروژه طبق اعلام خود حسام قانونی در پیجش است و تأیید نهایی با خود اوست.</div>
 
-<!-- HOME -->
-<main id="view-home" class="view on">
-  <div class="offerbar" id="offerbar" style="display:none">
-    <div class="wrap"><span id="offerText"></span><button id="offerGo">مشاهده</button></div>
-  </div>
-
-  <div class="filterbar">
-    <div class="frow" id="quickChips"></div>
-  </div>
-  <div class="countline" id="countline"></div>
-
+<!-- ======= Mobile filter bar ======= -->
+<nav class="filterbar">
   <div class="wrap">
-    <div class="grid" id="grid">
-      <div class="skel"><div class="a"></div><div class="b"></div><div class="b" style="width:55%"></div></div>
-      <div class="skel"><div class="a"></div><div class="b"></div><div class="b" style="width:55%"></div></div>
-      <div class="skel"><div class="a"></div><div class="b"></div><div class="b" style="width:55%"></div></div>
-    </div>
-    <div class="empty" id="emptyBox" style="display:none">
-      <h3>موردی با این فیلترها نیست</h3>
-      <p>ولی حسام در واتساپ پروژه‌های مشابه را برایتان می‌فرستد.</p>
-      <a class="wabtn" id="emptyWa" target="_blank" rel="noopener" style="max-width:340px;margin:0 auto 10px">سؤال در واتساپ</a>
-      <button class="detbtn" id="clearFilters2" style="max-width:340px">حذف همه فیلترها</button>
-    </div>
-
-    <section class="admbox" id="adminBox">
-      <h3>پنل مدیریت — نمایشی (دمو)</h3>
-      <p class="srcnote">این پنل فقط برای نمایش است؛ تغییرات فقط روی همین دستگاه می‌ماند و جایی ذخیره یا منتشر نمی‌شود. آمار بازدید و کلیک هم نمایشی و نمونه است.</p>
-      <div style="overflow-x:auto">
-      <table id="admTable"><thead><tr><th>پروژه</th><th>فروخته شد</th><th>مخفی</th></tr></thead><tbody></tbody></table>
-      </div>
-      <div class="stats">
-        <div class="stat"><b class="num">1,248</b>بازدید کاتالوگ (نمایشی)</div>
-        <div class="stat"><b class="num">312</b>بازدید پروژه‌ها (نمایشی)</div>
-        <div class="stat"><b class="num">96</b>کلیک واتساپ (نمایشی)</div>
-      </div>
-    </section>
+    <button class="fbtn" type="button" id="filterBtn">
+      <svg viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+      فیلتر <span class="cnt num" id="fCount" style="display:none">0</span>
+    </button>
+    <button class="chip on" type="button" data-qtype="all">همه</button>
+    <button class="chip" type="button" data-qtype="villa">ویلا</button>
+    <button class="chip" type="button" data-qtype="apartment">آپارتمان</button>
+    <button class="chip" type="button" data-qtype="penthouse">پنت‌هاوس</button>
   </div>
+</nav>
 
-  <div class="selbar" id="selbar">
-    <div class="in"><span id="selbarTxt"></span><button id="selbarGo" style="margin-inline-start:auto">مشاهده انتخاب</button></div>
+<!-- ======= HOME VIEW ======= -->
+<main class="view on" id="view-home">
+  <div class="wrap">
+    <div class="layout">
+      <aside class="sidefilters" id="sideFilters" aria-label="فیلتر پروژه‌ها">
+        <h3>فیلتر پروژه‌ها</h3>
+        <div data-groups></div>
+        <div class="sheet-foot">
+          <button type="button" class="btn-clear" data-clear>پاک کردن</button>
+          <button type="button" class="btn-apply" data-apply>نمایش نتایج</button>
+        </div>
+      </aside>
+      <div>
+        <div class="grid" id="grid"></div>
+      </div>
+    </div>
   </div>
 </main>
 
-<!-- PROJECT -->
-<main id="view-project" class="view">
+<!-- ======= PROJECT VIEW ======= -->
+<main class="view" id="view-project">
   <div class="wrap">
-    <button class="backbtn" data-back>‹ بازگشت به فهرست</button>
-    <div id="projectBody"></div>
+    <button class="backbtn" type="button" data-back><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>بازگشت به کاتالوگ</button>
+    <div id="projBody"></div>
   </div>
-  <div class="actbar" id="actbar"></div>
 </main>
 
-<!-- SHORTLIST -->
-<main id="view-shortlist" class="view">
+<!-- ======= SHORTLIST VIEW ======= -->
+<main class="view" id="view-shortlist">
   <div class="wrap">
-    <button class="backbtn" data-back>‹ بازگشت به فهرست</button>
+    <button class="backbtn" type="button" data-back><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>بازگشت به کاتالوگ</button>
     <div class="printhead">
-      <b>انتخاب پروژه‌ها — حسام قانونی</b> | کارشناس رسمی امور ملکی دبی — RERA 96131 | واتساپ: <span dir="ltr">+971 50 156 4545</span>
+      <h2>انتخاب پروژه‌ها — حسام قانونی</h2>
+      <p>کاتالوگ پروژه‌های دبی · واتساپ: <span class="num">+971 50 156 4545</span> · <span class="latin">@dubai_hesam</span></p>
     </div>
-    <h2 style="font-size:22px;font-weight:800;margin:6px 0 4px" id="slTitle">انتخاب من</h2>
-    <p class="srcnote" id="slSub">پروژه‌هایی که برای بررسی انتخاب کرده‌اید.</p>
-    <div class="outrow">
-      <button class="b1" id="copyLink">ساخت لینک انتخاب</button>
-      <button class="b2" id="printBtn">خروجی PDF / چاپ</button>
-      <a class="b1" id="sendAllWa" target="_blank" rel="noopener" style="background:var(--wa);display:inline-flex;align-items:center">ارسال کل انتخاب در واتساپ</a>
+    <div class="sl-head"><h2 id="slTitle">لیست من</h2></div>
+    <div class="sl-tools">
+      <button type="button" class="b1" id="copyLink">کپی لینک انتخاب</button>
+      <button type="button" class="b2" id="printBtn">خروجی PDF / چاپ</button>
+      <button type="button" class="b3" id="slClear">پاک کردن لیست</button>
     </div>
-    <div class="grid" id="slGrid" style="padding-top:0"></div>
-    <div class="empty" id="slEmpty" style="display:none">
-      <h3>هنوز پروژه‌ای انتخاب نشده</h3>
-      <p>از فهرست کاتالوگ، روی «انتخاب» هر کارت بزنید.</p>
-      <button class="detbtn" data-back style="max-width:300px">رفتن به فهرست</button>
-    </div>
+    <div class="grid" id="slGrid"></div>
   </div>
 </main>
 
-<!-- COMPARE -->
-<main id="view-compare" class="view">
+<!-- ======= COMPARE VIEW ======= -->
+<main class="view" id="view-compare">
   <div class="wrap">
-    <button class="backbtn" data-back>‹ بازگشت به فهرست</button>
-    <h2 style="font-size:22px;font-weight:800;margin:6px 0 14px">مقایسه پروژه‌ها</h2>
-    <div class="cmpwrap" id="cmpBody"></div>
+    <button class="backbtn" type="button" data-back><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>بازگشت به کاتالوگ</button>
+    <div class="sl-head"><h2>مقایسه پروژه‌ها</h2></div>
+    <div id="cmpBody"></div>
   </div>
 </main>
 
-<!-- CALC -->
-<main id="view-calc" class="view">
+<!-- ======= CALC VIEW ======= -->
+<main class="view" id="view-calc">
   <div class="wrap">
-    <button class="backbtn" data-back>‹ بازگشت</button>
+    <button class="backbtn" type="button" data-back><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>بازگشت</button>
     <div class="calc">
-      <h3>محاسبه‌گر اقساط</h3>
+      <h3>ماشین‌حساب اقساط</h3>
       <p class="srcnote" id="calcFor"></p>
-      <label>مبلغ مبنا (درهم)</label>
+      <label for="calcBase">مبلغ مبنا (درهم)</label>
       <input type="number" id="calcBase" inputmode="numeric" placeholder="مثلاً 2000000" min="0">
-      <label>پیش‌پرداخت — <span id="calcDpVal">10</span>٪</label>
+      <label>پیش‌پرداخت — <span id="calcDpVal" class="num">10</span>٪</label>
       <input type="range" id="calcDp" min="0" max="90" step="1" value="10">
-      <input type="number" id="calcDpNum" min="0" max="90" value="10">
-      <label>مدت بازپرداخت (ماه) — <span id="calcMoVal">48</span></label>
+      <input type="number" class="dpnum num" id="calcDpNum" min="0" max="90" value="10" aria-label="درصد پیش‌پرداخت">
+      <label>مدت بازپرداخت (ماه) — <span id="calcMoVal" class="num">48</span></label>
       <input type="range" id="calcMo" min="6" max="120" step="1" value="48">
       <div class="calc-out">
-        <div>قسط ماهانه</div>
+        <div class="t">قسط ماهانه (تقریبی)</div>
         <div class="m num" id="calcMonthly">—</div>
-        <div style="margin-top:6px;color:var(--ink2)">جمع پیش‌پرداخت: <b class="num" id="calcDpSum">—</b></div>
-        <div class="srcnote" style="margin-top:8px">محاسبه ساده و بدون سود است؛ مبلغ باقی‌مانده مساوی بین ماه‌ها تقسیم می‌شود. شرایط نهایی هر پروژه را حسام قانونی اعلام می‌کند.</div>
+        <div class="s">جمع پیش‌پرداخت: <b class="num" id="calcDpSum">—</b></div>
       </div>
-      <a class="wabtn" id="calcWa" target="_blank" rel="noopener" style="margin-top:14px">ارسال این محاسبه برای حسام</a>
+      <a class="btn-wa" id="calcWa" target="_blank" rel="noopener"></a>
     </div>
   </div>
 </main>
 
-<footer>
-  <div class="fin">
-    <img src="data:image/jpeg;base64,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" alt="حسام قانونی">
-    <div>
-      <div style="font-weight:700;font-size:17px">حسام قانونی</div>
-      <div class="trust">نماینده رسمی و قانونی فروش پروژه‌های معتبر در دبی — RERA 96131</div>
-      <div class="trust"><span dir="ltr">@dubai_hesam</span></div>
+<!-- ======= Footer ======= -->
+<footer class="sitefoot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand-col">
+        <div class="foot-brand">
+          <div class="avatar"><img id="footAv" alt="حسام قانونی"></div>
+          <div><h3>حسام قانونی</h3><div class="sub latin">@dubai_hesam</div></div>
+        </div>
+        <p style="margin-top:14px">مشاور رسمی املاک و سرمایه‌گذاری در دبی؛ ارائه و معرفی پروژه‌های معتبر از بهترین سازنده‌های امارات و مشاوره خرید و سرمایه‌گذاری در بازار ملک دبی.</p>
+      </div>
+      <div>
+        <h4>دسترسی سریع</h4>
+        <ul>
+          <li><a href="#" data-nav="home">کاتالوگ پروژه‌ها</a></li>
+          <li><a href="#" data-nav="shortlist">لیست من</a></li>
+          <li><a href="#" data-nav="compare">مقایسه پروژه‌ها</a></li>
+          <li><a href="#" data-nav="calc">ماشین‌حساب اقساط</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>تماس</h4>
+        <p>واتساپ: <a class="num" dir="ltr" href="https://wa.me/971501564545" target="_blank" rel="noopener">+971 50 156 4545</a></p>
+        <p>مجوز: <span class="num">RERA 96131</span></p>
+        <p>دبی، امارات متحده عربی</p>
+        <p style="margin-top:12px"><a class="foot-wa" id="footWa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.8l.6-.7c.1-.2 0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3z"/></svg>شروع گفت‌وگو</a></p>
+      </div>
     </div>
-    <a class="walink" id="footWa" target="_blank" rel="noopener">واتساپ: <span dir="ltr">+971 50 156 4545</span></a>
+    <div class="foot-base">
+      <span>© حسام قانونی — کاتالوگ پروژه‌های دبی</span>
+      <span>قیمت‌ها و شرایط طبق اعلام پیج؛ تأیید نهایی با حسام قانونی</span>
+    </div>
   </div>
 </footer>
 
-<!-- FILTER SHEET -->
-<div class="sheet-wrap" id="sheetWrap">
-  <div class="sheet-bg" id="sheetBg"></div>
-  <div class="sheet">
-    <button class="x" id="sheetX" aria-label="بستن">×</button>
-    <h3>فیلترها</h3>
-    <div class="fgroup"><h4>تعداد خواب</h4><div class="chips" id="fBeds"></div></div>
-    <div class="fgroup"><h4>منطقه</h4><div class="chips" id="fAreas"></div></div>
-    <div class="fgroup"><h4>نوع ملک</h4><div class="chips" id="fTypes"></div></div>
-    <div class="fgroup"><h4>پلن پرداخت</h4><div class="chips" id="fPlans"></div></div>
-    <div class="fgroup"><h4>سازنده</h4><div class="chips" id="fDevs"></div></div>
-    <div class="fgroup"><h4>حداکثر ورود / پیش‌پرداخت (درهم)</h4><input type="number" id="fEntry" inputmode="numeric" placeholder="مثلاً 50000 — خالی = همه"></div>
-    <div class="fgroup"><h4>بازه قیمت کل (درهم)</h4><div class="duo"><input type="number" id="fPmin" inputmode="numeric" placeholder="از"><input type="number" id="fPmax" inputmode="numeric" placeholder="تا"></div></div>
-    <button class="clearall" id="clearFilters">حذف همه فیلترها</button>
-    <button class="apply" id="applyFilters">مشاهده پروژه‌ها</button>
+<!-- ======= List bar ======= -->
+<div class="listbar">
+  <div class="wrap">
+    <div class="lbl">لیست من (<span id="cnt" class="num">0</span>)</div>
+    <button class="cmpgo" type="button" id="cmpGo" style="display:none">مقایسه (<span id="cmpCnt" class="num">0</span>)</button>
+    <button class="send" type="button" id="sendBtn">
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.8l.6-.7c.1-.2 0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3z"/></svg>
+      <span id="sendLbl">ارسال در واتساپ</span>
+    </button>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<!-- ======= Filter sheet (mobile) ======= -->
+<div class="sheetwrap" id="sheetWrap" aria-hidden="true">
+  <div class="scrim" id="sheetScrim"></div>
+  <section class="sheet" role="dialog" aria-label="فیلتر پروژه‌ها">
+    <div class="grab"></div>
+    <div class="sheet-head">
+      <h3>فیلتر پروژه‌ها</h3>
+      <button type="button" class="sheet-x" id="sheetClose" aria-label="بستن">
+        <svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+    <div data-groups></div>
+    <div class="sheet-foot">
+      <button type="button" class="btn-clear" data-clear>پاک کردن</button>
+      <button type="button" class="btn-apply" data-apply>نمایش نتایج</button>
+    </div>
+  </section>
+</div>
+
+<div id="toast" role="status"></div>
 
 <script>
-const WA='971501564545';
-const waLink=t=>'https://wa.me/'+WA+'?text='+encodeURIComponent(t);
-const fmt=n=>n==null?'':Number(n).toLocaleString('en-US');
-let P=[], sel=new Set(JSON.parse(localStorage.getItem('hg_sel')||'[]')),
-    cmp=new Set(JSON.parse(localStorage.getItem('hg_cmp')||'[]')),
-    adm=JSON.parse(localStorage.getItem('hg_adm')||'{}'),
-    F={beds:new Set(),areas:new Set(),types:new Set(),plans:new Set(),devs:new Set(),entry:'',pmin:'',pmax:''},
-    curProject=null, sharedSel=false;
+var WA_NUM='971501564545';
+var waSvg='<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.8l.6-.7c.1-.2 0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3z"/></svg>';
+function waLink(t){return 'https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(t);}
+function fmt(n){return Number(n).toLocaleString('en-US');}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
 
-const byId=id=>P.find(p=>p.id===id);
-const AREAS={nedalshba:'ندالشبا – میدان',hills:'دبی هیلز',jumeirah:'جمیرا – لامر',maritime:'ماریتایم سیتی',islands:'جزایر دبی',marjan:'جزیره المرجان',dubailand:'دبی‌لند',other:'سایر مناطق'};
-const TYPES={apartment:'آپارتمان',villa:'ویلا',penthouse:'پنت‌هاوس',land:'زمین و تجاری'};
-const PLANS={'5050':'۵۰/۵۰','1090':'۱۰/۹۰','2080':'20/80','posthandover':'پس از تحویل دارد','longterm':'اقساط بلندمدت (۴ سال+)'};
-const BEDS={'0':'استودیو','1':'۱ خوابه','2':'۲ خوابه','3':'۳ خوابه','4':'۴ خوابه','5':'۵ خوابه+'};
+var P=[], AVATAR='';
+var sel=new Set(JSON.parse(localStorage.getItem('hg_sel')||'[]'));
+var cmp=new Set(JSON.parse(localStorage.getItem('hg_cmp')||'[]'));
+var curProject=null, sharedSel=false;
+var F={beds:new Set(), areas:new Set(), types:new Set(), plans:new Set(), devs:new Set(), entry:'', pmin:'', pmax:'', q:'', qtype:'all'};
 
-function saveSets(){localStorage.setItem('hg_sel',JSON.stringify([...sel]));localStorage.setItem('hg_cmp',JSON.stringify([...cmp]));localStorage.setItem('hg_adm',JSON.stringify(adm));}
-function toast(t){const el=document.getElementById('toast');el.textContent=t;el.style.display='block';setTimeout(()=>el.style.display='none',2400);}
-function srcNote(p){
-  let s='';
-  if(p.sourceKind==='highlight'||p.sourceConf) s='شرایط طبق اعلام پیج — تأیید نهایی با حسام قانونی. منبع: '+p.source;
-  else s='منبع: '+p.source;
-  return '<div class="srcnote'+(p.sourceConf?' warn':'')+'">'+s+'</div>';
+function byId(id){return P.find(function(p){return p.id===id;});}
+function saveSets(){localStorage.setItem('hg_sel',JSON.stringify([...sel]));localStorage.setItem('hg_cmp',JSON.stringify([...cmp]));}
+var toastTimer=null;
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(function(){el.style.display='none';},2400);}
+
+/* ---------- filter groups definition ---------- */
+var AREAS=[['dubai-hills','دبی هیلز'],['nedalshba','ندالشبا و میدان'],['dubai-islands','جزایر دبی'],['jumeirah','جمیرا – لامر'],['maritime','ماریتایم سیتی'],['marjan','جزیره المرجان'],['dubailand','دبی‌لند'],['other','سایر مناطق']];
+var TYPES=[['apartment','آپارتمان'],['villa','ویلا'],['townhouse','تاون‌هاوس'],['penthouse','پنت‌هاوس']];
+var PLANS=[['5050','۵۰/۵۰'],['1090','۱۰/۹۰'],['2080','۲۰/۸۰'],['posthandover','پس از تحویل'],['longterm','اقساط بلندمدت']];
+var BEDSV=[['1','۱'],['2','۲'],['3','۳'],['4','۴'],['5','۵ به بالا']];
+function chipHTML(setName,val,label){
+  var on=F[setName].has(val);
+  return '<button type="button" class="fchip'+(on?' on':'')+'" data-fset="'+setName+'" data-fval="'+val+'">'+esc(label)+'</button>';
 }
-function priceBlock(p){
-  let h='';
-  if(p.priceLabel) h+='<div class="price num">'+p.priceLabel+'</div>';
-  if(p.entry) h+='<div><span class="entry num">'+p.entry+'</span></div>';
-  if(p.plan) h+='<div><span class="planchip">'+p.plan+'</span></div>';
-  if(!p.priceLabel && !p.entry){
-    h+='<a class="wabtn" style="margin:0" target="_blank" rel="noopener" href="'+waLink(p.waText)+'">استعلام قیمت در واتساپ</a><div class="srcnote">قیمت و شرایط این پروژه در واتساپ اعلام می‌شود.</div>';
-  } else if(!p.priceLabel){
-    h+='<div class="srcnote">قیمت کل: استعلام در واتساپ</div>';
-  }
+function groupsHTML(){
+  var devs=[]; P.forEach(function(p){if(p.dev&&devs.indexOf(p.dev)<0)devs.push(p.dev);});
+  var h='';
+  h+='<div class="fgroup"><h4>تعداد خواب</h4><div class="fchips">'+BEDSV.map(function(b){return chipHTML('beds',b[0],b[1]);}).join('')+'</div></div>';
+  h+='<div class="fgroup"><h4>منطقه</h4><div class="fchips">'+AREAS.map(function(a){return chipHTML('areas',a[0],a[1]);}).join('')+'</div></div>';
+  h+='<div class="fgroup"><h4>نوع ملک</h4><div class="fchips">'+TYPES.map(function(t){return chipHTML('types',t[0],t[1]);}).join('')+'</div></div>';
+  h+='<div class="fgroup"><h4>پلن پرداخت</h4><div class="fchips">'+PLANS.map(function(pl){return chipHTML('plans',pl[0],pl[1]);}).join('')+'</div></div>';
+  h+='<div class="fgroup"><h4>سازنده</h4><div class="fchips">'+devs.map(function(d){return '<button type="button" class="fchip latin'+(F.devs.has(d)?' on':'')+'" data-fset="devs" data-fval="'+esc(d)+'">'+esc(d)+'</button>';}).join('')+'</div></div>';
+  h+='<div class="fgroup"><h4>حداکثر ورود (درهم)</h4><div class="frow"><input type="number" class="num" data-fnum="entry" placeholder="مثلاً 50000" value="'+(F.entry||'')+'"><span>فقط پروژه‌های با ورود علنی</span></div></div>';
+  h+='<div class="fgroup"><h4>بازه قیمت کل (درهم)</h4><div class="frow"><input type="number" class="num" data-fnum="pmin" placeholder="از" value="'+(F.pmin||'')+'"><input type="number" class="num" data-fnum="pmax" placeholder="تا" value="'+(F.pmax||'')+'"></div></div>';
   return h;
 }
-function cardHTML(p,opts){
-  opts=opts||{};
-  const st=adm[p.id]||{};
-  const meta=[p.area,p.beds,p.size].filter(Boolean).join(' • ');
-  let h='<article class="card'+(cmp.has(p.id)?' cmp-on':'')+'" data-id="'+p.id+'">';
-  h+='<div class="ph" data-open="'+p.id+'">';
-  if(p.img) h+='<img src="'+p.img+'" alt="'+p.name+'" loading="lazy">';
-  else h+='<div class="phname">'+p.name+'</div>';
-  if(p.urgency) h+='<span class="badge-urg">'+p.urgency+'</span>';
-  h+='<span class="picks"><button class="pick'+(sel.has(p.id)?' on':'')+'" data-sel="'+p.id+'">'+(sel.has(p.id)?'✓ انتخاب شد':'انتخاب')+'</button><button class="pick'+(cmp.has(p.id)?' on':'')+'" data-cmp="'+p.id+'">مقایسه</button></span>';
-  h+='</div><div class="cbody">';
-  h+='<div><div class="pname">'+p.name+'</div>'+(p.dev?'<div class="pdev">سازنده: <span dir="ltr">'+p.dev+'</span></div>':'')+'</div>';
-  if(meta) h+='<div class="pmeta">'+meta+'</div>';
-  if(p.handover) h+='<div class="pmeta">تحویل: '+p.handover+'</div>';
-  h+=priceBlock(p);
-  h+=srcNote(p);
-  if(!opts.short){
-    if(p.priceLabel) h+='<a class="wabtn" target="_blank" rel="noopener" href="'+waLink(p.waText)+'">سؤال درباره این پروژه</a>';
-    else if(p.entry) h+='<a class="wabtn" target="_blank" rel="noopener" href="'+waLink(p.waText)+'">استعلام قیمت کل در واتساپ</a>';
-    h+='<button class="detbtn" data-open="'+p.id+'">جزئیات پروژه</button>';
-  }
-  if(st.soldTag) h+='<div class="srcnote warn">برچسب «فروخته شد» در پنل نمایشی فعال شده است.</div>';
-  h+='</div></article>';
-  return h;
+function buildFilterUI(){
+  document.querySelectorAll('[data-groups]').forEach(function(el){el.innerHTML=groupsHTML();});
+  updateFCount();
 }
+function fcount(){var n=F.beds.size+F.areas.size+F.types.size+F.plans.size+F.devs.size;if(F.entry!=='')n++;if(F.pmin!==''||F.pmax!=='')n++;if(F.qtype!=='all')n++;if(F.q.trim())n++;return n;}
+function updateFCount(){var c=fcount(),el=document.getElementById('fCount');if(el){el.textContent=c;el.style.display=c?'inline-block':'none';}}
+
+/* ---------- visibility (MVP semantics) ---------- */
 function visible(p){
-  const st=adm[p.id]||{}; if(st.hidden) return false;
-  if(F.beds.size && ![...F.beds].some(b=>p.bedsKey.includes(b))) return false;
+  if(F.beds.size && ![...F.beds].some(function(b){return p.bedsKey.indexOf(b)>=0;})) return false;
   if(F.areas.size && !F.areas.has(p.areaKey)) return false;
   if(F.types.size && !F.types.has(p.type)) return false;
-  if(F.plans.size && ![...F.plans].some(k=>p.planKeys.includes(k))) return false;
+  if(F.plans.size && ![...F.plans].some(function(k){return p.planKeys.indexOf(k)>=0;})) return false;
   if(F.devs.size && !(p.dev&&F.devs.has(p.dev))) return false;
-  if(F.entry!=='' ){ if(!(p.entryNum!=null && p.entryNum<=Number(F.entry))) return false; }
-  const priceFiltered = F.pmin!==''||F.pmax!=='';
-  if(priceFiltered){
+  if(F.qtype!=='all' && p.type!==F.qtype) return false;
+  if(F.entry!==''){ if(!(p.entryNum!=null && p.entryNum<=Number(F.entry))) return false; }
+  if(F.pmin!==''||F.pmax!==''){
     if(p.priceMin==null) return 'group';
     if(F.pmin!==''&&p.priceMax!=null&&p.priceMax<Number(F.pmin)) return false;
     if(F.pmax!==''&&p.priceMin>Number(F.pmax)) return false;
   }
+  if(F.q.trim()){
+    var q=F.q.trim().toLowerCase();
+    var hay=(p.name+' '+p.nameFa+' '+p.area+' '+(p.dev||'')).toLowerCase();
+    if(hay.indexOf(q)<0) return false;
+  }
   return true;
 }
+
+/* ---------- shared blocks ---------- */
+function srcNote(p){
+  var s;
+  if(p.sourceKind==='highlight'||p.sourceKind==='mixed'||p.sourceConf) s='شرایط طبق اعلام پیج — تأیید نهایی با حسام قانونی. منبع: '+p.source;
+  else s='منبع: '+p.source;
+  return '<div class="srcnote'+((p.sourceConf||p.sourceKind!=='feed')?' warn':'')+'">'+esc(s)+'</div>';
+}
+function phHTML(p,cls){
+  if(p.img) return '<div class="ph '+(cls||'')+'"><img src="'+p.img+'" alt="'+esc(p.name)+'" loading="lazy">'+(p.urgency?'<span class="badge-urg">'+esc(p.urgency)+'</span>':'')+'</div>';
+  return '<div class="ph noimg '+(cls||'')+'"><img class="noimg-av" src="'+AVATAR+'" alt=""><span class="noimg-name latin">'+esc(p.name)+'</span>'+(p.urgency?'<span class="badge-urg">'+esc(p.urgency)+'</span>':'')+'</div>';
+}
+function priceBlock(p){
+  var h='';
+  if(p.priceLabel) h+='<div class="price-row"><span class="price num">'+esc(p.priceLabel)+'</span>'+(p.entry?'<span class="entrybadge num">'+esc(p.entry)+'</span>':'')+(p.plan?'<span class="planchip">'+esc(p.plan)+'</span>':'')+'</div>';
+  else if(p.entry) h+='<div class="price-row"><span class="entrybadge num">'+esc(p.entry)+'</span>'+(p.plan?'<span class="planchip">'+esc(p.plan)+'</span>':'')+'</div><div class="askline">قیمت کل: استعلام در واتساپ</div>';
+  else h+='<div class="askline">قیمت: استعلام در واتساپ</div>'+(p.plan?'<div class="price-row"><span class="planchip">'+esc(p.plan)+'</span></div>':'');
+  return h;
+}
+function cardHTML(p,opts){
+  opts=opts||{};
+  var meta=[p.area,p.beds,p.size].filter(Boolean).join(' · ');
+  var h='<article class="card">';
+  if(opts.removable) h+='<div style="position:relative"><button class="rm-x" data-sel="'+p.id+'" aria-label="حذف از لیست">✕</button>'+phHTML(p)+'</div>';
+  else h+='<div data-open="'+p.id+'">'+phHTML(p)+'</div>';
+  h+='<div class="body">';
+  h+='<h2 class="latin" style="text-align:right" data-open="'+p.id+'">'+esc(p.name)+'</h2>';
+  if(p.dev) h+='<div class="pdev">سازنده: <span class="latin">'+esc(p.dev)+'</span></div>';
+  if(meta) h+='<div class="meta">'+esc(meta)+'</div>';
+  if(p.handover) h+='<div class="meta">تحویل: '+esc(p.handover)+'</div>';
+  h+=priceBlock(p);
+  h+=srcNote(p);
+  if(!opts.short){
+    h+='<div class="actions">'
+      +'<a class="btn-wa" href="'+waLink(p.waText)+'" target="_blank" rel="noopener">'+waSvg+(p.priceLabel?'سؤال درباره این پروژه':'استعلام قیمت در واتساپ')+'</a>'
+      +'<button type="button" class="btn-add'+(sel.has(p.id)?' added':'')+'" data-sel="'+p.id+'">'+(sel.has(p.id)?'✓ در لیست من':'+ لیست من')+'</button>'
+      +'<button type="button" class="btn-cmp'+(cmp.has(p.id)?' added':'')+'" data-cmp="'+p.id+'">'+(cmp.has(p.id)?'✓ مقایسه':'مقایسه')+'</button>'
+      +'</div>'
+      +'<button type="button" class="btn-det" data-open="'+p.id+'">جزئیات پروژه</button>';
+  } else {
+    h+='<div class="actions"><a class="btn-wa" href="'+waLink(p.waText)+'" target="_blank" rel="noopener">'+waSvg+'واتساپ</a>'
+      +'<button type="button" class="btn-add'+(sel.has(p.id)?' added':'')+'" data-sel="'+p.id+'">'+(sel.has(p.id)?'✓ در لیست من':'+ لیست من')+'</button></div>';
+  }
+  h+='</div></article>';
+  return h;
+}
+
+/* ---------- home render ---------- */
 function render(){
-  const grid=document.getElementById('grid');
-  const items=P.map(p=>({p,v:visible(p)})).filter(x=>x.v!==false);
-  const main=items.filter(x=>x.v===true), grp=items.filter(x=>x.v==='group');
-  const count=items.length;
-  document.getElementById('countline').textContent=count?('نمایش '+count+' پروژه از '+P.length+' پروژه کاتالوگ'):'';
-  let h=main.map(x=>cardHTML(x.p)).join('');
-  if(grp.length) h+='<div class="grouphead">قیمت با استعلام</div>'+grp.map(x=>cardHTML(x.p)).join('');
+  var grid=document.getElementById('grid');
+  var main=[],group=[];
+  P.forEach(function(p){var v=visible(p); if(v===true)main.push(p); else if(v==='group')group.push(p);});
+  var h='';
+  if(main.length) h+=main.map(function(p){return cardHTML(p);}).join('');
+  if(group.length) h+='<div class="askgroup"><h3>قیمت با استعلام (خارج از بازه انتخابی)</h3></div>'+group.map(function(p){return cardHTML(p);}).join('');
+  if(!main.length&&!group.length){
+    h='<div class="empty"><h3>پروژه‌ای با این فیلترها پیدا نشد</h3><p>فیلترها را کمتر کنید، یا مستقیم در واتساپ از حسام قانونی بپرسید دنبال چه پروژه‌ای هستید.</p><a class="btn-wa" href="'+waLink('سلام آقای قانونی، دنبال پروژه‌ای با شرایط خاص هستم. راهنماییم می‌کنید؟')+'" target="_blank" rel="noopener">'+waSvg+'پرسیدن در واتساپ</a></div>';
+  } else if(fcount()>0){
+    h='<div class="resline">نمایش <b class="num">'+(main.length+group.length)+'</b> پروژه از <b class="num">'+P.length+'</b></div>'+h;
+  }
   grid.innerHTML=h;
-  document.getElementById('emptyBox').style.display=count?'none':'block';
-  grid.style.display=count?'grid':'none';
-  updateSelbar(); renderAdmin();
+  updateSelbar(); updateFCount();
 }
 function updateSelbar(){
-  const b=document.getElementById('selbar');
-  if(sel.size){b.classList.add('on');document.getElementById('selbarTxt').textContent='انتخاب من ('+sel.size+')';}
-  else b.classList.remove('on');
+  document.getElementById('cnt').textContent=sel.size;
+  var cg=document.getElementById('cmpGo');
+  document.getElementById('cmpCnt').textContent=cmp.size;
+  cg.style.display=cmp.size>=2?'inline-block':'none';
+  document.getElementById('sendLbl').textContent=sel.size?'ارسال لیست در واتساپ':'ارسال در واتساپ';
 }
-function fcount(){let n=F.beds.size+F.areas.size+F.types.size+F.plans.size+F.devs.size;if(F.entry!=='')n++;if(F.pmin!==''||F.pmax!=='')n++;return n;}
-function chipHTML(setName,val,label){
-  return '<button class="chip'+(F[setName].has(val)?' on':'')+'" data-fset="'+setName+'" data-fval="'+val+'">'+label+'</button>';
+
+/* ---------- views ---------- */
+function show(id){
+  document.querySelectorAll('.view').forEach(function(v){v.classList.toggle('on',v.id===id);});
+  window.scrollTo({top:0});
 }
-function buildFilterUI(){
-  const qc=document.getElementById('quickChips');
-  let q='';
-  q+='<button class="fbtn" id="openSheet">فیلترها'+(fcount()?' <span class="fcount">'+fcount()+'</span>':'')+'</button>';
-  q+=chipHTML('beds','2','۲ خوابه')+chipHTML('beds','4','۴ خوابه')+chipHTML('types','villa','ویلا')+chipHTML('areas','maritime','ماریتایم سیتی')+chipHTML('areas','islands','جزایر دبی');
-  q+='<button class="chip" id="goCalc">محاسبه‌گر اقساط</button>';
-  if(cmp.size>=2) q+='<button class="chip" id="goCmp" style="background:var(--navy);color:#fff">مقایسه ('+cmp.size+')</button>';
-  qc.innerHTML=q;
-  document.getElementById('openSheet').onclick=()=>document.getElementById('sheetWrap').classList.add('open');
-  const gc=document.getElementById('goCalc'); if(gc) gc.onclick=()=>{curProject=null;openCalc(null);};
-  const gm=document.getElementById('goCmp'); if(gm) gm.onclick=renderCompare;
-  fillSet('fBeds','beds',BEDS); fillSet('fAreas','areas',AREAS); fillSet('fTypes','types',TYPES); fillSet('fPlans','plans',PLANS);
-  const devs={}; P.forEach(p=>{if(p.dev)devs[p.dev]=p.dev;});
-  document.getElementById('fDevs').innerHTML=Object.keys(devs).map(d=>chipHTML('devs',d,d)).join('');
-}
-function fillSet(elId,setName,dict){
-  const used=new Set(); P.forEach(p=>{
-    if(setName==='beds')p.bedsKey.forEach(b=>used.add(b));
-    if(setName==='areas')used.add(p.areaKey);
-    if(setName==='types')used.add(p.type);
-    if(setName==='plans')p.planKeys.forEach(k=>used.add(k));
-  });
-  document.getElementById(elId).innerHTML=Object.keys(dict).filter(k=>used.has(k)).map(k=>chipHTML(setName,k,dict[k])).join('');
-}
-function applySheet(){
-  F.entry=document.getElementById('fEntry').value.trim();
-  F.pmin=document.getElementById('fPmin').value.trim();
-  F.pmax=document.getElementById('fPmax').value.trim();
-  document.getElementById('sheetWrap').classList.remove('open');
-  buildFilterUI(); render();
-}
-function clearAll(){
-  ['beds','areas','types','plans','devs'].forEach(s=>F[s].clear());
-  F.entry='';F.pmin='';F.pmax='';
-  document.getElementById('fEntry').value='';document.getElementById('fPmin').value='';document.getElementById('fPmax').value='';
-  buildFilterUI(); render();
-}
-function show(view){
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
-  document.getElementById(view).classList.add('on');
-  window.scrollTo(0,0);
-}
+function goHome(){show('view-home');}
+
+/* ---------- project page ---------- */
 function openProject(id){
-  const p=byId(id); if(!p)return; curProject=p;
-  const meta=[p.area,p.beds,p.size].filter(Boolean).join(' • ');
-  let h='<div class="pgrid"><div>';
-  h+='<div class="gal">'+(p.img?'<img src="'+p.img+'" alt="'+p.name+'">':'<div class="phname">'+p.name+'</div>')+(p.urgency?'<span class="badge-urg">'+p.urgency+'</span>':'')+'</div>';
-  h+='</div><div>';
-  h+='<div class="pname" style="font-size:24px">'+p.name+'</div>';
-  if(p.dev)h+='<div class="pdev" style="font-size:14px">سازنده: <span dir="ltr">'+p.dev+'</span></div>';
-  if(meta)h+='<div class="pmeta" style="font-size:15px;margin-top:4px">'+meta+'</div>';
-  h+='<div style="margin-top:14px">'+priceBlock(p)+'</div>';
-  if(p.handover)h+='<div class="kv"><span>تحویل</span><b>'+p.handover+'</b></div>';
-  if(p.plan)h+='<div class="kv"><span>پلن پرداخت</span><b>'+p.plan+'</b></div>';
-  if(p.area)h+='<div class="kv"><span>منطقه</span><b>'+p.area+'</b></div>';
-  if(p.beds)h+='<div class="kv"><span>تیپ واحد</span><b>'+p.beds+'</b></div>';
-  h+='<div style="margin-top:10px">'+srcNote(p)+'</div>';
-  if(p.sourceConf)h+='<div class="srcnote warn" style="font-size:14px;margin-top:6px">⚠ برای این پروژه دو منبع متفاوت ثبت شده (پست فید و هایلایت) و شرایط نهایی هنوز نیازمند تأیید حسام قانونی است.</div>';
-  h+='<div class="actstack">';
-  h+='<a class="wabtn" target="_blank" rel="noopener" href="'+waLink(p.waText)+'">سؤال درباره این پروژه در واتساپ</a>';
-  h+='<button class="detbtn" data-sel="'+p.id+'">'+(sel.has(p.id)?'حذف از انتخاب':'افزودن به انتخاب')+'</button>';
-  h+='<button class="detbtn" data-cmp="'+p.id+'">'+(cmp.has(p.id)?'حذف از مقایسه':'افزودن به مقایسه')+'</button>';
-  if(p.price)h+='<button class="detbtn" id="pCalc">محاسبه اقساط این پروژه</button>';
-  h+='</div></div></div>';
-  document.getElementById('projectBody').innerHTML=h;
-  const ab=document.getElementById('actbar');
-  ab.innerHTML='<span class="pr num">'+(p.priceLabel||'قیمت: استعلام')+'</span><a class="wabtn" target="_blank" rel="noopener" href="'+waLink(p.waText)+'">واتساپ</a>';
-  const pc=document.getElementById('pCalc'); if(pc)pc.onclick=()=>openCalc(p);
+  var p=byId(id); if(!p)return;
+  curProject=p;
+  var kv='';
+  function cell(k,v,wide){ if(!v)return ''; return '<div class="cell'+(wide?' wide':'')+'"><div class="k">'+k+'</div><div class="v">'+v+'</div></div>'; }
+  kv+=cell('منطقه',esc(p.area));
+  kv+=cell('نوع ملک',esc(p.typeFa));
+  kv+=cell('سازنده',p.dev?'<span class="latin">'+esc(p.dev)+'</span>':'');
+  kv+=cell('خواب',esc(p.beds));
+  kv+=cell('متراژ / مشخصات',esc(p.size));
+  kv+=cell('تحویل',esc(p.handover));
+  kv+=cell('قیمت',p.priceLabel?'<span class="num">'+esc(p.priceLabel)+'</span>':'استعلام در واتساپ');
+  kv+=cell('ورود / رزرو',p.entry?'<span class="num">'+esc(p.entry)+'</span>':'');
+  kv+=cell('پلن پرداخت',esc(p.plan),true);
+  var h='<div class="proj-layout"><div class="proj-hero">'+phHTML(p)+'</div>'
+    +'<div class="proj-info"><h2 class="latin" style="text-align:right">'+esc(p.name)+'</h2>'
+    +(p.nameFa?'<div class="meta" style="font-size:15px;color:var(--ink2);margin-top:4px">'+esc(p.nameFa)+'</div>':'')
+    +'<div class="kv">'+kv+'</div>'
+    +(p.conflict?'<div class="conflictbox">⚠ '+esc(p.conflict)+'</div>':'')
+    +srcNote(p)
+    +'<div class="proj-actions">'
+    +'<a class="btn-wa" href="'+waLink(p.waText)+'" target="_blank" rel="noopener">'+waSvg+(p.priceLabel?'سؤال درباره این پروژه در واتساپ':'استعلام قیمت در واتساپ')+'</a>'
+    +'<div class="row">'
+    +'<button type="button" class="btn-navy" data-sel="'+p.id+'">'+(sel.has(p.id)?'✓ در لیست من — حذف':'افزودن به لیست من')+'</button>'
+    +'<button type="button" class="btn-ghost" data-cmp="'+p.id+'">'+(cmp.has(p.id)?'✓ در مقایسه':'افزودن به مقایسه')+'</button>'
+    +'</div>'
+    +(p.priceMin?'<button type="button" class="btn-ghost" data-calc="'+p.id+'">محاسبه اقساط این پروژه</button>':'')
+    +'</div></div></div>';
+  document.getElementById('projBody').innerHTML=h;
   show('view-project');
 }
+
+/* ---------- shortlist ---------- */
 function renderShortlist(){
-  const list=[...sel].map(byId).filter(Boolean);
-  document.getElementById('slTitle').textContent=sharedSel?'انتخاب حسام قانونی برای شما':'انتخاب من';
-  document.getElementById('slEmpty').style.display=list.length?'none':'block';
-  document.getElementById('slGrid').innerHTML=list.map(p=>cardHTML(p,{short:true})).join('');
-  const names=list.map(p=>p.name).join('، ');
-  document.getElementById('sendAllWa').href=waLink('سلام آقای قانونی، این پروژه‌ها رو از کاتالوگ‌تون انتخاب کردم: '+names+' — لطفاً قیمت و شرایط هرکدوم رو برام بفرستید.');
+  document.getElementById('slTitle').textContent=sharedSel?'انتخاب حسام قانونی برای شما':'لیست من';
+  var g=document.getElementById('slGrid');
+  var arr=P.filter(function(p){return sel.has(p.id);});
+  if(!arr.length){
+    g.innerHTML='<div class="empty"><h3>لیست شما خالی است</h3><p>از کاتالوگ، پروژه‌هایی را با دکمه «+ لیست من» انتخاب کنید.</p></div>';
+  } else {
+    g.innerHTML=arr.map(function(p){return cardHTML(p,{removable:true});}).join('');
+  }
   show('view-shortlist');
 }
+
+/* ---------- compare ---------- */
 function renderCompare(){
-  const list=[...cmp].map(byId).filter(Boolean);
-  if(list.length<2){toast('برای مقایسه دست‌کم ۲ پروژه انتخاب کنید');return;}
-  const row=(label,fn)=>{return '<tr><td>'+label+'</td>'+list.map(p=>'<td>'+fn(p)+'</td>').join('')+'</tr>';};
-  let h='<table class="cmp">';
-  h+=row('پروژه',p=>'<b dir="ltr">'+p.name+'</b>'+(p.img?'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy">':''));
-  h+=row('قیمت کل',p=>p.priceLabel?'<span class="num">'+p.priceLabel+'</span>':'<a href="'+waLink(p.waText)+'" target="_blank" rel="noopener" style="color:var(--wa);font-weight:700">استعلام در واتساپ</a>');
-  h+=row('ورود / رزرو',p=>p.entry?'<span class="num">'+p.entry+'</span>':'<a href="'+waLink(p.waText)+'" target="_blank" rel="noopener" style="color:var(--wa);font-weight:700">استعلام در واتساپ</a>');
-  h+=row('پلن پرداخت',p=>p.plan||'استعلام در واتساپ');
-  h+=row('تحویل',p=>p.handover||'استعلام در واتساپ');
-  h+=row('خواب / تیپ',p=>p.beds||'استعلام در واتساپ');
-  h+=row('منطقه',p=>p.area||'استعلام در واتساپ');
-  h+=row('واتساپ',p=>'<a class="wabtn" target="_blank" rel="noopener" href="'+waLink(p.waText)+'">سؤال درباره این پروژه</a>');
-  h+='</table>';
-  document.getElementById('cmpBody').innerHTML=h;
+  var arr=P.filter(function(p){return cmp.has(p.id);});
+  var body=document.getElementById('cmpBody');
+  if(arr.length<2){
+    body.innerHTML='<div class="empty"><h3>برای مقایسه حداقل ۲ پروژه لازم است</h3><p>از روی کارت پروژه‌ها دکمه «مقایسه» را بزنید (حداکثر ۳ پروژه).</p></div>';
+    show('view-compare'); return;
+  }
+  function row(label,fn){
+    return '<tr><th>'+label+'</th>'+arr.map(function(p){return '<td>'+fn(p)+'</td>';}).join('')+'</tr>';
+  }
+  var h='<div class="cmpwrap"><table class="cmp">';
+  h+='<tr><th></th>'+arr.map(function(p){return '<td class="phcell">'+phHTML(p)+'</td>';}).join('')+'</tr>';
+  h+=row('پروژه',function(p){return '<b class="latin">'+esc(p.name)+'</b>';});
+  h+=row('سازنده',function(p){return p.dev?'<span class="latin">'+esc(p.dev)+'</span>':'—';});
+  h+=row('منطقه',function(p){return esc(p.area||'—');});
+  h+=row('نوع',function(p){return esc(p.typeFa||'—');});
+  h+=row('خواب',function(p){return esc(p.beds||'—');});
+  h+=row('قیمت',function(p){return p.priceLabel?'<span class="num">'+esc(p.priceLabel)+'</span>':'<a href="'+waLink(p.waText)+'" target="_blank" rel="noopener" style="color:var(--waD);font-weight:700">استعلام در واتساپ</a>';});
+  h+=row('ورود / رزرو',function(p){return p.entry?'<span class="num">'+esc(p.entry)+'</span>':'—';});
+  h+=row('پلن پرداخت',function(p){return esc(p.plan||'—');});
+  h+=row('تحویل',function(p){return esc(p.handover||'—');});
+  h+='</table></div>';
+  h+='<div class="cmp-actions"><a class="btn-wa" style="flex:0 1 auto" href="'+waLink('سلام آقای قانونی، بین این پروژه‌ها مرددم: '+arr.map(function(p){return p.name;}).join('، ')+'. کدوم رو پیشنهاد می‌دید؟')+'" target="_blank" rel="noopener">'+waSvg+'پرسیدن از حسام در واتساپ</a></div>';
+  body.innerHTML=h;
   show('view-compare');
 }
+
+/* ---------- calculator ---------- */
+var calcProject=null;
 function openCalc(p){
-  document.getElementById('calcFor').textContent=p?('برای پروژه '+p.name+' — مبلغ مبنا از قیمت علنی خود پروژه پر شده است.'):'مبلغ مبنا را خودتان وارد کنید.';
-  const base=document.getElementById('calcBase');
-  base.value=p&&p.price?p.price:'';
-  let dp=10;
-  if(p&&p.planKeys.includes('1090'))dp=10;
+  calcProject=p||null;
+  document.getElementById('calcFor').textContent=p?('برای پروژه '+p.name+' — مبلغ مبنا از قیمت علنی خود پروژه پر شده است؛ درصد پیش‌پرداخت از پلن همان پروژه.'):'مبلغ مبنا را خودتان وارد کنید.';
+  var base=document.getElementById('calcBase');
+  base.value=(p&&p.priceMin)?p.priceMin:'';
+  var dp=10;
+  if(p&&p.planKeys.indexOf('1090')>=0)dp=10;
   if(p&&p.id==='sobha-sanctuary')dp=2;
-  if(p&&p.planKeys.includes('5050'))dp=50;
-  document.getElementById('calcDp').value=dp;document.getElementById('calcDpNum').value=dp;
-  calcRun(p);
+  if(p&&p.planKeys.indexOf('5050')>=0)dp=50;
+  document.getElementById('calcDp').value=dp; document.getElementById('calcDpNum').value=dp;
+  document.getElementById('calcWa').innerHTML=waSvg+'ارسال این محاسبه برای حسام';
+  calcRun();
   show('view-calc');
 }
-function calcRun(p){
-  const base=Number(document.getElementById('calcBase').value)||0;
-  const dp=Number(document.getElementById('calcDp').value)||0;
-  const mo=Number(document.getElementById('calcMo').value)||48;
+function calcRun(){
+  var base=Number(document.getElementById('calcBase').value)||0;
+  var dp=Number(document.getElementById('calcDp').value)||0;
+  var mo=Number(document.getElementById('calcMo').value)||48;
   document.getElementById('calcDpVal').textContent=dp;
   document.getElementById('calcMoVal').textContent=mo;
-  const dpSum=Math.round(base*dp/100), rest=base-dpSum, monthly=mo?Math.round(rest/mo):0;
+  var dpSum=Math.round(base*dp/100), rest=base-dpSum, monthly=mo?Math.round(rest/mo):0;
   document.getElementById('calcMonthly').textContent=base?fmt(monthly)+' درهم':'—';
   document.getElementById('calcDpSum').textContent=base?fmt(dpSum)+' درهم':'—';
-  const name=p?p.name:(curProject?curProject.name:'');
+  var name=calcProject?calcProject.name:(curProject?curProject.name:'');
   document.getElementById('calcWa').href=waLink('سلام آقای قانونی، با محاسبه‌گر کاتالوگ حساب کردم: مبلغ مبنا '+fmt(base)+' درهم، پیش‌پرداخت '+dp+'٪ ('+fmt(dpSum)+' درهم)، قسط ماهانه حدود '+fmt(monthly)+' درهم در '+mo+' ماه'+(name?(' — برای پروژه '+name):'')+'. شرایط دقیقش رو برام می‌فرستید؟');
 }
-function renderAdmin(){
-  const tb=document.querySelector('#admTable tbody'); if(!tb)return;
-  tb.innerHTML=P.map(p=>{const st=adm[p.id]||{};
-    return '<tr><td dir="ltr" style="text-align:left">'+p.name+'</td><td><button class="switch'+(st.sold?' on':'')+'" data-adm="sold" data-id="'+p.id+'">'+(st.sold?'فروخته شد ✓':'—')+'</button></td><td><button class="switch'+(st.hidden?' on':'')+'" data-adm="hidden" data-id="'+p.id+'">'+(st.hidden?'مخفی ✓':'—')+'</button></td></tr>';}).join('');
-}
-/* events */
-document.addEventListener('click',e=>{
-  const t=e.target;
-  const open=t.closest('[data-open]'); if(open){openProject(open.dataset.open);return;}
-  const s=t.closest('[data-sel]'); if(s){const id=s.dataset.sel; sel.has(id)?sel.delete(id):sel.add(id); saveSets(); render(); if(curProject&&document.getElementById('view-project').classList.contains('on'))openProject(id); if(document.getElementById('view-shortlist').classList.contains('on'))renderShortlist(); return;}
-  const c=t.closest('[data-cmp]'); if(c){const id=c.dataset.cmp; if(cmp.has(id))cmp.delete(id); else { if(cmp.size>=3){toast('مقایسه حداکثر ۳ پروژه است');return;} cmp.add(id);} saveSets(); buildFilterUI(); render(); if(curProject&&document.getElementById('view-project').classList.contains('on'))openProject(id); return;}
-  const f=t.closest('[data-fset]'); if(f){const set=F[f.dataset.fset]; set.has(f.dataset.fval)?set.delete(f.dataset.fval):set.add(f.dataset.fval); buildFilterUI(); if(document.getElementById('sheetWrap').classList.contains('open')){/* stay */} else render(); return;}
-  const bk=t.closest('[data-back]'); if(bk){show('view-home');return;}
-  const ad=t.closest('[data-adm]'); if(ad){const id=ad.dataset.id; adm[id]=adm[id]||{}; adm[id][ad.dataset.adm]=!adm[id][ad.dataset.adm]; saveSets(); render(); return;}
-});
-document.getElementById('applyFilters').onclick=applySheet;
-document.getElementById('clearFilters').onclick=()=>{clearAll();};
-document.getElementById('clearFilters2').onclick=clearAll;
-document.getElementById('sheetBg').onclick=()=>document.getElementById('sheetWrap').classList.remove('open');
-document.getElementById('sheetX').onclick=()=>document.getElementById('sheetWrap').classList.remove('open');
-document.getElementById('selbarGo').onclick=()=>{sharedSel=false;renderShortlist();};
-document.getElementById('offerGo').onclick=()=>{const o=P.find(p=>p.id==='sobha-central'); if(o)openProject(o.id);};
-document.getElementById('printBtn').onclick=()=>window.print();
-document.getElementById('copyLink').onclick=()=>{
-  const link=location.origin+location.pathname+'#sel='+[...sel].join(',');
-  const done=()=>toast('لینک انتخاب کپی شد');
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(link).then(done).catch(()=>{prompt('لینک انتخاب:',link);});}
-  else prompt('لینک انتخاب:',link);
-};
-['calcBase','calcDpNum'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{
-  if(id==='calcDpNum'){document.getElementById('calcDp').value=document.getElementById('calcDpNum').value;}
-  calcRun(curProject);
-}));
-['calcDp','calcMo'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{
-  if(id==='calcDp')document.getElementById('calcDpNum').value=document.getElementById('calcDp').value;
-  calcRun(curProject);
-}));
 
-/* boot */
+/* ---------- filter events ---------- */
+function clearFilters(){
+  F={beds:new Set(),areas:new Set(),types:new Set(),plans:new Set(),devs:new Set(),entry:'',pmin:'',pmax:'',q:F.q,qtype:'all'};
+  document.querySelectorAll('.filterbar .chip').forEach(function(c){c.classList.toggle('on',c.dataset.qtype==='all');});
+  var qd=document.getElementById('qDesk'); if(qd)qd.value='';
+  F.q='';
+  buildFilterUI(); render();
+}
+function syncInputs(fromEl){
+  document.querySelectorAll('[data-fnum]').forEach(function(inp){
+    if(inp!==fromEl && inp.dataset.fnum===fromEl.dataset.fnum) inp.value=fromEl.value;
+  });
+}
+
+/* sheet open/close */
+var wrap=document.getElementById('sheetWrap');
+function openSheet(){wrap.classList.add('open');wrap.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+function closeSheet(){wrap.classList.remove('open');wrap.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+
+/* ---------- global events ---------- */
+document.addEventListener('click',function(e){
+  var t=e.target;
+  var open=t.closest('[data-open]'); if(open){openProject(open.dataset.open);return;}
+  var s=t.closest('[data-sel]'); if(s){var id=s.dataset.sel; if(sel.has(id))sel.delete(id); else sel.add(id); saveSets();
+    if(document.getElementById('view-project').classList.contains('on')&&curProject)openProject(curProject.id);
+    else if(document.getElementById('view-shortlist').classList.contains('on'))renderShortlist();
+    else render(); return;}
+  var c=t.closest('[data-cmp]'); if(c){var cid=c.dataset.cmp; if(cmp.has(cid))cmp.delete(cid); else { if(cmp.size>=3){toast('مقایسه حداکثر ۳ پروژه است');return;} cmp.add(cid);} saveSets();
+    if(document.getElementById('view-project').classList.contains('on')&&curProject)openProject(curProject.id); else render(); return;}
+  var f=t.closest('[data-fset]'); if(f){var set=F[f.dataset.fset]; if(set.has(f.dataset.fval))set.delete(f.dataset.fval); else set.add(f.dataset.fval); buildFilterUI(); render(); return;}
+  var cl=t.closest('[data-clear]'); if(cl){clearFilters(); return;}
+  var ap=t.closest('[data-apply]'); if(ap){render(); closeSheet(); window.scrollTo({top:0,behavior:'smooth'}); return;}
+  var bk=t.closest('[data-back]'); if(bk){goHome(); return;}
+  var nv=t.closest('[data-nav]'); if(nv){e.preventDefault(); var v=nv.dataset.nav;
+    if(v==='home')goHome(); else if(v==='shortlist'){sharedSel=false;renderShortlist();} else if(v==='compare')renderCompare(); else if(v==='calc')openCalc(null); return;}
+  var cc=t.closest('[data-calc]'); if(cc){var p=byId(cc.dataset.calc); if(p)openCalc(p); return;}
+});
+document.addEventListener('input',function(e){
+  var inp=e.target.closest('[data-fnum]'); if(!inp)return;
+  F[inp.dataset.fnum]=inp.value; syncInputs(inp); render();
+});
+document.querySelectorAll('.filterbar .chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('.filterbar .chip').forEach(function(x){x.classList.remove('on');});
+    c.classList.add('on'); F.qtype=c.dataset.qtype; render();
+  });
+});
+document.getElementById('filterBtn').addEventListener('click',openSheet);
+document.getElementById('sheetScrim').addEventListener('click',closeSheet);
+document.getElementById('sheetClose').addEventListener('click',closeSheet);
+document.getElementById('sendBtn').addEventListener('click',function(){
+  if(!sel.size){sharedSel=false;renderShortlist();return;}
+  var arr=P.filter(function(p){return sel.has(p.id);});
+  var link=location.origin+location.pathname+'#sel='+[...sel].join(',');
+  var lines=arr.map(function(p,i){return (i+1)+'. '+p.name+(p.priceLabel?(' — '+p.priceLabel):' — قیمت: استعلام');});
+  var msg='سلام آقای قانونی، این پروژه‌ها رو از کاتالوگ‌تون انتخاب کردم:\n'+lines.join('\n')+'\n\nلینک انتخاب من: '+link+'\nشرایط کامل هرکدوم رو برام می‌فرستید؟';
+  window.open(waLink(msg),'_blank');
+});
+document.getElementById('cmpGo').addEventListener('click',function(){renderCompare();});
+document.getElementById('copyLink').addEventListener('click',function(){
+  var link=location.origin+location.pathname+'#sel='+[...sel].join(',');
+  var done=function(){toast('لینک انتخاب کپی شد');};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(link).then(done).catch(function(){prompt('لینک انتخاب:',link);});}
+  else prompt('لینک انتخاب:',link);
+});
+document.getElementById('printBtn').addEventListener('click',function(){window.print();});
+document.getElementById('slClear').addEventListener('click',function(){sel.clear();saveSets();renderShortlist();render();});
+['calcBase','calcDpNum'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){
+  if(id==='calcDpNum')document.getElementById('calcDp').value=document.getElementById('calcDpNum').value||0;
+  calcRun();
+});});
+['calcDp','calcMo'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){
+  if(id==='calcDp')document.getElementById('calcDpNum').value=document.getElementById('calcDp').value;
+  calcRun();
+});});
+var qDesk=document.getElementById('qDesk');
+if(qDesk)qDesk.addEventListener('input',function(){F.q=qDesk.value;render();});
+
+/* ---------- boot ---------- */
 document.getElementById('headWa').href=waLink('سلام آقای قانونی، از کاتالوگ پروژه‌هاتون پیام می‌دم.');
 document.getElementById('footWa').href=waLink('سلام آقای قانونی، از کاتالوگ پروژه‌هاتون پیام می‌دم.');
-document.getElementById('emptyWa').href=waLink('سلام آقای قانونی، دنبال پروژه‌ای با شرایط خاص هستم. راهنماییم می‌کنید؟');
-fetch('projects.json').then(r=>r.json()).then(d=>{
-  P=d.projects;
-  const hash=location.hash.match(/#sel=([a-z0-9,\-]+)/);
-  if(hash){const ids=hash[1].split(',').filter(id=>byId(id)); if(ids.length){sel=new Set(ids); sharedSel=true; saveSets(); renderShortlist();}}
+/* SPA-style hash navigation: update selection from #sel= on hashchange too */
+function applyHashSel(){
+  var m=location.hash.match(/#sel=([a-zA-Z0-9,\-]+)/);
+  if(!m||!P.length)return;
+  var ids=m[1].split(',').filter(function(id){return byId(id);});
+  if(!ids.length)return;
+  sel=new Set(ids); sharedSel=true; saveSets();
+  renderShortlist();
+}
+window.addEventListener('hashchange',applyHashSel);
+
+fetch('projects.json').then(function(r){return r.json();}).then(function(d){
+  P=d.projects; AVATAR=d.meta.avatar;
+  ['loaderAv','headAv','footAv'].forEach(function(id){document.getElementById(id).src=AVATAR;});
+  sel=new Set([...sel].filter(function(id){return byId(id);}));
+  cmp=new Set([...cmp].filter(function(id){return byId(id);}));
   buildFilterUI(); render();
-  const offer=P.find(p=>p.id==='sobha-central');
-  if(offer){document.getElementById('offerbar').style.display='block';document.getElementById('offerText').textContent='آفر فعال: SHOBA CENTRAL — آفر ویژه شوبا (جزئیات در واتساپ)';}
-}).catch(()=>{document.getElementById('grid').innerHTML='<div class="empty"><h3>خطا در بارگذاری کاتالوگ</h3><p>لطفاً صفحه را دوباره باز کنید.</p></div>';});
+  applyHashSel();
+}).catch(function(){
+  document.getElementById('grid').innerHTML='<div class="empty"><h3>خطا در بارگذاری کاتالوگ</h3><p>لطفاً صفحه را دوباره باز کنید.</p></div>';
+});
+
+/* Loader: gone when ready, hard cap 2000ms */
+var loaderHidden=false;
+function hideLoader(){
+  if(loaderHidden)return; loaderHidden=true;
+  var l=document.getElementById('loader');
+  l.classList.add('hide');
+  setTimeout(function(){l.style.display='none';},650);
+}
+window.addEventListener('load',function(){setTimeout(hideLoader,1500);});
+setTimeout(hideLoader,2000);
 </script>
 </body>
 </html>
