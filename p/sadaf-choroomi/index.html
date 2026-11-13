@@ -582,6 +582,165 @@ footer .sp{flex:1}
   </div>
 </section>
 
+<!-- ===== نظرات مشتری‌ها — دستهٔ چرخان ===== -->
+<style>
+.tdk-sec{padding:clamp(64px,9vw,110px) 0;background:linear-gradient(180deg,#f7efdb 0%,#efe3cb 55%,#f7efdb 100%);overflow:hidden}
+.tdk{position:relative;max-width:1240px;margin:26px auto 0;padding:0 12px}
+.tdk-stage{position:relative;height:450px;cursor:grab;touch-action:pan-y}
+.tdk-stage.dragging{cursor:grabbing}
+.tdk-card{position:absolute;top:50%;left:50%;width:min(540px,85vw);background:#fffdf6;border:1px solid #e6d6ab;border-radius:24px;padding:36px 38px 28px;box-shadow:0 26px 55px rgba(58,39,14,.16);transform-origin:50% 92%;transition:transform .65s cubic-bezier(.22,.9,.26,1),opacity .65s ease,filter .65s ease;will-change:transform;user-select:none;-webkit-user-select:none}
+.tdk-card .qmark{font-family:'Lalezar',cursive;font-size:64px;line-height:.6;color:#c9a24b;display:block;margin-bottom:14px}
+.tdk-stars{display:flex;gap:3px;margin-bottom:16px}
+.tdk-stars svg{width:17px;height:17px;fill:#c9a24b}
+.tdk-card p{font-size:17.5px;line-height:2.05;color:#463311;margin:0 0 22px}
+.tdk-who{display:flex;align-items:center;gap:13px;border-top:1px dashed #ddcb9c;padding-top:18px}
+.tdk-mono{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#d9bc6a,#a8801f);color:#fff8e6;display:flex;align-items:center;justify-content:center;font-family:'Lalezar',cursive;font-size:24px;flex:none;box-shadow:0 8px 18px rgba(124,92,20,.35)}
+.tdk-who b{display:block;font-size:16px;color:#3a270e}
+.tdk-who span{font-size:13px;color:#8a6d2f}
+.tdk-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:40;width:50px;height:50px;border-radius:50%;border:1px solid #cdbd97;background:#fffdf6;color:#7c5c14;font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 12px 26px rgba(58,39,14,.18);transition:transform .25s,background .25s}
+.tdk-arrow:hover{background:#f3e9d4;transform:translateY(-50%) scale(1.07)}
+.tdk-prev{inset-inline-start:2px}
+.tdk-next{inset-inline-end:2px}
+.tdk-dots{display:flex;gap:8px;justify-content:center;margin-top:6px}
+.tdk-dots button{width:9px;height:9px;border-radius:99px;border:0;background:#cdbd97;cursor:pointer;padding:0;transition:all .35s}
+.tdk-dots button.on{width:30px;background:#7c5c14}
+@media (max-width:640px){
+  .tdk-stage{height:480px}
+  .tdk-card{padding:28px 24px 22px}
+  .tdk-card p{font-size:16px;line-height:1.95}
+  .tdk-arrow{width:42px;height:42px;font-size:20px}
+}
+</style>
+<section class="tdk-sec" id="testimonials">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick">نظرات مشتری‌ها</span>
+      <h2>حرف‌هایی که بعد از معامله می‌شنوم</h2>
+      <p>خرید ملک در یک کشور دیگر یعنی اعتماد؛ این‌ها را مشتری‌هایی گفته‌اند که این مسیر را با من رفته‌اند.</p>
+    </div>
+    <div class="tdk" id="tdk">
+      <div class="tdk-stage" id="tdkStage" dir="ltr">
+        <article class="tdk-card" dir="rtl">
+          <span class="qmark">”</span>
+          <div class="tdk-stars"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg></div>
+          <p>از روز اول تا تحویل کلید، هر سؤالی داشتم همان روز جوابش را گرفتم. صدف خودش همهٔ مراحل را جلوتر از من می‌دید؛ برای همین حتی یک بار هم نگران نشدم.</p>
+          <div class="tdk-who"><div class="tdk-mono">م</div><div><b>مریم ر.</b><span>خریدار آپارتمان در بیزینس‌بی</span></div></div>
+        </article>
+        <article class="tdk-card" dir="rtl">
+          <span class="qmark">”</span>
+          <div class="tdk-stars"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg></div>
+          <p>برای من فقط عدد و بازده مهم است. سه گزینه آورد با تحلیل کامل اجاره و رشد منطقه؛ دومی را خریدم و نه ماه بعد، خودِ سازنده برای فروش مجدد ۹٪ بالاتر پیشنهاد داد.</p>
+          <div class="tdk-who"><div class="tdk-mono">ع</div><div><b>علی ک.</b><span>سرمایه‌گذار — خرید دوم در دبی</span></div></div>
+        </article>
+        <article class="tdk-card" dir="rtl">
+          <span class="qmark">”</span>
+          <div class="tdk-stars"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg></div>
+          <p>ما از صفر شروع کردیم و هیچ‌چیز از بازار دبی نمی‌دانستیم. قدم‌به‌قدم و بدون هیچ فشاری برای خرید جلو رفتیم؛ آخرش دقیقاً همان چیزی را گرفتیم که توی ذهنمان بود.</p>
+          <div class="tdk-who"><div class="tdk-mono">س</div><div><b>سارا و محمد</b><span>اولین خرید خانه در دبی</span></div></div>
+        </article>
+        <article class="tdk-card" dir="rtl">
+          <span class="qmark">”</span>
+          <div class="tdk-stars"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg></div>
+          <p>ویلای من چهار ماه با دو مشاور دیگر فروش نرفته بود. با قیمت‌گذاری درست و خریدارهای آماده‌ای که داشت، سه هفته‌ای معامله بسته شد؛ آن هم بالاتر از قیمتی که فکرش را می‌کردم.</p>
+          <div class="tdk-who"><div class="tdk-mono">ر</div><div><b>رضا م.</b><span>فروشندهٔ ویلا در جمیرا</span></div></div>
+        </article>
+        <article class="tdk-card" dir="rtl">
+          <span class="qmark">”</span>
+          <div class="tdk-stars"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg></div>
+          <p>برای خرید آف‌پلن از راه دور می‌ترسیدم. هر مرحله — قرارداد، پرداخت‌ها، گزارش پیشرفت ساخت — مستند برایم می‌فرستاد. انگار خودم آن‌جا بودم.</p>
+          <div class="tdk-who"><div class="tdk-mono">ن</div><div><b>نیما ت.</b><span>خریدار آف‌پلن در دبی هیلز</span></div></div>
+        </article>
+      </div>
+      <button class="tdk-arrow tdk-prev" id="tdkPrev" aria-label="نظر قبلی">‹</button>
+      <button class="tdk-arrow tdk-next" id="tdkNext" aria-label="نظر بعدی">›</button>
+      <div class="tdk-dots" id="tdkDots"></div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var stage=document.getElementById('tdkStage');
+  if(!stage)return;
+  var cards=[].slice.call(stage.querySelectorAll('.tdk-card'));
+  var dotsBox=document.getElementById('tdkDots');
+  var n=cards.length, active=0, timer=null, resumeT=null, visible=false, wheelLock=0;
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  cards.forEach(function(_,i){
+    var d=document.createElement('button');
+    d.setAttribute('aria-label','نظر '+(i+1));
+    d.addEventListener('click',function(){goTo(i);pause();});
+    dotsBox.appendChild(d);
+  });
+  var dots=[].slice.call(dotsBox.children);
+  function off(i){
+    var o=(i-active)%n; if(o<0)o+=n; if(o>n/2)o-=n; return o;
+  }
+  function layout(){
+    var spread=Math.min(300,window.innerWidth*0.235);
+    cards.forEach(function(c,i){
+      var o=off(i), a=Math.abs(o);
+      var x=o*spread, y=a*16, r=o*8, s=1-a*0.085, op=1-a*0.26;
+      c.style.transform='translate(-50%,-50%) translateX('+x+'px) translateY('+y+'px) rotate('+r+'deg) scale('+s+')';
+      c.style.opacity=op;
+      c.style.filter='brightness('+(1-a*0.05)+') saturate('+(1-a*0.12)+')';
+      c.style.zIndex=20-a;
+      c.style.pointerEvents=(o===0?'auto':'none');
+    });
+    dots.forEach(function(d,i){d.classList.toggle('on',i===active);});
+  }
+  function goTo(i){active=((i%n)+n)%n;layout();}
+  function next(){goTo(active+1);}
+  function prev(){goTo(active-1);}
+  function play(){if(reduced||timer)return;timer=setInterval(function(){if(visible)next();},4200);}
+  function pause(){if(timer){clearInterval(timer);timer=null;}if(resumeT)clearTimeout(resumeT);resumeT=setTimeout(play,7000);}
+  document.getElementById('tdkNext').addEventListener('click',function(){next();pause();});
+  document.getElementById('tdkPrev').addEventListener('click',function(){prev();pause();});
+  /* drag */
+  var dragX=null,moved=false;
+  stage.addEventListener('pointerdown',function(e){dragX=e.clientX;moved=false;stage.classList.add('dragging');stage.setPointerCapture(e.pointerId);});
+  stage.addEventListener('pointermove',function(e){
+    if(dragX===null)return;
+    var dx=e.clientX-dragX;
+    if(Math.abs(dx)>6){moved=true;stage.style.transform='translateX('+(dx*0.32)+'px)';}
+  });
+  function endDrag(e){
+    if(dragX===null)return;
+    var dx=e.clientX-dragX;
+    stage.classList.remove('dragging');
+    stage.style.transition='transform .35s ease';stage.style.transform='';
+    setTimeout(function(){stage.style.transition='';},380);
+    if(dx<=-50)next();else if(dx>=50)prev();
+    if(moved)pause();
+    dragX=null;
+  }
+  stage.addEventListener('pointerup',endDrag);
+  stage.addEventListener('pointercancel',endDrag);
+  /* wheel */
+  stage.addEventListener('wheel',function(e){
+    var d=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;
+    if(Math.abs(d)<8)return;
+    e.preventDefault();
+    var now=Date.now(); if(now-wheelLock<380)return; wheelLock=now;
+    if(d>0)next();else prev();
+    pause();
+  },{passive:false});
+  /* keys — only while the deck is on screen */
+  window.addEventListener('keydown',function(e){
+    if(!visible)return;
+    if(e.target&&/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
+    if(e.key==='ArrowLeft'){next();pause();}
+    else if(e.key==='ArrowRight'){prev();pause();}
+  });
+  /* click a leaning card to bring it forward */
+  cards.forEach(function(c,i){c.addEventListener('click',function(){if(off(i)!==0){goTo(i);pause();}});});
+  /* autoplay only while visible */
+  new IntersectionObserver(function(es){es.forEach(function(en){visible=en.isIntersecting;if(visible)play();});},{threshold:.25}).observe(stage);
+  document.addEventListener('visibilitychange',function(){if(document.hidden){if(timer){clearInterval(timer);timer=null;}}else play();});
+  window.addEventListener('resize',layout);
+  layout();play();
+})();
+</script>
+
 <!-- ===== مسیر همکاری ===== -->
 <section class="journey" id="journey">
   <div class="wrap">
