@@ -605,15 +605,32 @@ function stepPathTick(){
 }
 stepPathTick();
 
-/* #48 Focus Reveal — original design restored: the headline rests matte/blurred and the gold
-   lens frame stays present, drifting back and forth across the quote for as long as the section
-   is on screen; only the words inside the lens are sharp. Speed is the only change from the
-   original: one traverse ≈2.6s with eased turnarounds (the original crawl was far too slow).
-   The loop runs only while the section is visible, and resumes when it returns. */
+/* #48 Focus Reveal — original design: the headline rests matte/blurred and the gold
+   lens frame stays present, drifting back and forth across the quote; only the words
+   inside the lens are sharp. One traverse ≈2.6s with eased turnarounds.
+   Loop hardening (the sweep played once then died on a real phone): no visibility
+   gating can kill it now. A persistent timestamp-driven rAF loop runs for the life of
+   the page and draws whenever the section is in or near the viewport — checked
+   geometrically each frame, so it also runs while the section is only partially
+   visible (no ratio threshold it must reach). A watchdog restarts the loop whenever
+   frame timestamps show it has stalled while the section is near, and tab-visibility
+   changes kick the watchdog, so it resumes after scrolling away and back and after
+   the tab is hidden and shown again. Superseded chains die via a generation token,
+   so a restart can never double the loop. */
 var lens=document.getElementById('focusLens'), fq=document.getElementById('focusQuote'), fwords=[].slice.call(document.querySelectorAll('#focusQuote .w'));
-var focusVisible=false, focusRaf=null, focusT0=null, FOCUS_HALF=2600;
-function focusFrame(ts){
-  if(!focusVisible){ focusRaf=null; return; }
+var focusSec=document.getElementById('focusSec');
+var FOCUS_HALF=2600, focusT0=null, focusGen=0, focusLastTs=0;
+var focusReduced=!!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+if(focusReduced){
+  fwords.forEach(function(w){ w.classList.add('sharp'); });
+  if(lens) lens.style.display='none';
+}
+function focusNear(){
+  if(!focusSec) return false;
+  var r=focusSec.getBoundingClientRect();
+  return r.bottom>-320 && r.top<(window.innerHeight+320);
+}
+function focusDraw(ts){
   if(!focusT0) focusT0=ts;
   var maxL=Math.max(0, fq.offsetWidth-lens.offsetWidth);
   var cyc=((ts-focusT0)%(FOCUS_HALF*2))/(FOCUS_HALF*2);
@@ -625,24 +642,30 @@ function focusFrame(ts){
     var wr=w.getBoundingClientRect(), wc=wr.left+wr.width/2;
     w.classList.toggle('sharp', Math.abs(wc-cx)<=half);
   });
-  focusRaf=requestAnimationFrame(focusFrame);
+}
+function focusLoop(gen){
+  if(gen!==focusGen) return;
+  requestAnimationFrame(function(t){
+    focusLastTs=t;
+    if(focusNear() && !document.hidden) focusDraw(t);
+    focusLoop(gen);
+  });
 }
 function focusStart(){
-  if(focusRaf!==null) return;
-  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    fwords.forEach(function(w){ w.classList.add('sharp'); });
-    lens.style.display='none';
-    return;
-  }
-  focusRaf=requestAnimationFrame(focusFrame);
+  focusGen++;
+  focusLoop(focusGen);
 }
-if('IntersectionObserver' in window){
-  var fObs=new IntersectionObserver(function(es){ es.forEach(function(e){
-    focusVisible=e.isIntersecting;
-    if(focusVisible) focusStart();
-  }); },{threshold:0.15});
-  fObs.observe(document.getElementById('focusSec'));
-} else { focusVisible=true; focusStart(); }
+function focusWatchdog(){
+  if(focusReduced || document.hidden) return;
+  if(focusNear() && performance.now()-focusLastTs>700) focusStart();
+}
+if(lens && fq && focusSec && !focusReduced){
+  focusStart();
+  setInterval(focusWatchdog, 900);
+  document.addEventListener('visibilitychange', function(){
+    if(!document.hidden) setTimeout(focusWatchdog, 60);
+  });
+}
 
 /* #57 Reel Slider coverflow */
 var cards=[].slice.call(document.querySelectorAll('.reel-card')), cur=0;
