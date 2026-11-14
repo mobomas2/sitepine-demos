@@ -211,10 +211,9 @@ section{padding:clamp(64px,9vw,120px) 0}
 #focusSec{background:linear-gradient(180deg,var(--ivory),var(--blush) 30%,var(--blush) 70%,var(--ivory));color:var(--ink);text-align:center}
 #focusSec .sec-label{color:var(--gold2)}
 #focusQuote{font-family:var(--serif);font-size:clamp(2.1rem,6vw,4.6rem);line-height:1.25;max-width:1000px;margin:10px auto 0;position:relative;padding:34px 10px}
-#focusQuote .w{transition:filter .45s,opacity .45s;display:inline-block}
-#focusQuote.sweeping .w{filter:blur(7px);opacity:.45}
+#focusQuote .w{transition:filter .35s ease,opacity .35s ease;display:inline-block;filter:blur(7px);opacity:.45}
 #focusQuote .w.sharp{filter:blur(0);opacity:1}
-#focusLens{position:absolute;top:8px;bottom:8px;left:0;width:190px;border:1.5px solid var(--gold2);border-radius:10px;box-shadow:0 0 0 9999px rgba(46,33,26,0);pointer-events:none;background:rgba(201,168,106,.06);opacity:0;transition:opacity .4s ease}
+#focusLens{position:absolute;top:8px;bottom:8px;left:0;width:190px;border:1.5px solid var(--gold2);border-radius:10px;pointer-events:none;background:rgba(201,168,106,.06);opacity:1;will-change:left}
 #focusSec .fsub{color:var(--ink2);max-width:560px;margin:22px auto 0}
 
 /* ---------- #57 Reel Slider ---------- */
@@ -606,40 +605,44 @@ function stepPathTick(){
 }
 stepPathTick();
 
-/* #48 Focus Reveal: on entry the lens makes one quick ~1s pass across the quote, then fades out completely — the headline rests fully sharp with nothing parked on it */
-var lens=document.getElementById('focusLens'), fq=document.getElementById('focusQuote'), fwords=[].slice.call(document.querySelectorAll('#focusQuote .w')), focusDone=false;
-function focusSweep(){
-  if(focusDone) return; focusDone=true;
+/* #48 Focus Reveal — original design restored: the headline rests matte/blurred and the gold
+   lens frame stays present, drifting back and forth across the quote for as long as the section
+   is on screen; only the words inside the lens are sharp. Speed is the only change from the
+   original: one traverse ≈2.6s with eased turnarounds (the original crawl was far too slow).
+   The loop runs only while the section is visible, and resumes when it returns. */
+var lens=document.getElementById('focusLens'), fq=document.getElementById('focusQuote'), fwords=[].slice.call(document.querySelectorAll('#focusQuote .w'));
+var focusVisible=false, focusRaf=null, focusT0=null, FOCUS_HALF=2600;
+function focusFrame(ts){
+  if(!focusVisible){ focusRaf=null; return; }
+  if(!focusT0) focusT0=ts;
+  var maxL=Math.max(0, fq.offsetWidth-lens.offsetWidth);
+  var cyc=((ts-focusT0)%(FOCUS_HALF*2))/(FOCUS_HALF*2);
+  var tri=cyc<0.5 ? cyc*2 : 2-cyc*2;
+  var eased=0.5-0.5*Math.cos(tri*Math.PI);
+  lens.style.left=(maxL*eased)+'px';
+  var lr=lens.getBoundingClientRect(), cx=lr.left+lr.width/2, half=lr.width/2;
+  fwords.forEach(function(w){
+    var wr=w.getBoundingClientRect(), wc=wr.left+wr.width/2;
+    w.classList.toggle('sharp', Math.abs(wc-cx)<=half);
+  });
+  focusRaf=requestAnimationFrame(focusFrame);
+}
+function focusStart(){
+  if(focusRaf!==null) return;
   if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     fwords.forEach(function(w){ w.classList.add('sharp'); });
+    lens.style.display='none';
     return;
   }
-  var maxL=Math.max(0, fq.offsetWidth-190), t0=null;
-  fq.classList.add('sweeping');
-  lens.style.left='0px';
-  lens.style.opacity='1';
-  function frame(ts){
-    if(!t0) t0=ts;
-    var t=Math.min(1,(ts-t0)/1000);
-    lens.style.left=(maxL*t)+'px';
-    var lr=lens.getBoundingClientRect(), cx=lr.left+lr.width/2;
-    fwords.forEach(function(w){
-      var wr=w.getBoundingClientRect(), wc=wr.left+wr.width/2;
-      if(wc<cx+95) w.classList.add('sharp');
-    });
-    if(t<1){ requestAnimationFrame(frame); }
-    else {
-      fwords.forEach(function(w){ w.classList.add('sharp'); });
-      lens.style.opacity='0';
-      setTimeout(function(){ fq.classList.remove('sweeping'); lens.style.left='0px'; }, 500);
-    }
-  }
-  requestAnimationFrame(frame);
+  focusRaf=requestAnimationFrame(focusFrame);
 }
 if('IntersectionObserver' in window){
-  var fObs=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ focusSweep(); fObs.disconnect(); } }); },{threshold:0.2,rootMargin:'0px 0px -10% 0px'});
+  var fObs=new IntersectionObserver(function(es){ es.forEach(function(e){
+    focusVisible=e.isIntersecting;
+    if(focusVisible) focusStart();
+  }); },{threshold:0.15});
   fObs.observe(document.getElementById('focusSec'));
-}
+} else { focusVisible=true; focusStart(); }
 
 /* #57 Reel Slider coverflow */
 var cards=[].slice.call(document.querySelectorAll('.reel-card')), cur=0;
