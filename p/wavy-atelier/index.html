@@ -9,6 +9,35 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+/* #75 Intro release guard — runs from <head>, long before the end-of-body script.
+   The intro MUST release on a plain timer alone: never waiting on video, fonts,
+   fetches or any promise. This guard arms the moment the intro markup exists. */
+(function(){
+  var released=false;
+  function release(){
+    if(released) return; released=true;
+    var intro=document.getElementById('intro');
+    if(!intro) return;
+    intro.classList.add('done');
+    setTimeout(function(){ intro.style.display='none'; },800);
+  }
+  window.__releaseIntro=release;
+  var arm=setInterval(function(){
+    var skip=document.getElementById('introSkip');
+    if(!skip) return;
+    clearInterval(arm);
+    skip.addEventListener('click', release);
+    skip.addEventListener('touchend', function(e){ e.preventDefault(); release(); }, {passive:false});
+    var introEl=document.getElementById('intro');
+    if(introEl) introEl.addEventListener('click', function(e){ if(e.target===introEl) release(); });
+    setTimeout(release, 2500); /* hard auto-release */
+    setTimeout(function(){ var i=document.getElementById('intro'); if(i) i.style.display='none'; }, 3300); /* unconditional failsafe */
+  },40);
+  /* absolute backstop: even if arming never ran, nothing may trap the page */
+  setTimeout(function(){ var i=document.getElementById('intro'); if(i) i.style.display='none'; }, 4200);
+})();
+</script>
 <style>
 :root{
   --ivory:#FBF7F1; --ivory2:#f6ece1; --paper:#FFFFFF;
@@ -482,7 +511,7 @@ footer a:hover{color:var(--ink)}
 var intro=document.getElementById('intro'), words=document.querySelectorAll('#introWords span');
 words.forEach(function(w,i){ setTimeout(function(){ w.classList.add('on'); }, 260*(i+1)); });
 var introDone=false;
-function closeIntro(){ if(introDone) return; introDone=true; intro.classList.add('done'); setTimeout(function(){ intro.style.display='none'; },800); }
+function closeIntro(){ if(window.__releaseIntro){ window.__releaseIntro(); return; } if(introDone) return; introDone=true; intro.classList.add('done'); setTimeout(function(){ intro.style.display='none'; },800); }
 setTimeout(closeIntro, 2900);
 document.getElementById('introSkip').addEventListener('click', closeIntro);
 intro.addEventListener('click', function(e){ if(e.target===intro) closeIntro(); });
