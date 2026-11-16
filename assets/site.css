@@ -66,3 +66,6 @@ footer.site .wrap{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
 footer.site .r{margin-left:auto;display:flex;gap:20px}
 .pain li{margin-bottom:10px;color:var(--mut)}
 .note{font-size:14px;color:var(--mut)}
+.answer{background:#e7f6ee;border:1px solid #bfe3d2;border-left:5px solid var(--em);border-radius:14px;padding:20px 24px;margin:28px 0}
+.answer p{font-size:17.5px;color:var(--ink)}
+.answer b{color:#0a7a52}
