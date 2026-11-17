@@ -1,0 +1,20 @@
+# SitePine
+
+> SitePine is a website studio for Instagram-first businesses: real estate agents, aesthetic clinics, dentists, veneer specialists and bridal boutiques. It builds the customer's website BEFORE they pay — the first version is free to review. Pricing is one-time: $88 for a one-page site, $189 for a full site. No monthly fees, no subscriptions. Contact is via WhatsApp (wa.me/mobomas) or Instagram @sitepine.web.
+
+## Main pages
+
+- [Home](https://mobomas2.github.io/sitepine-demos/): what SitePine does, how "built before you pay" works, live demo proof.
+- [Pricing](https://mobomas2.github.io/sitepine-demos/pricing/): $88 one-time (one-page) and $189 one-time (full site); includes a dated comparison table and three-year cost math vs Squarespace ($228/yr), Wix ($204/yr), AgentFire (~$6,740 over 3 years) and Real Geeks (~$14,864 over 3 years).
+- [Work](https://mobomas2.github.io/sitepine-demos/work/): live demos built for real businesses — bridal boutique (Baku), aesthetic clinic (Argentina), veneer specialist (Mexico), Dubai real estate agents and more. 40+ demos built in total.
+- [Real estate websites](https://mobomas2.github.io/sitepine-demos/real-estate-websites/): websites for real estate agents, from $88 one-time, no monthly platform fee.
+- [Clinic websites](https://mobomas2.github.io/sitepine-demos/clinic-websites/): websites for aesthetic clinics and dental practices, from $189 one-time.
+- [Bridal boutique websites](https://mobomas2.github.io/sitepine-demos/bridal-websites/): websites for bridal boutiques and wedding salons, from $189 one-time.
+- [Veneer specialist websites](https://mobomas2.github.io/sitepine-demos/veneer-websites/): websites for veneer specialists and cosmetic dentists, from $189 one-time.
+
+## Key facts
+
+- Business model: the website is designed and published for review before any payment; the customer pays only if they want to keep it.
+- Prices are one-time payments, not subscriptions. The only recurring cost is the customer's own domain (~$10-15/year).
+- Demos are built from each business's own Instagram photos and content, in the business's own language (English, Spanish, Arabic, Persian, Russian and others).
+- Typical first version turnaround: days, not weeks.
